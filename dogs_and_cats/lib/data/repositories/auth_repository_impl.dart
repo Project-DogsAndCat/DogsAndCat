@@ -1,0 +1,39 @@
+import 'package:dogs_and_cats/core/error/failure.dart';
+import 'package:dogs_and_cats/domain/models/person_auth.dart';
+import 'package:fpdart/src/either.dart';
+
+import '../../core/error/server_exception.dart';
+import '../../domain/repositories/auth_repository.dart';
+import '../datasources/auth_remote_data_source.dart';
+
+class AuthRepositoryImpl implements AuthRepository {
+  AuthRepositoryImpl({required this.remoteDataSource});
+
+  final AuthRemoteDataSource remoteDataSource;
+
+  @override
+  Future<Either<Failure, PersonAuth>> loginWithEmailPassword(
+      {required String email, required String password}) {
+    // TODO: implement loginWithEmailPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, PersonAuth>> signUpWithEmailPassword(
+      {required String firstName,
+      required String lastName,
+      required String email,
+      required String password}) async {
+    try {
+      final person = await remoteDataSource.signUpWithEmailPassword(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password);
+
+      return right(person.toDomain());
+    } on ServerException catch (e) {
+      return left(Failure(message: e.message));
+    }
+  }
+}
