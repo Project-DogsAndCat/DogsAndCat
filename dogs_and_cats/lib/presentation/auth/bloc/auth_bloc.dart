@@ -13,7 +13,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) async {
       await event.map(
           signUp: (event) => _signUp(emit, event.firstName, event.lastName,
-              event.email, event.password));
+              event.email, event.password),
+          signIn: (event) => _signIn(emit, event.email, event.password));
     });
   }
 
@@ -26,6 +27,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         lastName: lastName,
         email: email,
         password: password);
+
+    result.fold((failure) => emit(AuthState.failure(message: failure.message)),
+        (person) => emit(AuthState.success(person: person)));
+  }
+
+  Future<void> _signIn(
+      Emitter<AuthState> emit, String email, String password) async {
+    emit(AuthState.loading());
+
+    final result = await _repository.loginWithEmailPassword(
+        email: email, password: password);
 
     result.fold((failure) => emit(AuthState.failure(message: failure.message)),
         (person) => emit(AuthState.success(person: person)));

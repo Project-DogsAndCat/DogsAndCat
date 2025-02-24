@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PersonAuth {
+  String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -34,7 +35,12 @@ abstract class $PersonAuthCopyWith<$Res> {
           PersonAuth value, $Res Function(PersonAuth) then) =
       _$PersonAuthCopyWithImpl<$Res, PersonAuth>;
   @useResult
-  $Res call({String firstName, String lastName, String email, String password});
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -52,12 +58,17 @@ class _$PersonAuthCopyWithImpl<$Res, $Val extends PersonAuth>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -86,7 +97,12 @@ abstract class _$$PersonAuthImplCopyWith<$Res>
       __$$PersonAuthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String firstName, String lastName, String email, String password});
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -102,12 +118,17 @@ class __$$PersonAuthImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$PersonAuthImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -132,11 +153,14 @@ class __$$PersonAuthImplCopyWithImpl<$Res>
 
 class _$PersonAuthImpl implements _PersonAuth {
   const _$PersonAuthImpl(
-      {required this.firstName,
+      {required this.id,
+      required this.firstName,
       required this.lastName,
       required this.email,
       required this.password});
 
+  @override
+  final String id;
   @override
   final String firstName;
   @override
@@ -148,7 +172,7 @@ class _$PersonAuthImpl implements _PersonAuth {
 
   @override
   String toString() {
-    return 'PersonAuth(firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
+    return 'PersonAuth(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
   }
 
   @override
@@ -156,6 +180,7 @@ class _$PersonAuthImpl implements _PersonAuth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PersonAuthImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -167,7 +192,7 @@ class _$PersonAuthImpl implements _PersonAuth {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, firstName, lastName, email, password);
+      Object.hash(runtimeType, id, firstName, lastName, email, password);
 
   /// Create a copy of PersonAuth
   /// with the given fields replaced by the non-null parameter values.
@@ -180,11 +205,14 @@ class _$PersonAuthImpl implements _PersonAuth {
 
 abstract class _PersonAuth implements PersonAuth {
   const factory _PersonAuth(
-      {required final String firstName,
+      {required final String id,
+      required final String firstName,
       required final String lastName,
       required final String email,
       required final String password}) = _$PersonAuthImpl;
 
+  @override
+  String get id;
   @override
   String get firstName;
   @override

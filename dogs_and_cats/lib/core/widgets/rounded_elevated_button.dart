@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_pallet.dart';
+import '../theme/app_colors.dart';
 
 class RoundedElevatedButton extends StatelessWidget {
   const RoundedElevatedButton(
       {super.key,
       required this.buttonText,
       this.onPressed,
-      this.color = AppPallet.appColor});
+      this.color = AppColors.appColor});
   final String buttonText;
   final Function()? onPressed;
   final Color color;
@@ -36,7 +36,7 @@ class RoundedElevatedButton extends StatelessWidget {
       child: Text(
         buttonText,
         style: const TextStyle(
-            color: AppPallet.whiteColor,
+            color: AppColors.whiteColor,
             fontWeight: FontWeight.w400,
             fontSize: 16),
       ),

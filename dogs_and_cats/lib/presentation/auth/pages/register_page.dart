@@ -1,12 +1,13 @@
-import 'package:dogs_and_cats/core/utils/app_pallet.dart';
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
-import 'package:dogs_and_cats/presentation/home/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/routes/route_names.dart';
 import '../../../core/utils/validation_rules.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 
@@ -57,11 +58,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   loading: (_) {},
                   success: (_) {
                     clearText();
-                    CustomSnackBar.showSuccess(context, AppString.register);
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
+                    CustomSnackBar.showSuccess(
+                        context, AppString.accountCreated);
+                    context.goNamed(RoutesNames.home);
                   },
                   failure: (state) {
                     CustomSnackBar.showError(context, state.message);
@@ -91,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: false,
                           hintText: AppString.firstName,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10.0,
                         ),
                         CustomTextFormField(
@@ -106,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: false,
                           hintText: AppString.lastName,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10.0,
                         ),
                         CustomTextFormField(
@@ -124,7 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: false,
                           hintText: AppString.email,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10.0,
                         ),
                         CustomTextFormField(
@@ -148,11 +147,11 @@ class _RegisterPageState extends State<RegisterPage> {
                               isPasswordVisible
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              color: AppPallet.greyColor,
+                              color: AppColors.greyColor,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         RoundedElevatedButton(
@@ -168,6 +167,24 @@ class _RegisterPageState extends State<RegisterPage> {
                                   );
                             }
                           },
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            context.goNamed(RoutesNames.login);
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              text: "У Вас уже есть аккаунт? ",
+                              children: [
+                                TextSpan(
+                                  text: 'Войти',
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),

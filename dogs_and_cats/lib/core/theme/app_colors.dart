@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppPallet {
+class AppColors {
   static const Color backGroundColor = Color(0xff141A31);
   static const Color appBarColor = Color(0xff1E2746);
   static const Color appColor = Colors.blue;

@@ -1,4 +1,4 @@
-import 'package:dogs_and_cats/core/utils/app_pallet.dart';
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -29,28 +29,28 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: TextStyle(fontWeight: FontWeight.w400),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppPallet.borderColor,
+            color: AppColors.borderColor,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppPallet.borderColor,
+            color: AppColors.borderColor,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppPallet.appColor,
+            color: AppColors.appColor,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppPallet.errorColor,
+            color: AppColors.errorColor,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(10.0),

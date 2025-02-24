@@ -19,9 +19,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<PersonAuthModel> loginWithEmailPassword(
-      {required String email, required String password}) {
-    // TODO: implement loginWithEmailPassword
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      final response = await supabaseClient.auth
+          .signInWithPassword(email: email, password: password);
+      if (response.user == null) {
+        throw ServerException('Пользователь не найден');
+      }
+
+      final data = response.session!.user;
+      final metadata = data.userMetadata;
+      final useJson = {
+        'id': data.id,
+        'firstName': metadata!['firstName'] as String,
+        'lastName': metadata['lastName'] as String,
+        'email': data.email,
+        'password': ''
+      };
+
+      return PersonAuthModel.fromJson(useJson);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
   }
 
   @override
@@ -39,11 +58,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ServerException('Пользователь не найден');
       }
 
-      final metadata = response.user!.userMetadata;
+      final data = response.user;
+      final metadata = data!.userMetadata;
       final useJson = {
+        'id': data.id,
         'firstName': metadata!['firstName'] as String,
         'lastName': metadata['lastName'] as String,
-        'email': response.user!.email,
+        'email': data.email,
         'password': ''
       };
 

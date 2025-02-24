@@ -1,28 +1,23 @@
-import 'package:dogs_and_cats/data/datasources/auth_remote_data_source.dart';
-import 'package:dogs_and_cats/data/repositories/auth_repository_impl.dart';
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
+import 'package:dogs_and_cats/core/routes/routes.dart';
+import 'package:dogs_and_cats/core/theme/bloc/theme_cubit.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
-import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'core/secrets/secrets.dart';
 
 void main() async {
+  await setup();
+
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-      url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseAnnonKey);
-  final supabase = Supabase.instance.client;
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => AuthBloc(
-            AuthRepositoryImpl(
-              remoteDataSource:
-                  AuthRemoteDataSourceImpl(supabaseClient: supabase),
-            ),
-          ),
+          create: (_) => getIt<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => ThemeCubit(),
         ),
       ],
       child: const MyApp(),
@@ -35,10 +30,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: RegisterPage(),
-    );
+    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+      return MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: state.isDark ? darkTheme : lightTheme,
+        routerConfig: router,
+      );
+    });
   }
 }

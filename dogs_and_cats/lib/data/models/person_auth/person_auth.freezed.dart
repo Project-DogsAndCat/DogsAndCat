@@ -20,6 +20,7 @@ PersonAuthModel _$PersonAuthModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PersonAuthModel {
+  String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -41,7 +42,12 @@ abstract class $PersonAuthModelCopyWith<$Res> {
           PersonAuthModel value, $Res Function(PersonAuthModel) then) =
       _$PersonAuthModelCopyWithImpl<$Res, PersonAuthModel>;
   @useResult
-  $Res call({String firstName, String lastName, String email, String password});
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -59,12 +65,17 @@ class _$PersonAuthModelCopyWithImpl<$Res, $Val extends PersonAuthModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -93,7 +104,12 @@ abstract class _$$PersonAuthModelImplCopyWith<$Res>
       __$$PersonAuthModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String firstName, String lastName, String email, String password});
+  $Res call(
+      {String id,
+      String firstName,
+      String lastName,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -109,12 +125,17 @@ class __$$PersonAuthModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$PersonAuthModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -139,7 +160,8 @@ class __$$PersonAuthModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PersonAuthModelImpl extends _PersonAuthModel {
   const _$PersonAuthModelImpl(
-      {required this.firstName,
+      {required this.id,
+      required this.firstName,
       required this.lastName,
       required this.email,
       required this.password})
@@ -148,6 +170,8 @@ class _$PersonAuthModelImpl extends _PersonAuthModel {
   factory _$PersonAuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonAuthModelImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String firstName;
   @override
@@ -159,7 +183,7 @@ class _$PersonAuthModelImpl extends _PersonAuthModel {
 
   @override
   String toString() {
-    return 'PersonAuthModel(firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
+    return 'PersonAuthModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
   }
 
   @override
@@ -167,6 +191,7 @@ class _$PersonAuthModelImpl extends _PersonAuthModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PersonAuthModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -179,7 +204,7 @@ class _$PersonAuthModelImpl extends _PersonAuthModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, firstName, lastName, email, password);
+      Object.hash(runtimeType, id, firstName, lastName, email, password);
 
   /// Create a copy of PersonAuthModel
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +225,8 @@ class _$PersonAuthModelImpl extends _PersonAuthModel {
 
 abstract class _PersonAuthModel extends PersonAuthModel {
   const factory _PersonAuthModel(
-      {required final String firstName,
+      {required final String id,
+      required final String firstName,
       required final String lastName,
       required final String email,
       required final String password}) = _$PersonAuthModelImpl;
@@ -209,6 +235,8 @@ abstract class _PersonAuthModel extends PersonAuthModel {
   factory _PersonAuthModel.fromJson(Map<String, dynamic> json) =
       _$PersonAuthModelImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get firstName;
   @override

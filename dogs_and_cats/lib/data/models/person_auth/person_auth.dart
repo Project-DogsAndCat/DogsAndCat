@@ -9,18 +9,21 @@ class PersonAuthModel with _$PersonAuthModel {
   const PersonAuthModel._();
 
   const factory PersonAuthModel(
-      {required String firstName,
+      {required String id,
+      required String firstName,
       required String lastName,
       required String email,
       required String password}) = _PersonAuthModel;
 
   PersonAuth toDomain() => PersonAuth(
+      id: id,
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password);
 
   factory PersonAuthModel.fromDomain(PersonAuth object) => PersonAuthModel(
+      id: object.id,
       firstName: object.firstName,
       lastName: object.lastName,
       email: object.email,

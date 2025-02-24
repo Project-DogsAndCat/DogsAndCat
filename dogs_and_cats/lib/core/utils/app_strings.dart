@@ -11,8 +11,9 @@ class AppString {
   static const register = 'Зарегистрироваться';
   static const internalServerError = 'Отсутствует соединение с интернетом';
   static const internetNotFound = 'Отсутствует соединение с интернетом';
-  static const login = 'Логин';
+  static const login = 'Войти';
   static const accountCreated = 'Аккаунт успешно создан';
+  static const loginSuccess = 'Вы успешно вошли';
   static const newUser = "У вас нет аккаунта? ";
   static const noDataFound = 'Данные не найдены';
 
