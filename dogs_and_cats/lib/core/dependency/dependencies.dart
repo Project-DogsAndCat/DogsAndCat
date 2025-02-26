@@ -12,16 +12,16 @@ final getIt = GetIt.instance;
 Future<void> setup() async {
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseAnnonKey);
-  getIt.registerLazySingleton(() => supabase.client);
+  getIt.registerLazySingleton<SupabaseClient>(() => supabase.client);
   _initAuth();
 }
 
 void _initAuth() {
   getIt.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(supabaseClient: getIt()));
+      () => AuthRemoteDataSourceImpl(supabaseClient: getIt<SupabaseClient>()));
 
   getIt.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(remoteDataSource: getIt()));
+      () => AuthRepositoryImpl(remoteDataSource: getIt<AuthRemoteDataSource>()));
 
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt()));
+  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepository>()));
 }

@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
             horizontal: 16,
             vertical: 10,
           ),
-          child: BlocConsumer<AuthBloc, AuthState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.map(
                   initial: (_) {},
@@ -66,14 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     CustomSnackBar.showError(context, state.message);
                   });
             },
-            builder: (context, state) {
-              return state.maybeMap(
-                loading: (_) => Center(
-                  child: CircularProgressIndicator(),
-                ),
-                success: (_) => Center(child: CircularProgressIndicator()),
-                orElse: () {
-                  return Form(
+            child: Form(
                     key: _registerFormKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -188,10 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ],
                     ),
-                  );
-                },
-              );
-            },
+                  ),
           ),
         ),
       ),
