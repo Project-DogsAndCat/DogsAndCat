@@ -2,5 +2,8 @@ class RoutesNames {
   static const splash = 'splash';
   static const register = 'register';
   static const login = 'login';
-  static const home = 'home';
+  static const home = 'scaffold_with_navbar';
+  static const search = 'search';
+  static const dogsitter = 'dogsitter';
+  static const account = 'account';
 }

@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   success: (_) {
                     clearText();
                     CustomSnackBar.showSuccess(context, AppString.loginSuccess);
-                    context.goNamed(RoutesNames.home);
+                    context.goNamed(RoutesNames.search);
                   },
                   failure: (state) {
                     CustomSnackBar.showError(context, state.message);
