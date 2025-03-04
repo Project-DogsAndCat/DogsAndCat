@@ -60,128 +60,128 @@ class _RegisterPageState extends State<RegisterPage> {
                     clearText();
                     CustomSnackBar.showSuccess(
                         context, AppString.accountCreated);
-                    context.goNamed(RoutesNames.home);
+                    context.goNamed(RoutesNames.search);
                   },
                   failure: (state) {
                     CustomSnackBar.showError(context, state.message);
                   });
             },
             child: Form(
-                    key: _registerFormKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomTextFormField(
-                          controller: _firstNameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.text,
-                          obscureText: false,
-                          hintText: AppString.firstName,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        CustomTextFormField(
-                          controller: _lastNameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.text,
-                          obscureText: false,
-                          hintText: AppString.lastName,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        CustomTextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            } else if (!ValidationRules.emailValidation
-                                .hasMatch(value)) {
-                              return AppString.providedValidEmail;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.emailAddress,
-                          obscureText: false,
-                          hintText: AppString.email,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        CustomTextFormField(
-                          controller: _passwordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: !isPasswordVisible,
-                          hintText: AppString.password,
-                          suffix: InkWell(
-                            onTap: () {
-                              setState(() {
-                                isPasswordVisible = !isPasswordVisible;
-                              });
-                            },
-                            child: Icon(
-                              isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: AppColors.greyColor,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        RoundedElevatedButton(
-                          buttonText: AppString.register,
-                          onPressed: () {
-                            if (_registerFormKey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.signUp(
-                                        firstName: _firstNameController.text,
-                                        lastName: _lastNameController.text,
-                                        email: _emailController.text,
-                                        password: _passwordController.text),
-                                  );
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            context.goNamed(RoutesNames.login);
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              text: "У Вас уже есть аккаунт? ",
-                              children: [
-                                TextSpan(
-                                  text: 'Войти',
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+              key: _registerFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextFormField(
+                    controller: _firstNameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                    obscureText: false,
+                    hintText: AppString.firstName,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextFormField(
+                    controller: _lastNameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                    obscureText: false,
+                    hintText: AppString.lastName,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextFormField(
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      } else if (!ValidationRules.emailValidation
+                          .hasMatch(value)) {
+                        return AppString.providedValidEmail;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    obscureText: false,
+                    hintText: AppString.email,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextFormField(
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: !isPasswordVisible,
+                    hintText: AppString.password,
+                    suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                      child: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: AppColors.greyColor,
+                      ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  RoundedElevatedButton(
+                    buttonText: AppString.register,
+                    onPressed: () {
+                      if (_registerFormKey.currentState!.validate()) {
+                        context.read<AuthBloc>().add(
+                              AuthEvent.signUp(
+                                  firstName: _firstNameController.text,
+                                  lastName: _lastNameController.text,
+                                  email: _emailController.text,
+                                  password: _passwordController.text),
+                            );
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.goNamed(RoutesNames.login);
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        text: "У Вас уже есть аккаунт? ",
+                        children: [
+                          TextSpan(
+                            text: 'Войти',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

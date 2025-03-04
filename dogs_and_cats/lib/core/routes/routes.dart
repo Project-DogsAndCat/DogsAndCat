@@ -11,7 +11,7 @@ import 'package:go_router/go_router.dart';
 final GoRouter router = GoRouter(routes: [
   GoRoute(
       name: RoutesNames.register,
-      path: '/re',
+      path: '/',
       builder: (context, state) => const RegisterPage()),
   GoRoute(
       name: RoutesNames.login,
@@ -25,7 +25,7 @@ final GoRouter router = GoRouter(routes: [
           routes: [
             GoRoute(
               name: RoutesNames.search,
-              path: '/',
+              path: '/search',
               builder: (context, state) => const SearchPage(),
             ),
           ],

@@ -1,7 +1,8 @@
-import 'package:dogs_and_cats/domain/models/person_auth.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../domain/models/person_auth/person_auth.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';

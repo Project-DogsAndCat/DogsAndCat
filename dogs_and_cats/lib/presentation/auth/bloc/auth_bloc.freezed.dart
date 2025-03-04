@@ -775,8 +775,6 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PersonAuth person});
-
-  $PersonAuthCopyWith<$Res> get person;
 }
 
 /// @nodoc
@@ -800,16 +798,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
           : person // ignore: cast_nullable_to_non_nullable
               as PersonAuth,
     ));
-  }
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PersonAuthCopyWith<$Res> get person {
-    return $PersonAuthCopyWith<$Res>(_value.person, (value) {
-      return _then(_value.copyWith(person: value));
-    });
   }
 }
 

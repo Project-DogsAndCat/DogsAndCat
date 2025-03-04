@@ -9,6 +9,7 @@ abstract interface class AuthRemoteDataSource {
       required String lastName,
       required String email,
       required String password});
+
   Future<PersonAuthModel> loginWithEmailPassword(
       {required String email, required String password});
 }
@@ -60,15 +61,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final data = response.user;
       final metadata = data!.userMetadata;
-      final useJson = {
+      final userJson = {
         'id': data.id,
         'firstName': metadata!['firstName'] as String,
         'lastName': metadata['lastName'] as String,
         'email': data.email,
-        'password': ''
       };
 
-      return PersonAuthModel.fromJson(useJson);
+      return PersonAuthModel.fromJson(userJson);
     } catch (e) {
       throw ServerException(e.toString());
     }
