@@ -6,4 +6,5 @@ class RoutesNames {
   static const search = 'search';
   static const dogsitter = 'dogsitter';
   static const account = 'account';
+  static const settings = 'settings';
 }
