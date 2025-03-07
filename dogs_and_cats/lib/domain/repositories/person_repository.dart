@@ -9,4 +9,6 @@ abstract interface class PersonRepository {
     required String latitude,
     required String longitude,
   });
+
+  Future<Either<Failure, Person>> getPerson({required String id});
 }

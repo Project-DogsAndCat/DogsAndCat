@@ -1,6 +1,7 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,9 @@ void main() async {
         BlocProvider(
           create: (_) => getIt<ThemeCubit>(),
         ),
+        BlocProvider(
+          create: (_) => getIt<ProfileBloc>()..add(ProfileEvent.load()),
+        )
       ],
       child: MyApp(),
     ),

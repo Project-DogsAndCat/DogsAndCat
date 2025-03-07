@@ -45,6 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -148,7 +149,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   RoundedElevatedButton(
-                    buttonText: AppString.register,
                     onPressed: () {
                       if (_registerFormKey.currentState!.validate()) {
                         context.read<AuthBloc>().add(
@@ -160,6 +160,23 @@ class _RegisterPageState extends State<RegisterPage> {
                             );
                       }
                     },
+                    widget: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return state.maybeMap(loading: (_) {
+                          return CircularProgressIndicator(
+                            color: Colors.white,
+                          );
+                        }, orElse: () {
+                          return Text(
+                            AppString.login,
+                            style: const TextStyle(
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          );
+                        });
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 10.0,

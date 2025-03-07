@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
@@ -9,16 +10,13 @@ import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../dependency/dependencies.dart';
-
 final _session = getIt<SupabaseClient>().auth.currentSession;
-
 final GoRouter router = GoRouter(
-    initialLocation: _session == null ? '/register' : '/search',
+    initialLocation: _session != null ? '/register' : '/search',
     routes: [
       GoRoute(
           name: RoutesNames.register,
-          path: '/',
+          path: '/register',
           builder: (context, state) => const RegisterPage()),
       GoRoute(
           name: RoutesNames.login,
@@ -48,7 +46,7 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.account,
                 path: '/profile',
-                builder: (context, state) => const ProfilePage(),
+                builder: (context, state) => ProfilePage(),
               )
             ]),
             StatefulShellBranch(routes: [
