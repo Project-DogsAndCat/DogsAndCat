@@ -13,7 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session != null ? '/register' : '/search',
+    initialLocation: session == null ? '/register' : '/search',
     routes: [
       GoRoute(
           name: RoutesNames.register,
@@ -47,7 +47,7 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.account,
                 path: '/profile',
-                builder: (context, state) => const ProfilePage(),
+                builder: (context, state) => ProfilePage(),
               )
             ]),
             StatefulShellBranch(routes: [

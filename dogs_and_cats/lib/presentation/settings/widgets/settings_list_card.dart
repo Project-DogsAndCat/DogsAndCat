@@ -13,7 +13,6 @@ class SettingsListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
-        decoration: BoxDecoration(color: Colors.white),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         width: double.infinity,
         child: Row(

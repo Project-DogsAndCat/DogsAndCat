@@ -5,23 +5,19 @@ final lightTheme = ThemeData(
   textTheme: textTheme,
   primaryColor: AppColors.appColor,
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.grey,
+  scaffoldBackgroundColor: Color(0xFFF8FAEC),
   dividerTheme: DividerThemeData(
     color: Colors.grey.withValues(alpha: 0.1),
   ),
-  colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.appColor, brightness: Brightness.light),
+  colorScheme: ColorScheme.light(surface: Color(0xFFF8FAEC)),
 );
 
 final darkTheme = ThemeData(
   textTheme: textTheme,
   primaryColor: AppColors.appColor,
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.black,
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: AppColors.appColor,
-    brightness: Brightness.dark,
-  ),
+  scaffoldBackgroundColor: Color(0xFF232323),
+  colorScheme: ColorScheme.dark(surface: Color(0xFF232323)),
 );
 
 final textTheme = TextTheme(

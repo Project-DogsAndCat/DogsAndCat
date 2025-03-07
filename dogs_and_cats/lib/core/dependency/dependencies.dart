@@ -1,6 +1,9 @@
 import 'package:dogs_and_cats/data/datasources/auth_remote_data_source.dart';
 import 'package:dogs_and_cats/data/repositories/auth_repository_impl.dart';
+import 'package:dogs_and_cats/data/repositories/person_repository_impl.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
+import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +25,8 @@ Future<void> setup() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => prefs);
   _initTheme();
+
+  _initProfile();
 }
 
 void _initAuth() {
@@ -40,4 +45,11 @@ void _initTheme() {
 
   getIt.registerLazySingleton<ThemeCubit>(
       () => ThemeCubit(repository: getIt<SettingsRepository>()));
+}
+
+void _initProfile() {
+  getIt.registerLazySingleton<PersonRepository>(() => PersonRepositoryImpl());
+
+  getIt.registerLazySingleton<ProfileBloc>(
+      () => ProfileBloc(repository: getIt<PersonRepository>()));
 }

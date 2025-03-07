@@ -9,7 +9,7 @@ class RoundedElevatedButton extends StatelessWidget {
       {super.key,
       required this.buttonText,
       this.onPressed,
-      this.color = AppColors.primaryColor});
+      this.color = AppColors.appColor});
   final String buttonText;
   final Function()? onPressed;
   final Color color;
@@ -24,7 +24,7 @@ class RoundedElevatedButton extends StatelessWidget {
         shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(25.0),
+              Radius.circular(8),
             ),
           ),
         ),

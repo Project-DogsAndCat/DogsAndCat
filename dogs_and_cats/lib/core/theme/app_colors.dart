@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color backGroundColor = Color(0xff232323);
-  static const Color primaryColor = Color(0xff4EA55A);
+  static const Color backGroundColor = Color(0xff141A31);
   static const Color appBarColor = Color(0xff1E2746);
   static const Color appColor = Colors.blue;
-  static const Color borderColor = Color.fromRGBO(52, 51, 67, 1);
+  static const Color primaryColor = Color.fromRGBO(52, 51, 67, 1);
   static const Color whiteColor = Colors.white;
   static const Color greyColor = Colors.grey;
   static const Color errorColor = Color(0xFFB00020);

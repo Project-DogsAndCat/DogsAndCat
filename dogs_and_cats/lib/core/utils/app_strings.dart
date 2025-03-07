@@ -5,6 +5,8 @@ class AppString {
   static const required = 'Обязательные поля';
   static const firstName = 'Имя';
   static const lastName = 'Фамилия';
+  static const firstAndLastName = 'Имя и Фамилия';
+  static const personalData = 'Личные данные';
   static const providedValidName = 'Укажите действительное имя';
   static const providedValidEmail = 'Укажите действительню почту';
   static const providedValidPassword = 'Укажите действительный пароль';

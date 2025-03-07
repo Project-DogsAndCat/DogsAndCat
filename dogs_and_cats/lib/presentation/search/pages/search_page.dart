@@ -9,9 +9,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Container(
-        color: Colors.green,
-      ),
+      child: Container(),
     ));
   }
 }
