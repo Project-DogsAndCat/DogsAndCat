@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: !isPasswordVisible,
                           hintText: AppString.password,
-                          suffix: InkWell(
+                          suffixIcon: InkWell(
                             onTap: () {
                               setState(() {
                                 isPasswordVisible = !isPasswordVisible;

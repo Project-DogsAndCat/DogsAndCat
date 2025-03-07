@@ -7,9 +7,9 @@ import '../theme/app_colors.dart';
 class RoundedElevatedButton extends StatelessWidget {
   const RoundedElevatedButton(
       {super.key,
-        required this.buttonText,
-        this.onPressed,
-        this.color = AppColors.appColor});
+      required this.buttonText,
+      this.onPressed,
+      this.color = AppColors.primaryColor});
   final String buttonText;
   final Function()? onPressed;
   final Color color;
@@ -24,7 +24,7 @@ class RoundedElevatedButton extends StatelessWidget {
         shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(8),
+              Radius.circular(25.0),
             ),
           ),
         ),
@@ -37,22 +37,19 @@ class RoundedElevatedButton extends StatelessWidget {
       ),
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          return state.maybeMap(
-              loading: (_) {
-                return CircularProgressIndicator(
-                  color: Colors.white,
-                );
-              },
-              orElse: () {
-                return Text(
-                  buttonText,
-                  style: const TextStyle(
-                      color: AppColors.whiteColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16),
-                );
-              }
-          );
+          return state.maybeMap(loading: (_) {
+            return CircularProgressIndicator(
+              color: Colors.white,
+            );
+          }, orElse: () {
+            return Text(
+              buttonText,
+              style: const TextStyle(
+                  color: AppColors.whiteColor,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16),
+            );
+          });
         },
       ),
     );
