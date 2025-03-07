@@ -1,5 +1,6 @@
+import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../domain/models/person/person.dart';
+
 part 'person_model.g.dart';
 
 @JsonSerializable()

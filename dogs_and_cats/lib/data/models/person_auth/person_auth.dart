@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/models/person_auth/person_auth.dart';
+import '../../../domain/models/person_auth.dart';
+
 part 'person_auth.g.dart';
 
 @JsonSerializable()

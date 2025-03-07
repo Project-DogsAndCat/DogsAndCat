@@ -1,5 +1,5 @@
 import 'package:dogs_and_cats/core/error/failure.dart';
-import 'package:dogs_and_cats/domain/models/person/person.dart';
+import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class PersonRepository {

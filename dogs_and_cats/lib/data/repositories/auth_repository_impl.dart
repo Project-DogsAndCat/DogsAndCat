@@ -1,12 +1,11 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/error/failure.dart';
 import 'package:dogs_and_cats/data/models/person_auth/person_auth.dart';
-
 import 'package:fpdart/src/either.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/server_exception.dart';
-import '../../domain/models/person_auth/person_auth.dart';
+import '../../domain/models/person_auth.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
 

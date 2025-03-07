@@ -1,5 +1,7 @@
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../repository/settings_repository.dart';
 
@@ -13,16 +15,19 @@ class ThemeCubit extends Cubit<ThemeState> {
   }
 
   final SettingsRepository _repository;
+  final session = getIt<SupabaseClient>().auth.currentSession;
 
   Future<void> setThemeBrightness(Brightness brightness) async {
     emit(ThemeState(brightness: brightness));
     await _repository.setDarkThemeSelected(
-        selected: brightness == Brightness.dark);
+        personId: session?.user.id, selected: brightness == Brightness.dark);
   }
 
   void _checkThemeSelected() {
     final brightness =
-        _repository.isDarkThemeSelected() ? Brightness.dark : Brightness.light;
+        _repository.isDarkThemeSelected(personId: session?.user.id)
+            ? Brightness.dark
+            : Brightness.light;
     emit(ThemeState(brightness: brightness));
   }
 }

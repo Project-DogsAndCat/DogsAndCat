@@ -10,9 +10,6 @@ import 'core/theme/cubit/theme_cubit.dart';
 void main() async {
   await setup();
   WidgetsFlutterBinding.ensureInitialized();
-  // final SharedPreferences prefs = await SharedPreferences.getInstance();
-  // final SettingsRepository repository =
-  //     SettingsRepositoryImpl(preferences: prefs);
   runApp(
     MultiBlocProvider(
       providers: [

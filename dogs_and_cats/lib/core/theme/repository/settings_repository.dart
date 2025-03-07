@@ -1,4 +1,4 @@
 abstract interface class SettingsRepository {
-  bool isDarkThemeSelected();
-  Future<void> setDarkThemeSelected({required bool selected});
+  bool isDarkThemeSelected({String? personId});
+  Future<void> setDarkThemeSelected({String? personId, required bool selected});
 }

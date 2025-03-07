@@ -1,5 +1,5 @@
 import 'package:dogs_and_cats/core/error/failure.dart';
-import 'package:dogs_and_cats/domain/models/person/person.dart';
+import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:fpdart/src/either.dart';
 
