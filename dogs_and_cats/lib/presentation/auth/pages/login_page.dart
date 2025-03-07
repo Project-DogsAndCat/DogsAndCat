@@ -39,13 +39,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 10,
           ),
-          child: BlocConsumer<AuthBloc, AuthState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.map(
                   initial: (_) {},
@@ -59,100 +60,106 @@ class _LoginPageState extends State<LoginPage> {
                     CustomSnackBar.showError(context, state.message);
                   });
             },
-            builder: (context, state) {
-              return state.maybeMap(
-                loading: (_) => Center(
-                  child: CircularProgressIndicator(),
-                ),
-                success: (_) => Center(child: CircularProgressIndicator()),
-                orElse: () {
-                  return Form(
-                    key: _registerFormKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomTextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            } else if (!ValidationRules.emailValidation
-                                .hasMatch(value)) {
-                              return AppString.providedValidEmail;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.emailAddress,
-                          obscureText: false,
-                          hintText: AppString.email,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        CustomTextFormField(
-                          controller: _passwordController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppString.required;
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: !isPasswordVisible,
-                          hintText: AppString.password,
-                          suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                isPasswordVisible = !isPasswordVisible;
-                              });
-                            },
-                            child: Icon(
-                              isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: AppColors.greyColor,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        RoundedElevatedButton(
-                          buttonText: AppString.login,
-                          onPressed: () {
-                            if (_registerFormKey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.signIn(
-                                        email: _emailController.text,
-                                        password: _passwordController.text),
-                                  );
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            context.goNamed(RoutesNames.register);
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              text: "У Вас нет аккаунта? ",
-                              children: [
-                                TextSpan(
-                                  text: 'Зарегистрироваться',
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+            child: Form(
+              key: _registerFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextFormField(
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      } else if (!ValidationRules.emailValidation
+                          .hasMatch(value)) {
+                        return AppString.providedValidEmail;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    obscureText: false,
+                    hintText: AppString.email,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextFormField(
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.required;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: !isPasswordVisible,
+                    hintText: AppString.password,
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                      child: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: AppColors.greyColor,
+                      ),
                     ),
-                  );
-                },
-              );
-            },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  RoundedElevatedButton(
+                    onPressed: () {
+                      if (_registerFormKey.currentState!.validate()) {
+                        context.read<AuthBloc>().add(
+                              AuthEvent.signIn(
+                                  email: _emailController.text,
+                                  password: _passwordController.text),
+                            );
+                      }
+                    },
+                    widget: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return state.maybeMap(loading: (_) {
+                          return CircularProgressIndicator(
+                            color: Colors.white,
+                          );
+                        }, orElse: () {
+                          return Text(
+                            AppString.login,
+                            style: const TextStyle(
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          );
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.goNamed(RoutesNames.register);
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        text: "У Вас нет аккаунта? ",
+                        children: [
+                          TextSpan(
+                            text: 'Зарегистрироваться',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
