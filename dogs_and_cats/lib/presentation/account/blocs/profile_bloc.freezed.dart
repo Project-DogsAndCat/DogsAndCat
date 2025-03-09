@@ -19,32 +19,38 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(PersonDto dto) edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(PersonDto dto)? edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(PersonDto dto)? edit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Edit value) edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Edit value)? edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Edit value)? edit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(PersonDto dto) edit,
   }) {
     return load();
   }
@@ -120,6 +127,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(PersonDto dto)? edit,
   }) {
     return load?.call();
   }
@@ -128,6 +136,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(PersonDto dto)? edit,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -140,6 +149,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Edit value) edit,
   }) {
     return load(this);
   }
@@ -148,6 +158,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Edit value)? edit,
   }) {
     return load?.call(this);
   }
@@ -156,6 +167,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Edit value)? edit,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -167,6 +179,145 @@ class _$LoadImpl implements _Load {
 
 abstract class _Load implements ProfileEvent {
   const factory _Load() = _$LoadImpl;
+}
+
+/// @nodoc
+abstract class _$$EditImplCopyWith<$Res> {
+  factory _$$EditImplCopyWith(
+          _$EditImpl value, $Res Function(_$EditImpl) then) =
+      __$$EditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PersonDto dto});
+}
+
+/// @nodoc
+class __$$EditImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$EditImpl>
+    implements _$$EditImplCopyWith<$Res> {
+  __$$EditImplCopyWithImpl(_$EditImpl _value, $Res Function(_$EditImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dto = null,
+  }) {
+    return _then(_$EditImpl(
+      dto: null == dto
+          ? _value.dto
+          : dto // ignore: cast_nullable_to_non_nullable
+              as PersonDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditImpl implements _Edit {
+  const _$EditImpl({required this.dto});
+
+  @override
+  final PersonDto dto;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.edit(dto: $dto)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditImpl &&
+            (identical(other.dto, dto) || other.dto == dto));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dto);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
+      __$$EditImplCopyWithImpl<_$EditImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(PersonDto dto) edit,
+  }) {
+    return edit(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(PersonDto dto)? edit,
+  }) {
+    return edit?.call(dto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(PersonDto dto)? edit,
+    required TResult orElse(),
+  }) {
+    if (edit != null) {
+      return edit(dto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Edit value) edit,
+  }) {
+    return edit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Edit value)? edit,
+  }) {
+    return edit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Edit value)? edit,
+    required TResult orElse(),
+  }) {
+    if (edit != null) {
+      return edit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Edit implements ProfileEvent {
+  const factory _Edit({required final PersonDto dto}) = _$EditImpl;
+
+  PersonDto get dto;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -5,10 +5,7 @@ import '../../core/error/server_exception.dart';
 
 abstract interface class AuthRemoteDataSource {
   Future<PersonAuthModel> signUpWithEmailPassword(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String password});
+      {required String email, required String password});
 
   Future<PersonAuthModel> loginWithEmailPassword(
       {required String email, required String password});
@@ -30,15 +27,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final data = response.session!.user;
       final metadata = data.userMetadata;
-      final useJson = {
+      final personJson = {
         'id': data.id,
         'firstName': metadata!['firstName'] as String,
         'lastName': metadata['lastName'] as String,
         'email': data.email,
-        'password': ''
       };
 
-      return PersonAuthModel.fromJson(useJson);
+      return PersonAuthModel.fromJson(personJson);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -46,29 +42,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<PersonAuthModel> signUpWithEmailPassword(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String password}) async {
+      {required String email, required String password}) async {
     try {
-      final response = await supabaseClient.auth.signUp(
-          password: password,
-          email: email,
-          data: {'firstName': firstName, 'lastName': lastName});
+      final response =
+          await supabaseClient.auth.signUp(password: password, email: email);
       if (response.user == null) {
         throw ServerException('Пользователь не найден');
       }
 
-      final data = response.user;
-      final metadata = data!.userMetadata;
-      final userJson = {
-        'id': data.id,
-        'firstName': metadata!['firstName'] as String,
-        'lastName': metadata['lastName'] as String,
-        'email': data.email,
-      };
+      final json = response.user!.toJson();
 
-      return PersonAuthModel.fromJson(userJson);
+      return PersonAuthModel.fromJson(json);
     } catch (e) {
       throw ServerException(e.toString());
     }

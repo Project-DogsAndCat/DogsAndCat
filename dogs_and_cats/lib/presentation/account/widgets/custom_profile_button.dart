@@ -1,4 +1,3 @@
-import 'package:dogs_and_cats/presentation/account/widgets/profile_list_card.dart';
 import 'package:flutter/material.dart';
 
 class CustomProfileButton extends StatelessWidget {
@@ -6,21 +5,33 @@ class CustomProfileButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.mainInfoTitle,
-      required this.otherInfoTitle,
+      this.otherInfoTitle,
       required this.icon});
   final VoidCallback onPressed;
   final String mainInfoTitle;
-  final String otherInfoTitle;
+  final String? otherInfoTitle;
   final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: ProfileListCard(
-          mainInfoTitle: mainInfoTitle,
-          otherInfoTitle: otherInfoTitle,
-          icon: icon),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(mainInfoTitle),
+                otherInfoTitle != null ? Text(otherInfoTitle!) : Container()
+              ],
+            ),
+            Icon(icon),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,4 @@
-import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/error/failure.dart';
-import 'package:dogs_and_cats/data/models/person_auth/person_auth.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -10,9 +8,11 @@ import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl({required this.remoteDataSource});
+  AuthRepositoryImpl(
+      {required this.remoteDataSource, required this.supabaseClient});
 
   final AuthRemoteDataSource remoteDataSource;
+  final SupabaseClient supabaseClient;
 
   @override
   Future<Either<Failure, PersonAuth>> loginWithEmailPassword(
@@ -35,11 +35,11 @@ class AuthRepositoryImpl implements AuthRepository {
       required String password}) async {
     try {
       final person = await remoteDataSource.signUpWithEmailPassword(
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password);
-      await _addUser(person: person);
+          email: email, password: password);
+      final json = person.toJson();
+      await _addPerson(
+          jsonPerson: json
+            ..addAll({'firstName': firstName, 'lastName': lastName}));
 
       return right(person.toDomain());
     } on ServerException catch (e) {
@@ -47,11 +47,11 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  Future<void> _addUser({
-    required PersonAuthModel person,
+  Future<void> _addPerson({
+    required Map<String, dynamic> jsonPerson,
   }) async {
     try {
-      await getIt<SupabaseClient>().from('person').insert(person.toJson());
+      await supabaseClient.from('person').insert(jsonPerson);
     } catch (e) {
       throw ServerException(e.toString());
     }

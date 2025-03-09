@@ -2,6 +2,7 @@ class AppString {
   static const email = 'Email-адрес';
   static const name = 'Имя';
   static const password = 'Пароль';
+  static const phone = 'Телефон';
   static const required = 'Обязательные поля';
   static const firstName = 'Имя';
   static const lastName = 'Фамилия';
@@ -9,6 +10,7 @@ class AppString {
   static const personalData = 'Личные данные';
   static const providedValidName = 'Укажите действительное имя';
   static const providedValidEmail = 'Укажите действительню почту';
+  static const providedValidPhone = 'Укажите действительню номер телефона';
   static const providedValidPassword = 'Укажите действительный пароль';
   static const register = 'Зарегистрироваться';
   static const internalServerError = 'Отсутствует соединение с интернетом';
