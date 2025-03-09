@@ -33,8 +33,9 @@ void _initAuth() {
   getIt.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<AuthRepository>(() =>
-      AuthRepositoryImpl(remoteDataSource: getIt<AuthRemoteDataSource>()));
+  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
+      remoteDataSource: getIt<AuthRemoteDataSource>(),
+      supabaseClient: getIt<SupabaseClient>()));
 
   getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepository>()));
 }
@@ -48,7 +49,8 @@ void _initTheme() {
 }
 
 void _initProfile() {
-  getIt.registerLazySingleton<PersonRepository>(() => PersonRepositoryImpl());
+  getIt.registerLazySingleton<PersonRepository>(
+      () => PersonRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
   getIt.registerLazySingleton<ProfileBloc>(
       () => ProfileBloc(repository: getIt<PersonRepository>()));

@@ -1,0 +1,76 @@
+import 'package:dogs_and_cats/domain/models/person.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/validation_rules.dart';
+
+part 'person_dto.g.dart';
+
+@JsonSerializable()
+class PersonDto {
+  PersonDto({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phone,
+    this.role,
+    this.latitude,
+    this.longitude,
+    this.rating,
+  });
+  final String? id;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phone;
+  final String? role;
+  final String? latitude;
+  final String? longitude;
+  final double? rating;
+
+  Person toDomain() => Person(
+        id: id ?? '',
+        firstName: firstName ?? '',
+        lastName: lastName ?? '',
+        email: email ?? '',
+        phone: phone,
+        role: role,
+        latitude: latitude,
+        longitude: longitude,
+        rating: rating,
+      );
+
+  factory PersonDto.fromDomain(Person object) => PersonDto(
+        id: object.id,
+        firstName: object.firstName,
+        lastName: object.lastName,
+        email: object.email,
+        phone: object.phone,
+        role: object.role,
+        latitude: object.latitude,
+        longitude: object.longitude,
+        rating: object.rating,
+      );
+
+  factory PersonDto.fromJson(Map<String, dynamic> json) =>
+      _$PersonDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonDtoToJson(this);
+
+  bool isValidatingEmail() {
+    if (email == null) return false;
+    if (!ValidationRules.emailValidation.hasMatch(email!)) {
+      throw Exception(AppString.providedValidEmail);
+    }
+    return true;
+  }
+
+  bool isValidatingPhone() {
+    if (phone == null) return false;
+    if (!ValidationRules.phoneValidation.hasMatch(phone!)) {
+      throw Exception(AppString.providedValidPhone);
+    }
+    return true;
+  }
+}
