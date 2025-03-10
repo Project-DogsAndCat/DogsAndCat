@@ -24,11 +24,22 @@ class CustomProfileButton extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(mainInfoTitle),
-                otherInfoTitle != null ? Text(otherInfoTitle!) : Container()
+                Text(
+                  mainInfoTitle,
+                  style: TextStyle(color: Colors.black),
+                ),
+                otherInfoTitle != null
+                    ? Text(
+                        otherInfoTitle!,
+                        style: TextStyle(color: Colors.black),
+                      )
+                    : Container()
               ],
             ),
-            Icon(icon),
+            Icon(
+              icon,
+              color: Colors.black,
+            ),
           ],
         ),
       ),
