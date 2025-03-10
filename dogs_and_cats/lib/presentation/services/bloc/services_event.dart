@@ -1,6 +1,6 @@
-part of 'search_bloc.dart';
+part of 'services_bloc.dart';
 
 @freezed
-class SearchEvent with _$SearchEvent {
-  const factory SearchEvent.loaded() = _Loaded;
+class ServicesEvent with _$ServicesEvent {
+  const factory ServicesEvent.load() = _Load;
 }
