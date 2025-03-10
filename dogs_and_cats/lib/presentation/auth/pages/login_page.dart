@@ -67,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   CustomTextFormField(
                     controller: _emailController,
+                    color: AppColors.whiteColor,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;
@@ -85,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   CustomTextFormField(
                     controller: _passwordController,
+                    color: AppColors.whiteColor,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;

@@ -80,6 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       CustomTextFormField(
                         controller: _firstNameController,
+                        color: AppColors.whiteColor,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -95,6 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       CustomTextFormField(
                         controller: _lastNameController,
+                        color: AppColors.whiteColor,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -110,6 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       CustomTextFormField(
                         controller: _emailController,
+                        color: AppColors.whiteColor,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -128,6 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       CustomTextFormField(
                         controller: _passwordController,
+                        color: AppColors.whiteColor,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -174,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               );
                             }, orElse: () {
                               return Text(
-                                AppString.login,
+                                AppString.register,
                                 style: const TextStyle(
                                     color: AppColors.whiteColor,
                                     fontWeight: FontWeight.w400,
