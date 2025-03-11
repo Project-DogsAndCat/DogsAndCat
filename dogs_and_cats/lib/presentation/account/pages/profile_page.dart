@@ -8,6 +8,7 @@ import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../data/models/person/person_dto.dart';
 import '../widgets/bottom_sheet_info.dart';
+import '../widgets/map_screen.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -65,6 +66,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     otherInfoTitle: value.person.lastName,
                     icon: Icons.add,
                   ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  MapScreen(),
                 ],
               );
             },

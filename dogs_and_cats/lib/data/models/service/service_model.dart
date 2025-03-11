@@ -6,23 +6,23 @@ part 'service_model.g.dart';
 @JsonSerializable()
 class ServiceModel {
   final String id;
-  final String nameService;
+  final String name;
   final String price;
   ServiceModel({
     required this.id,
-    required this.nameService,
+    required this.name,
     required this.price,
   });
 
   Service toDomain() => Service(
         id: id,
-        nameService: nameService,
+        name: name,
         price: price,
       );
 
   factory ServiceModel.fromDomain(Service object) => ServiceModel(
         id: object.id,
-        nameService: object.nameService,
+        name: object.name,
         price: object.price,
       );
 

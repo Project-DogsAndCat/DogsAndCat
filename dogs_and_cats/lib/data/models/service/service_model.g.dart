@@ -8,13 +8,13 @@ part of 'service_model.dart';
 
 ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) => ServiceModel(
       id: json['id'] as String,
-      nameService: json['nameService'] as String,
+      name: json['name'] as String,
       price: json['price'] as String,
     );
 
 Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nameService': instance.nameService,
+      'name': instance.name,
       'price': instance.price,
     };

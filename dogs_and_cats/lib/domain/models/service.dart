@@ -1,10 +1,10 @@
 class Service {
   final String id;
-  final String nameService;
+  final String name;
   final String price;
   Service({
     required this.id,
-    required this.nameService,
+    required this.name,
     required this.price,
   });
 }

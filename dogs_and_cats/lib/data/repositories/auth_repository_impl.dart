@@ -36,10 +36,9 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final person = await remoteDataSource.signUpWithEmailPassword(
           email: email, password: password);
-      final json = person.toJson();
-      await _addPerson(
-          jsonPerson: json
-            ..addAll({'firstName': firstName, 'lastName': lastName}));
+
+      final json = {'firstName': firstName, 'lastName': lastName};
+      _addPerson(id: person.id, json: json);
 
       return right(person.toDomain());
     } on ServerException catch (e) {
@@ -47,11 +46,10 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  Future<void> _addPerson({
-    required Map<String, dynamic> jsonPerson,
-  }) async {
+  Future<void> _addPerson(
+      {required String id, required Map<String, dynamic> json}) async {
     try {
-      await supabaseClient.from('person').insert(jsonPerson);
+      await supabaseClient.from('person').update(json).eq('id', id);
     } catch (e) {
       throw ServerException(e.toString());
     }

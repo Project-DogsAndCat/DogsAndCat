@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';

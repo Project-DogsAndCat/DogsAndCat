@@ -25,16 +25,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ServerException('Пользователь не найден');
       }
 
-      final data = response.session!.user;
-      final metadata = data.userMetadata;
-      final personJson = {
-        'id': data.id,
-        'firstName': metadata!['firstName'] as String,
-        'lastName': metadata['lastName'] as String,
-        'email': data.email,
-      };
+      final json = response.session!.user.toJson();
 
-      return PersonAuthModel.fromJson(personJson);
+      return PersonAuthModel.fromJson(json);
     } catch (e) {
       throw ServerException(e.toString());
     }

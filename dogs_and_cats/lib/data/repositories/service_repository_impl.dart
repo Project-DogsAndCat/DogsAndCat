@@ -1,4 +1,3 @@
-import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/error/failure.dart';
 import 'package:dogs_and_cats/data/models/service/service_model.dart';
 import 'package:dogs_and_cats/domain/models/service.dart';
@@ -15,7 +14,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
     try {
       List<Service> services = [];
       final jsonList = await supabaseClient.from('services').select('');
-      print('bfdn ${jsonList}');
+
       for (var json in jsonList) {
         services.add(ServiceModel.fromJson(json).toDomain());
       }
