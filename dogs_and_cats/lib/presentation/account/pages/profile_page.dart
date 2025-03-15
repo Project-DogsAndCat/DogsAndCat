@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
+import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
-import '../../../data/models/person/person_dto.dart';
 import '../widgets/bottom_sheet_info.dart';
 import '../widgets/map_screen.dart';
 
@@ -42,13 +42,13 @@ class _ProfilePageState extends State<ProfilePage> {
             loaded: (value) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 if (_firstNameController.text != value.person.firstName) {
-                  _firstNameController.text = value.person.firstName;
+                  _firstNameController.text = value.person.firstName ?? '';
                 }
                 if (_lastNameController.text != value.person.lastName) {
-                  _lastNameController.text = value.person.lastName;
+                  _lastNameController.text = value.person.lastName ?? '';
                 }
                 if (_emailController.text != value.person.email) {
-                  _emailController.text = value.person.email;
+                  _emailController.text = value.person.email ?? '';
                 }
                 if (_phoneController.text != value.person.phone) {
                   _phoneController.text = value.person.phone ?? '';
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     onPressed: () {
                       _showProfileBottomSheet(context, value);
                     },
-                    mainInfoTitle: value.person.firstName,
+                    mainInfoTitle: value.person.firstName ?? '',
                     otherInfoTitle: value.person.lastName,
                     icon: Icons.add,
                   ),
@@ -141,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.pop(context);
                   }
                 },
-                widget: const Text('Update'),
+                widget: const Text('Изменить'),
               ),
             ],
           ),
@@ -157,7 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
         fields: [
           CustomTextFormField(
             controller: _firstNameController,
-            hintText: 'Введите Имя',
+            hintText: 'Введите имя',
             keyboardType: TextInputType.text,
             obscureText: false,
             validator: (value) {
@@ -179,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
         onSave: () {
           context.read<ProfileBloc>().add(ProfileEvent.edit(
-                dto: PersonDto(
+                person: Person(
                   firstName: _firstNameController.text,
                   lastName: _lastNameController.text,
                 ),
@@ -206,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
       onSave: () {
         if (_phoneController.text != value.person.phone) {
           context.read<ProfileBloc>().add(ProfileEvent.edit(
-                dto: PersonDto(phone: _phoneController.text),
+                person: Person(phone: _phoneController.text),
               ));
         }
       },
@@ -231,7 +231,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
       onSave: () {
         context.read<ProfileBloc>().add(ProfileEvent.edit(
-              dto: PersonDto(email: _emailController.text),
+              person: Person(email: _emailController.text),
             ));
       },
     );

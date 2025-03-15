@@ -8,8 +8,8 @@ part of 'person_dto.dart';
 
 PersonDto _$PersonDtoFromJson(Map<String, dynamic> json) => PersonDto(
       id: json['id'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       role: json['role'] as String?,
@@ -20,8 +20,8 @@ PersonDto _$PersonDtoFromJson(Map<String, dynamic> json) => PersonDto(
 
 Map<String, dynamic> _$PersonDtoToJson(PersonDto instance) => <String, dynamic>{
       'id': instance.id,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
       'email': instance.email,
       'phone': instance.phone,
       'role': instance.role,

@@ -19,19 +19,19 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(PersonDto dto) edit,
+    required TResult Function(Person person) edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(PersonDto dto)? edit,
+    TResult? Function(Person person)? edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(PersonDto dto)? edit,
+    TResult Function(Person person)? edit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +118,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(PersonDto dto) edit,
+    required TResult Function(Person person) edit,
   }) {
     return load();
   }
@@ -127,7 +127,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(PersonDto dto)? edit,
+    TResult? Function(Person person)? edit,
   }) {
     return load?.call();
   }
@@ -136,7 +136,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(PersonDto dto)? edit,
+    TResult Function(Person person)? edit,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -187,7 +187,7 @@ abstract class _$$EditImplCopyWith<$Res> {
           _$EditImpl value, $Res Function(_$EditImpl) then) =
       __$$EditImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PersonDto dto});
+  $Res call({Person person});
 }
 
 /// @nodoc
@@ -202,13 +202,13 @@ class __$$EditImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dto = null,
+    Object? person = null,
   }) {
     return _then(_$EditImpl(
-      dto: null == dto
-          ? _value.dto
-          : dto // ignore: cast_nullable_to_non_nullable
-              as PersonDto,
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as Person,
     ));
   }
 }
@@ -216,14 +216,14 @@ class __$$EditImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EditImpl implements _Edit {
-  const _$EditImpl({required this.dto});
+  const _$EditImpl({required this.person});
 
   @override
-  final PersonDto dto;
+  final Person person;
 
   @override
   String toString() {
-    return 'ProfileEvent.edit(dto: $dto)';
+    return 'ProfileEvent.edit(person: $person)';
   }
 
   @override
@@ -231,11 +231,11 @@ class _$EditImpl implements _Edit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditImpl &&
-            (identical(other.dto, dto) || other.dto == dto));
+            (identical(other.person, person) || other.person == person));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, dto);
+  int get hashCode => Object.hash(runtimeType, person);
 
   /// Create a copy of ProfileEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -249,29 +249,29 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(PersonDto dto) edit,
+    required TResult Function(Person person) edit,
   }) {
-    return edit(dto);
+    return edit(person);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(PersonDto dto)? edit,
+    TResult? Function(Person person)? edit,
   }) {
-    return edit?.call(dto);
+    return edit?.call(person);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(PersonDto dto)? edit,
+    TResult Function(Person person)? edit,
     required TResult orElse(),
   }) {
     if (edit != null) {
-      return edit(dto);
+      return edit(person);
     }
     return orElse();
   }
@@ -309,9 +309,9 @@ class _$EditImpl implements _Edit {
 }
 
 abstract class _Edit implements ProfileEvent {
-  const factory _Edit({required final PersonDto dto}) = _$EditImpl;
+  const factory _Edit({required final Person person}) = _$EditImpl;
 
-  PersonDto get dto;
+  Person get person;
 
   /// Create a copy of ProfileEvent
   /// with the given fields replaced by the non-null parameter values.

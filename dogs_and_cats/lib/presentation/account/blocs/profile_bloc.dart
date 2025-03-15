@@ -33,8 +33,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> _edit(_Edit event, Emitter<ProfileState> emit) async {
     emit(ProfileState.loading());
-    final result =
-        await repository.updatePerson(id: _session.id, dto: event.dto);
+    final result = await repository.updatePerson(
+        id: _session.id, dto: PersonDto.fromDomain(event.person));
     result.fold(
         (failure) => emit(ProfileState.failure(message: failure.message)),
         (_) => add(_Load()));

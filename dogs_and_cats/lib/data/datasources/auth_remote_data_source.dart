@@ -1,13 +1,13 @@
-import 'package:dogs_and_cats/data/models/person_auth/person_auth.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/server_exception.dart';
+import '../models/person_auth/person_auth_dto.dart';
 
 abstract interface class AuthRemoteDataSource {
-  Future<PersonAuthModel> signUpWithEmailPassword(
+  Future<PersonAuthDto> signUpWithEmailPassword(
       {required String email, required String password});
 
-  Future<PersonAuthModel> loginWithEmailPassword(
+  Future<PersonAuthDto> loginWithEmailPassword(
       {required String email, required String password});
 }
 
@@ -16,7 +16,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SupabaseClient supabaseClient;
 
   @override
-  Future<PersonAuthModel> loginWithEmailPassword(
+  Future<PersonAuthDto> loginWithEmailPassword(
       {required String email, required String password}) async {
     try {
       final response = await supabaseClient.auth
@@ -27,14 +27,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final json = response.session!.user.toJson();
 
-      return PersonAuthModel.fromJson(json);
+      return PersonAuthDto.fromJson(json);
     } catch (e) {
       throw ServerException(e.toString());
     }
   }
 
   @override
-  Future<PersonAuthModel> signUpWithEmailPassword(
+  Future<PersonAuthDto> signUpWithEmailPassword(
       {required String email, required String password}) async {
     try {
       final response =
@@ -45,7 +45,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final json = response.user!.toJson();
 
-      return PersonAuthModel.fromJson(json);
+      return PersonAuthDto.fromJson(json);
     } catch (e) {
       throw ServerException(e.toString());
     }

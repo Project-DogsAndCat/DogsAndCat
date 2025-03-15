@@ -1,9 +1,11 @@
 import 'package:dogs_and_cats/core/error/failure.dart';
-import 'package:dogs_and_cats/data/models/service/service_model.dart';
+import 'package:dogs_and_cats/data/models/service/service_dto.dart';
 import 'package:dogs_and_cats/domain/models/service.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../core/utils/table_names.dart';
 
 class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
@@ -13,10 +15,11 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, List<Service>>> getServices() async {
     try {
       List<Service> services = [];
-      final jsonList = await supabaseClient.from('services').select('');
+      final jsonList =
+          await supabaseClient.from(TableNames.services).select('');
 
       for (var json in jsonList) {
-        services.add(ServiceModel.fromJson(json).toDomain());
+        services.add(ServiceDto.fromJson(json).toDomain());
       }
       return right(services);
     } catch (e) {

@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'service_model.dart';
+part of 'person_auth_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) => ServiceModel(
+PersonAuthDto _$PersonAuthDtoFromJson(Map<String, dynamic> json) =>
+    PersonAuthDto(
       id: json['id'] as String,
-      name: json['name'] as String,
-      price: json['price'] as String,
+      email: json['email'] as String,
     );
 
-Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
+Map<String, dynamic> _$PersonAuthDtoToJson(PersonAuthDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'price': instance.price,
+      'email': instance.email,
     };

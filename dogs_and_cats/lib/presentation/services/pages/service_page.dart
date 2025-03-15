@@ -35,7 +35,7 @@ class ServicePage extends StatelessWidget {
                                 children: [
                                   CustomServiceButton(
                                       onPressed: () {},
-                                      nameService: state.service[index].name,
+                                      nameService: state.service[index].title,
                                       description: state.service[index].price)
                                 ],
                               );

@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
       return MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Dogs & Cats',
         theme: state.isDark ? darkTheme : lightTheme,
         routerConfig: router,
       );

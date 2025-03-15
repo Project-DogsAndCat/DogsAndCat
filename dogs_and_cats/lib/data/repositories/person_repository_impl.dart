@@ -5,6 +5,8 @@ import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/utils/table_names.dart';
+
 class PersonRepositoryImpl implements PersonRepository {
   PersonRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
@@ -13,7 +15,7 @@ class PersonRepositoryImpl implements PersonRepository {
   Future<Either<Failure, Person>> getPerson({required String id}) async {
     try {
       final jsonList =
-          await supabaseClient.from('person').select().eq('id', id);
+          await supabaseClient.from(TableNames.person).select().eq('id', id);
       final person = PersonDto.fromJson(jsonList.first);
       return right(person.toDomain());
     } catch (e) {
@@ -26,20 +28,20 @@ class PersonRepositoryImpl implements PersonRepository {
       {required String id, required PersonDto dto}) async {
     try {
       final updates = {
-        if (dto.firstName != null) 'firstName': dto.firstName,
-        if (dto.lastName != null) 'lastName': dto.lastName,
+        if (dto.firstName != null) 'first_name': dto.firstName,
+        if (dto.lastName != null) 'last_name': dto.lastName,
         if (dto.isValidatingPhone()) 'phone': dto.phone,
       };
-      await _updateAutUser(dto, updates);
+      await _updateAuthUser(dto, updates);
 
-      await supabaseClient.from('person').update(updates).eq('id', id);
+      await supabaseClient.from(TableNames.person).update(updates).eq('id', id);
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }
 
-  Future<void> _updateAutUser(
+  Future<void> _updateAuthUser(
       PersonDto dto, Map<String, String?> updates) async {
     late UserResponse res;
     if (dto.isValidatingEmail()) {

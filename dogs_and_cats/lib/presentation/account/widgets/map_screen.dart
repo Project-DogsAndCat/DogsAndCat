@@ -14,12 +14,13 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  final mapControllerCompleter = Completer<YandexMapController>();
+  late final YandexMapController mapControllerCompleter;
+  var _mapZoom = 0.0;
+  late CameraPosition _userLocation;
 
   @override
   void initState() {
     super.initState();
-    _initPermission().ignore();
   }
 
   @override
@@ -29,17 +30,33 @@ class _MapScreenState extends State<MapScreen> {
       width: 250,
       child: YandexMap(
         onMapCreated: (controller) {
-          mapControllerCompleter.complete(controller);
+          mapControllerCompleter = controller;
+          _initPermission();
+        },
+        onCameraPositionChanged: (cameraPosition, _, __) {
+          setState(() {
+            _mapZoom = cameraPosition.zoom;
+          });
+        },
+        onUserLocationAdded: (view) async {
+          await _fetchCurrentLocation();
+          await mapControllerCompleter.moveCamera(
+            CameraUpdate.newCameraPosition(
+              _userLocation.copyWith(zoom: 15),
+            ),
+            animation: const MapAnimation(
+              type: MapAnimationType.linear,
+              duration: 0.3,
+            ),
+          );
+          return view.copyWith(
+            pin: view.pin.copyWith(
+              opacity: 1,
+            ),
+          );
         },
       ),
     );
-  }
-
-  Future<void> _initPermission() async {
-    if (!await LocationRepositoryImpl().checkPermission()) {
-      await LocationRepositoryImpl().requestPermission();
-    }
-    await _fetchCurrentLocation();
   }
 
   Future<void> _fetchCurrentLocation() async {
@@ -50,23 +67,15 @@ class _MapScreenState extends State<MapScreen> {
     } catch (_) {
       location = defLocation;
     }
-    _moveToCurrentLocation(location);
+    _userLocation = CameraPosition(
+        target: Point(latitude: location.lat, longitude: location.long));
+    await mapControllerCompleter.toggleUserLayer(visible: true);
   }
 
-  Future<void> _moveToCurrentLocation(
-    AppLatLong appLatLong,
-  ) async {
-    (await mapControllerCompleter.future).moveCamera(
-      animation: const MapAnimation(type: MapAnimationType.linear, duration: 1),
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: Point(
-            latitude: appLatLong.lat,
-            longitude: appLatLong.long,
-          ),
-          zoom: 12,
-        ),
-      ),
-    );
+  Future<void> _initPermission() async {
+    if (!await LocationRepositoryImpl().checkPermission()) {
+      await LocationRepositoryImpl().requestPermission();
+    }
+    await _fetchCurrentLocation();
   }
 }

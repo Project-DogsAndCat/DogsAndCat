@@ -26,12 +26,12 @@ class CustomProfileButton extends StatelessWidget {
               children: [
                 Text(
                   mainInfoTitle,
-                  style: TextStyle(color: Colors.black),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 otherInfoTitle != null
                     ? Text(
                         otherInfoTitle!,
-                        style: TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       )
                     : Container()
               ],

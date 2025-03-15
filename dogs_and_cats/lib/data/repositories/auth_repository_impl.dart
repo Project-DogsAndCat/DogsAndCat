@@ -3,6 +3,7 @@ import 'package:fpdart/src/either.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/server_exception.dart';
+import '../../core/utils/table_names.dart';
 import '../../domain/models/person_auth.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
@@ -37,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final person = await remoteDataSource.signUpWithEmailPassword(
           email: email, password: password);
 
-      final json = {'firstName': firstName, 'lastName': lastName};
+      final json = {'first_name': firstName, 'last_name': lastName};
       _addPerson(id: person.id, json: json);
 
       return right(person.toDomain());
@@ -49,7 +50,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> _addPerson(
       {required String id, required Map<String, dynamic> json}) async {
     try {
-      await supabaseClient.from('person').update(json).eq('id', id);
+      await supabaseClient.from(TableNames.person).update(json).eq('id', id);
     } catch (e) {
       throw ServerException(e.toString());
     }
