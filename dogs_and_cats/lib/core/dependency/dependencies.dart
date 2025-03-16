@@ -1,12 +1,15 @@
 import 'package:dogs_and_cats/data/datasources/auth_remote_data_source.dart';
 import 'package:dogs_and_cats/data/repositories/auth_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/person_repository_impl.dart';
+import 'package:dogs_and_cats/data/repositories/pet_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/service_repository_impl.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
+import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/bloc/services_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,6 +35,8 @@ Future<void> setup() async {
   _initProfile();
 
   _initServices();
+
+  _initPets();
 }
 
 void _initAuth() {
@@ -67,4 +72,13 @@ void _initServices() {
 
   getIt.registerLazySingleton<ServicesBloc>(
       () => ServicesBloc(repository: getIt<ServiceRepository>()));
+}
+
+void _initPets() {
+  getIt.registerLazySingleton<PetRepository>(
+      () => PetRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
+
+  getIt.registerLazySingleton<PetBloc>(() => PetBloc(
+      repository: getIt<PetRepository>(),
+      supabaseClient: getIt<SupabaseClient>()));
 }

@@ -17,7 +17,7 @@ class CustomProfileButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -33,7 +33,7 @@ class CustomProfileButton extends StatelessWidget {
                         otherInfoTitle!,
                         style: Theme.of(context).textTheme.bodyMedium,
                       )
-                    : Container()
+                    : const SizedBox.shrink()
               ],
             ),
             Icon(

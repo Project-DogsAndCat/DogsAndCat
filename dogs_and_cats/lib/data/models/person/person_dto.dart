@@ -30,10 +30,10 @@ class PersonDto {
   final double? rating;
 
   Person toDomain() => Person(
-        id: id ?? '',
-        firstName: firstName ?? '',
-        lastName: lastName ?? '',
-        email: email ?? '',
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
         phone: phone,
         role: role,
         latitude: latitude,

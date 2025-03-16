@@ -4,6 +4,7 @@ import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/pages/dogsitter_page.dart';
+import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
 import 'package:dogs_and_cats/presentation/services/pages/service_page.dart';
 import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
@@ -23,6 +24,10 @@ final GoRouter router = GoRouter(
           name: RoutesNames.login,
           path: '/login',
           builder: (context, state) => const LoginPage()),
+      GoRoute(
+          name: RoutesNames.pets,
+          path: '/pets',
+          builder: (context, state) => const PetsPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

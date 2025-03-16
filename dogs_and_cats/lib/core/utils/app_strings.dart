@@ -8,6 +8,7 @@ class AppString {
   static const lastName = 'Фамилия';
   static const firstAndLastName = 'Имя и Фамилия';
   static const personalData = 'Личные данные';
+  static const myPets = 'Мои питомцы';
   static const providedValidName = 'Укажите действительное имя';
   static const providedValidEmail = 'Укажите действительню почту';
   static const providedValidPhone = 'Укажите действительню номер телефона';
