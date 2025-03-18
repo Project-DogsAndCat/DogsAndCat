@@ -17,15 +17,10 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => getIt<AuthBloc>()),
+        BlocProvider(create: (_) => getIt<ThemeCubit>()),
         BlocProvider(
-          create: (_) => getIt<AuthBloc>(),
-        ),
-        BlocProvider(
-          create: (_) => getIt<ThemeCubit>(),
-        ),
-        BlocProvider(
-          create: (_) => getIt<ProfileBloc>()..add(ProfileEvent.load()),
-        ),
+            create: (_) => getIt<ProfileBloc>()..add(ProfileEvent.load())),
         BlocProvider(
             create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
         BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),

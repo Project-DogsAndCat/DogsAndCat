@@ -230,6 +230,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _showEditBottomSheet(BuildContext context, BottomSheetEditPage page) {
+    Navigator.pop(context);
     showModalBottomSheet<void>(
         context: context,
         builder: (newContext) {

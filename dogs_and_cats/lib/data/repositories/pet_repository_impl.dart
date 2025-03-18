@@ -32,9 +32,8 @@ class PetRepositoryImpl implements PetRepository {
   @override
   Future<Either<Failure, Unit>> addPet({required PetDto dto}) async {
     try {
+      dto.personId = supabaseClient.auth.currentUser!.id;
       final json = dto.toJson();
-      json['person_id'] = supabaseClient.auth.currentUser!.id;
-
       await supabaseClient.from(TableNames.pets).insert(json);
 
       return right(unit);

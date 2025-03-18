@@ -1,18 +1,16 @@
 class Pet {
   Pet(
-      {required this.id,
-      required this.name,
-      required this.bread,
+      {required this.name,
+      required this.breed,
       required this.age,
-      required this.weight,
+      this.weight,
       required this.gender,
-      required this.description});
+      this.features});
 
-  final String? id;
-  final String? name;
-  final String? bread;
-  final int? age;
+  final String name;
+  final String breed;
+  final int age;
   final double? weight;
-  final String? gender;
-  final String? description;
+  final String gender;
+  final String? features;
 }

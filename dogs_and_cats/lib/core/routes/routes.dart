@@ -28,7 +28,7 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.pets,
           path: '/pets',
-          builder: (context, state) => const PetsPage()),
+          builder: (context, state) => PetsPage()),
       GoRoute(
           name: RoutesNames.orderingService,
           path: '/ordering',

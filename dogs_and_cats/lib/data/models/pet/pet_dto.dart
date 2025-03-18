@@ -6,40 +6,38 @@ part 'pet_dto.g.dart';
 @JsonSerializable()
 class PetDto {
   PetDto(
-      {required this.id,
+      {this.personId,
       required this.name,
-      required this.bread,
+      required this.breed,
       required this.age,
-      required this.weight,
+      this.weight,
       required this.gender,
-      required this.description});
+      this.features});
 
-  final String? id;
-  final String? name;
-  final String? bread;
-  final int? age;
+  String? personId;
+  final String name;
+  final String breed;
+  final int age;
   final double? weight;
-  final String? gender;
-  final String? description;
+  final String gender;
+  final String? features;
 
   Pet toDomain() => Pet(
-        id: id,
         name: name,
-        bread: bread,
+        breed: breed,
         age: age,
         weight: weight,
         gender: gender,
-        description: description,
+        features: features,
       );
 
   factory PetDto.fromDomain(Pet object) => PetDto(
-        id: object.id,
         name: object.name,
-        bread: object.bread,
+        breed: object.breed,
         age: object.age,
         weight: object.weight,
         gender: object.gender,
-        description: object.description,
+        features: object.features,
       );
 
   factory PetDto.fromJson(Map<String, dynamic> json) => _$PetDtoFromJson(json);

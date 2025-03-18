@@ -7,21 +7,21 @@ part of 'pet_dto.dart';
 // **************************************************************************
 
 PetDto _$PetDtoFromJson(Map<String, dynamic> json) => PetDto(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      bread: json['bread'] as String?,
-      age: (json['age'] as num?)?.toInt(),
+      personId: json['person_id'] as String?,
+      name: json['name'] as String,
+      breed: json['breed'] as String,
+      age: (json['age'] as num).toInt(),
       weight: (json['weight'] as num?)?.toDouble(),
-      gender: json['gender'] as String?,
-      description: json['description'] as String?,
+      gender: json['gender'] as String,
+      features: json['features'] as String?,
     );
 
 Map<String, dynamic> _$PetDtoToJson(PetDto instance) => <String, dynamic>{
-      'id': instance.id,
+      'person_id': instance.personId,
       'name': instance.name,
-      'bread': instance.bread,
+      'breed': instance.breed,
       'age': instance.age,
       'weight': instance.weight,
       'gender': instance.gender,
-      'description': instance.description,
+      'features': instance.features,
     };
