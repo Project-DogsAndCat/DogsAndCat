@@ -43,8 +43,15 @@ class PetRepositoryImpl implements PetRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePet({required PetDto dto}) {
-    // TODO: implement updatePerson
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> updatePet(
+      {required String id, required String weight}) async {
+    try {
+      await supabaseClient
+          .from(TableNames.pets)
+          .update({'weight': weight}).eq('id', id);
+      return right(unit);
+    } on ServerException catch (e) {
+      return left(Failure(message: e.message));
+    }
   }
 }

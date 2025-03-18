@@ -10,14 +10,16 @@ PetDto _$PetDtoFromJson(Map<String, dynamic> json) => PetDto(
       personId: json['person_id'] as String?,
       name: json['name'] as String,
       breed: json['breed'] as String,
-      age: (json['age'] as num).toInt(),
-      weight: (json['weight'] as num?)?.toDouble(),
+      age: json['age'] as String,
       gender: json['gender'] as String,
+      id: json['id'] as String?,
+      weight: (json['weight'] as num?)?.toInt(),
       features: json['features'] as String?,
     );
 
 Map<String, dynamic> _$PetDtoToJson(PetDto instance) => <String, dynamic>{
       'person_id': instance.personId,
+      'id': instance.id,
       'name': instance.name,
       'breed': instance.breed,
       'age': instance.age,

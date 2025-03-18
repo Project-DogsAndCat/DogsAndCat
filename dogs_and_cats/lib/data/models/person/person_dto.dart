@@ -20,7 +20,9 @@ class PersonDto {
     this.rating,
   });
   final String? id;
+  @JsonKey(name: 'first_name')
   final String? firstName;
+  @JsonKey(name: 'last_name')
   final String? lastName;
   final String? email;
   final String? phone;

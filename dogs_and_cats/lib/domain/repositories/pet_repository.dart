@@ -9,5 +9,6 @@ abstract interface class PetRepository {
 
   Future<Either<Failure, Unit>> addPet({required PetDto dto});
 
-  Future<Either<Failure, Unit>> updatePet({required PetDto dto});
+  Future<Either<Failure, Unit>> updatePet(
+      {required String id, required String weight});
 }

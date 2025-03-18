@@ -35,7 +35,7 @@ class PetBloc extends Bloc<PetEvent, PetState> {
     emit(PetState.loading());
 
     final result =
-        await repository.updatePet(dto: PetDto.fromDomain(event.pet));
+        await repository.updatePet(id: event.id, weight: event.weight);
     result.fold((failure) => emit(PetState.failure(message: failure.message)),
         (_) => add(_Load()));
   }

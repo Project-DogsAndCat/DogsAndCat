@@ -5,19 +5,21 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,
       required this.controller,
-      required this.validator,
       required this.keyboardType,
       required this.obscureText,
       required this.hintText,
+      this.validator,
       this.suffixIcon,
-      this.color});
+      this.color,
+      this.readOnly = false});
   final TextEditingController controller;
-  final String? Function(String? val) validator;
+  final String? Function(String? val)? validator;
   final TextInputType keyboardType;
   final bool obscureText;
   final String hintText;
   final Widget? suffixIcon;
   final Color? color;
+  final bool readOnly;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,6 +27,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
+      readOnly: readOnly,
       style: TextStyle(
         color: color,
       ),

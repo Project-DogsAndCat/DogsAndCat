@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../account/widgets/custom_profile_button.dart';
 import '../blocs/pet_bloc.dart';
+import '../pages/edit_pet_page.dart';
 
 class ListPets extends StatelessWidget {
   const ListPets({super.key});
@@ -26,7 +27,15 @@ class ListPets extends StatelessWidget {
                           ? 'Без особенностей'
                           : 'Есть особенности',
                       icon: Icons.add,
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet<void>(
+                            context: context,
+                            builder: (newContext) {
+                              return EditPetPage(
+                                pet: state.pets[index],
+                              );
+                            });
+                      },
                     ),
                   );
                 }, childCount: state.pets.length),

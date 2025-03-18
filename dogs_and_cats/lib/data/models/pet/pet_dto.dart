@@ -10,19 +10,23 @@ class PetDto {
       required this.name,
       required this.breed,
       required this.age,
-      this.weight,
       required this.gender,
+      this.id,
+      this.weight,
       this.features});
 
+  @JsonKey(name: 'person_id')
   String? personId;
+  final String? id;
   final String name;
   final String breed;
-  final int age;
-  final double? weight;
+  final String age;
+  final int? weight;
   final String gender;
   final String? features;
 
   Pet toDomain() => Pet(
+        id: id,
         name: name,
         breed: breed,
         age: age,
@@ -32,6 +36,7 @@ class PetDto {
       );
 
   factory PetDto.fromDomain(Pet object) => PetDto(
+        id: object.id,
         name: object.name,
         breed: object.breed,
         age: object.age,
