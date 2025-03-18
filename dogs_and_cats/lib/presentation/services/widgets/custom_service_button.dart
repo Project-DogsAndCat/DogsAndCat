@@ -14,6 +14,15 @@ class CustomServiceButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: onPressed,
+        style: ButtonStyle(
+          shape: const WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(15.0),
+              ),
+            ),
+          ),
+        ),
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Row(

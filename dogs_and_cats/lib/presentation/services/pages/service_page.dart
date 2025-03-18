@@ -1,7 +1,10 @@
-import 'package:dogs_and_cats/presentation/services/bloc/services_bloc.dart';
+import 'package:dogs_and_cats/core/routes/route_names.dart';
+import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
+import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicePage extends StatelessWidget {
   const ServicePage({
@@ -34,9 +37,17 @@ class ServicePage extends StatelessWidget {
                               return Column(
                                 children: [
                                   CustomServiceButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.goNamed(
+                                          RoutesNames.orderingService,
+                                        );
+                                        context.read<OrderingServiceBloc>().add(
+                                            OrderingServiceEvent.load(
+                                                id: state.service[index].id));
+                                      },
                                       nameService: state.service[index].title,
-                                      description: state.service[index].price)
+                                      description:
+                                          state.service[index].description)
                                 ],
                               );
                             },

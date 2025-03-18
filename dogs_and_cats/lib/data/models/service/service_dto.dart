@@ -7,23 +7,23 @@ part 'service_dto.g.dart';
 class ServiceDto {
   final String id;
   final String title;
-  final String price;
+  final String description;
   ServiceDto({
     required this.id,
     required this.title,
-    required this.price,
+    required this.description,
   });
 
   Service toDomain() => Service(
         id: id,
         title: title,
-        price: price,
+        description: description,
       );
 
   factory ServiceDto.fromDomain(Service object) => ServiceDto(
         id: object.id,
         title: object.title,
-        price: object.price,
+        description: object.description,
       );
 
   factory ServiceDto.fromJson(Map<String, dynamic> json) =>
