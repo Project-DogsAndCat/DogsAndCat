@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,22 +52,22 @@ class _EditPetPageState extends State<EditPetPage> {
           children: [
             CustomTextFormField(
               controller: _nameController,
-              hintText: 'Имя питомца',
+              hintText: AppString.nameOfPet,
               keyboardType: TextInputType.name,
               obscureText: false,
               readOnly: true,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             CustomTextFormField(
               controller: _breadController,
-              hintText: 'Порода',
+              hintText: AppString.breed,
               keyboardType: TextInputType.text,
               obscureText: false,
               readOnly: true,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Row(
@@ -74,28 +75,46 @@ class _EditPetPageState extends State<EditPetPage> {
                 Expanded(
                   child: CustomTextFormField(
                     controller: _ageController,
-                    hintText: 'Возраст',
+                    hintText: AppString.age,
                     keyboardType: TextInputType.text,
                     obscureText: false,
                     readOnly: true,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8.0,
                 ),
                 Expanded(
                   child: CustomTextFormField(
                     controller: _weightController,
-                    hintText: 'Вес',
+                    hintText: AppString.weight,
                     keyboardType: TextInputType.text,
                     obscureText: false,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 25.0),
+            const SizedBox(height: 8.0),
+            Wrap(
+              spacing: 10.0,
+              children: [
+                ChoiceChip(
+                  label: Text(AppString.boy),
+                  showCheckmark: false,
+                  selected: widget.pet.gender == AppString.boy,
+                ),
+                ChoiceChip(
+                  label: Text(AppString.girl),
+                  showCheckmark: false,
+                  selected: widget.pet.gender == AppString.girl,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
             RoundedElevatedButton(
-              widget: Text('Сохранить'),
+              widget: const Text(AppString.save),
               onPressed: () {
                 if (EditPetPage._formKey.currentState!.validate()) {
                   context.read<PetBloc>().add(PetEvent.edit(

@@ -3,8 +3,7 @@ import 'package:dogs_and_cats/core/error/server_exception.dart';
 import 'package:dogs_and_cats/core/utils/table_names.dart';
 import 'package:dogs_and_cats/data/models/pet/pet_dto.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
-import 'package:fpdart/src/either.dart';
-import 'package:fpdart/src/unit.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../domain/repositories/pet_repository.dart';
@@ -34,11 +33,12 @@ class PetRepositoryImpl implements PetRepository {
     try {
       dto.personId = supabaseClient.auth.currentUser!.id;
       final json = dto.toJson();
+      json.remove('id');
       await supabaseClient.from(TableNames.pets).insert(json);
 
       return right(unit);
-    } on ServerException catch (e) {
-      return left(Failure(message: e.message));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
     }
   }
 
@@ -50,8 +50,8 @@ class PetRepositoryImpl implements PetRepository {
           .from(TableNames.pets)
           .update({'weight': weight}).eq('id', id);
       return right(unit);
-    } on ServerException catch (e) {
-      return left(Failure(message: e.message));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
     }
   }
 }

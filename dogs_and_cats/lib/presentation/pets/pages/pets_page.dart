@@ -15,14 +15,14 @@ class PetsPage extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            context.goNamed(RoutesNames.account);
+            context.replaceNamed(RoutesNames.account);
           },
         ),
-        title: Text(AppString.myPets),
+        title: const Text(AppString.myPets),
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: CustomScrollView(
           slivers: [
             ListPets(),
@@ -38,11 +38,11 @@ class PetsPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.add),
-                    SizedBox(
+                    const Icon(Icons.add),
+                    const SizedBox(
                       width: 8.0,
                     ),
-                    Text('Добавить питомца'),
+                    const Text(AppString.addPet),
                   ],
                 ),
               ),

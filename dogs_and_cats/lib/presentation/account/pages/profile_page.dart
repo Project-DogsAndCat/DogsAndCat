@@ -79,7 +79,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   CustomTextFormField(
                                                     controller:
                                                         _firstNameController,
-                                                    hintText: 'Введите имя',
+                                                    hintText:
+                                                        AppString.firstName,
                                                     keyboardType:
                                                         TextInputType.text,
                                                     obscureText: false,
@@ -95,7 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   CustomTextFormField(
                                                     controller:
                                                         _lastNameController,
-                                                    hintText: 'Введите фамилию',
+                                                    hintText:
+                                                        AppString.lastName,
                                                     keyboardType:
                                                         TextInputType.text,
                                                     obscureText: false,
@@ -135,8 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   CustomTextFormField(
                                                     controller:
                                                         _phoneController,
-                                                    hintText:
-                                                        'Введите номер телефона',
+                                                    hintText: AppString.phone,
                                                     keyboardType:
                                                         TextInputType.text,
                                                     obscureText: false,
@@ -174,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   CustomTextFormField(
                                                     controller:
                                                         _emailController,
-                                                    hintText: 'Введите почту',
+                                                    hintText: AppString.email,
                                                     keyboardType:
                                                         TextInputType.text,
                                                     obscureText: false,
@@ -209,7 +210,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     otherInfoTitle: value.person.lastName,
                     icon: Icons.add,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25.0,
                   ),
                   CustomProfileButton(

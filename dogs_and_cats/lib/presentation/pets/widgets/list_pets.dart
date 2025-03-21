@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +25,8 @@ class ListPets extends StatelessWidget {
                     child: CustomProfileButton(
                       mainInfoTitle: state.pets[index].name.toString(),
                       otherInfoTitle: state.pets[index].features == null
-                          ? 'Без особенностей'
-                          : 'Есть особенности',
+                          ? AppString.usualPet
+                          : AppString.unusualPet,
                       icon: Icons.add,
                       onPressed: () {
                         showModalBottomSheet<void>(

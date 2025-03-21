@@ -9,7 +9,7 @@ part of 'service_characteristic_dto.dart';
 ServiceCharacteristicDto _$ServiceCharacteristicDtoFromJson(
         Map<String, dynamic> json) =>
     ServiceCharacteristicDto(
-      id: json['id'] as String,
+      serviceId: json['service_id'] as String,
       time: json['time'] as String,
       price: (json['price'] as num).toDouble(),
     );
@@ -17,7 +17,7 @@ ServiceCharacteristicDto _$ServiceCharacteristicDtoFromJson(
 Map<String, dynamic> _$ServiceCharacteristicDtoToJson(
         ServiceCharacteristicDto instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'service_id': instance.serviceId,
       'time': instance.time,
       'price': instance.price,
     };

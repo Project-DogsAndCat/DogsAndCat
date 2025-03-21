@@ -19,19 +19,20 @@ class AddPetPage extends StatefulWidget {
 
 class _AddPetPageState extends State<AddPetPage> {
   final _nameController = TextEditingController();
-  final _breadController = TextEditingController();
+  final _breedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
 
   @override
   void dispose() {
     _nameController.dispose();
-    _breadController.dispose();
+    _breedController.dispose();
     _ageController.dispose();
     _weightController.dispose();
     super.dispose();
   }
 
+  bool? _isBoy = true;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -43,7 +44,7 @@ class _AddPetPageState extends State<AddPetPage> {
           children: [
             CustomTextFormField(
               controller: _nameController,
-              hintText: 'Имя питомца',
+              hintText: AppString.nameOfPet,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppString.required;
@@ -53,12 +54,12 @@ class _AddPetPageState extends State<AddPetPage> {
               keyboardType: TextInputType.name,
               obscureText: false,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             CustomTextFormField(
-              controller: _breadController,
-              hintText: 'Порода',
+              controller: _breedController,
+              hintText: AppString.breed,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppString.required;
@@ -68,7 +69,7 @@ class _AddPetPageState extends State<AddPetPage> {
               keyboardType: TextInputType.text,
               obscureText: false,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Row(
@@ -80,7 +81,7 @@ class _AddPetPageState extends State<AddPetPage> {
                       CustomTextFormField(
                         readOnly: true,
                         controller: _ageController,
-                        hintText: 'Возраст',
+                        hintText: AppString.age,
                         validator: (_) {
                           if (_ageController.text.isEmpty) {
                             return AppString.required;
@@ -99,14 +100,16 @@ class _AddPetPageState extends State<AddPetPage> {
                               final dateBhd =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                firstDate: DateTime(now.year - 20),
-                                lastDate: DateTime.now(),
+                                firstDate: DateTime(now.year - 30),
+                                lastDate: now,
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.ru,
                                 looping: true,
                               );
 
-                              _ageController.text = _calculatingAge(dateBhd!);
+                              if (dateBhd != null) {
+                                _ageController.text = _calculatingAge(dateBhd);
+                              }
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -119,13 +122,13 @@ class _AddPetPageState extends State<AddPetPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8.0,
                 ),
                 Expanded(
                   child: CustomTextFormField(
                     controller: _weightController,
-                    hintText: 'Вес',
+                    hintText: AppString.weight,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;
@@ -141,17 +144,46 @@ class _AddPetPageState extends State<AddPetPage> {
                 ),
               ],
             ),
-            SizedBox(height: 25.0),
+            const SizedBox(height: 8.0),
+            Wrap(
+              spacing: 10.0,
+              children: [
+                ChoiceChip(
+                  label: Text(AppString.boy),
+                  showCheckmark: false,
+                  selected: _isBoy == true,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      _isBoy = selected ? true : false;
+                    });
+                  },
+                ),
+                ChoiceChip(
+                  label: Text(AppString.girl),
+                  showCheckmark: false,
+                  selected: _isBoy == false,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      _isBoy = selected ? false : true;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
             RoundedElevatedButton(
-              widget: Text('Сохранить'),
+              widget: const Text(AppString.save),
               onPressed: () {
-                if (AddPetPage._formKey.currentState!.validate()) {
+                if (AddPetPage._formKey.currentState!.validate() &&
+                    _isBoy != null) {
                   Pet pet = Pet(
                       name: _nameController.text,
-                      breed: _breadController.text,
+                      breed: _breedController.text,
                       age: _ageController.text,
                       weight: int.parse(_weightController.text),
-                      gender: 'gender');
+                      gender: _isBoy! ? AppString.boy : AppString.girl);
                   context.read<PetBloc>().add(PetEvent.add(pet: pet));
                 }
               },
@@ -164,16 +196,16 @@ class _AddPetPageState extends State<AddPetPage> {
 }
 
 String _calculatingAge(DateTime dateBhd) {
-  DateTime dateTimeNow = DateTime.now();
-  final year = (dateTimeNow.difference(dateBhd).inDays ~/ 365);
-  final month = (dateTimeNow.difference(dateBhd).inDays ~/ 30) - 12 * year;
-  final numberOfYear = _formatingYear(year);
-  return '$numberOfYear $month мес.';
+  DateTime today = DateTime.now();
+  final year = _formatingYear(today.year - dateBhd.year);
+  int mth = today.month - dateBhd.month;
+  if (mth < 0) mth = 12 + mth;
+  return '$year $mth мес.';
 }
 
 String _formatingYear(int year) {
-  if (year == 1) return '$year год';
-  if (year > 1 && year < 5) {
+  if (year % 10 == 1 && year != 11) return '$year год';
+  if (year % 10 > 1 && year % 10 < 5) {
     return '$year года';
   } else {
     return '$year лет';

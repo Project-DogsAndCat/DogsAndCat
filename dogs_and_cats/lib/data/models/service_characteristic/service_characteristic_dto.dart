@@ -6,23 +6,24 @@ part 'service_characteristic_dto.g.dart';
 @JsonSerializable()
 class ServiceCharacteristicDto {
   ServiceCharacteristicDto({
-    required this.id,
+    required this.serviceId,
     required this.time,
     required this.price,
   });
-  final String id;
+  @JsonKey(name: 'service_id')
+  final String serviceId;
   final String time;
   final double price;
 
   ServiceCharacteristic toDomain() => ServiceCharacteristic(
-        id: id,
+        serviceId: serviceId,
         time: time,
         price: price,
       );
 
   factory ServiceCharacteristicDto.fromDomain(ServiceCharacteristic object) =>
       ServiceCharacteristicDto(
-        id: object.id,
+        serviceId: object.serviceId,
         time: object.time,
         price: object.price,
       );

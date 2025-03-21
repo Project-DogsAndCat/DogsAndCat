@@ -1,10 +1,10 @@
 class ServiceCharacteristic {
   ServiceCharacteristic({
-    required this.id,
+    required this.serviceId,
     required this.time,
     required this.price,
   });
-  final String id;
+  final String serviceId;
   final String time;
   final double price;
 }

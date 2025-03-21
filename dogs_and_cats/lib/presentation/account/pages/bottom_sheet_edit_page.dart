@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/rounded_elevated_button.dart';
@@ -38,7 +39,7 @@ class _BottomSheetEditPageState extends State<BottomSheetEditPage> {
                   Navigator.pop(context);
                 }
               },
-              widget: const Text('Изменить'),
+              widget: const Text(AppString.update),
             ),
           ],
         ),
