@@ -13,7 +13,8 @@ class PetDto {
       required this.gender,
       this.id,
       this.weight,
-      this.features});
+      this.features,
+      this.otherFeatures});
 
   @JsonKey(name: 'person_id')
   String? personId;
@@ -24,26 +25,28 @@ class PetDto {
   final int? weight;
   final String gender;
   final String? features;
+  @JsonKey(name: 'other_features')
+  final String? otherFeatures;
 
   Pet toDomain() => Pet(
-        id: id,
-        name: name,
-        breed: breed,
-        age: age,
-        weight: weight,
-        gender: gender,
-        features: features,
-      );
+      id: id,
+      name: name,
+      breed: breed,
+      age: age,
+      weight: weight,
+      gender: gender,
+      features: features,
+      otherFeatures: otherFeatures);
 
   factory PetDto.fromDomain(Pet object) => PetDto(
-        id: object.id,
-        name: object.name,
-        breed: object.breed,
-        age: object.age,
-        weight: object.weight,
-        gender: object.gender,
-        features: object.features,
-      );
+      id: object.id,
+      name: object.name,
+      breed: object.breed,
+      age: object.age,
+      weight: object.weight,
+      gender: object.gender,
+      features: object.features,
+      otherFeatures: object.otherFeatures);
 
   factory PetDto.fromJson(Map<String, dynamic> json) => _$PetDtoFromJson(json);
 

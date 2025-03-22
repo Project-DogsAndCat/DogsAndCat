@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/data/models/pet/pet_dto.dart';
+import 'package:dogs_and_cats/data/models/pet/pet_edit_dto.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
 import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,7 @@ class PetBloc extends Bloc<PetEvent, PetState> {
     emit(PetState.loading());
 
     final result =
-        await repository.updatePet(id: event.id, weight: event.weight);
+        await repository.updatePet(pet: PetEditDto.fromDomain(event.pet));
     result.fold((failure) => emit(PetState.failure(message: failure.message)),
         (_) => add(_Load()));
   }

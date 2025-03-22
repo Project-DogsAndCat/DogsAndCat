@@ -29,6 +29,14 @@ void main() async {
       child: MyApp(),
     ),
   );
+  List<int> intkdl = [1, 2, 3];
+  List<String> newList = intkdl
+      .toString()
+      .substring(1, intkdl.toString().length - 1)
+      .split(',')
+      .map((e) => e.trim())
+      .toList();
+  print(newList);
 }
 
 class MyApp extends StatefulWidget {

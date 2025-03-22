@@ -20,21 +20,21 @@ mixin _$PetEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Pet pet) add,
-    required TResult Function(String id, String weight) edit,
+    required TResult Function(PetEdit pet) edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Pet pet)? add,
-    TResult? Function(String id, String weight)? edit,
+    TResult? Function(PetEdit pet)? edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Pet pet)? add,
-    TResult Function(String id, String weight)? edit,
+    TResult Function(PetEdit pet)? edit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,7 +124,7 @@ class _$LoadImpl implements _Load {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Pet pet) add,
-    required TResult Function(String id, String weight) edit,
+    required TResult Function(PetEdit pet) edit,
   }) {
     return load();
   }
@@ -134,7 +134,7 @@ class _$LoadImpl implements _Load {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Pet pet)? add,
-    TResult? Function(String id, String weight)? edit,
+    TResult? Function(PetEdit pet)? edit,
   }) {
     return load?.call();
   }
@@ -144,7 +144,7 @@ class _$LoadImpl implements _Load {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Pet pet)? add,
-    TResult Function(String id, String weight)? edit,
+    TResult Function(PetEdit pet)? edit,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -260,7 +260,7 @@ class _$AddImpl implements _Add {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Pet pet) add,
-    required TResult Function(String id, String weight) edit,
+    required TResult Function(PetEdit pet) edit,
   }) {
     return add(pet);
   }
@@ -270,7 +270,7 @@ class _$AddImpl implements _Add {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Pet pet)? add,
-    TResult? Function(String id, String weight)? edit,
+    TResult? Function(PetEdit pet)? edit,
   }) {
     return add?.call(pet);
   }
@@ -280,7 +280,7 @@ class _$AddImpl implements _Add {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Pet pet)? add,
-    TResult Function(String id, String weight)? edit,
+    TResult Function(PetEdit pet)? edit,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -342,7 +342,7 @@ abstract class _$$EditImplCopyWith<$Res> {
           _$EditImpl value, $Res Function(_$EditImpl) then) =
       __$$EditImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String id, String weight});
+  $Res call({PetEdit pet});
 }
 
 /// @nodoc
@@ -357,18 +357,13 @@ class __$$EditImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? weight = null,
+    Object? pet = null,
   }) {
     return _then(_$EditImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as String,
+      pet: null == pet
+          ? _value.pet
+          : pet // ignore: cast_nullable_to_non_nullable
+              as PetEdit,
     ));
   }
 }
@@ -376,16 +371,14 @@ class __$$EditImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EditImpl implements _Edit {
-  const _$EditImpl({required this.id, required this.weight});
+  const _$EditImpl({required this.pet});
 
   @override
-  final String id;
-  @override
-  final String weight;
+  final PetEdit pet;
 
   @override
   String toString() {
-    return 'PetEvent.edit(id: $id, weight: $weight)';
+    return 'PetEvent.edit(pet: $pet)';
   }
 
   @override
@@ -393,12 +386,11 @@ class _$EditImpl implements _Edit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.weight, weight) || other.weight == weight));
+            (identical(other.pet, pet) || other.pet == pet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, weight);
+  int get hashCode => Object.hash(runtimeType, pet);
 
   /// Create a copy of PetEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -413,9 +405,9 @@ class _$EditImpl implements _Edit {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Pet pet) add,
-    required TResult Function(String id, String weight) edit,
+    required TResult Function(PetEdit pet) edit,
   }) {
-    return edit(id, weight);
+    return edit(pet);
   }
 
   @override
@@ -423,9 +415,9 @@ class _$EditImpl implements _Edit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Pet pet)? add,
-    TResult? Function(String id, String weight)? edit,
+    TResult? Function(PetEdit pet)? edit,
   }) {
-    return edit?.call(id, weight);
+    return edit?.call(pet);
   }
 
   @override
@@ -433,11 +425,11 @@ class _$EditImpl implements _Edit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Pet pet)? add,
-    TResult Function(String id, String weight)? edit,
+    TResult Function(PetEdit pet)? edit,
     required TResult orElse(),
   }) {
     if (edit != null) {
-      return edit(id, weight);
+      return edit(pet);
     }
     return orElse();
   }
@@ -478,11 +470,9 @@ class _$EditImpl implements _Edit {
 }
 
 abstract class _Edit implements PetEvent {
-  const factory _Edit(
-      {required final String id, required final String weight}) = _$EditImpl;
+  const factory _Edit({required final PetEdit pet}) = _$EditImpl;
 
-  String get id;
-  String get weight;
+  PetEdit get pet;
 
   /// Create a copy of PetEvent
   /// with the given fields replaced by the non-null parameter values.

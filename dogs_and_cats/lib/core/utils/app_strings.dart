@@ -12,10 +12,10 @@ class AppString {
   static const providedValidPassword = 'Укажите действительный пароль';
   static const register = 'Зарегистрироваться';
   static const login = 'Войти';
-  static const logout = "Выйти";
-  static const profile = "Профиль";
-  static const profileUpdated = "Профиль изменился";
-  static const success = "Успешно";
+  static const logout = 'Выйти';
+  static const profile = 'Профиль';
+  static const profileUpdated = 'Профиль изменился';
+  static const success = 'Успешно';
   static const save = 'Сохранить';
   static const update = 'Изменить';
 
@@ -28,6 +28,7 @@ class AppString {
   static const addPet = 'Добавить питомца';
   static const usualPet = 'Без особенностей';
   static const unusualPet = 'С особенностями';
+  static const propertiesPet = 'Особенности поведения';
   static const boy = 'Мальчик';
   static const girl = 'Девочка';
 
@@ -35,6 +36,7 @@ class AppString {
   static const internetNotFound = 'Отсутствует соединение с интернетом';
   static const accountCreated = 'Аккаунт успешно создан';
   static const loginSuccess = 'Вы успешно вошли';
-  static const newUser = "У вас нет аккаунта? ";
+  static const newUser = 'У вас нет аккаунта? ';
   static const noDataFound = 'Данные не найдены';
+  static const noCorrectData = 'Некорректные данные';
 }

@@ -1,13 +1,14 @@
-import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
+import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_holo_date_picker/date_picker.dart';
-import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 
 import '../../../core/utils/app_strings.dart';
+import '../../../core/widgets/custom_switch.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
+import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../../domain/models/pet.dart';
 import '../blocs/pet_bloc.dart';
+import '../widgets/date_picker.dart';
 
 class AddPetPage extends StatefulWidget {
   const AddPetPage({super.key});
@@ -22,6 +23,8 @@ class _AddPetPageState extends State<AddPetPage> {
   final _breedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
+  final _featuresController = TextEditingController();
+  final _otherFeaturesController = TextEditingController();
 
   @override
   void dispose() {
@@ -29,10 +32,15 @@ class _AddPetPageState extends State<AddPetPage> {
     _breedController.dispose();
     _ageController.dispose();
     _weightController.dispose();
+    _featuresController.dispose();
+    _otherFeaturesController.dispose();
     super.dispose();
   }
 
   bool? _isBoy = true;
+  bool _isNeedProperties = false;
+  final Set<String> _selectedCategoryIndexes = {};
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -40,150 +48,128 @@ class _AddPetPageState extends State<AddPetPage> {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CustomTextFormField(
-              controller: _nameController,
-              hintText: AppString.nameOfPet,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return AppString.required;
-                }
-                return null;
-              },
-              keyboardType: TextInputType.name,
-              obscureText: false,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _breedController,
-              hintText: AppString.breed,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return AppString.required;
-                }
-                return null;
-              },
-              keyboardType: TextInputType.text,
-              obscureText: false,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      CustomTextFormField(
-                        readOnly: true,
-                        controller: _ageController,
-                        hintText: AppString.age,
-                        validator: (_) {
-                          if (_ageController.text.isEmpty) {
-                            return AppString.required;
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.text,
-                        obscureText: false,
-                      ),
-                      Positioned.fill(
-                        child: LayoutBuilder(builder:
-                            (BuildContext context, BoxConstraints constraints) {
-                          return GestureDetector(
-                            onTap: () async {
-                              DateTime now = DateTime.now();
-                              final dateBhd =
-                                  await DatePicker.showSimpleDatePicker(
-                                context,
-                                firstDate: DateTime(now.year - 30),
-                                lastDate: now,
-                                dateFormat: "dd-MMMM-yyyy",
-                                locale: DateTimePickerLocale.ru,
-                                looping: true,
-                              );
-
-                              if (dateBhd != null) {
-                                _ageController.text = _calculatingAge(dateBhd);
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(25.0)),
-                            ),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Expanded(
-                  child: CustomTextFormField(
-                    controller: _weightController,
-                    hintText: AppString.weight,
+            Expanded(
+              child: ListView(
+                children: [
+                  CustomTextFormField(
+                    controller: _nameController,
+                    hintText: AppString.nameOfPet,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;
                       }
-                      if (double.tryParse(value) == null) {
+                      return null;
+                    },
+                    keyboardType: TextInputType.name,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomTextFormField(
+                    controller: _breedController,
+                    hintText: AppString.breed,
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return AppString.required;
                       }
                       return null;
                     },
                     keyboardType: TextInputType.text,
-                    obscureText: false,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8.0),
-            Wrap(
-              spacing: 10.0,
-              children: [
-                ChoiceChip(
-                  label: Text(AppString.boy),
-                  showCheckmark: false,
-                  selected: _isBoy == true,
-                  onSelected: (bool selected) {
-                    setState(() {
-                      _isBoy = selected ? true : false;
-                    });
-                  },
-                ),
-                ChoiceChip(
-                  label: Text(AppString.girl),
-                  showCheckmark: false,
-                  selected: _isBoy == false,
-                  onSelected: (bool selected) {
-                    setState(() {
-                      _isBoy = selected ? false : true;
-                    });
-                  },
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 25.0,
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            CustomTextFormField(
+                              readOnly: true,
+                              controller: _ageController,
+                              hintText: AppString.age,
+                              validator: _validateAge,
+                            ),
+                            Positioned.fill(
+                              child: MyDatePicker(
+                                ageController: _ageController,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: CustomTextFormField(
+                          controller: _weightController,
+                          hintText: AppString.weight,
+                          validator: _validateWeight,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Wrap(
+                    spacing: 10.0,
+                    children: [
+                      ChoiceChip(
+                        label: Text(AppString.boy),
+                        showCheckmark: false,
+                        selected: _isBoy == true,
+                        onSelected: (bool selected) {
+                          setState(() {
+                            _isBoy = selected ? true : false;
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: Text(AppString.girl),
+                        showCheckmark: false,
+                        selected: _isBoy == false,
+                        onSelected: (bool selected) {
+                          setState(() {
+                            _isBoy = selected ? false : true;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  CustomSwitch(
+                    title: AppString.propertiesPet,
+                    value: _isNeedProperties,
+                    onChanged: (value) {
+                      setState(() {
+                        _isNeedProperties = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Visibility(
+                    visible: _isNeedProperties,
+                    child: PropertiesPage(
+                      otherFeaturesController: _otherFeaturesController,
+                      selectedCategory: _selectedCategoryIndexes,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25.0,
+                  ),
+                ],
+              ),
             ),
             RoundedElevatedButton(
               widget: const Text(AppString.save),
               onPressed: () {
                 if (AddPetPage._formKey.currentState!.validate() &&
                     _isBoy != null) {
-                  Pet pet = Pet(
-                      name: _nameController.text,
-                      breed: _breedController.text,
-                      age: _ageController.text,
-                      weight: int.parse(_weightController.text),
-                      gender: _isBoy! ? AppString.boy : AppString.girl);
+                  Pet pet = createPet();
                   context.read<PetBloc>().add(PetEvent.add(pet: pet));
                 }
               },
@@ -193,21 +179,28 @@ class _AddPetPageState extends State<AddPetPage> {
       ),
     );
   }
-}
 
-String _calculatingAge(DateTime dateBhd) {
-  DateTime today = DateTime.now();
-  final year = _formatingYear(today.year - dateBhd.year);
-  int mth = today.month - dateBhd.month;
-  if (mth < 0) mth = 12 + mth;
-  return '$year $mth мес.';
-}
+  Pet createPet() {
+    Pet pet = Pet(
+        name: _nameController.text,
+        breed: _breedController.text,
+        age: _ageController.text,
+        weight: int.parse(_weightController.text),
+        gender: _isBoy! ? AppString.boy : AppString.girl,
+        features: _selectedCategoryIndexes
+            .toString()
+            .substring(1, _selectedCategoryIndexes.toString().length - 1),
+        otherFeatures: _otherFeaturesController.text);
+    return pet;
+  }
 
-String _formatingYear(int year) {
-  if (year % 10 == 1 && year != 11) return '$year год';
-  if (year % 10 > 1 && year % 10 < 5) {
-    return '$year года';
-  } else {
-    return '$year лет';
+  String? _validateAge(String? value) {
+    if (value?.isEmpty ?? true) return AppString.required;
+    return null;
+  }
+
+  String? _validateWeight(String? value) {
+    if (value?.isEmpty ?? true) return AppString.required;
+    return null;
   }
 }

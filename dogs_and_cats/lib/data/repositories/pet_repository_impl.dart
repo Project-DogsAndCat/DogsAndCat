@@ -7,6 +7,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../domain/repositories/pet_repository.dart';
+import '../models/pet/pet_edit_dto.dart';
 
 class PetRepositoryImpl implements PetRepository {
   PetRepositoryImpl({required this.supabaseClient});
@@ -43,12 +44,14 @@ class PetRepositoryImpl implements PetRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePet(
-      {required String id, required String weight}) async {
+  Future<Either<Failure, Unit>> updatePet({required PetEditDto pet}) async {
     try {
-      await supabaseClient
-          .from(TableNames.pets)
-          .update({'weight': weight}).eq('id', id);
+      final id = pet.id;
+      final updates = {
+        if (pet.features!.isNotEmpty) 'features': pet.features,
+        if (pet.otherFeatures!.isNotEmpty) 'other_features': pet.otherFeatures,
+      };
+      await supabaseClient.from(TableNames.pets).update(updates).eq('id', id);
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

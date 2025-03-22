@@ -83,7 +83,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                                         AppString.firstName,
                                                     keyboardType:
                                                         TextInputType.text,
-                                                    obscureText: false,
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppString
@@ -92,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                       return null;
                                                     },
                                                   ),
-                                                  const SizedBox(height: 10.0),
+                                                  const SizedBox(height: 15.0),
                                                   CustomTextFormField(
                                                     controller:
                                                         _lastNameController,
@@ -100,7 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                                         AppString.lastName,
                                                     keyboardType:
                                                         TextInputType.text,
-                                                    obscureText: false,
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppString
@@ -125,6 +123,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                                       ));
                                                 }));
                                       }),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
                                   CustomProfileButton(
                                       mainInfoTitle: '${value.person.phone}',
                                       icon: Icons.person,
@@ -140,7 +141,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                                     hintText: AppString.phone,
                                                     keyboardType:
                                                         TextInputType.text,
-                                                    obscureText: false,
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppString
@@ -163,6 +163,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Navigator.pop(context);
                                                 }));
                                       }),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
                                   CustomProfileButton(
                                       mainInfoTitle: '${value.person.email}',
                                       icon: Icons.person,
@@ -178,7 +181,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                                     hintText: AppString.email,
                                                     keyboardType:
                                                         TextInputType.text,
-                                                    obscureText: false,
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppString

@@ -15,6 +15,7 @@ PetDto _$PetDtoFromJson(Map<String, dynamic> json) => PetDto(
       id: json['id'] as String?,
       weight: (json['weight'] as num?)?.toInt(),
       features: json['features'] as String?,
+      otherFeatures: json['other_features'] as String?,
     );
 
 Map<String, dynamic> _$PetDtoToJson(PetDto instance) => <String, dynamic>{
@@ -26,4 +27,5 @@ Map<String, dynamic> _$PetDtoToJson(PetDto instance) => <String, dynamic>{
       'weight': instance.weight,
       'gender': instance.gender,
       'features': instance.features,
+      'other_features': instance.otherFeatures,
     };
