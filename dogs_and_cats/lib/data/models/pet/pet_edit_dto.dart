@@ -6,20 +6,23 @@ part 'pet_edit_dto.g.dart';
 @JsonSerializable()
 class PetEditDto {
   PetEditDto(
-      {required this.id, required this.features, required this.otherFeatures});
+      {required this.id,
+      required this.selectedCategory,
+      required this.otherFeatures});
 
   final String id;
-  final String? features;
+  @JsonKey(name: 'selected_category')
+  final String selectedCategory;
   @JsonKey(name: 'other_features')
-  final String? otherFeatures;
+  final String otherFeatures;
 
-  PetEdit toDomain() =>
-      PetEdit(id: id, features: features, otherFeatures: otherFeatures);
+  PetEdit toDomain() => PetEdit(
+      id: id, selectedCategory: selectedCategory, otherFeatures: otherFeatures);
 
   factory PetEditDto.fromDomain(PetEdit object) => PetEditDto(
       id: object.id,
-      features: object.features,
-      otherFeatures: object.otherFeatures);
+      selectedCategory: object.selectedCategory,
+      otherFeatures: object.selectedCategory);
 
   factory PetEditDto.fromJson(Map<String, dynamic> json) =>
       _$PetEditDtoFromJson(json);

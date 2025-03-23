@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         clearText();
                         CustomSnackBar.showSuccess(
                             context, AppString.accountCreated);
-                        context.goNamed(RoutesNames.search);
+                        context.goNamed(RoutesNames.services);
                       },
                       failure: (state) {
                         CustomSnackBar.showError(context, state.message);

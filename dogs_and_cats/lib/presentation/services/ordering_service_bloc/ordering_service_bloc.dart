@@ -11,15 +11,18 @@ class OrderingServiceBloc
     extends Bloc<OrderingServiceEvent, OrderingServiceState> {
   ServiceRepository repository;
   OrderingServiceBloc({required this.repository})
-      : super(OrderingServiceState.initial()) {
+      : super(OrderingServiceState.loading()) {
     on<OrderingServiceEvent>((event, emit) async {
-      await event.map(load: (event) => _load(event, emit));
+      await event.map(
+          loadTimeAndCostOfService: (event) =>
+              _loadTimeAndCostOfService(event, emit),
+          loadPets: (event) => _loadPets(emit));
     });
   }
 
-  Future<void> _load(_Load event, Emitter<OrderingServiceState> emit) async {
+  Future<void> _loadTimeAndCostOfService(_LoadTimeAndCostOfService event,
+      Emitter<OrderingServiceState> emit) async {
     emit(OrderingServiceState.loading());
-    print(event.id);
     final result = await repository.getCharacteristicsService(id: event.id);
     result.fold(
         (failure) =>
@@ -27,4 +30,6 @@ class OrderingServiceBloc
         (characteristic) =>
             emit(OrderingServiceState.loaded(characteristics: characteristic)));
   }
+
+  Future<void> _loadPets(Emitter<OrderingServiceState> emit) async {}
 }

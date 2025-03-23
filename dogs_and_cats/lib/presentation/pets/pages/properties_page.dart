@@ -1,16 +1,18 @@
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
+import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/auxiliary_data/pet_properties.dart';
 
 class PropertiesPage extends StatefulWidget {
   const PropertiesPage(
       {super.key,
-      required TextEditingController otherFeaturesController,
+      required String otherFeatures,
       required Set<String> selectedCategory})
-      : _otherFeaturesController = otherFeaturesController,
+      : _otherFeatures = otherFeatures,
         _selectedCategory = selectedCategory;
-  final TextEditingController _otherFeaturesController;
+  final String _otherFeatures;
   final Set<String> _selectedCategory;
 
   @override
@@ -18,6 +20,22 @@ class PropertiesPage extends StatefulWidget {
 }
 
 class _PropertiesPageState extends State<PropertiesPage> {
+  late TextEditingController _otherFeaturesController;
+
+  @override
+  void initState() {
+    _otherFeaturesController =
+        TextEditingController(text: widget._otherFeatures);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _otherFeaturesController.dispose();
+    widget._selectedCategory.clear();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,13 +53,10 @@ class _PropertiesPageState extends State<PropertiesPage> {
                 selected: widget._selectedCategory
                     .contains(PetProperties.properties[index]),
                 onSelected: (bool selected) {
-                  setState(() {
-                    selected
-                        ? widget._selectedCategory
-                            .add(PetProperties.properties[index])
-                        : widget._selectedCategory
-                            .remove(PetProperties.properties[index]);
-                  });
+                  _chooseCategory(selected, index);
+                  _updateProperties(
+                      otherFeatures: _otherFeaturesController.text,
+                      selectedCategory: widget._selectedCategory);
                 },
               ),
             ),
@@ -52,24 +67,39 @@ class _PropertiesPageState extends State<PropertiesPage> {
         ),
         CustomTextFormField(
           onChanged: (text) {
-            setState(() {});
+            _updateProperties(
+                otherFeatures: _otherFeaturesController.text,
+                selectedCategory: widget._selectedCategory);
           },
-          controller: widget._otherFeaturesController,
+          controller: _otherFeaturesController,
           keyboardType: TextInputType.text,
           hintText: 'Комментарий',
-          maxLines: null,
-          suffixIcon: widget._otherFeaturesController.text.isNotEmpty
+          suffixIcon: _otherFeaturesController.text.isNotEmpty
               ? IconButton(
                   onPressed: () {
                     setState(() {
-                      widget._otherFeaturesController.clear();
+                      _otherFeaturesController.clear();
                     });
+                    _updateProperties(
+                        otherFeatures: _otherFeaturesController.text,
+                        selectedCategory: widget._selectedCategory);
                   },
-                  icon: const Icon(Icons.clear),
-                )
+                  icon: const Icon(Icons.clear))
               : null,
         )
       ],
     );
+  }
+
+  void _chooseCategory(bool selected, int index) {
+    selected
+        ? widget._selectedCategory.add(PetProperties.properties[index])
+        : widget._selectedCategory.remove(PetProperties.properties[index]);
+  }
+
+  void _updateProperties(
+      {required String otherFeatures, required Set<String> selectedCategory}) {
+    context.read<PetEditCubit>().updateFeatures(
+        otherFeatures: otherFeatures, selectedCategory: selectedCategory);
   }
 }

@@ -2,7 +2,8 @@ part of 'ordering_service_bloc.dart';
 
 @freezed
 class OrderingServiceEvent with _$OrderingServiceEvent {
-  const factory OrderingServiceEvent.load({
+  const factory OrderingServiceEvent.loadTimeAndCostOfService({
     required String id,
-  }) = _Load;
+  }) = _LoadTimeAndCostOfService;
+  const factory OrderingServiceEvent.loadPets() = _LoadPets;
 }

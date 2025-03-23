@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
@@ -38,12 +39,17 @@ class ServicePage extends StatelessWidget {
                                 children: [
                                   CustomServiceButton(
                                       onPressed: () {
-                                        context.goNamed(
+                                        context.replaceNamed(
                                           RoutesNames.orderingService,
                                         );
                                         context.read<OrderingServiceBloc>().add(
-                                            OrderingServiceEvent.load(
-                                                id: state.service[index].id));
+                                            OrderingServiceEvent
+                                                .loadTimeAndCostOfService(
+                                                    id: state
+                                                        .service[index].id));
+                                        context
+                                            .read<PetBloc>()
+                                            .add(PetEvent.load());
                                       },
                                       nameService: state.service[index].title,
                                       description:

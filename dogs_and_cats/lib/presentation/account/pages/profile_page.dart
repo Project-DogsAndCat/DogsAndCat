@@ -217,7 +217,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   CustomProfileButton(
                       onPressed: () {
-                        context.goNamed(RoutesNames.pets);
+                        context.goNamed(RoutesNames.pets,
+                            pathParameters: {'backPage': RoutesNames.account});
                       },
                       mainInfoTitle: AppString.myPets,
                       icon: Icons.pets)

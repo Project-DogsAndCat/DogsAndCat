@@ -27,8 +27,10 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const LoginPage()),
       GoRoute(
           name: RoutesNames.pets,
-          path: '/pets',
-          builder: (context, state) => PetsPage()),
+          path: '/pets/:backPage',
+          builder: (context, state) => PetsPage(
+                backPage: state.pathParameters['backPage']!,
+              )),
       GoRoute(
           name: RoutesNames.orderingService,
           path: '/ordering',
@@ -40,7 +42,7 @@ final GoRouter router = GoRouter(
             StatefulShellBranch(
               routes: [
                 GoRoute(
-                  name: RoutesNames.search,
+                  name: RoutesNames.services,
                   path: '/services',
                   builder: (context, state) => const ServicePage(),
                 ),

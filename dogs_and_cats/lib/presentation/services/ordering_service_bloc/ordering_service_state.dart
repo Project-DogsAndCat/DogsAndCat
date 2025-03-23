@@ -2,7 +2,6 @@ part of 'ordering_service_bloc.dart';
 
 @freezed
 class OrderingServiceState with _$OrderingServiceState {
-  const factory OrderingServiceState.initial() = _Initial;
   const factory OrderingServiceState.loading() = _Loading;
   const factory OrderingServiceState.loaded({
     required List<ServiceCharacteristic> characteristics,

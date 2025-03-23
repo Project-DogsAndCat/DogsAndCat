@@ -1,13 +1,14 @@
 class Pet {
-  Pet(
-      {required this.name,
-      required this.breed,
-      required this.age,
-      required this.gender,
-      this.id,
-      this.weight,
-      this.features,
-      this.otherFeatures});
+  Pet({
+    required this.name,
+    required this.breed,
+    required this.age,
+    required this.gender,
+    required this.selectedCategory,
+    required this.otherFeatures,
+    this.id,
+    this.weight,
+  });
 
   final String? id;
   final String name;
@@ -15,14 +16,17 @@ class Pet {
   final String age;
   final int? weight;
   final String gender;
-  final String? features;
-  final String? otherFeatures;
+  final String selectedCategory;
+  final String otherFeatures;
 }
 
 class PetEdit {
-  PetEdit({required this.id, this.features, this.otherFeatures});
+  PetEdit(
+      {required this.id,
+      required this.selectedCategory,
+      required this.otherFeatures});
 
   final String id;
-  final String? features;
-  final String? otherFeatures;
+  final String selectedCategory;
+  final String otherFeatures;
 }

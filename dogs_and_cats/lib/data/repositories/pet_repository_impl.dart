@@ -47,11 +47,12 @@ class PetRepositoryImpl implements PetRepository {
   Future<Either<Failure, Unit>> updatePet({required PetEditDto pet}) async {
     try {
       final id = pet.id;
-      final updates = {
-        if (pet.features!.isNotEmpty) 'features': pet.features,
-        if (pet.otherFeatures!.isNotEmpty) 'other_features': pet.otherFeatures,
-      };
-      await supabaseClient.from(TableNames.pets).update(updates).eq('id', id);
+      final updateJson = pet.toJson();
+      updateJson.remove('id');
+      await supabaseClient
+          .from(TableNames.pets)
+          .update(updateJson)
+          .eq('id', id);
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

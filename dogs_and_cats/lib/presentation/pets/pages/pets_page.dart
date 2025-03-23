@@ -7,7 +7,8 @@ import '../widgets/list_pets.dart';
 import 'add_pet_page.dart';
 
 class PetsPage extends StatelessWidget {
-  const PetsPage({super.key});
+  const PetsPage({super.key, required this.backPage});
+  final String backPage;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class PetsPage extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            context.replaceNamed(RoutesNames.account);
+            context.replaceNamed(backPage);
           },
         ),
         title: const Text(AppString.myPets),

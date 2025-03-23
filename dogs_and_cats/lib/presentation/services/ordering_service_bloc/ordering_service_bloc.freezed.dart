@@ -16,44 +16,45 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrderingServiceEvent {
-  String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id) load,
+    required TResult Function(String id) loadTimeAndCostOfService,
+    required TResult Function() loadPets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? load,
+    TResult? Function(String id)? loadTimeAndCostOfService,
+    TResult? Function()? loadPets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? load,
+    TResult Function(String id)? loadTimeAndCostOfService,
+    TResult Function()? loadPets,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadTimeAndCostOfService value)
+        loadTimeAndCostOfService,
+    required TResult Function(_LoadPets value) loadPets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTimeAndCostOfService value)?
+        loadTimeAndCostOfService,
+    TResult? Function(_LoadPets value)? loadPets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadTimeAndCostOfService value)? loadTimeAndCostOfService,
+    TResult Function(_LoadPets value)? loadPets,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of OrderingServiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderingServiceEventCopyWith<OrderingServiceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +63,6 @@ abstract class $OrderingServiceEventCopyWith<$Res> {
   factory $OrderingServiceEventCopyWith(OrderingServiceEvent value,
           $Res Function(OrderingServiceEvent) then) =
       _$OrderingServiceEventCopyWithImpl<$Res, OrderingServiceEvent>;
-  @useResult
-  $Res call({String id});
 }
 
 /// @nodoc
@@ -79,36 +78,26 @@ class _$OrderingServiceEventCopyWithImpl<$Res,
 
   /// Create a copy of OrderingServiceEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadImplCopyWith<$Res>
-    implements $OrderingServiceEventCopyWith<$Res> {
-  factory _$$LoadImplCopyWith(
-          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
-      __$$LoadImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$LoadTimeAndCostOfServiceImplCopyWith<$Res> {
+  factory _$$LoadTimeAndCostOfServiceImplCopyWith(
+          _$LoadTimeAndCostOfServiceImpl value,
+          $Res Function(_$LoadTimeAndCostOfServiceImpl) then) =
+      __$$LoadTimeAndCostOfServiceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class __$$LoadImplCopyWithImpl<$Res>
-    extends _$OrderingServiceEventCopyWithImpl<$Res, _$LoadImpl>
-    implements _$$LoadImplCopyWith<$Res> {
-  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+class __$$LoadTimeAndCostOfServiceImplCopyWithImpl<$Res>
+    extends _$OrderingServiceEventCopyWithImpl<$Res,
+        _$LoadTimeAndCostOfServiceImpl>
+    implements _$$LoadTimeAndCostOfServiceImplCopyWith<$Res> {
+  __$$LoadTimeAndCostOfServiceImplCopyWithImpl(
+      _$LoadTimeAndCostOfServiceImpl _value,
+      $Res Function(_$LoadTimeAndCostOfServiceImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrderingServiceEvent
@@ -118,7 +107,7 @@ class __$$LoadImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$LoadImpl(
+    return _then(_$LoadTimeAndCostOfServiceImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -129,22 +118,22 @@ class __$$LoadImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadImpl implements _Load {
-  const _$LoadImpl({required this.id});
+class _$LoadTimeAndCostOfServiceImpl implements _LoadTimeAndCostOfService {
+  const _$LoadTimeAndCostOfServiceImpl({required this.id});
 
   @override
   final String id;
 
   @override
   String toString() {
-    return 'OrderingServiceEvent.load(id: $id)';
+    return 'OrderingServiceEvent.loadTimeAndCostOfService(id: $id)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadImpl &&
+            other is _$LoadTimeAndCostOfServiceImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -156,33 +145,37 @@ class _$LoadImpl implements _Load {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+  _$$LoadTimeAndCostOfServiceImplCopyWith<_$LoadTimeAndCostOfServiceImpl>
+      get copyWith => __$$LoadTimeAndCostOfServiceImplCopyWithImpl<
+          _$LoadTimeAndCostOfServiceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id) load,
+    required TResult Function(String id) loadTimeAndCostOfService,
+    required TResult Function() loadPets,
   }) {
-    return load(id);
+    return loadTimeAndCostOfService(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? load,
+    TResult? Function(String id)? loadTimeAndCostOfService,
+    TResult? Function()? loadPets,
   }) {
-    return load?.call(id);
+    return loadTimeAndCostOfService?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? load,
+    TResult Function(String id)? loadTimeAndCostOfService,
+    TResult Function()? loadPets,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(id);
+    if (loadTimeAndCostOfService != null) {
+      return loadTimeAndCostOfService(id);
     }
     return orElse();
   }
@@ -190,51 +183,161 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadTimeAndCostOfService value)
+        loadTimeAndCostOfService,
+    required TResult Function(_LoadPets value) loadPets,
   }) {
-    return load(this);
+    return loadTimeAndCostOfService(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTimeAndCostOfService value)?
+        loadTimeAndCostOfService,
+    TResult? Function(_LoadPets value)? loadPets,
   }) {
-    return load?.call(this);
+    return loadTimeAndCostOfService?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadTimeAndCostOfService value)? loadTimeAndCostOfService,
+    TResult Function(_LoadPets value)? loadPets,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(this);
+    if (loadTimeAndCostOfService != null) {
+      return loadTimeAndCostOfService(this);
     }
     return orElse();
   }
 }
 
-abstract class _Load implements OrderingServiceEvent {
-  const factory _Load({required final String id}) = _$LoadImpl;
+abstract class _LoadTimeAndCostOfService implements OrderingServiceEvent {
+  const factory _LoadTimeAndCostOfService({required final String id}) =
+      _$LoadTimeAndCostOfServiceImpl;
 
-  @override
   String get id;
 
   /// Create a copy of OrderingServiceEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LoadTimeAndCostOfServiceImplCopyWith<_$LoadTimeAndCostOfServiceImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadPetsImplCopyWith<$Res> {
+  factory _$$LoadPetsImplCopyWith(
+          _$LoadPetsImpl value, $Res Function(_$LoadPetsImpl) then) =
+      __$$LoadPetsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadPetsImplCopyWithImpl<$Res>
+    extends _$OrderingServiceEventCopyWithImpl<$Res, _$LoadPetsImpl>
+    implements _$$LoadPetsImplCopyWith<$Res> {
+  __$$LoadPetsImplCopyWithImpl(
+      _$LoadPetsImpl _value, $Res Function(_$LoadPetsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderingServiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadPetsImpl implements _LoadPets {
+  const _$LoadPetsImpl();
+
+  @override
+  String toString() {
+    return 'OrderingServiceEvent.loadPets()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadPetsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) loadTimeAndCostOfService,
+    required TResult Function() loadPets,
+  }) {
+    return loadPets();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? loadTimeAndCostOfService,
+    TResult? Function()? loadPets,
+  }) {
+    return loadPets?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? loadTimeAndCostOfService,
+    TResult Function()? loadPets,
+    required TResult orElse(),
+  }) {
+    if (loadPets != null) {
+      return loadPets();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadTimeAndCostOfService value)
+        loadTimeAndCostOfService,
+    required TResult Function(_LoadPets value) loadPets,
+  }) {
+    return loadPets(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadTimeAndCostOfService value)?
+        loadTimeAndCostOfService,
+    TResult? Function(_LoadPets value)? loadPets,
+  }) {
+    return loadPets?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadTimeAndCostOfService value)? loadTimeAndCostOfService,
+    TResult Function(_LoadPets value)? loadPets,
+    required TResult orElse(),
+  }) {
+    if (loadPets != null) {
+      return loadPets(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadPets implements OrderingServiceEvent {
+  const factory _LoadPets() = _$LoadPetsImpl;
 }
 
 /// @nodoc
 mixin _$OrderingServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ServiceCharacteristic> characteristics)
         loaded,
@@ -244,7 +347,6 @@ mixin _$OrderingServiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult? Function()? success,
@@ -253,7 +355,6 @@ mixin _$OrderingServiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult Function()? success,
@@ -263,7 +364,6 @@ mixin _$OrderingServiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Success value) success,
@@ -272,7 +372,6 @@ mixin _$OrderingServiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Success value)? success,
@@ -281,7 +380,6 @@ mixin _$OrderingServiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Success value)? success,
@@ -311,130 +409,6 @@ class _$OrderingServiceStateCopyWithImpl<$Res,
 
   /// Create a copy of OrderingServiceState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$OrderingServiceStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrderingServiceState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'OrderingServiceState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<ServiceCharacteristic> characteristics)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String message) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
-    TResult? Function()? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
-    TResult Function()? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements OrderingServiceState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -478,7 +452,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ServiceCharacteristic> characteristics)
         loaded,
@@ -491,7 +464,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult? Function()? success,
@@ -503,7 +475,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult Function()? success,
@@ -519,7 +490,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Success value) success,
@@ -531,7 +501,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Success value)? success,
@@ -543,7 +512,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Success value)? success,
@@ -638,7 +606,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ServiceCharacteristic> characteristics)
         loaded,
@@ -651,7 +618,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult? Function()? success,
@@ -663,7 +629,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult Function()? success,
@@ -679,7 +644,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Success value) success,
@@ -691,7 +655,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Success value)? success,
@@ -703,7 +666,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Success value)? success,
@@ -772,7 +734,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ServiceCharacteristic> characteristics)
         loaded,
@@ -785,7 +746,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult? Function()? success,
@@ -797,7 +757,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult Function()? success,
@@ -813,7 +772,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Success value) success,
@@ -825,7 +783,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Success value)? success,
@@ -837,7 +794,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Success value)? success,
@@ -923,7 +879,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ServiceCharacteristic> characteristics)
         loaded,
@@ -936,7 +891,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult? Function()? success,
@@ -948,7 +902,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ServiceCharacteristic> characteristics)? loaded,
     TResult Function()? success,
@@ -964,7 +917,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Success value) success,
@@ -976,7 +928,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Success value)? success,
@@ -988,7 +939,6 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Success value)? success,
