@@ -22,7 +22,7 @@ class PetEditDto {
   factory PetEditDto.fromDomain(PetEdit object) => PetEditDto(
       id: object.id,
       selectedCategory: object.selectedCategory,
-      otherFeatures: object.selectedCategory);
+      otherFeatures: object.otherFeatures);
 
   factory PetEditDto.fromJson(Map<String, dynamic> json) =>
       _$PetEditDtoFromJson(json);
