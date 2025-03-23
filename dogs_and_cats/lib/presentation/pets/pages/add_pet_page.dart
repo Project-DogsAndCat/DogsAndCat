@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import '../widgets/date_picker.dart';
 
 class AddPetPage extends StatefulWidget {
   const AddPetPage({super.key});
+
   static final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,8 +25,6 @@ class _AddPetPageState extends State<AddPetPage> {
   final _breedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
-  final _featuresController = TextEditingController();
-  final _otherFeaturesController = TextEditingController();
 
   @override
   void dispose() {
@@ -32,165 +32,172 @@ class _AddPetPageState extends State<AddPetPage> {
     _breedController.dispose();
     _ageController.dispose();
     _weightController.dispose();
-    _featuresController.dispose();
-    _otherFeaturesController.dispose();
     super.dispose();
   }
 
   bool? _isBoy = true;
   bool _isNeedProperties = false;
-  final Set<String> _selectedCategoryIndexes = {};
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: AddPetPage._formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  CustomTextFormField(
-                    controller: _nameController,
-                    hintText: AppString.nameOfPet,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return AppString.required;
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.name,
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  CustomTextFormField(
-                    controller: _breedController,
-                    hintText: AppString.breed,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return AppString.required;
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.text,
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CustomTextFormField(
-                              readOnly: true,
-                              controller: _ageController,
-                              hintText: AppString.age,
-                              validator: _validateAge,
-                            ),
-                            Positioned.fill(
-                              child: MyDatePicker(
-                                ageController: _ageController,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 8.0),
-                      Expanded(
-                        child: CustomTextFormField(
-                          controller: _weightController,
-                          hintText: AppString.weight,
-                          validator: _validateWeight,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Wrap(
-                    spacing: 10.0,
-                    children: [
-                      ChoiceChip(
-                        label: Text(AppString.boy),
-                        showCheckmark: false,
-                        selected: _isBoy == true,
-                        onSelected: (bool selected) {
-                          setState(() {
-                            _isBoy = selected ? true : false;
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: Text(AppString.girl),
-                        showCheckmark: false,
-                        selected: _isBoy == false,
-                        onSelected: (bool selected) {
-                          setState(() {
-                            _isBoy = selected ? false : true;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  CustomSwitch(
-                    title: AppString.propertiesPet,
-                    value: _isNeedProperties,
-                    onChanged: (value) {
-                      setState(() {
-                        _isNeedProperties = value;
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Visibility(
-                    visible: _isNeedProperties,
-                    child: PropertiesPage(
-                      otherFeaturesController: _otherFeaturesController,
-                      selectedCategory: _selectedCategoryIndexes,
+    return BlocProvider(
+      create: (context) => PetEditCubit(),
+      child: Form(
+        key: AddPetPage._formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    CustomTextFormField(
+                      controller: _nameController,
+                      hintText: AppString.nameOfPet,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return AppString.required;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.name,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomTextFormField(
+                      controller: _breedController,
+                      hintText: AppString.breed,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return AppString.required;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              CustomTextFormField(
+                                readOnly: true,
+                                controller: _ageController,
+                                hintText: AppString.age,
+                                validator: _validateAge,
+                              ),
+                              Positioned.fill(
+                                child: MyDatePicker(
+                                  ageController: _ageController,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: CustomTextFormField(
+                            controller: _weightController,
+                            hintText: AppString.weight,
+                            validator: _validateWeight,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Wrap(
+                      spacing: 10.0,
+                      children: [
+                        ChoiceChip(
+                          label: Text(AppString.boy),
+                          showCheckmark: false,
+                          selected: _isBoy == true,
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _isBoy = selected ? true : false;
+                            });
+                          },
+                        ),
+                        ChoiceChip(
+                          label: Text(AppString.girl),
+                          showCheckmark: false,
+                          selected: _isBoy == false,
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _isBoy = selected ? false : true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    CustomSwitch(
+                      title: AppString.propertiesPet,
+                      value: _isNeedProperties,
+                      onChanged: (value) {
+                        setState(() {
+                          _isNeedProperties = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Visibility(
+                      visible: _isNeedProperties,
+                      child: BlocBuilder<PetEditCubit, PetEditState>(
+                        builder: (context, state) {
+                          return PropertiesPage(
+                            otherFeatures: state.otherFeatures ?? '',
+                            selectedCategory: state.selectedCategory ?? {},
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            RoundedElevatedButton(
-              widget: const Text(AppString.save),
-              onPressed: () {
-                if (AddPetPage._formKey.currentState!.validate() &&
-                    _isBoy != null) {
-                  Pet pet = createPet();
-                  context.read<PetBloc>().add(PetEvent.add(pet: pet));
-                }
-              },
-            ),
-          ],
+              BlocBuilder<PetEditCubit, PetEditState>(
+                builder: (context, state) {
+                  return RoundedElevatedButton(
+                    widget: const Text(AppString.save),
+                    onPressed: () {
+                      if (AddPetPage._formKey.currentState!.validate() &&
+                          _isBoy != null) {
+                        Pet pet = createPet(
+                            state.selectedCategoryString, state.otherFeatures);
+                        context.read<PetBloc>().add(PetEvent.add(pet: pet));
+                      }
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Pet createPet() {
+  Pet createPet(String? selectedCategory, String? otherFeatures) {
     Pet pet = Pet(
         name: _nameController.text,
         breed: _breedController.text,
         age: _ageController.text,
         weight: int.parse(_weightController.text),
         gender: _isBoy! ? AppString.boy : AppString.girl,
-        features: _selectedCategoryIndexes
-            .toString()
-            .substring(1, _selectedCategoryIndexes.toString().length - 1),
-        otherFeatures: _otherFeaturesController.text);
+        selectedCategory: selectedCategory ?? '',
+        otherFeatures: otherFeatures ?? '');
     return pet;
   }
 

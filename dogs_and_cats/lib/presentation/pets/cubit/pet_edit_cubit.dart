@@ -4,12 +4,17 @@ import 'package:dogs_and_cats/domain/models/pet.dart';
 part 'pet_edit_state.dart';
 
 class PetEditCubit extends Cubit<PetEditState> {
-  PetEditCubit(Pet pet)
+  PetEditCubit({Pet? pet})
       : super(PetEditState(
-            features: pet.features?.split(',').toSet() ?? {},
-            otherFeatures: pet.otherFeatures ?? ''));
+            selectedCategory: pet?.selectedCategory
+                .split(',')
+                .map((element) => element.trim())
+                .toSet(),
+            otherFeatures: pet?.otherFeatures));
 
-  void updateFeatures(Set<String> features, String otherFeatures) {
-    emit(state.copyWith(features, otherFeatures));
+  void updateFeatures(
+      {Set<String>? selectedCategory, required String otherFeatures}) {
+    emit(state.copyWith(
+        selectedCategory: selectedCategory, otherFeatures: otherFeatures));
   }
 }

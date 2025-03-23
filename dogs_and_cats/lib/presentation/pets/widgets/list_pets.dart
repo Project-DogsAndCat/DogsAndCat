@@ -24,9 +24,11 @@ class ListPets extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: CustomProfileButton(
                       mainInfoTitle: state.pets[index].name.toString(),
-                      otherInfoTitle: state.pets[index].features == null
-                          ? AppString.usualPet
-                          : AppString.unusualPet,
+                      otherInfoTitle:
+                          state.pets[index].selectedCategory.isEmpty &&
+                                  state.pets[index].otherFeatures.isEmpty
+                              ? AppString.usualPet
+                              : AppString.unusualPet,
                       icon: Icons.add,
                       onPressed: () {
                         showModalBottomSheet<void>(

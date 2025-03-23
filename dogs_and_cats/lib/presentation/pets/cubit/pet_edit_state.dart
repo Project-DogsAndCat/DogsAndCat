@@ -1,14 +1,17 @@
 part of 'pet_edit_cubit.dart';
 
 class PetEditState {
-  PetEditState({required this.features, required this.otherFeatures});
+  PetEditState({required this.selectedCategory, required this.otherFeatures});
 
-  final Set<String> features;
-  final String otherFeatures;
+  final Set<String>? selectedCategory;
+  final String? otherFeatures;
+  String? get selectedCategoryString => selectedCategory
+      ?.toString()
+      .substring(1, selectedCategory.toString().length - 1);
 
-  PetEditState copyWith(Set<String>? features, String? otherFeatures) {
+  PetEditState copyWith(
+      {Set<String>? selectedCategory, required String otherFeatures}) {
     return PetEditState(
-        features: features ?? this.features,
-        otherFeatures: otherFeatures ?? this.otherFeatures);
+        selectedCategory: selectedCategory, otherFeatures: otherFeatures);
   }
 }
