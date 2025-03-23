@@ -54,9 +54,7 @@ class _PropertiesPageState extends State<PropertiesPage> {
                     .contains(PetProperties.properties[index]),
                 onSelected: (bool selected) {
                   _chooseCategory(selected, index);
-                  _updateProperties(
-                      otherFeatures: _otherFeaturesController.text,
-                      selectedCategory: widget._selectedCategory);
+                  _updateProperties(selectedCategory: widget._selectedCategory);
                 },
               ),
             ),
@@ -67,13 +65,12 @@ class _PropertiesPageState extends State<PropertiesPage> {
         ),
         CustomTextFormField(
           onChanged: (text) {
-            _updateProperties(
-                otherFeatures: _otherFeaturesController.text,
-                selectedCategory: widget._selectedCategory);
+            _updateProperties(otherFeatures: _otherFeaturesController.text);
           },
           controller: _otherFeaturesController,
           keyboardType: TextInputType.text,
           hintText: 'Комментарий',
+          maxLines: null,
           suffixIcon: _otherFeaturesController.text.isNotEmpty
               ? IconButton(
                   onPressed: () {
@@ -81,8 +78,7 @@ class _PropertiesPageState extends State<PropertiesPage> {
                       _otherFeaturesController.clear();
                     });
                     _updateProperties(
-                        otherFeatures: _otherFeaturesController.text,
-                        selectedCategory: widget._selectedCategory);
+                        otherFeatures: _otherFeaturesController.text);
                   },
                   icon: const Icon(Icons.clear))
               : null,
@@ -98,7 +94,7 @@ class _PropertiesPageState extends State<PropertiesPage> {
   }
 
   void _updateProperties(
-      {required String otherFeatures, required Set<String> selectedCategory}) {
+      {String? otherFeatures, Set<String>? selectedCategory}) {
     context.read<PetEditCubit>().updateFeatures(
         otherFeatures: otherFeatures, selectedCategory: selectedCategory);
   }

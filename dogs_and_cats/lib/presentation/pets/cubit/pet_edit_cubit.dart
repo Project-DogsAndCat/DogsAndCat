@@ -12,8 +12,7 @@ class PetEditCubit extends Cubit<PetEditState> {
                 .toSet(),
             otherFeatures: pet?.otherFeatures));
 
-  void updateFeatures(
-      {Set<String>? selectedCategory, required String otherFeatures}) {
+  void updateFeatures({Set<String>? selectedCategory, String? otherFeatures}) {
     emit(state.copyWith(
         selectedCategory: selectedCategory, otherFeatures: otherFeatures));
   }

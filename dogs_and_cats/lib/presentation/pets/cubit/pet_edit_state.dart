@@ -10,8 +10,9 @@ class PetEditState {
       .substring(1, selectedCategory.toString().length - 1);
 
   PetEditState copyWith(
-      {Set<String>? selectedCategory, required String otherFeatures}) {
+      {Set<String>? selectedCategory, String? otherFeatures}) {
     return PetEditState(
-        selectedCategory: selectedCategory, otherFeatures: otherFeatures);
+        selectedCategory: selectedCategory ?? this.selectedCategory,
+        otherFeatures: otherFeatures ?? this.otherFeatures);
   }
 }
