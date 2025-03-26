@@ -2,7 +2,6 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
-import 'package:dogs_and_cats/presentation/pets/pages/add_pet_page.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import '../../../core/utils/app_strings.dart';
-import '../../pets/blocs/pet_bloc.dart';
 import '../widgets/pet_selection_widget.dart';
 
 class OrderingServicePage extends StatefulWidget {
@@ -35,7 +32,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
     initializeDateFormatting("ru_RU");
     return Scaffold(
       appBar: AppBar(
-        title: Text('Заказ услуги'),
+        title: const Text('Заказ услуги'),
         leading: BackButton(
           onPressed: () {
             context.replaceNamed(RoutesNames.services);
@@ -82,11 +79,11 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 success: (_) => Container(),
               );
             }),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(DateFormat.MMMMEEEEd("ru_RU").format(_selectedDate)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             DatePicker(
@@ -110,10 +107,10 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text('Для какого питомца?'),
+            const Text('Для какого питомца?'),
             PetSelectionWidget(
               onSelected: (int? selectedIndex, String petId) {
                 setState(() {
@@ -121,7 +118,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             GestureDetector(
@@ -129,12 +126,8 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 router.goNamed(RoutesNames.pets,
                     pathParameters: {'backPage': RoutesNames.orderingService});
               },
-              child: Text(
+              child: const Text(
                 'Добавить питомца',
-                style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.w700,
-                ),
               ),
             )
           ],
