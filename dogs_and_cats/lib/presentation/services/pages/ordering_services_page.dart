@@ -1,4 +1,4 @@
-import 'package:date_picker_timeline/date_picker_widget.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
@@ -6,8 +6,8 @@ import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/orderi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 import '../widgets/pet_selection_widget.dart';
 

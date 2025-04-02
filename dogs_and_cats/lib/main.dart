@@ -1,13 +1,15 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
-import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/theme/cubit/theme_cubit.dart';
+import 'data/repositories/map_search_repository.dart';
 import 'presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'presentation/services/service_bloc/services_bloc.dart';
 
@@ -25,6 +27,9 @@ void main() async {
             create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
         BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),
         BlocProvider(create: (_) => getIt<PetBloc>()..add(PetEvent.load())),
+        BlocProvider(
+            create: (context) =>
+                MapSearchBloc(repository: MapSearchRepositoryImpl())),
       ],
       child: MyApp(),
     ),

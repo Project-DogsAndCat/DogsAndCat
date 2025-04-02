@@ -1,7 +1,6 @@
-import 'dart:async';
-
-import 'package:dogs_and_cats/data/repositories/location_repository_impl.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../../domain/models/location.dart';
@@ -14,68 +13,61 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late final YandexMapController mapControllerCompleter;
+  late final YandexMapController _mapController;
   var _mapZoom = 0.0;
-  late CameraPosition _userLocation;
+  late CameraPosition _center;
 
   @override
   void initState() {
+    final MoscowLocation moscow = MoscowLocation();
+    _center = CameraPosition(
+        target: Point(latitude: moscow.lat, longitude: moscow.long));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      width: 250,
-      child: YandexMap(
-        onMapCreated: (controller) {
-          mapControllerCompleter = controller;
-          _initPermission();
-        },
-        onCameraPositionChanged: (cameraPosition, _, __) {
-          setState(() {
-            _mapZoom = cameraPosition.zoom;
-          });
-        },
-        onUserLocationAdded: (view) async {
-          await _fetchCurrentLocation();
-          await mapControllerCompleter.moveCamera(
-            CameraUpdate.newCameraPosition(
-              _userLocation.copyWith(zoom: 15),
-            ),
-            animation: const MapAnimation(
-              type: MapAnimationType.linear,
-              duration: 0.3,
-            ),
-          );
-          return view.copyWith(
-            pin: view.pin.copyWith(
-              opacity: 1,
-            ),
-          );
-        },
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              YandexMap(
+                onMapCreated: (controller) async {
+                  _mapController = controller;
+                  _mapController.moveCamera(
+                    CameraUpdate.newCameraPosition(
+                      _center.copyWith(zoom: 12.0),
+                    ),
+                  );
+                  final region = await _mapController.getVisibleRegion();
+                  context
+                      .read<MapSearchBloc>()
+                      .add(MapSearchEvent.regionChanged(region: region));
+                },
+                onCameraPositionChanged:
+                    (cameraPosition, reason, finished) async {
+                  setState(() {
+                    _mapZoom = cameraPosition.zoom;
+                    _center = cameraPosition;
+                  });
+                  final region = await _mapController.getVisibleRegion();
+                  context
+                      .read<MapSearchBloc>()
+                      .add(MapSearchEvent.regionChanged(region: region));
+                },
+              ),
+              Icon(
+                Icons.location_on,
+                size: 35.0,
+                color: Colors.red,
+              ),
+            ],
+          ),
+        ),
+        Text('${_center.target.longitude} ${_center.target.latitude}')
+      ],
     );
-  }
-
-  Future<void> _fetchCurrentLocation() async {
-    AppLatLong location;
-    const defLocation = MoscowLocation();
-    try {
-      location = await LocationRepositoryImpl().getCurrentLocation();
-    } catch (_) {
-      location = defLocation;
-    }
-    _userLocation = CameraPosition(
-        target: Point(latitude: location.lat, longitude: location.long));
-    await mapControllerCompleter.toggleUserLayer(visible: true);
-  }
-
-  Future<void> _initPermission() async {
-    if (!await LocationRepositoryImpl().checkPermission()) {
-      await LocationRepositoryImpl().requestPermission();
-    }
-    await _fetchCurrentLocation();
   }
 }

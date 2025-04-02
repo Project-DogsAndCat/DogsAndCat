@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/widgets/rounded_elevated_button.dart';
 
-class BottomSheetEditPage extends StatefulWidget {
-  const BottomSheetEditPage(
+class BottomSheetEdit extends StatefulWidget {
+  const BottomSheetEdit(
       {super.key,
       required this.title,
       required this.onSave,
@@ -14,10 +14,10 @@ class BottomSheetEditPage extends StatefulWidget {
   final List<Widget> fields;
 
   @override
-  State<BottomSheetEditPage> createState() => _BottomSheetEditPageState();
+  State<BottomSheetEdit> createState() => _BottomSheetEditState();
 }
 
-class _BottomSheetEditPageState extends State<BottomSheetEditPage> {
+class _BottomSheetEditState extends State<BottomSheetEdit> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -28,8 +28,20 @@ class _BottomSheetEditPageState extends State<BottomSheetEditPage> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(widget.title, style: Theme.of(context).textTheme.titleMedium),
+            Container(
+              height: 5,
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[400],
+              ),
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+            Text(widget.title, style: Theme.of(context).textTheme.bodyLarge),
             ...widget.fields,
             const SizedBox(height: 10.0),
             RoundedElevatedButton(

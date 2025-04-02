@@ -11,7 +11,7 @@ class MainActivity: FlutterActivity()
 class MainApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        MapKitFactory.setLocale("en_U") // Your preferred language. Not required, defaults to system language
-        MapKitFactory.setApiKey("5bf3e0f2-9f1b-41e0-b41a-8de6b2c97523") // Your generated API key
+        MapKitFactory.setLocale("ru_RU")
+        MapKitFactory.setApiKey("d6a559ee-febe-4539-b728-7f6d70c8e58f")
     }
 }

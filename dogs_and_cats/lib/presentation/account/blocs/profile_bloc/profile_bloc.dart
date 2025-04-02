@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../data/models/person/person_dto.dart';
-import '../../../domain/models/person.dart';
+import '../../../../data/models/person/person_dto.dart';
+import '../../../../domain/models/person.dart';
 
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';

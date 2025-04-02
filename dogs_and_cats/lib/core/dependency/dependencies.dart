@@ -7,7 +7,7 @@ import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
-import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
