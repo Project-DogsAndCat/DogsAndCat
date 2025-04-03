@@ -19,12 +19,14 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
 
   MapSearchBloc({required this.repository})
       : super(const MapSearchState.initial()) {
-    on<MapSearchEvent>((event, emit) async {
-      await event.map(
-          getSearchResult: (_) => _getSearchResult(emit),
-          queryChanged: (event) => _queryChanged(emit, event),
-          regionChanged: (event) => regionChanged(emit, event));
-    });
+    on<MapSearchEvent>(
+      (event, emit) async {
+        await event.map(
+            getSearchResult: (_) => _getSearchResult(emit),
+            queryChanged: (event) => _queryChanged(emit, event),
+            regionChanged: (event) => regionChanged(emit, event));
+      },
+    );
   }
 
   void setQueryText(String value) => _searchText = value;
@@ -32,7 +34,7 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
   Future<void> _getSearchResult(Emitter<MapSearchState> emit) async {
     emit(MapSearchState.loading());
     try {
-      final (_, sessionResultFuture) = await repository.searchByText(
+      final (session, sessionResultFuture) = await repository.searchByText(
         searchText: '$_searchText, Москва',
         bBox: _visibleRegion!.toBoundingBox(),
       );
@@ -46,13 +48,17 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
       final items = sessionResult.items ?? [];
 
       final results = items
-          .map((item) => SuggestResponseItem(
-                title: item.title,
-                subtitle: item.subtitle,
-                displayText: item.displayText,
-              ))
+          .map(
+            (item) => SuggestResponseItem(
+              title: item.title,
+              subtitle: item.subtitle,
+              displayText: item.displayText,
+              point: item.center,
+            ),
+          )
           .toList();
       emit(MapSearchState.success(results: results));
+      session.close();
     } catch (e) {
       emit(MapSearchState.failure(message: e.toString()));
     }

@@ -71,6 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         showModalBottomSheet<void>(
                           isScrollControlled: true,
                           context: context,
+                          enableDrag: false,
                           builder: (newContext) {
                             return MapSearchPage();
                           },

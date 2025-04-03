@@ -1,4 +1,4 @@
-import '../models/location.dart';
+import 'package:dogs_and_cats/domain/models/location.dart';
 
 abstract interface class LocationRepository {
   Future<AppLatLong> getCurrentLocation();

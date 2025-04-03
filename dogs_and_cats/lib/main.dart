@@ -3,6 +3,7 @@ import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/cubits/position_cubit.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ void main() async {
         BlocProvider(
             create: (context) =>
                 MapSearchBloc(repository: MapSearchRepositoryImpl())),
+        BlocProvider(create: (context) => MapControllerCubit())
       ],
       child: MyApp(),
     ),

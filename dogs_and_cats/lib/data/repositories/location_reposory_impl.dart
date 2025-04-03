@@ -1,6 +1,5 @@
+import 'package:dogs_and_cats/domain/models/location.dart';
 import 'package:geolocator/geolocator.dart';
-
-import '../../domain/models/location.dart';
 import '../../domain/repositories/location_repository.dart';
 
 class LocationRepositoryImpl implements LocationRepository {
