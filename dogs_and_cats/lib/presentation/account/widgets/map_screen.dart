@@ -16,13 +16,14 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late final YandexMapController _mapController;
   var _mapZoom = 0.0;
-  late CameraPosition _userLocation;
+  CameraPosition? _userLocation;
+  late CameraPosition _location;
 
   @override
   void initState() {
     super.initState();
     final MoscowLocation moscow = MoscowLocation();
-    _userLocation = CameraPosition(
+    _location = CameraPosition(
         target: Point(latitude: moscow.lat, longitude: moscow.long));
     _initPermission().ignore();
   }
@@ -38,20 +39,22 @@ class _MapScreenState extends State<MapScreen> {
               YandexMap(
                 onMapCreated: (controller) async {
                   _mapController = controller;
+                  final region = await _mapController.getVisibleRegion();
+                  changeRegion(region);
                   context
                       .read<MapControllerCubit>()
                       .setMapController(_mapController);
-                  await regionChanged();
                 },
                 onCameraPositionChanged:
                     (cameraPosition, reason, finished) async {
                   setState(
                     () {
                       _mapZoom = cameraPosition.zoom;
-                      _userLocation = cameraPosition;
+                      _location = cameraPosition;
                     },
                   );
-                  await regionChanged();
+                  final region = await _mapController.getVisibleRegion();
+                  changeRegion(region);
                 },
               ),
               const Icon(
@@ -63,7 +66,10 @@ class _MapScreenState extends State<MapScreen> {
                 alignment: const Alignment(-0.95, 0.95),
                 child: GestureDetector(
                   onTap: () {
-                    _fetchCurrentLocation();
+                    if (_userLocation != null) {
+                      _mapController.moveCamera(
+                          CameraUpdate.newCameraPosition(_userLocation!));
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -95,19 +101,13 @@ class _MapScreenState extends State<MapScreen> {
           ),
         ),
         Text(
-          '${_userLocation.target.longitude} ${_userLocation.target.latitude}',
+          '${_location.target.longitude} ${_location.target.latitude}',
         )
       ],
     );
   }
 
-  Future<void> regionChanged() async {
-    final region = await _mapController.getVisibleRegion();
-    if (mounted) return;
-    context
-        .read<MapSearchBloc>()
-        .add(MapSearchEvent.regionChanged(region: region));
-  }
+  Future<void> regionChanged() async {}
 
   Future<void> _initPermission() async {
     if (!await LocationRepositoryImpl().checkPermission()) {
@@ -134,16 +134,18 @@ class _MapScreenState extends State<MapScreen> {
       latitude: appLatLong.lat,
       longitude: appLatLong.long,
     );
-    _userLocation = CameraPosition(target: point);
+    _userLocation = CameraPosition(target: point, zoom: 18);
     _mapController.moveCamera(
       animation:
           const MapAnimation(type: MapAnimationType.linear, duration: 0.1),
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: point,
-          zoom: 18,
-        ),
-      ),
+      CameraUpdate.newCameraPosition(_userLocation!),
     );
+  }
+
+  void changeRegion(VisibleRegion region) {
+    if (!mounted) return;
+    context
+        .read<MapSearchBloc>()
+        .add(MapSearchEvent.regionChanged(region: region));
   }
 }

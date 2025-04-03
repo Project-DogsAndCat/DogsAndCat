@@ -83,7 +83,7 @@ class _MapSearchPageState extends State<MapSearchPage> {
                                                   .point!.latitude,
                                               longitude: results.results[index]
                                                   .point!.longitude))
-                                      .copyWith(zoom: 16.0),
+                                      .copyWith(zoom: 18.0),
                                 ),
                               );
                             },

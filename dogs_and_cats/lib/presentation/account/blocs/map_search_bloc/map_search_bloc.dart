@@ -35,13 +35,13 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
     emit(MapSearchState.loading());
     try {
       final (session, sessionResultFuture) = await repository.searchByText(
-        searchText: '$_searchText, Москва',
+        searchText: _searchText,
         bBox: _visibleRegion!.toBoundingBox(),
       );
       final sessionResult = await sessionResultFuture;
 
       if (sessionResult.error != null) {
-        emit(MapSearchState.failure(message: sessionResult.error!.toString()));
+        emit(MapSearchState.failure(message: sessionResult.error.toString()));
         return;
       }
 
