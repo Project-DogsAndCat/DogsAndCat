@@ -129,9 +129,9 @@ class _MapPageState extends State<MapPage> {
                 });
           }),
         ),
-        Text(
-          '${_location.target.longitude} ${_location.target.latitude}',
-        ),
+        // Text(
+        //   '${_location.target.longitude} ${_location.target.latitude}',
+        // ),
         MapSearchPage(
           mapController: _mapController,
         ),
