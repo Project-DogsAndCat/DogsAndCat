@@ -1,43 +1,33 @@
 import 'package:bloc/bloc.dart';
-import 'package:dogs_and_cats/core/utils/extencions.dart';
-import 'package:dogs_and_cats/domain/models/location.dart';
 import 'package:dogs_and_cats/domain/repositories/map_search_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-import '../../../../domain/models/suggest_item.dart';
+import '../../../../domain/models/search_item.dart';
 
 part 'map_search_bloc.freezed.dart';
 part 'map_search_event.dart';
 part 'map_search_state.dart';
 
 class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
-  String _searchText = '';
-  VisibleRegion? _visibleRegion;
-  MapSearchRepository repository;
-  AppLatLong location = MoscowLocation();
-
+  final MapSearchRepository repository;
+  late Point point;
   MapSearchBloc({required this.repository})
       : super(const MapSearchState.initial()) {
     on<MapSearchEvent>(
-      (event, emit) async {
-        await event.map(
-            getSearchResult: (_) => _getSearchResult(emit),
-            queryChanged: (event) => _queryChanged(emit, event),
-            regionChanged: (event) => regionChanged(emit, event));
+      (event, emit) {
+        event.map(
+            getSearchResult: (_) async => await _getSearchResult(emit),
+            pointChanged: (event) => _pointChanged(emit, event));
       },
     );
   }
 
-  void setQueryText(String value) => _searchText = value;
-
   Future<void> _getSearchResult(Emitter<MapSearchState> emit) async {
     emit(MapSearchState.loading());
     try {
-      final (session, sessionResultFuture) = await repository.searchByText(
-        searchText: _searchText,
-        bBox: _visibleRegion!.toBoundingBox(),
-      );
+      final (session, sessionResultFuture) =
+          await repository.searchByPoint(point: point);
       final sessionResult = await sessionResultFuture;
 
       if (sessionResult.error != null) {
@@ -49,11 +39,9 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
 
       final results = items
           .map(
-            (item) => SuggestResponseItem(
-              title: item.title,
-              subtitle: item.subtitle,
-              displayText: item.displayText,
-              point: item.center,
+            (item) => SearchResponseItem(
+              name: item.name,
+              metadata: item.toponymMetadata,
             ),
           )
           .toList();
@@ -64,14 +52,8 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
     }
   }
 
-  Future<void> _queryChanged(
-      Emitter<MapSearchState> emit, _QueryChanged event) async {
-    _searchText = event.query;
+  void _pointChanged(Emitter<MapSearchState> emit, _PointChanged event) {
     emit(MapSearchState.initial());
-  }
-
-  Future<void> regionChanged(
-      Emitter<MapSearchState> emit, _RegionChanged event) async {
-    _visibleRegion = event.region;
+    point = event.point;
   }
 }

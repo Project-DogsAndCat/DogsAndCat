@@ -1,7 +1,7 @@
+import 'package:dogs_and_cats/presentation/account/pages/email_edit.dart';
+import 'package:dogs_and_cats/presentation/account/pages/name_edit.dart';
+import 'package:dogs_and_cats/presentation/account/pages/phone_edit.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
-import 'package:dogs_and_cats/presentation/account/widgets/email_edit.dart';
-import 'package:dogs_and_cats/presentation/account/widgets/name_edit.dart';
-import 'package:dogs_and_cats/presentation/account/widgets/phone_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/models/person.dart';

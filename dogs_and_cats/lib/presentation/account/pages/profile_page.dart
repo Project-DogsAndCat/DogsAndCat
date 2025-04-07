@@ -1,6 +1,5 @@
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/pages/edit_page.dart';
-import 'package:dogs_and_cats/presentation/account/pages/map_search_page.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/routes/route_names.dart';
 import '../../../core/utils/app_strings.dart';
+import 'map_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           context: context,
                           enableDrag: false,
                           builder: (newContext) {
-                            return MapSearchPage();
+                            return MapPage();
                           },
                         );
                       },

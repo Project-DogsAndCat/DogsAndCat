@@ -1,7 +1,7 @@
+import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_switch.dart';
@@ -9,19 +9,17 @@ import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../../domain/models/pet.dart';
 import '../blocs/pet_bloc.dart';
-
 import '../widgets/date_picker.dart';
 
 class AddPetPage extends StatefulWidget {
   const AddPetPage({super.key});
-
-  static final _formKey = GlobalKey<FormState>();
 
   @override
   State<AddPetPage> createState() => _AddPetPageState();
 }
 
 class _AddPetPageState extends State<AddPetPage> {
+  final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _breedController = TextEditingController();
   final _ageController = TextEditingController();
@@ -44,7 +42,7 @@ class _AddPetPageState extends State<AddPetPage> {
     return BlocProvider(
       create: (context) => PetEditCubit(),
       child: Form(
-        key: AddPetPage._formKey,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -173,8 +171,7 @@ class _AddPetPageState extends State<AddPetPage> {
                   return RoundedElevatedButton(
                     widget: const Text(AppString.save),
                     onPressed: () {
-                      if (AddPetPage._formKey.currentState!.validate() &&
-                          _isBoy != null) {
+                      if (_formKey.currentState!.validate() && _isBoy != null) {
                         Pet pet = createPet(
                             state.selectedCategoryString, state.otherFeatures);
                         context.read<PetBloc>().add(PetEvent.add(pet: pet));

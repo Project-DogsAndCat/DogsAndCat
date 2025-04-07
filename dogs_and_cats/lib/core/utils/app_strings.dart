@@ -4,6 +4,8 @@ class AppString {
   static const phone = 'Телефон';
   static const firstName = 'Имя';
   static const lastName = 'Фамилия';
+  static const address = 'Адрес';
+
   static const firstAndLastName = 'Имя и Фамилия';
   static const personalData = 'Личные данные';
   static const required = 'Обязательные поля';
@@ -18,6 +20,8 @@ class AppString {
   static const success = 'Успешно';
   static const save = 'Сохранить';
   static const update = 'Изменить';
+  static const cancel = 'Отменить';
+  static const search = 'Поиск';
 
   static const myPets = 'Мои питомцы';
   static const nameOfPet = 'Имя питомца';
