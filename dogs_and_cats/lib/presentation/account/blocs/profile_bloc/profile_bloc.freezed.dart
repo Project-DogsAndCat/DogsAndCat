@@ -19,19 +19,22 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Person person) edit,
+    required TResult Function(Person originalPerson, Person updatePerson) edit,
+    required TResult Function(String email) editEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Person person)? edit,
+    TResult? Function(Person originalPerson, Person updatePerson)? edit,
+    TResult? Function(String email)? editEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Person person)? edit,
+    TResult Function(Person originalPerson, Person updatePerson)? edit,
+    TResult Function(String email)? editEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_EditEmail value) editEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditEmail value)? editEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
+    TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +124,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Person person) edit,
+    required TResult Function(Person originalPerson, Person updatePerson) edit,
+    required TResult Function(String email) editEmail,
   }) {
     return load();
   }
@@ -127,7 +134,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Person person)? edit,
+    TResult? Function(Person originalPerson, Person updatePerson)? edit,
+    TResult? Function(String email)? editEmail,
   }) {
     return load?.call();
   }
@@ -136,7 +144,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Person person)? edit,
+    TResult Function(Person originalPerson, Person updatePerson)? edit,
+    TResult Function(String email)? editEmail,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -150,6 +159,7 @@ class _$LoadImpl implements _Load {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_EditEmail value) editEmail,
   }) {
     return load(this);
   }
@@ -159,6 +169,7 @@ class _$LoadImpl implements _Load {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditEmail value)? editEmail,
   }) {
     return load?.call(this);
   }
@@ -168,6 +179,7 @@ class _$LoadImpl implements _Load {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
+    TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -187,7 +199,7 @@ abstract class _$$EditImplCopyWith<$Res> {
           _$EditImpl value, $Res Function(_$EditImpl) then) =
       __$$EditImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Person person});
+  $Res call({Person originalPerson, Person updatePerson});
 }
 
 /// @nodoc
@@ -202,12 +214,17 @@ class __$$EditImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? person = null,
+    Object? originalPerson = null,
+    Object? updatePerson = null,
   }) {
     return _then(_$EditImpl(
-      person: null == person
-          ? _value.person
-          : person // ignore: cast_nullable_to_non_nullable
+      originalPerson: null == originalPerson
+          ? _value.originalPerson
+          : originalPerson // ignore: cast_nullable_to_non_nullable
+              as Person,
+      updatePerson: null == updatePerson
+          ? _value.updatePerson
+          : updatePerson // ignore: cast_nullable_to_non_nullable
               as Person,
     ));
   }
@@ -216,14 +233,16 @@ class __$$EditImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EditImpl implements _Edit {
-  const _$EditImpl({required this.person});
+  const _$EditImpl({required this.originalPerson, required this.updatePerson});
 
   @override
-  final Person person;
+  final Person originalPerson;
+  @override
+  final Person updatePerson;
 
   @override
   String toString() {
-    return 'ProfileEvent.edit(person: $person)';
+    return 'ProfileEvent.edit(originalPerson: $originalPerson, updatePerson: $updatePerson)';
   }
 
   @override
@@ -231,11 +250,14 @@ class _$EditImpl implements _Edit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditImpl &&
-            (identical(other.person, person) || other.person == person));
+            (identical(other.originalPerson, originalPerson) ||
+                other.originalPerson == originalPerson) &&
+            (identical(other.updatePerson, updatePerson) ||
+                other.updatePerson == updatePerson));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, person);
+  int get hashCode => Object.hash(runtimeType, originalPerson, updatePerson);
 
   /// Create a copy of ProfileEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -249,29 +271,32 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Person person) edit,
+    required TResult Function(Person originalPerson, Person updatePerson) edit,
+    required TResult Function(String email) editEmail,
   }) {
-    return edit(person);
+    return edit(originalPerson, updatePerson);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Person person)? edit,
+    TResult? Function(Person originalPerson, Person updatePerson)? edit,
+    TResult? Function(String email)? editEmail,
   }) {
-    return edit?.call(person);
+    return edit?.call(originalPerson, updatePerson);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Person person)? edit,
+    TResult Function(Person originalPerson, Person updatePerson)? edit,
+    TResult Function(String email)? editEmail,
     required TResult orElse(),
   }) {
     if (edit != null) {
-      return edit(person);
+      return edit(originalPerson, updatePerson);
     }
     return orElse();
   }
@@ -281,6 +306,7 @@ class _$EditImpl implements _Edit {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_EditEmail value) editEmail,
   }) {
     return edit(this);
   }
@@ -290,6 +316,7 @@ class _$EditImpl implements _Edit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditEmail value)? editEmail,
   }) {
     return edit?.call(this);
   }
@@ -299,6 +326,7 @@ class _$EditImpl implements _Edit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
+    TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -309,14 +337,163 @@ class _$EditImpl implements _Edit {
 }
 
 abstract class _Edit implements ProfileEvent {
-  const factory _Edit({required final Person person}) = _$EditImpl;
+  const factory _Edit(
+      {required final Person originalPerson,
+      required final Person updatePerson}) = _$EditImpl;
 
-  Person get person;
+  Person get originalPerson;
+  Person get updatePerson;
 
   /// Create a copy of ProfileEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditImplCopyWith<_$EditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditEmailImplCopyWith<$Res> {
+  factory _$$EditEmailImplCopyWith(
+          _$EditEmailImpl value, $Res Function(_$EditEmailImpl) then) =
+      __$$EditEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$EditEmailImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$EditEmailImpl>
+    implements _$$EditEmailImplCopyWith<$Res> {
+  __$$EditEmailImplCopyWithImpl(
+      _$EditEmailImpl _value, $Res Function(_$EditEmailImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$EditEmailImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditEmailImpl implements _EditEmail {
+  const _$EditEmailImpl({required this.email});
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.editEmail(email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditEmailImpl &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditEmailImplCopyWith<_$EditEmailImpl> get copyWith =>
+      __$$EditEmailImplCopyWithImpl<_$EditEmailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(Person originalPerson, Person updatePerson) edit,
+    required TResult Function(String email) editEmail,
+  }) {
+    return editEmail(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(Person originalPerson, Person updatePerson)? edit,
+    TResult? Function(String email)? editEmail,
+  }) {
+    return editEmail?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Person originalPerson, Person updatePerson)? edit,
+    TResult Function(String email)? editEmail,
+    required TResult orElse(),
+  }) {
+    if (editEmail != null) {
+      return editEmail(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_EditEmail value) editEmail,
+  }) {
+    return editEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditEmail value)? editEmail,
+  }) {
+    return editEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_EditEmail value)? editEmail,
+    required TResult orElse(),
+  }) {
+    if (editEmail != null) {
+      return editEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditEmail implements ProfileEvent {
+  const factory _EditEmail({required final String email}) = _$EditEmailImpl;
+
+  String get email;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EditEmailImplCopyWith<_$EditEmailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

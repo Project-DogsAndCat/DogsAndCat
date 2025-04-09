@@ -1,7 +1,7 @@
 class AppLatLong {
   const AppLatLong({
-    required this.lat,
-    required this.long,
+    this.lat = 55.755863,
+    this.long = 37.617700,
   });
   final double lat;
   final double long;

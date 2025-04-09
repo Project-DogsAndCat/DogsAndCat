@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,11 +6,14 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../../core/utils/app_strings.dart';
 import '../../../domain/models/location.dart';
+import '../../../domain/models/person.dart';
 import '../blocs/map_suggest_bloc/map_suggest_bloc.dart';
-import 'map_search_page.dart';
+import '../widgets/near_me_outlined.dart';
+import '../widgets/show_result_search.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+  const MapPage({super.key, required this.person});
+  final Person person;
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -17,16 +21,11 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   YandexMapController? _mapController;
-  late CameraPosition _userLocation;
-  CameraPosition _location = CameraPosition(
-    target: Point(
-      latitude: MoscowLocation().lat,
-      longitude: MoscowLocation().long,
-    ),
-  );
+  late CameraPosition _location;
 
   @override
   void initState() {
+    _initMap(lat: widget.person.latitude, long: widget.person.longitude);
     context.read<MapLocationCubit>().initializeMap();
     super.initState();
   }
@@ -48,95 +47,86 @@ class _MapPageState extends State<MapPage> {
         SizedBox(
           height: 350,
           width: double.infinity,
-          child: BlocBuilder<MapLocationCubit, MapLocationState>(
-              builder: (context, state) {
-            return state.map(
-                loading: (_) => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                loaded: (state) {
-                  return Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      YandexMap(
-                        onMapCreated: (controller) async {
-                          _mapController = controller;
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              YandexMap(
+                onMapCreated: (controller) async {
+                  _mapController = controller;
+                  await _mapController!
+                      .moveCamera(CameraUpdate.newCameraPosition(_location));
+                  await _updateVisibleRegion();
+                },
+                onCameraPositionChanged:
+                    (cameraPosition, reason, finished) async {
+                  if (finished) {
+                    context.read<MapSearchBloc>().add(
+                        MapSearchEvent.pointChanged(
+                            point: cameraPosition.target));
+                    context
+                        .read<MapSearchBloc>()
+                        .add(MapSearchEvent.getSearchResult());
+                    setState(() {
+                      _location = cameraPosition;
+                    });
+                    await _updateVisibleRegion();
+                  }
+                },
+              ),
+              const Icon(
+                Icons.location_on,
+                size: 35.0,
+                color: Colors.red,
+              ),
+              Align(
+                alignment: const Alignment(-0.95, 0.95),
+                child: BlocBuilder<MapLocationCubit, MapLocationState>(
+                  builder: (context, state) {
+                    return state.map(loading: (_) {
+                      return Container();
+                    }, loaded: (state) {
+                      return GestureDetector(
+                        onTap: () {
                           final currentLocation = state.location;
-                          _userLocation = CameraPosition(
-                            target: Point(
-                              latitude: currentLocation.lat,
-                              longitude: currentLocation.long,
-                            ),
-                          );
-                          await _mapController!.moveCamera(
-                              CameraUpdate.newCameraPosition(_userLocation));
-                          await _updateVisibleRegion();
+                          _moveCameraPosition(currentLocation);
                         },
-                        onCameraPositionChanged:
-                            (cameraPosition, reason, finished) async {
-                          if (finished) {
-                            setState(() {
-                              _location = cameraPosition;
-                            });
-                            await _updateVisibleRegion();
-                          }
-                        },
-                      ),
-                      const Icon(
-                        Icons.location_on,
-                        size: 35.0,
-                        color: Colors.red,
-                      ),
-                      Align(
-                        alignment: const Alignment(-0.95, 0.95),
-                        child: GestureDetector(
-                          onTap: () {
-                            if (_mapController != null) {
-                              _mapController!.moveCamera(
-                                  CameraUpdate.newCameraPosition(
-                                      _userLocation));
-                            }
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color:
-                                        const Color(0xFF000000).withAlpha(60),
-                                    blurRadius: 6.0,
-                                    spreadRadius: 0.0,
-                                    offset: const Offset(
-                                      0.0,
-                                      3.0,
-                                    ),
-                                  ),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: const Icon(
-                                Icons.near_me_outlined,
-                                color: Colors.black,
-                                size: 35.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                });
-          }),
+                        child: NearMeOutlined(),
+                      );
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-        // Text(
-        //   '${_location.target.longitude} ${_location.target.latitude}',
-        // ),
-        MapSearchPage(
+        ShowResultSearch(
           mapController: _mapController,
+          person: widget.person,
         ),
       ],
     );
+  }
+
+  void _initMap({double? lat, double? long}) {
+    AppLatLong appLatLong;
+    if (lat == null || long == null) {
+      appLatLong = MoscowLocation();
+    } else {
+      appLatLong = AppLatLong(lat: lat, long: long);
+    }
+    _location = CameraPosition(
+        target: Point(latitude: appLatLong.lat, longitude: appLatLong.long));
+  }
+
+  Future<void> _moveCameraPosition(AppLatLong currentLocation) async {
+    final position = CameraPosition(
+      target: Point(
+        latitude: currentLocation.lat,
+        longitude: currentLocation.long,
+      ),
+      zoom: 18.0,
+    );
+    await _mapController!.moveCamera(CameraUpdate.newCameraPosition(position));
   }
 
   Future<void> _updateVisibleRegion() async {

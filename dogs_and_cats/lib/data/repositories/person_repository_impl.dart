@@ -12,10 +12,13 @@ class PersonRepositoryImpl implements PersonRepository {
   final SupabaseClient supabaseClient;
 
   @override
-  Future<Either<Failure, Person>> getPerson({required String id}) async {
+  Future<Either<Failure, Person>> getPerson() async {
     try {
-      final jsonList =
-          await supabaseClient.from(TableNames.person).select().eq('id', id);
+      final personId = supabaseClient.auth.currentUser!.id;
+      final jsonList = await supabaseClient
+          .from(TableNames.person)
+          .select()
+          .eq('id', personId);
       final person = PersonDto.fromJson(jsonList.first);
       return right(person.toDomain());
     } catch (e) {
@@ -24,36 +27,53 @@ class PersonRepositoryImpl implements PersonRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePerson(
-      {required String id, required PersonDto dto}) async {
+  Future<Either<Failure, Unit>> updatePerson({
+    required Person originalPerson,
+    required Person updatePerson,
+  }) async {
     try {
-      final updates = {
-        if (dto.firstName != null) 'first_name': dto.firstName,
-        if (dto.lastName != null) 'last_name': dto.lastName,
-        if (dto.isValidatingPhone()) 'phone': dto.phone,
-      };
-      await _updateAuthUser(dto, updates);
+      final personId = originalPerson.id!;
+      final json = getChangesData(originalPerson, updatePerson);
 
-      await supabaseClient.from(TableNames.person).update(updates).eq('id', id);
+      await supabaseClient
+          .from(TableNames.person)
+          .update(json)
+          .eq('id', personId);
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }
 
-  Future<void> _updateAuthUser(
-      PersonDto dto, Map<String, String?> updates) async {
-    late UserResponse res;
-    if (dto.isValidatingEmail()) {
-      res = await supabaseClient.auth.updateUser(
+  Map<String, dynamic> getChangesData(
+      Person originalPerson, Person updatePerson) {
+    final originalJson = PersonDto.fromDomain(originalPerson).toJson();
+    final updatedJson = PersonDto.fromDomain(updatePerson).toJson();
+    final Map<String, dynamic> changes = {};
+
+    updatedJson.forEach((key, value) {
+      if (key == 'id') return;
+      if (originalJson[key] != value) {
+        changes[key] = value;
+      }
+    });
+    return changes;
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateEmail({required String email}) async {
+    try {
+      final result = await supabaseClient.auth.updateUser(
         UserAttributes(
-          email: dto.email,
+          email: email,
         ),
       );
-      if (res.user == null) {
-        left(Failure(message: 'Не удалось изменить E-mail'));
+      if (result.user == null) {
+        return left(Failure(message: 'Не удалось изменить E-mail'));
       }
-      updates['email'] = dto.email;
+      return right(unit);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
     }
   }
 }

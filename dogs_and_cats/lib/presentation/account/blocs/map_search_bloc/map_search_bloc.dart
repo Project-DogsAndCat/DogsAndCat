@@ -3,7 +3,7 @@ import 'package:dogs_and_cats/domain/repositories/map_search_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-import '../../../../domain/models/search_item.dart';
+import '../../../../domain/models/suggest_item.dart';
 
 part 'map_search_bloc.freezed.dart';
 part 'map_search_event.dart';
@@ -12,19 +12,21 @@ part 'map_search_state.dart';
 class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
   final MapSearchRepository repository;
   late Point point;
+  SuggestResponseItem? selectedObject;
   MapSearchBloc({required this.repository})
-      : super(const MapSearchState.initial()) {
+      : super(const MapSearchState.loading()) {
     on<MapSearchEvent>(
-      (event, emit) {
-        event.map(
-            getSearchResult: (_) async => await _getSearchResult(emit),
-            pointChanged: (event) => _pointChanged(emit, event));
+      (event, emit) async {
+        await event.map(
+          getSearchResult: (_) => _getSearchResult(emit),
+          pointChanged: (event) => _pointChanged(emit, event),
+          setSelectObject: (event) => _setSelectObject(emit, event),
+        );
       },
     );
   }
 
   Future<void> _getSearchResult(Emitter<MapSearchState> emit) async {
-    emit(MapSearchState.loading());
     try {
       final (session, sessionResultFuture) =
           await repository.searchByPoint(point: point);
@@ -39,9 +41,10 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
 
       final results = items
           .map(
-            (item) => SearchResponseItem(
-              name: item.name,
-              metadata: item.toponymMetadata,
+            (item) => SuggestResponseItem(
+              title: item.name,
+              displayText: item.toponymMetadata!.address.formattedAddress,
+              point: item.toponymMetadata!.balloonPoint,
             ),
           )
           .toList();
@@ -52,8 +55,15 @@ class MapSearchBloc extends Bloc<MapSearchEvent, MapSearchState> {
     }
   }
 
-  void _pointChanged(Emitter<MapSearchState> emit, _PointChanged event) {
-    emit(MapSearchState.initial());
+  Future<void> _pointChanged(
+      Emitter<MapSearchState> emit, _PointChanged event) async {
     point = event.point;
+  }
+
+  Future<void> _setSelectObject(
+      Emitter<MapSearchState> emit, _SetSelectObject event) async {
+    selectedObject = event.item;
+    emit(MapSearchState.selectedObjectBySearching(
+        selectedObject: selectedObject!));
   }
 }

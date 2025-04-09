@@ -33,7 +33,7 @@ class MapSuggestBloc extends Bloc<MapSuggestEvent, MapSuggestState> {
     emit(MapSuggestState.loading());
     try {
       final (session, sessionResultFuture) = await repository.suggestByText(
-        searchText: '$_searchText, Россия',
+        searchText: _searchText,
         bBox: _visibleRegion.toBoundingBox(),
       );
       final sessionResult = await sessionResultFuture;
@@ -46,15 +46,16 @@ class MapSuggestBloc extends Bloc<MapSuggestEvent, MapSuggestState> {
       final items = sessionResult.items ?? [];
 
       final results = items
+          .where((object) => object.center != null)
           .map(
             (item) => SuggestResponseItem(
               title: item.title,
-              subtitle: item.subtitle,
               displayText: item.displayText,
               point: item.center,
             ),
           )
           .toList();
+
       emit(MapSuggestState.success(results: results));
       session.close();
     } catch (e) {

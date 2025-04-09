@@ -20,18 +20,21 @@ mixin _$MapSearchEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getSearchResult,
     required TResult Function(Point point) pointChanged,
+    required TResult Function(SuggestResponseItem item) setSelectObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSearchResult,
     TResult? Function(Point point)? pointChanged,
+    TResult? Function(SuggestResponseItem item)? setSelectObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSearchResult,
     TResult Function(Point point)? pointChanged,
+    TResult Function(SuggestResponseItem item)? setSelectObject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$MapSearchEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSearchResult value) getSearchResult,
     required TResult Function(_PointChanged value) pointChanged,
+    required TResult Function(_SetSelectObject value) setSelectObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSearchResult value)? getSearchResult,
     TResult? Function(_PointChanged value)? pointChanged,
+    TResult? Function(_SetSelectObject value)? setSelectObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSearchResult value)? getSearchResult,
     TResult Function(_PointChanged value)? pointChanged,
+    TResult Function(_SetSelectObject value)? setSelectObject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult when<TResult extends Object?>({
     required TResult Function() getSearchResult,
     required TResult Function(Point point) pointChanged,
+    required TResult Function(SuggestResponseItem item) setSelectObject,
   }) {
     return getSearchResult();
   }
@@ -129,6 +136,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSearchResult,
     TResult? Function(Point point)? pointChanged,
+    TResult? Function(SuggestResponseItem item)? setSelectObject,
   }) {
     return getSearchResult?.call();
   }
@@ -138,6 +146,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSearchResult,
     TResult Function(Point point)? pointChanged,
+    TResult Function(SuggestResponseItem item)? setSelectObject,
     required TResult orElse(),
   }) {
     if (getSearchResult != null) {
@@ -151,6 +160,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSearchResult value) getSearchResult,
     required TResult Function(_PointChanged value) pointChanged,
+    required TResult Function(_SetSelectObject value) setSelectObject,
   }) {
     return getSearchResult(this);
   }
@@ -160,6 +170,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSearchResult value)? getSearchResult,
     TResult? Function(_PointChanged value)? pointChanged,
+    TResult? Function(_SetSelectObject value)? setSelectObject,
   }) {
     return getSearchResult?.call(this);
   }
@@ -169,6 +180,7 @@ class _$GetSearchResultImpl implements _GetSearchResult {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSearchResult value)? getSearchResult,
     TResult Function(_PointChanged value)? pointChanged,
+    TResult Function(_SetSelectObject value)? setSelectObject,
     required TResult orElse(),
   }) {
     if (getSearchResult != null) {
@@ -252,6 +264,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() getSearchResult,
     required TResult Function(Point point) pointChanged,
+    required TResult Function(SuggestResponseItem item) setSelectObject,
   }) {
     return pointChanged(point);
   }
@@ -261,6 +274,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getSearchResult,
     TResult? Function(Point point)? pointChanged,
+    TResult? Function(SuggestResponseItem item)? setSelectObject,
   }) {
     return pointChanged?.call(point);
   }
@@ -270,6 +284,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getSearchResult,
     TResult Function(Point point)? pointChanged,
+    TResult Function(SuggestResponseItem item)? setSelectObject,
     required TResult orElse(),
   }) {
     if (pointChanged != null) {
@@ -283,6 +298,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSearchResult value) getSearchResult,
     required TResult Function(_PointChanged value) pointChanged,
+    required TResult Function(_SetSelectObject value) setSelectObject,
   }) {
     return pointChanged(this);
   }
@@ -292,6 +308,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSearchResult value)? getSearchResult,
     TResult? Function(_PointChanged value)? pointChanged,
+    TResult? Function(_SetSelectObject value)? setSelectObject,
   }) {
     return pointChanged?.call(this);
   }
@@ -301,6 +318,7 @@ class _$PointChangedImpl implements _PointChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSearchResult value)? getSearchResult,
     TResult Function(_PointChanged value)? pointChanged,
+    TResult Function(_SetSelectObject value)? setSelectObject,
     required TResult orElse(),
   }) {
     if (pointChanged != null) {
@@ -324,53 +342,207 @@ abstract class _PointChanged implements MapSearchEvent {
 }
 
 /// @nodoc
+abstract class _$$SetSelectObjectImplCopyWith<$Res> {
+  factory _$$SetSelectObjectImplCopyWith(_$SetSelectObjectImpl value,
+          $Res Function(_$SetSelectObjectImpl) then) =
+      __$$SetSelectObjectImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SuggestResponseItem item});
+}
+
+/// @nodoc
+class __$$SetSelectObjectImplCopyWithImpl<$Res>
+    extends _$MapSearchEventCopyWithImpl<$Res, _$SetSelectObjectImpl>
+    implements _$$SetSelectObjectImplCopyWith<$Res> {
+  __$$SetSelectObjectImplCopyWithImpl(
+      _$SetSelectObjectImpl _value, $Res Function(_$SetSelectObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MapSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$SetSelectObjectImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as SuggestResponseItem,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectObjectImpl implements _SetSelectObject {
+  const _$SetSelectObjectImpl({required this.item});
+
+  @override
+  final SuggestResponseItem item;
+
+  @override
+  String toString() {
+    return 'MapSearchEvent.setSelectObject(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectObjectImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  /// Create a copy of MapSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectObjectImplCopyWith<_$SetSelectObjectImpl> get copyWith =>
+      __$$SetSelectObjectImplCopyWithImpl<_$SetSelectObjectImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getSearchResult,
+    required TResult Function(Point point) pointChanged,
+    required TResult Function(SuggestResponseItem item) setSelectObject,
+  }) {
+    return setSelectObject(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getSearchResult,
+    TResult? Function(Point point)? pointChanged,
+    TResult? Function(SuggestResponseItem item)? setSelectObject,
+  }) {
+    return setSelectObject?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getSearchResult,
+    TResult Function(Point point)? pointChanged,
+    TResult Function(SuggestResponseItem item)? setSelectObject,
+    required TResult orElse(),
+  }) {
+    if (setSelectObject != null) {
+      return setSelectObject(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetSearchResult value) getSearchResult,
+    required TResult Function(_PointChanged value) pointChanged,
+    required TResult Function(_SetSelectObject value) setSelectObject,
+  }) {
+    return setSelectObject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetSearchResult value)? getSearchResult,
+    TResult? Function(_PointChanged value)? pointChanged,
+    TResult? Function(_SetSelectObject value)? setSelectObject,
+  }) {
+    return setSelectObject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetSearchResult value)? getSearchResult,
+    TResult Function(_PointChanged value)? pointChanged,
+    TResult Function(_SetSelectObject value)? setSelectObject,
+    required TResult orElse(),
+  }) {
+    if (setSelectObject != null) {
+      return setSelectObject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetSelectObject implements MapSearchEvent {
+  const factory _SetSelectObject({required final SuggestResponseItem item}) =
+      _$SetSelectObjectImpl;
+
+  SuggestResponseItem get item;
+
+  /// Create a copy of MapSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetSelectObjectImplCopyWith<_$SetSelectObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$MapSearchState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchResponseItem> results) success,
+    required TResult Function(List<SuggestResponseItem> results) success,
+    required TResult Function(SuggestResponseItem selectedObject)
+        selectedObjectBySearching,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchResponseItem> results)? success,
+    TResult? Function(List<SuggestResponseItem> results)? success,
+    TResult? Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchResponseItem> results)? success,
+    TResult Function(List<SuggestResponseItem> results)? success,
+    TResult Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SelectedObjectBySearching value)
+        selectedObjectBySearching,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -396,123 +568,6 @@ class _$MapSearchStateCopyWithImpl<$Res, $Val extends MapSearchState>
 
   /// Create a copy of MapSearchState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$MapSearchStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MapSearchState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'MapSearchState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<SearchResponseItem> results) success,
-    required TResult Function(String message) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<SearchResponseItem> results)? success,
-    TResult? Function(String message)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<SearchResponseItem> results)? success,
-    TResult Function(String message)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements MapSearchState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -556,9 +611,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchResponseItem> results) success,
+    required TResult Function(List<SuggestResponseItem> results) success,
+    required TResult Function(SuggestResponseItem selectedObject)
+        selectedObjectBySearching,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -567,9 +623,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchResponseItem> results)? success,
+    TResult? Function(List<SuggestResponseItem> results)? success,
+    TResult? Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -578,9 +635,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchResponseItem> results)? success,
+    TResult Function(List<SuggestResponseItem> results)? success,
+    TResult Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -593,9 +651,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SelectedObjectBySearching value)
+        selectedObjectBySearching,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -604,9 +663,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -615,9 +675,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -638,7 +699,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SearchResponseItem> results});
+  $Res call({List<SuggestResponseItem> results});
 }
 
 /// @nodoc
@@ -660,7 +721,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<SearchResponseItem>,
+              as List<SuggestResponseItem>,
     ));
   }
 }
@@ -668,12 +729,12 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required final List<SearchResponseItem> results})
+  const _$SuccessImpl({required final List<SuggestResponseItem> results})
       : _results = results;
 
-  final List<SearchResponseItem> _results;
+  final List<SuggestResponseItem> _results;
   @override
-  List<SearchResponseItem> get results {
+  List<SuggestResponseItem> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
@@ -707,9 +768,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchResponseItem> results) success,
+    required TResult Function(List<SuggestResponseItem> results) success,
+    required TResult Function(SuggestResponseItem selectedObject)
+        selectedObjectBySearching,
     required TResult Function(String message) failure,
   }) {
     return success(results);
@@ -718,9 +780,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchResponseItem> results)? success,
+    TResult? Function(List<SuggestResponseItem> results)? success,
+    TResult? Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult? Function(String message)? failure,
   }) {
     return success?.call(results);
@@ -729,9 +792,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchResponseItem> results)? success,
+    TResult Function(List<SuggestResponseItem> results)? success,
+    TResult Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -744,9 +808,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SelectedObjectBySearching value)
+        selectedObjectBySearching,
     required TResult Function(_Failure value) failure,
   }) {
     return success(this);
@@ -755,9 +820,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
@@ -766,9 +832,10 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -780,16 +847,180 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements MapSearchState {
-  const factory _Success({required final List<SearchResponseItem> results}) =
+  const factory _Success({required final List<SuggestResponseItem> results}) =
       _$SuccessImpl;
 
-  List<SearchResponseItem> get results;
+  List<SuggestResponseItem> get results;
 
   /// Create a copy of MapSearchState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectedObjectBySearchingImplCopyWith<$Res> {
+  factory _$$SelectedObjectBySearchingImplCopyWith(
+          _$SelectedObjectBySearchingImpl value,
+          $Res Function(_$SelectedObjectBySearchingImpl) then) =
+      __$$SelectedObjectBySearchingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SuggestResponseItem selectedObject});
+}
+
+/// @nodoc
+class __$$SelectedObjectBySearchingImplCopyWithImpl<$Res>
+    extends _$MapSearchStateCopyWithImpl<$Res, _$SelectedObjectBySearchingImpl>
+    implements _$$SelectedObjectBySearchingImplCopyWith<$Res> {
+  __$$SelectedObjectBySearchingImplCopyWithImpl(
+      _$SelectedObjectBySearchingImpl _value,
+      $Res Function(_$SelectedObjectBySearchingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MapSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedObject = null,
+  }) {
+    return _then(_$SelectedObjectBySearchingImpl(
+      selectedObject: null == selectedObject
+          ? _value.selectedObject
+          : selectedObject // ignore: cast_nullable_to_non_nullable
+              as SuggestResponseItem,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectedObjectBySearchingImpl implements _SelectedObjectBySearching {
+  const _$SelectedObjectBySearchingImpl({required this.selectedObject});
+
+  @override
+  final SuggestResponseItem selectedObject;
+
+  @override
+  String toString() {
+    return 'MapSearchState.selectedObjectBySearching(selectedObject: $selectedObject)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectedObjectBySearchingImpl &&
+            (identical(other.selectedObject, selectedObject) ||
+                other.selectedObject == selectedObject));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedObject);
+
+  /// Create a copy of MapSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectedObjectBySearchingImplCopyWith<_$SelectedObjectBySearchingImpl>
+      get copyWith => __$$SelectedObjectBySearchingImplCopyWithImpl<
+          _$SelectedObjectBySearchingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<SuggestResponseItem> results) success,
+    required TResult Function(SuggestResponseItem selectedObject)
+        selectedObjectBySearching,
+    required TResult Function(String message) failure,
+  }) {
+    return selectedObjectBySearching(selectedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<SuggestResponseItem> results)? success,
+    TResult? Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
+    TResult? Function(String message)? failure,
+  }) {
+    return selectedObjectBySearching?.call(selectedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<SuggestResponseItem> results)? success,
+    TResult Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
+    TResult Function(String message)? failure,
+    required TResult orElse(),
+  }) {
+    if (selectedObjectBySearching != null) {
+      return selectedObjectBySearching(selectedObject);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_SelectedObjectBySearching value)
+        selectedObjectBySearching,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return selectedObjectBySearching(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return selectedObjectBySearching?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (selectedObjectBySearching != null) {
+      return selectedObjectBySearching(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedObjectBySearching implements MapSearchState {
+  const factory _SelectedObjectBySearching(
+          {required final SuggestResponseItem selectedObject}) =
+      _$SelectedObjectBySearchingImpl;
+
+  SuggestResponseItem get selectedObject;
+
+  /// Create a copy of MapSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectedObjectBySearchingImplCopyWith<_$SelectedObjectBySearchingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -860,9 +1091,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<SearchResponseItem> results) success,
+    required TResult Function(List<SuggestResponseItem> results) success,
+    required TResult Function(SuggestResponseItem selectedObject)
+        selectedObjectBySearching,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -871,9 +1103,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<SearchResponseItem> results)? success,
+    TResult? Function(List<SuggestResponseItem> results)? success,
+    TResult? Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -882,9 +1115,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<SearchResponseItem> results)? success,
+    TResult Function(List<SuggestResponseItem> results)? success,
+    TResult Function(SuggestResponseItem selectedObject)?
+        selectedObjectBySearching,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -897,9 +1131,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_SelectedObjectBySearching value)
+        selectedObjectBySearching,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -908,9 +1143,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -919,9 +1155,10 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_SelectedObjectBySearching value)?
+        selectedObjectBySearching,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+class NearMeOutlined extends StatelessWidget {
+  const NearMeOutlined({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF000000).withAlpha(60),
+              blurRadius: 6.0,
+              spreadRadius: 0.0,
+              offset: const Offset(
+                0.0,
+                3.0,
+              ),
+            ),
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: const Icon(
+          Icons.near_me_outlined,
+          color: Colors.black,
+          size: 35.0,
+        ),
+      ),
+    );
+  }
+}

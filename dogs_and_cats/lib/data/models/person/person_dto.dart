@@ -1,9 +1,6 @@
 import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../core/utils/app_strings.dart';
-import '../../../core/utils/validation_rules.dart';
-
 part 'person_dto.g.dart';
 
 @JsonSerializable()
@@ -17,7 +14,6 @@ class PersonDto {
     this.role,
     this.latitude,
     this.longitude,
-    this.rating,
   });
   final String? id;
   @JsonKey(name: 'first_name')
@@ -27,9 +23,8 @@ class PersonDto {
   final String? email;
   final String? phone;
   final String? role;
-  final String? latitude;
-  final String? longitude;
-  final double? rating;
+  final double? latitude;
+  final double? longitude;
 
   Person toDomain() => Person(
         id: id,
@@ -40,7 +35,6 @@ class PersonDto {
         role: role,
         latitude: latitude,
         longitude: longitude,
-        rating: rating,
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -52,7 +46,6 @@ class PersonDto {
         role: object.role,
         latitude: object.latitude,
         longitude: object.longitude,
-        rating: object.rating,
       );
 
   factory PersonDto.fromJson(Map<String, dynamic> json) =>
@@ -60,19 +53,11 @@ class PersonDto {
 
   Map<String, dynamic> toJson() => _$PersonDtoToJson(this);
 
-  bool isValidatingEmail() {
-    if (email == null) return false;
-    if (!ValidationRules.emailValidation.hasMatch(email!)) {
-      throw Exception(AppString.providedValidEmail);
-    }
-    return true;
-  }
-
-  bool isValidatingPhone() {
-    if (phone == null) return false;
-    if (!ValidationRules.phoneValidation.hasMatch(phone!)) {
-      throw Exception(AppString.providedValidPhone);
-    }
-    return true;
-  }
+  // bool isValidatingPhone() {
+  //   if (phone == null) return false;
+  //   if (!ValidationRules.phoneValidation.hasMatch(phone!)) {
+  //     throw Exception(AppString.providedValidPhone);
+  //   }
+  //   return true;
+  // }
 }

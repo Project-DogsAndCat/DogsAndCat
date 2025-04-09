@@ -25,7 +25,6 @@ class MapSearchRepositoryImpl implements MapSearchRepository {
       point: point,
       searchOptions: SearchOptions(
         geometry: true,
-        resultPageSize: 25,
       ),
     );
     return searchSession;

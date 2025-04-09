@@ -65,11 +65,11 @@ class _NameEditState extends State<NameEdit> {
       onSave: () {
         context.read<ProfileBloc>().add(
               ProfileEvent.edit(
-                person: Person(
-                  firstName: _firstNameController.text,
-                  lastName: _lastNameController.text,
-                ),
-              ),
+                  originalPerson: widget.person,
+                  updatePerson: widget.person.copyWith(
+                    firstName: _firstNameController.text,
+                    lastName: _lastNameController.text,
+                  )),
             );
       },
     );

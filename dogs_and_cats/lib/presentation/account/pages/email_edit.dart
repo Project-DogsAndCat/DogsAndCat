@@ -6,6 +6,8 @@ import 'package:dogs_and_cats/presentation/account/widgets/bottom_sheet_edit.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/validation_rules.dart';
+
 class EmailEdit extends StatefulWidget {
   const EmailEdit({super.key, required this.person});
   final Person person;
@@ -39,22 +41,26 @@ class _EmailEditState extends State<EmailEdit> {
           hintText: AppString.email,
           keyboardType: TextInputType.text,
           validator: (value) {
-            if (value!.isEmpty) {
+            if (isValidatingEmail()) {
               return AppString.required;
             }
             return null;
           },
-        ),
+        )
       ],
       onSave: () {
-        context.read<ProfileBloc>().add(
-              ProfileEvent.edit(
-                person: Person(
-                  email: _emailController.text,
-                ),
-              ),
-            );
+        context
+            .read<ProfileBloc>()
+            .add(ProfileEvent.editEmail(email: _emailController.text));
       },
     );
+  }
+
+  bool isValidatingEmail() {
+    if (_emailController.text.isEmpty) return false;
+    if (ValidationRules.emailValidation.hasMatch(_emailController.text)) {
+      return false;
+    }
+    return true;
   }
 }

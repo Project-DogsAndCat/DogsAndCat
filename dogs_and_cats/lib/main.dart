@@ -2,6 +2,7 @@ import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/data/repositories/location_reposory_impl.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/map_suggest_bloc/map_suggest_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
@@ -33,6 +34,9 @@ void main() async {
         BlocProvider(
             create: (context) =>
                 MapSuggestBloc(repository: MapSearchRepositoryImpl())),
+        BlocProvider(
+            create: (context) =>
+                MapSearchBloc(repository: MapSearchRepositoryImpl())),
         BlocProvider(
             create: (context) =>
                 MapLocationCubit(service: MapService(LocationRepositoryImpl())))

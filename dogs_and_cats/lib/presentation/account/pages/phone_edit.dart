@@ -49,10 +49,10 @@ class _PhoneEditState extends State<PhoneEdit> {
       onSave: () {
         context.read<ProfileBloc>().add(
               ProfileEvent.edit(
-                person: Person(
-                  phone: _phoneController.text,
-                ),
-              ),
+                  originalPerson: widget.person,
+                  updatePerson: widget.person.copyWith(
+                    phone: _phoneController.text,
+                  )),
             );
       },
     );
