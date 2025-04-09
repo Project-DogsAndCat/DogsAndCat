@@ -17,7 +17,6 @@ class Person {
     this.latitude,
     this.longitude,
   });
-
   Person copyWith(
       {String? firstName,
       String? lastName,
