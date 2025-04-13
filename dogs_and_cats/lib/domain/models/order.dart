@@ -1,5 +1,5 @@
-class Order {
-  Order({
+class OrderModel {
+  OrderModel({
     this.id,
     this.titleService,
     this.namePet,
@@ -8,7 +8,6 @@ class Order {
     required this.price,
     required this.date,
     required this.time,
-    // required this.idPet,
     required this.status,
   });
   final String? id;
@@ -17,8 +16,17 @@ class Order {
   final String idService;
   final String duration;
   final double price;
-  final String date;
+  final DateTime date;
   final String time;
-  // final String idPet;
-  final String status;
+  final Status status;
+}
+
+enum Status {
+  cancel('Отменен'),
+  expected('Ожидается'),
+  adopted('Принят'),
+  completed('Выполнен');
+
+  const Status(this.value);
+  final String value;
 }

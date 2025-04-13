@@ -9,15 +9,17 @@ class PersonAuthDto {
   PersonAuthDto({
     required this.id,
     required this.email,
+    required this.role,
   });
 
   final String id;
   final String email;
+  final String role;
 
-  PersonAuth toDomain() => PersonAuth(id: id, email: email);
+  PersonAuth toDomain() => PersonAuth(id: id, email: email, role: role);
 
   factory PersonAuthDto.fromDomain(PersonAuth object) =>
-      PersonAuthDto(id: object.id, email: object.email);
+      PersonAuthDto(id: object.id, email: object.email, role: object.role);
 
   factory PersonAuthDto.fromJson(Map<String, dynamic> json) =>
       _$PersonAuthDtoFromJson(json);

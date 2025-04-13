@@ -43,4 +43,5 @@ class AppString {
   static const newUser = 'У вас нет аккаунта? ';
   static const noDataFound = 'Данные не найдены';
   static const noCorrectData = 'Некорректные данные';
+  static const becomeDogsitter = 'Стать догситтером';
 }

@@ -19,32 +19,38 @@ mixin _$ServicesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(String serviceId) loadById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(String serviceId)? loadById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(String serviceId)? loadById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadById value) loadById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadById value)? loadById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadById value)? loadById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(String serviceId) loadById,
   }) {
     return load();
   }
@@ -120,6 +127,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(String serviceId)? loadById,
   }) {
     return load?.call();
   }
@@ -128,6 +136,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(String serviceId)? loadById,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -140,6 +149,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadById value) loadById,
   }) {
     return load(this);
   }
@@ -148,6 +158,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadById value)? loadById,
   }) {
     return load?.call(this);
   }
@@ -156,6 +167,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadById value)? loadById,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -167,6 +179,147 @@ class _$LoadImpl implements _Load {
 
 abstract class _Load implements ServicesEvent {
   const factory _Load() = _$LoadImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadByIdImplCopyWith<$Res> {
+  factory _$$LoadByIdImplCopyWith(
+          _$LoadByIdImpl value, $Res Function(_$LoadByIdImpl) then) =
+      __$$LoadByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String serviceId});
+}
+
+/// @nodoc
+class __$$LoadByIdImplCopyWithImpl<$Res>
+    extends _$ServicesEventCopyWithImpl<$Res, _$LoadByIdImpl>
+    implements _$$LoadByIdImplCopyWith<$Res> {
+  __$$LoadByIdImplCopyWithImpl(
+      _$LoadByIdImpl _value, $Res Function(_$LoadByIdImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ServicesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? serviceId = null,
+  }) {
+    return _then(_$LoadByIdImpl(
+      serviceId: null == serviceId
+          ? _value.serviceId
+          : serviceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadByIdImpl implements _LoadById {
+  const _$LoadByIdImpl({required this.serviceId});
+
+  @override
+  final String serviceId;
+
+  @override
+  String toString() {
+    return 'ServicesEvent.loadById(serviceId: $serviceId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadByIdImpl &&
+            (identical(other.serviceId, serviceId) ||
+                other.serviceId == serviceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, serviceId);
+
+  /// Create a copy of ServicesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadByIdImplCopyWith<_$LoadByIdImpl> get copyWith =>
+      __$$LoadByIdImplCopyWithImpl<_$LoadByIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(String serviceId) loadById,
+  }) {
+    return loadById(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(String serviceId)? loadById,
+  }) {
+    return loadById?.call(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(String serviceId)? loadById,
+    required TResult orElse(),
+  }) {
+    if (loadById != null) {
+      return loadById(serviceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_LoadById value) loadById,
+  }) {
+    return loadById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadById value)? loadById,
+  }) {
+    return loadById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadById value)? loadById,
+    required TResult orElse(),
+  }) {
+    if (loadById != null) {
+      return loadById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadById implements ServicesEvent {
+  const factory _LoadById({required final String serviceId}) = _$LoadByIdImpl;
+
+  String get serviceId;
+
+  /// Create a copy of ServicesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadByIdImplCopyWith<_$LoadByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

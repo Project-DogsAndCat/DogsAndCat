@@ -8,7 +8,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/utils/table_names.dart';
-import '../models/order/order_dto.dart';
 
 class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
@@ -18,6 +17,23 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, List<Service>>> getServices() async {
     try {
       final json = await supabaseClient.from(TableNames.services).select('');
+      List<Service> services = json
+          .map((element) => ServiceDto.fromJson(element).toDomain())
+          .toList();
+      return right(services);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Service>>> getServiceById(
+      {required String serviceId}) async {
+    try {
+      final json = await supabaseClient
+          .from(TableNames.services)
+          .select()
+          .eq('id', serviceId);
       List<Service> services = json
           .map((element) => ServiceDto.fromJson(element).toDomain())
           .toList();
@@ -41,35 +57,6 @@ class ServiceRepositoryImpl implements ServiceRepository {
           .toList();
       return right(cache);
     } catch (e) {
-      return left(Failure(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, Unit>> addOrder(
-      {required OrderDto dto, required List<String> petIds}) async {
-    try {
-      dto.idPerson = supabaseClient.auth.currentUser!.id;
-      final json = dto.toJson();
-      json.remove('id');
-
-      final orderResponse = await supabaseClient
-          .from(TableNames.orders)
-          .insert(json)
-          .select('id')
-          .single();
-
-      final orderId = orderResponse['id'];
-
-      await supabaseClient.from(TableNames.petIdsOfOrder).insert(petIds
-          .map((id) => {
-                'id_order': orderId,
-                'id_pet': id,
-              })
-          .toList());
-
-      return right(unit);
-    } on Exception catch (e) {
       return left(Failure(message: e.toString()));
     }
   }

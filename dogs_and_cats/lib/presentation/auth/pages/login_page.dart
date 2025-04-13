@@ -49,16 +49,21 @@ class _LoginPageState extends State<LoginPage> {
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.map(
-                  initial: (_) {},
-                  loading: (_) {},
-                  success: (_) {
-                    clearText();
-                    CustomSnackBar.showSuccess(context, AppString.loginSuccess);
+                initial: (_) {},
+                loading: (_) {},
+                success: (state) {
+                  clearText();
+                  CustomSnackBar.showSuccess(context, AppString.loginSuccess);
+                  if (state.person.role == 'user') {
                     context.goNamed(RoutesNames.services);
-                  },
-                  failure: (state) {
-                    CustomSnackBar.showError(context, state.message);
-                  });
+                  } else if (state.person.role == 'dogsitter') {
+                    context.goNamed(RoutesNames.account);
+                  }
+                },
+                failure: (state) {
+                  CustomSnackBar.showError(context, state.message);
+                },
+              );
             },
             child: Form(
               key: _registerFormKey,

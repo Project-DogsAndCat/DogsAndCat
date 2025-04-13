@@ -14,6 +14,8 @@ class PersonDto {
     this.role,
     this.latitude,
     this.longitude,
+    this.rating,
+    this.position,
   });
   final String? id;
   @JsonKey(name: 'first_name')
@@ -25,6 +27,8 @@ class PersonDto {
   final String? role;
   final double? latitude;
   final double? longitude;
+  final double? rating;
+  final String? position;
 
   Person toDomain() => Person(
         id: id,
@@ -35,6 +39,8 @@ class PersonDto {
         role: role,
         latitude: latitude,
         longitude: longitude,
+        rating: rating,
+        position: position,
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -46,18 +52,12 @@ class PersonDto {
         role: object.role,
         latitude: object.latitude,
         longitude: object.longitude,
+        rating: object.rating,
+        position: object.position,
       );
 
   factory PersonDto.fromJson(Map<String, dynamic> json) =>
       _$PersonDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$PersonDtoToJson(this);
-
-  // bool isValidatingPhone() {
-  //   if (phone == null) return false;
-  //   if (!ValidationRules.phoneValidation.hasMatch(phone!)) {
-  //     throw Exception(AppString.providedValidPhone);
-  //   }
-  //   return true;
-  // }
 }

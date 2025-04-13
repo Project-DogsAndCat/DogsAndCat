@@ -12,7 +12,7 @@ OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => OrderDto(
       idPerson: json['id_person'] as String?,
       duration: json['duration'] as String,
       price: (json['price'] as num).toDouble(),
-      date: json['date'] as String,
+      date: DateTime.parse(json['date'] as String),
       time: json['time'] as String,
       status: json['status'] as String,
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
       'id_person': instance.idPerson,
       'duration': instance.duration,
       'price': instance.price,
-      'date': instance.date,
+      'date': instance.date.toIso8601String(),
       'time': instance.time,
       'status': instance.status,
     };

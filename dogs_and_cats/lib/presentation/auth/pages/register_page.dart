@@ -59,11 +59,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   state.map(
                       initial: (_) {},
                       loading: (_) {},
-                      success: (_) {
+                      success: (state) {
                         clearText();
                         CustomSnackBar.showSuccess(
                             context, AppString.accountCreated);
-                        context.goNamed(RoutesNames.services);
+                        if (state.person.role == 'user') {
+                          context.goNamed(RoutesNames.services);
+                        } else if (state.person.role == 'dogsitter') {
+                          context.goNamed(RoutesNames.settings);
+                        }
                       },
                       failure: (state) {
                         CustomSnackBar.showError(context, state.message);
