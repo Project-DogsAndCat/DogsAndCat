@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 
 class ScaffoldWithNavbar extends StatefulWidget {
-  ScaffoldWithNavbar({required this.navigationShell, super.key});
+  const ScaffoldWithNavbar({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
 
@@ -13,15 +13,6 @@ class ScaffoldWithNavbar extends StatefulWidget {
 }
 
 class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
-  // List bottomNavItems = [
-  //   BottomNavigationBarItem(
-  //       icon: Icon(Icons.ac_unit_outlined), label: 'Погулять'),
-  //   BottomNavigationBarItem(icon: Icon(Icons.access_alarm), label: 'Услуги'),
-  //   BottomNavigationBarItem(
-  //       icon: Icon(Icons.account_circle_rounded), label: 'Аккаунт'),
-  //   BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Настройки'),
-  // ];
-
   List<String> listOfStrings = [
     'Погулять',
     'Услуги',
@@ -55,7 +46,7 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.backGroundColor.withOpacity(0.3),
+                    color: AppColors.backGroundColor,
                     offset: Offset(0, 20),
                     blurRadius: 20,
                   ),

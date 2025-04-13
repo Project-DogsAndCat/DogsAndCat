@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'ordering_service_bloc.dart';
+part of 'add_order_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,199 +15,196 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$OrderingServiceEvent {
-  String get id => throw _privateConstructorUsedError;
-  String get titleService => throw _privateConstructorUsedError;
+mixin _$AddOrderEvent {
+  Order get order => throw _privateConstructorUsedError;
+  List<String> get petIds => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, String titleService)
-        loadTimeAndCostOfService,
+    required TResult Function(Order order, List<String> petIds) addOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id, String titleService)? loadTimeAndCostOfService,
+    TResult? Function(Order order, List<String> petIds)? addOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, String titleService)? loadTimeAndCostOfService,
+    TResult Function(Order order, List<String> petIds)? addOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadTimeAndCostOfService value)
-        loadTimeAndCostOfService,
+    required TResult Function(_AddOrder value) addOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadTimeAndCostOfService value)?
-        loadTimeAndCostOfService,
+    TResult? Function(_AddOrder value)? addOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadTimeAndCostOfService value)? loadTimeAndCostOfService,
+    TResult Function(_AddOrder value)? addOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderingServiceEvent
+  /// Create a copy of AddOrderEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderingServiceEventCopyWith<OrderingServiceEvent> get copyWith =>
+  $AddOrderEventCopyWith<AddOrderEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderingServiceEventCopyWith<$Res> {
-  factory $OrderingServiceEventCopyWith(OrderingServiceEvent value,
-          $Res Function(OrderingServiceEvent) then) =
-      _$OrderingServiceEventCopyWithImpl<$Res, OrderingServiceEvent>;
+abstract class $AddOrderEventCopyWith<$Res> {
+  factory $AddOrderEventCopyWith(
+          AddOrderEvent value, $Res Function(AddOrderEvent) then) =
+      _$AddOrderEventCopyWithImpl<$Res, AddOrderEvent>;
   @useResult
-  $Res call({String id, String titleService});
+  $Res call({Order order, List<String> petIds});
 }
 
 /// @nodoc
-class _$OrderingServiceEventCopyWithImpl<$Res,
-        $Val extends OrderingServiceEvent>
-    implements $OrderingServiceEventCopyWith<$Res> {
-  _$OrderingServiceEventCopyWithImpl(this._value, this._then);
+class _$AddOrderEventCopyWithImpl<$Res, $Val extends AddOrderEvent>
+    implements $AddOrderEventCopyWith<$Res> {
+  _$AddOrderEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderingServiceEvent
+  /// Create a copy of AddOrderEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? titleService = null,
+    Object? order = null,
+    Object? petIds = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleService: null == titleService
-          ? _value.titleService
-          : titleService // ignore: cast_nullable_to_non_nullable
-              as String,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
+      petIds: null == petIds
+          ? _value.petIds
+          : petIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$LoadTimeAndCostOfServiceImplCopyWith<$Res>
-    implements $OrderingServiceEventCopyWith<$Res> {
-  factory _$$LoadTimeAndCostOfServiceImplCopyWith(
-          _$LoadTimeAndCostOfServiceImpl value,
-          $Res Function(_$LoadTimeAndCostOfServiceImpl) then) =
-      __$$LoadTimeAndCostOfServiceImplCopyWithImpl<$Res>;
+abstract class _$$AddOrderImplCopyWith<$Res>
+    implements $AddOrderEventCopyWith<$Res> {
+  factory _$$AddOrderImplCopyWith(
+          _$AddOrderImpl value, $Res Function(_$AddOrderImpl) then) =
+      __$$AddOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String titleService});
+  $Res call({Order order, List<String> petIds});
 }
 
 /// @nodoc
-class __$$LoadTimeAndCostOfServiceImplCopyWithImpl<$Res>
-    extends _$OrderingServiceEventCopyWithImpl<$Res,
-        _$LoadTimeAndCostOfServiceImpl>
-    implements _$$LoadTimeAndCostOfServiceImplCopyWith<$Res> {
-  __$$LoadTimeAndCostOfServiceImplCopyWithImpl(
-      _$LoadTimeAndCostOfServiceImpl _value,
-      $Res Function(_$LoadTimeAndCostOfServiceImpl) _then)
+class __$$AddOrderImplCopyWithImpl<$Res>
+    extends _$AddOrderEventCopyWithImpl<$Res, _$AddOrderImpl>
+    implements _$$AddOrderImplCopyWith<$Res> {
+  __$$AddOrderImplCopyWithImpl(
+      _$AddOrderImpl _value, $Res Function(_$AddOrderImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderingServiceEvent
+  /// Create a copy of AddOrderEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? titleService = null,
+    Object? order = null,
+    Object? petIds = null,
   }) {
-    return _then(_$LoadTimeAndCostOfServiceImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleService: null == titleService
-          ? _value.titleService
-          : titleService // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$AddOrderImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
+      petIds: null == petIds
+          ? _value._petIds
+          : petIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadTimeAndCostOfServiceImpl implements _LoadTimeAndCostOfService {
-  const _$LoadTimeAndCostOfServiceImpl(
-      {required this.id, required this.titleService});
+class _$AddOrderImpl implements _AddOrder {
+  const _$AddOrderImpl(
+      {required this.order, required final List<String> petIds})
+      : _petIds = petIds;
 
   @override
-  final String id;
+  final Order order;
+  final List<String> _petIds;
   @override
-  final String titleService;
+  List<String> get petIds {
+    if (_petIds is EqualUnmodifiableListView) return _petIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_petIds);
+  }
 
   @override
   String toString() {
-    return 'OrderingServiceEvent.loadTimeAndCostOfService(id: $id, titleService: $titleService)';
+    return 'AddOrderEvent.addOrder(order: $order, petIds: $petIds)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadTimeAndCostOfServiceImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.titleService, titleService) ||
-                other.titleService == titleService));
+            other is _$AddOrderImpl &&
+            (identical(other.order, order) || other.order == order) &&
+            const DeepCollectionEquality().equals(other._petIds, _petIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, titleService);
+  int get hashCode => Object.hash(
+      runtimeType, order, const DeepCollectionEquality().hash(_petIds));
 
-  /// Create a copy of OrderingServiceEvent
+  /// Create a copy of AddOrderEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadTimeAndCostOfServiceImplCopyWith<_$LoadTimeAndCostOfServiceImpl>
-      get copyWith => __$$LoadTimeAndCostOfServiceImplCopyWithImpl<
-          _$LoadTimeAndCostOfServiceImpl>(this, _$identity);
+  _$$AddOrderImplCopyWith<_$AddOrderImpl> get copyWith =>
+      __$$AddOrderImplCopyWithImpl<_$AddOrderImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, String titleService)
-        loadTimeAndCostOfService,
+    required TResult Function(Order order, List<String> petIds) addOrder,
   }) {
-    return loadTimeAndCostOfService(id, titleService);
+    return addOrder(order, petIds);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id, String titleService)? loadTimeAndCostOfService,
+    TResult? Function(Order order, List<String> petIds)? addOrder,
   }) {
-    return loadTimeAndCostOfService?.call(id, titleService);
+    return addOrder?.call(order, petIds);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, String titleService)? loadTimeAndCostOfService,
+    TResult Function(Order order, List<String> petIds)? addOrder,
     required TResult orElse(),
   }) {
-    if (loadTimeAndCostOfService != null) {
-      return loadTimeAndCostOfService(id, titleService);
+    if (addOrder != null) {
+      return addOrder(order, petIds);
     }
     return orElse();
   }
@@ -215,125 +212,122 @@ class _$LoadTimeAndCostOfServiceImpl implements _LoadTimeAndCostOfService {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadTimeAndCostOfService value)
-        loadTimeAndCostOfService,
+    required TResult Function(_AddOrder value) addOrder,
   }) {
-    return loadTimeAndCostOfService(this);
+    return addOrder(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadTimeAndCostOfService value)?
-        loadTimeAndCostOfService,
+    TResult? Function(_AddOrder value)? addOrder,
   }) {
-    return loadTimeAndCostOfService?.call(this);
+    return addOrder?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadTimeAndCostOfService value)? loadTimeAndCostOfService,
+    TResult Function(_AddOrder value)? addOrder,
     required TResult orElse(),
   }) {
-    if (loadTimeAndCostOfService != null) {
-      return loadTimeAndCostOfService(this);
+    if (addOrder != null) {
+      return addOrder(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadTimeAndCostOfService implements OrderingServiceEvent {
-  const factory _LoadTimeAndCostOfService(
-      {required final String id,
-      required final String titleService}) = _$LoadTimeAndCostOfServiceImpl;
+abstract class _AddOrder implements AddOrderEvent {
+  const factory _AddOrder(
+      {required final Order order,
+      required final List<String> petIds}) = _$AddOrderImpl;
 
   @override
-  String get id;
+  Order get order;
   @override
-  String get titleService;
+  List<String> get petIds;
 
-  /// Create a copy of OrderingServiceEvent
+  /// Create a copy of AddOrderEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadTimeAndCostOfServiceImplCopyWith<_$LoadTimeAndCostOfServiceImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$AddOrderImplCopyWith<_$AddOrderImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$OrderingServiceState {
+mixin _$AddOrderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)
-        loaded,
+    required TResult Function(Order order) success,
     required TResult Function(String message) failure,
+    required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult? Function(Order order)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult Function(Order order)? success,
     TResult Function(String message)? failure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_Initial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderingServiceStateCopyWith<$Res> {
-  factory $OrderingServiceStateCopyWith(OrderingServiceState value,
-          $Res Function(OrderingServiceState) then) =
-      _$OrderingServiceStateCopyWithImpl<$Res, OrderingServiceState>;
+abstract class $AddOrderStateCopyWith<$Res> {
+  factory $AddOrderStateCopyWith(
+          AddOrderState value, $Res Function(AddOrderState) then) =
+      _$AddOrderStateCopyWithImpl<$Res, AddOrderState>;
 }
 
 /// @nodoc
-class _$OrderingServiceStateCopyWithImpl<$Res,
-        $Val extends OrderingServiceState>
-    implements $OrderingServiceStateCopyWith<$Res> {
-  _$OrderingServiceStateCopyWithImpl(this._value, this._then);
+class _$AddOrderStateCopyWithImpl<$Res, $Val extends AddOrderState>
+    implements $AddOrderStateCopyWith<$Res> {
+  _$AddOrderStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -346,13 +340,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$OrderingServiceStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$AddOrderStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -363,7 +357,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'OrderingServiceState.loading()';
+    return 'AddOrderState.loading()';
   }
 
   @override
@@ -379,10 +373,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)
-        loaded,
+    required TResult Function(Order order) success,
     required TResult Function(String message) failure,
+    required TResult Function() initial,
   }) {
     return loading();
   }
@@ -391,10 +384,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult? Function(Order order)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? initial,
   }) {
     return loading?.call();
   }
@@ -403,10 +395,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult Function(Order order)? success,
     TResult Function(String message)? failure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -419,8 +410,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Initial value) initial,
   }) {
     return loading(this);
   }
@@ -429,8 +421,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_Initial value)? initial,
   }) {
     return loading?.call(this);
   }
@@ -439,8 +432,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -450,147 +444,108 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements OrderingServiceState {
+abstract class _Loading implements AddOrderState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<ServiceCharacteristic> characteristics,
-      String idService,
-      String titleService});
+  $Res call({Order order});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$OrderingServiceStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$AddOrderStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? characteristics = null,
-    Object? idService = null,
-    Object? titleService = null,
+    Object? order = null,
   }) {
-    return _then(_$LoadedImpl(
-      characteristics: null == characteristics
-          ? _value._characteristics
-          : characteristics // ignore: cast_nullable_to_non_nullable
-              as List<ServiceCharacteristic>,
-      idService: null == idService
-          ? _value.idService
-          : idService // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleService: null == titleService
-          ? _value.titleService
-          : titleService // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$SuccessImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
-      {required final List<ServiceCharacteristic> characteristics,
-      required this.idService,
-      required this.titleService})
-      : _characteristics = characteristics;
-
-  final List<ServiceCharacteristic> _characteristics;
-  @override
-  List<ServiceCharacteristic> get characteristics {
-    if (_characteristics is EqualUnmodifiableListView) return _characteristics;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_characteristics);
-  }
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl({required this.order});
 
   @override
-  final String idService;
-  @override
-  final String titleService;
+  final Order order;
 
   @override
   String toString() {
-    return 'OrderingServiceState.loaded(characteristics: $characteristics, idService: $idService, titleService: $titleService)';
+    return 'AddOrderState.success(order: $order)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            const DeepCollectionEquality()
-                .equals(other._characteristics, _characteristics) &&
-            (identical(other.idService, idService) ||
-                other.idService == idService) &&
-            (identical(other.titleService, titleService) ||
-                other.titleService == titleService));
+            other is _$SuccessImpl &&
+            (identical(other.order, order) || other.order == order));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_characteristics),
-      idService,
-      titleService);
+  int get hashCode => Object.hash(runtimeType, order);
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)
-        loaded,
+    required TResult Function(Order order) success,
     required TResult Function(String message) failure,
+    required TResult Function() initial,
   }) {
-    return loaded(characteristics, idService, titleService);
+    return success(order);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult? Function(Order order)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? initial,
   }) {
-    return loaded?.call(characteristics, idService, titleService);
+    return success?.call(order);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult Function(Order order)? success,
     TResult Function(String message)? failure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(characteristics, idService, titleService);
+    if (success != null) {
+      return success(order);
     }
     return orElse();
   }
@@ -599,51 +554,49 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Initial value) initial,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_Initial value)? initial,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements OrderingServiceState {
-  const factory _Loaded(
-      {required final List<ServiceCharacteristic> characteristics,
-      required final String idService,
-      required final String titleService}) = _$LoadedImpl;
+abstract class _Success implements AddOrderState {
+  const factory _Success({required final Order order}) = _$SuccessImpl;
 
-  List<ServiceCharacteristic> get characteristics;
-  String get idService;
-  String get titleService;
+  Order get order;
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -658,13 +611,13 @@ abstract class _$$FailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$OrderingServiceStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$AddOrderStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -690,7 +643,7 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'OrderingServiceState.failure(message: $message)';
+    return 'AddOrderState.failure(message: $message)';
   }
 
   @override
@@ -704,7 +657,7 @@ class _$FailureImpl implements _Failure {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -716,10 +669,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)
-        loaded,
+    required TResult Function(Order order) success,
     required TResult Function(String message) failure,
+    required TResult Function() initial,
   }) {
     return failure(message);
   }
@@ -728,10 +680,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult? Function(Order order)? success,
     TResult? Function(String message)? failure,
+    TResult? Function()? initial,
   }) {
     return failure?.call(message);
   }
@@ -740,10 +691,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<ServiceCharacteristic> characteristics,
-            String idService, String titleService)?
-        loaded,
+    TResult Function(Order order)? success,
     TResult Function(String message)? failure,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -756,8 +706,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Initial value) initial,
   }) {
     return failure(this);
   }
@@ -766,8 +717,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
+    TResult? Function(_Initial value)? initial,
   }) {
     return failure?.call(this);
   }
@@ -776,8 +728,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -787,14 +740,131 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements OrderingServiceState {
+abstract class _Failure implements AddOrderState {
   const factory _Failure({required final String message}) = _$FailureImpl;
 
   String get message;
 
-  /// Create a copy of OrderingServiceState
+  /// Create a copy of AddOrderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$AddOrderStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddOrderState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
+
+  @override
+  String toString() {
+    return 'AddOrderState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(Order order) success,
+    required TResult Function(String message) failure,
+    required TResult Function() initial,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(Order order)? success,
+    TResult? Function(String message)? failure,
+    TResult? Function()? initial,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Order order)? success,
+    TResult Function(String message)? failure,
+    TResult Function()? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Initial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Initial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements AddOrderState {
+  const factory _Initial() = _$InitialImpl;
 }

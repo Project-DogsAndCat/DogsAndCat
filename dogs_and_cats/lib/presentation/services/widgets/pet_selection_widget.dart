@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PetSelectionWidget extends StatefulWidget {
-  final Function(int?, String) onSelected;
+  final Function(List<String>, List<String>) onSelected;
 
   const PetSelectionWidget({
     super.key,
@@ -16,29 +16,33 @@ class PetSelectionWidget extends StatefulWidget {
 }
 
 class _PetSelectionWidgetState extends State<PetSelectionWidget> {
-  int? _selectedValue = 0;
+  final List<String> _selectedPetIds = [];
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PetBloc, PetState>(
       builder: (context, state) {
         return state.map(
-          loading: (_) => Center(
-            child: CircularProgressIndicator(),
-          ),
+          loading: (_) => Center(child: CircularProgressIndicator()),
           loaded: (value) => Wrap(
             spacing: 5.0,
             children: List.generate(value.pets.length, (int index) {
               return ChoiceChip(
-                label: Column(
-                  children: [
-                    Text(value.pets[index].name),
-                  ],
-                ),
-                selected: _selectedValue == index,
-                onSelected: (bool selected) {
-                  widget.onSelected(_selectedValue = selected ? index : null,
-                      value.pets[index].id!);
+                label: Text(value.pets[index].name),
+                selected: _selectedPetIds.contains(value.pets[index].id),
+                onSelected: (selected) {
+                  setState(() {
+                    if (selected) {
+                      _selectedPetIds.add(value.pets[index].id!);
+                    } else {
+                      _selectedPetIds.remove(value.pets[index].id!);
+                    }
+                  });
+                  final selectedNames = value.pets
+                      .where((p) => _selectedPetIds.contains(p.id))
+                      .map((p) => p.name)
+                      .toList();
+                  widget.onSelected(_selectedPetIds, selectedNames);
                 },
                 showCheckmark: false,
                 selectedColor: AppColors.primaryColor,

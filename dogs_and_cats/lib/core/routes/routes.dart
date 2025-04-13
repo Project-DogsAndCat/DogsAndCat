@@ -1,11 +1,13 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
+import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/pages/dogsitter_page.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
+import 'package:dogs_and_cats/presentation/services/pages/order_page.dart';
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
 import 'package:dogs_and_cats/presentation/services/pages/service_page.dart';
 import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
@@ -34,7 +36,16 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.orderingService,
           path: '/ordering',
-          builder: (context, state) => const OrderingServicePage()),
+          builder: (context, state) => OrderingServicePage()),
+      GoRoute(
+          name: RoutesNames.orderPage,
+          path: '/order',
+          builder: (context, state) {
+            Order order = state.extra as Order;
+            return OrderPage(
+              order: order,
+            );
+          }),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

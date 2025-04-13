@@ -10,6 +10,7 @@ import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
+import 'package:dogs_and_cats/presentation/services/add_order_bloc/add_order_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -76,6 +77,9 @@ void _initServices() {
 
   getIt.registerLazySingleton<OrderingServiceBloc>(
       () => OrderingServiceBloc(repository: getIt<ServiceRepository>()));
+
+  getIt.registerLazySingleton<AddOrderBloc>(
+      () => AddOrderBloc(repository: getIt<ServiceRepository>()));
 }
 
 void _initPets() {

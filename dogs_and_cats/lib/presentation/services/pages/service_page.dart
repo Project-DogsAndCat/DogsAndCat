@@ -1,8 +1,10 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
+import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
-import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -15,14 +17,19 @@ class ServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Услуги'),
-          centerTitle: true,
-        ),
+        appBar: AppBar(),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                'Выберите\nжелаемую\nуслугу',
+                style: textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               Expanded(
                 child: BlocBuilder<ServicesBloc, ServicesState>(
                     builder: (context, state) {
@@ -37,23 +44,63 @@ class ServicePage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return Column(
                                 children: [
-                                  CustomServiceButton(
-                                      onPressed: () {
-                                        context.replaceNamed(
-                                          RoutesNames.orderingService,
-                                        );
-                                        context.read<OrderingServiceBloc>().add(
-                                            OrderingServiceEvent
-                                                .loadTimeAndCostOfService(
-                                                    id: state
-                                                        .service[index].id));
-                                        context
-                                            .read<PetBloc>()
-                                            .add(PetEvent.load());
-                                      },
-                                      nameService: state.service[index].title,
-                                      description:
-                                          state.service[index].description)
+                                  RoundedElevatedButton(
+                                    onPressed: () {
+                                      context.replaceNamed(
+                                          RoutesNames.orderingService);
+                                      context.read<OrderingServiceBloc>().add(
+                                              OrderingServiceEvent
+                                                  .loadTimeAndCostOfService(
+                                            id: state.service[index].id,
+                                            titleService:
+                                                state.service[index].title,
+                                          ));
+                                      context
+                                          .read<PetBloc>()
+                                          .add(PetEvent.load());
+                                    },
+                                    color: AppColors.buttonServiceColor,
+                                    height: 100,
+                                    widget: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Flexible(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                state.service[index].title,
+                                                style: textTheme.titleMedium,
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                state
+                                                    .service[index].description,
+                                                style: textTheme.headlineLarge,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               );
                             },

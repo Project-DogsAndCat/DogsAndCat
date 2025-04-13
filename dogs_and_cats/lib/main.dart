@@ -8,6 +8,7 @@ import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bl
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
+import 'package:dogs_and_cats/presentation/services/add_order_bloc/add_order_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,6 +30,7 @@ void main() async {
             create: (_) => getIt<ProfileBloc>()..add(ProfileEvent.load())),
         BlocProvider(
             create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
+        BlocProvider(create: (_) => getIt<AddOrderBloc>()),
         BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),
         BlocProvider(create: (_) => getIt<PetBloc>()..add(PetEvent.load())),
         BlocProvider(

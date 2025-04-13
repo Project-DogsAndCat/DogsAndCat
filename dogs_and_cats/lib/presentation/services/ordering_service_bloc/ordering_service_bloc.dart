@@ -14,9 +14,9 @@ class OrderingServiceBloc
       : super(OrderingServiceState.loading()) {
     on<OrderingServiceEvent>((event, emit) async {
       await event.map(
-          loadTimeAndCostOfService: (event) =>
-              _loadTimeAndCostOfService(event, emit),
-          loadPets: (event) => _loadPets(emit));
+        loadTimeAndCostOfService: (event) =>
+            _loadTimeAndCostOfService(event, emit),
+      );
     });
   }
 
@@ -27,9 +27,10 @@ class OrderingServiceBloc
     result.fold(
         (failure) =>
             emit(OrderingServiceState.failure(message: failure.message)),
-        (characteristic) =>
-            emit(OrderingServiceState.loaded(characteristics: characteristic)));
+        (characteristic) => emit(OrderingServiceState.loaded(
+              characteristics: characteristic,
+              idService: event.id,
+              titleService: event.titleService,
+            )));
   }
-
-  Future<void> _loadPets(Emitter<OrderingServiceState> emit) async {}
 }

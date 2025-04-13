@@ -4,6 +4,6 @@ part of 'ordering_service_bloc.dart';
 class OrderingServiceEvent with _$OrderingServiceEvent {
   const factory OrderingServiceEvent.loadTimeAndCostOfService({
     required String id,
+    required String titleService,
   }) = _LoadTimeAndCostOfService;
-  const factory OrderingServiceEvent.loadPets() = _LoadPets;
 }

@@ -6,4 +6,5 @@ class TableNames {
   static const orders = 'orders';
   static const distributions = 'distributions';
   static const participation = 'participation';
+  static const petIdsOfOrder = 'pet_ids_of_order';
 }
