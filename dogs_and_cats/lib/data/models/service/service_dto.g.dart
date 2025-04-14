@@ -10,6 +10,7 @@ ServiceDto _$ServiceDtoFromJson(Map<String, dynamic> json) => ServiceDto(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$ServiceDtoToJson(ServiceDto instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$ServiceDtoToJson(ServiceDto instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
+      'image': instance.image,
     };

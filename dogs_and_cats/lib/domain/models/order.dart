@@ -1,5 +1,7 @@
-class OrderModel {
-  OrderModel({
+import 'package:flutter/material.dart';
+
+class Order {
+  Order({
     this.id,
     this.titleService,
     this.namePet,
@@ -7,7 +9,7 @@ class OrderModel {
     required this.duration,
     required this.price,
     required this.date,
-    required this.time,
+    // required this.time,
     required this.status,
   });
   final String? id;
@@ -17,16 +19,6 @@ class OrderModel {
   final String duration;
   final double price;
   final DateTime date;
-  final String time;
-  final Status status;
-}
-
-enum Status {
-  cancel('Отменен'),
-  expected('Ожидается'),
-  adopted('Принят'),
-  completed('Выполнен');
-
-  const Status(this.value);
-  final String value;
+  // final DateTime time;
+  final String status;
 }

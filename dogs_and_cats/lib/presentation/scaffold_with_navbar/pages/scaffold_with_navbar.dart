@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,11 +43,11 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
               decoration: BoxDecoration(
                 color: AppColors.backGroundColor,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(24),
+                  Radius.circular(50),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.backGroundColor,
+                    color: AppColors.backGroundColor.withOpacity(0.3),
                     offset: Offset(0, 20),
                     blurRadius: 20,
                   ),
@@ -115,11 +116,7 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                                     index == widget.navigationShell.currentIndex
                                         ? listOfStrings[index]
                                         : '',
-                                    style: TextStyle(
-                                      color: AppColors.backGroundColor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
+                                    style: textTheme.titleSmall,
                                   ),
                                 ),
                               ],
@@ -140,7 +137,7 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                                   color: index ==
                                           widget.navigationShell.currentIndex
                                       ? AppColors.backGroundColor
-                                      : AppColors.primaryColor,
+                                      : AppColors.bottomNavigationBarIconColor,
                                 ),
                               ],
                             ),

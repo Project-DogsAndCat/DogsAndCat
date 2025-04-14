@@ -7,6 +7,7 @@ import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/orderi
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ServicePage extends StatelessWidget {
@@ -66,12 +67,18 @@ class ServicePage extends StatelessWidget {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Container(
+                                          padding: EdgeInsets.all(7),
                                           height: 50,
                                           width: 50,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(16),
-                                              color: Colors.white),
+                                              color: AppColors.whiteColor),
+                                          child: SvgPicture.asset(
+                                            state.service[index].image,
+                                            // width: 40,
+                                            // height: 40,
+                                          ),
                                         ),
                                         const SizedBox(
                                           width: 20,
@@ -85,7 +92,7 @@ class ServicePage extends StatelessWidget {
                                             children: [
                                               Text(
                                                 state.service[index].title,
-                                                style: textTheme.titleMedium,
+                                                style: textTheme.labelMedium,
                                               ),
                                               const SizedBox(
                                                 height: 5,
@@ -93,7 +100,7 @@ class ServicePage extends StatelessWidget {
                                               Text(
                                                 state
                                                     .service[index].description,
-                                                style: textTheme.headlineLarge,
+                                                style: textTheme.bodyMedium,
                                               ),
                                             ],
                                           ),

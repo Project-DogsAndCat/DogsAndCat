@@ -8,22 +8,25 @@ class ServiceDto {
   final String id;
   final String title;
   final String description;
-  ServiceDto({
-    required this.id,
-    required this.title,
-    required this.description,
-  });
+  final String image;
+  ServiceDto(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.image});
 
   Service toDomain() => Service(
         id: id,
         title: title,
         description: description,
+        image: image,
       );
 
   factory ServiceDto.fromDomain(Service object) => ServiceDto(
         id: object.id,
         title: object.title,
         description: object.description,
+        image: object.image,
       );
 
   factory ServiceDto.fromJson(Map<String, dynamic> json) =>

@@ -23,6 +23,13 @@ class AppString {
   static const cancel = 'Отменить';
   static const search = 'Поиск';
 
+  static const orderingService = 'Заказ услуги';
+  static const durationService = 'Продолжительность услуги';
+  static const order = 'Заказать';
+  static const selectTime = 'Выберите время';
+  static const noDataSelected = 'Не все данные выбраны для заказа';
+  static const forWhichPets = 'Для какого питомца?';
+
   static const myPets = 'Мои питомцы';
   static const nameOfPet = 'Имя питомца';
   static const breed = 'Порода';
