@@ -56,8 +56,8 @@ final GoRouter router = GoRouter(
             ),
             StatefulShellBranch(routes: [
               GoRoute(
-                name: RoutesNames.dogsitter,
-                path: '/dogsitter_page',
+                name: RoutesNames.order,
+                path: '/order',
                 builder: (context, state) => const OrderPage(),
               ),
             ]),

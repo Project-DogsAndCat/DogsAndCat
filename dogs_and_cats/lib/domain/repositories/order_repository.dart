@@ -7,7 +7,7 @@ abstract interface class OrderRepository {
   Future<Either<Failure, Unit>> addOrder(
       {required OrderModel order, required List<String> petIds});
 
-  Future<Either<Failure, List<OrderModel>>> getOrders();
+  Future<List<OrderModel>> getOrders();
 
   Future<Either<Failure, Unit>> cancelOrder({required OrderModel order});
 }

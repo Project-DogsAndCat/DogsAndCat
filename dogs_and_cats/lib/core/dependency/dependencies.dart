@@ -106,8 +106,9 @@ void _initOrder() {
   getIt.registerLazySingleton<OrderRepository>(
       () => OrderRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<OrderBloc>(
-      () => OrderBloc(repository: getIt<OrderRepository>()));
+  getIt.registerLazySingleton<OrderBloc>(() => OrderBloc(
+      orderRepository: getIt<OrderRepository>(),
+      serviceRepository: getIt<ServiceRepository>()));
 }
 
 void _initPets() {

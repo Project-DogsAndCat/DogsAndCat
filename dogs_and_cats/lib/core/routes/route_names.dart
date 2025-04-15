@@ -7,7 +7,7 @@ class RoutesNames {
   static const dogsitter = 'dogsitter';
   static const account = 'account';
   static const orderingService = 'orderingService';
-  static const orderPage = 'orderPage';
+  static const order = 'order';
   static const pets = 'pets';
   static const settings = 'settings';
   static const addInformation = 'addInformation';

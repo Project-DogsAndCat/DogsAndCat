@@ -35,6 +35,9 @@ class ServicePage extends StatelessWidget {
                 child: BlocBuilder<ServicesBloc, ServicesState>(
                     builder: (context, state) {
                   return state.map(
+                      loadedService: (_) {
+                        return Container();
+                      },
                       loading: (_) => Center(
                             child: CircularProgressIndicator(
                               color: Colors.blueAccent,

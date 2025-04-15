@@ -13,31 +13,37 @@ class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
 
+  // @override
+  // Future<Either<Failure, List<Service>>> getServices() async {
+  //   try {
+  //     final json = await supabaseClient.from(TableNames.services).select('');
+  //     List<Service> services = json
+  //         .map((element) => ServiceDto.fromJson(element).toDomain())
+  //         .toList();
+  //     return right(services);
+  //   } catch (e) {
+  //     return left(Failure(message: e.toString()));
+  //   }
+  // }
   @override
-  Future<Either<Failure, List<Service>>> getServices() async {
-    try {
-      final json = await supabaseClient.from(TableNames.services).select('');
-      List<Service> services = json
-          .map((element) => ServiceDto.fromJson(element).toDomain())
-          .toList();
-      return right(services);
-    } catch (e) {
-      return left(Failure(message: e.toString()));
-    }
+  Future<List<Service>> getServices() async {
+    final json = await supabaseClient.from(TableNames.services).select('');
+    List<Service> services =
+        json.map((element) => ServiceDto.fromJson(element).toDomain()).toList();
+    return services;
   }
 
   @override
-  Future<Either<Failure, List<Service>>> getServiceById(
+  Future<Either<Failure, Service>> getServiceById(
       {required String serviceId}) async {
     try {
       final json = await supabaseClient
           .from(TableNames.services)
           .select()
-          .eq('id', serviceId);
-      List<Service> services = json
-          .map((element) => ServiceDto.fromJson(element).toDomain())
-          .toList();
-      return right(services);
+          .eq('id', serviceId)
+          .single();
+      final service = ServiceDto.fromJson(json).toDomain();
+      return right(service);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

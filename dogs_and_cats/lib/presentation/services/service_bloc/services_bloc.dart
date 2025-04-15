@@ -20,16 +20,23 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
   }
 
   Future<void> _load(Emitter<ServicesState> emit) async {
-    final result = await repository.getServices();
-    result.fold(
-        (failure) => emit(ServicesState.failure(message: failure.message)),
-        (service) => emit(ServicesState.loaded(service: service)));
+    // final result = await repository.getServices();
+    // result.fold(
+    //     (failure) => emit(ServicesState.failure(message: failure.message)),
+    //     (service) => emit(ServicesState.loaded(service: service)));
+
+    try {
+      final result = await repository.getServices();
+      emit(ServicesState.loaded(service: result));
+    } catch (e) {
+      emit(ServicesState.failure(message: e.toString()));
+    }
   }
 
   Future<void> _loadById(Emitter<ServicesState> emit, _LoadById event) async {
-    final result = await repository.getServiceById(serviceId: event.serviceId);
-    result.fold(
+    final service = await repository.getServiceById(serviceId: event.serviceId);
+    service.fold(
         (failure) => emit(ServicesState.failure(message: failure.message)),
-        (service) => emit(ServicesState.loaded(service: service)));
+        (service) => emit(ServicesState.loadedService(service: service)));
   }
 }

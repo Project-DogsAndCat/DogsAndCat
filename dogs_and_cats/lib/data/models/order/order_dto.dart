@@ -34,15 +34,19 @@ class OrderDto {
       );
 
   factory OrderDto.fromDomain(OrderModel object) => OrderDto(
+        id: object.id,
         serviceId: object.serviceId,
         duration: object.duration,
         price: object.price,
         date: object.date,
-        status: object.status!.value,
+        status: object.status.value,
       );
 
   Status getStatus(String priority) {
-    return Status.values.firstWhere((item) => item.value == priority);
+    return Status.values.firstWhere(
+      (item) => item.value == priority,
+      orElse: () => Status.waiting,
+    );
   }
 
   factory OrderDto.fromJson(Map<String, dynamic> json) =>
