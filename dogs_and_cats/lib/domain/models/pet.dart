@@ -2,19 +2,19 @@ class Pet {
   Pet({
     required this.name,
     required this.breed,
-    required this.age,
+    required this.dateBhD,
     required this.gender,
     required this.selectedCategory,
     required this.otherFeatures,
+    required this.weight,
     this.id,
-    this.weight,
   });
 
   final String? id;
   final String name;
   final String breed;
-  final String age;
-  final int? weight;
+  final DateTime dateBhD;
+  final int weight;
   final String gender;
   final String selectedCategory;
   final String otherFeatures;

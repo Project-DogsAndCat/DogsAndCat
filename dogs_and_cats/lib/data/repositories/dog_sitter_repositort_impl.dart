@@ -18,8 +18,8 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
       final personId = supabaseClient.auth.currentUser!.id;
 
       await supabaseClient
-          .from(TableNames.person)
-          .update({'position': position}).eq('id', personId);
+          .from(TableNames.dogsitters)
+          .insert({'person_id': personId, 'position': position});
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

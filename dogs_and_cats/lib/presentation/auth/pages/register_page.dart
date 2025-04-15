@@ -66,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         if (state.person.role == 'user') {
                           context.goNamed(RoutesNames.services);
                         } else if (state.person.role == 'dogsitter') {
-                          context.goNamed(RoutesNames.settings);
+                          context.goNamed(RoutesNames.addInformation);
                         }
                       },
                       failure: (state) {

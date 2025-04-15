@@ -9,12 +9,12 @@ class PetDto {
     this.personId,
     required this.name,
     required this.breed,
-    required this.age,
+    required this.dateBhD,
     required this.gender,
     required this.selectedCategory,
     required this.otherFeatures,
+    required this.weight,
     this.id,
-    this.weight,
   });
 
   @JsonKey(name: 'person_id')
@@ -22,8 +22,9 @@ class PetDto {
   final String? id;
   final String name;
   final String breed;
-  final String age;
-  final int? weight;
+  @JsonKey(name: 'date_bhd')
+  final DateTime dateBhD;
+  final int weight;
   final String gender;
   @JsonKey(name: 'selected_category')
   final String selectedCategory;
@@ -34,7 +35,7 @@ class PetDto {
       id: id,
       name: name,
       breed: breed,
-      age: age,
+      dateBhD: dateBhD,
       weight: weight,
       gender: gender,
       selectedCategory: selectedCategory,
@@ -44,7 +45,7 @@ class PetDto {
       id: object.id,
       name: object.name,
       breed: object.breed,
-      age: object.age,
+      dateBhD: object.dateBhD,
       weight: object.weight,
       gender: object.gender,
       selectedCategory: object.selectedCategory,

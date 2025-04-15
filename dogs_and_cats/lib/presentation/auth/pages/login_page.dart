@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (state.person.role == 'user') {
                     context.goNamed(RoutesNames.services);
                   } else if (state.person.role == 'dogsitter') {
-                    context.goNamed(RoutesNames.account);
+                    context.goNamed(RoutesNames.addInformation);
                   }
                 },
                 failure: (state) {

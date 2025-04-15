@@ -10,4 +10,5 @@ class RoutesNames {
   static const orderPage = 'orderPage';
   static const pets = 'pets';
   static const settings = 'settings';
+  static const addInformation = 'addInformation';
 }

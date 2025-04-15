@@ -17,7 +17,7 @@ class OrderRepositoryImpl implements OrderRepository {
       {required OrderModel order, required List<String> petIds}) async {
     try {
       final dto = OrderDto.fromDomain(order);
-      dto.idPerson = supabaseClient.auth.currentUser!.id;
+      dto.personId = supabaseClient.auth.currentUser!.id;
       final json = dto.toJson();
       json.remove('id');
 
@@ -28,14 +28,15 @@ class OrderRepositoryImpl implements OrderRepository {
           .single();
 
       final orderId = orderResponse['id'];
-      await supabaseClient
-          .from(TableNames.petIdsOfOrder)
-          .insert(petIds.map((id) => {
+      await supabaseClient.from(TableNames.petIdsOfOrder).insert(petIds
+          .map((id) => {
                 'id_order': orderId,
                 'id_pet': id,
-              }));
+              })
+          .toList());
+
       return right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }

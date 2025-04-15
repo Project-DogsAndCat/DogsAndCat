@@ -24,6 +24,7 @@ class _AddPetPageState extends State<AddPetPage> {
   final _breedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
+  DateTime bHDay = DateTime.now();
 
   @override
   void dispose() {
@@ -93,6 +94,11 @@ class _AddPetPageState extends State<AddPetPage> {
                               Positioned.fill(
                                 child: MyDatePicker(
                                   ageController: _ageController,
+                                  changeDateBhD: (value) {
+                                    setState(() {
+                                      bHDay = value;
+                                    });
+                                  },
                                 ),
                               ),
                             ],
@@ -191,7 +197,7 @@ class _AddPetPageState extends State<AddPetPage> {
     Pet pet = Pet(
         name: _nameController.text,
         breed: _breedController.text,
-        age: _ageController.text,
+        dateBhD: bHDay,
         weight: int.parse(_weightController.text),
         gender: _isBoy! ? AppString.boy : AppString.girl,
         selectedCategory: selectedCategory ?? '',

@@ -10,7 +10,7 @@ class ListTileOrder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(order.status.value),
+        Text(order.status!.value),
         const SizedBox(
           height: 10.0,
         ),

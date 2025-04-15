@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
+import 'package:dogs_and_cats/core/utils/calculate_age.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
 import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
@@ -30,7 +31,8 @@ class _EditPetPageState extends State<EditPetPage> {
   void initState() {
     _nameController = TextEditingController(text: widget.pet.name);
     _breadController = TextEditingController(text: widget.pet.breed);
-    _ageController = TextEditingController(text: widget.pet.age);
+    _ageController =
+        TextEditingController(text: calculatingAge(widget.pet.dateBhD));
     _weightController =
         TextEditingController(text: widget.pet.weight.toString());
     super.initState();

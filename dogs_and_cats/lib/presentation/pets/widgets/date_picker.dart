@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 
+import '../../../core/utils/calculate_age.dart';
+
 class MyDatePicker extends StatelessWidget {
   const MyDatePicker({
     super.key,
     required TextEditingController ageController,
+    required this.changeDateBhD,
   }) : _ageController = ageController;
 
   final TextEditingController _ageController;
+  final Function(DateTime date) changeDateBhD;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,8 @@ class MyDatePicker extends StatelessWidget {
         );
 
         if (dateBhd != null) {
-          _ageController.text = _calculatingAge(dateBhd);
+          changeDateBhD(dateBhd);
+          _ageController.text = calculatingAge(dateBhd);
         }
       },
       child: Container(
@@ -34,22 +39,5 @@ class MyDatePicker extends StatelessWidget {
             borderRadius: BorderRadius.circular(25.0)),
       ),
     );
-  }
-}
-
-String _calculatingAge(DateTime dateBhd) {
-  DateTime today = DateTime.now();
-  final year = _formatingYear(today.year - dateBhd.year);
-  int mth = today.month - dateBhd.month;
-  if (mth < 0) mth = 12 + mth;
-  return '$year $mth мес.';
-}
-
-String _formatingYear(int year) {
-  if (year % 10 == 1 && year != 11) return '$year год';
-  if (year % 10 > 1 && year % 10 < 5) {
-    return '$year года';
-  } else {
-    return '$year лет';
   }
 }

@@ -12,6 +12,8 @@ import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../presentation/dogsitter/adding_information/pages/add_information.dart';
+
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
@@ -35,6 +37,10 @@ final GoRouter router = GoRouter(
           name: RoutesNames.orderingService,
           path: '/ordering',
           builder: (context, state) => OrderingServicePage()),
+      GoRoute(
+          name: RoutesNames.addInformation,
+          path: '/addInformation',
+          builder: (context, state) => AddInformation()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

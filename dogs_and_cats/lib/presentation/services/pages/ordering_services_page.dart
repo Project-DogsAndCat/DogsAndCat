@@ -1,19 +1,18 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
-import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
-import 'package:dogs_and_cats/presentation/services/add_order_bloc/add_order_bloc.dart';
+import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import '../../../core/theme/theme.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
+import '../../../domain/models/order.dart';
 import '../widgets/duration_and_price_selection_widget.dart';
 import '../widgets/pet_selection_widget.dart';
 
@@ -30,7 +29,6 @@ class _OrderingServiceState extends State<OrderingServicePage> {
   _OrderingServiceState();
 
   int? _selectedValue;
-
   late String idService;
   late String titleService;
   String? duration;
@@ -38,16 +36,14 @@ class _OrderingServiceState extends State<OrderingServicePage> {
   late DateTime date = DateTime.now();
   TimeOfDay? time;
   List<String>? petIds;
-
   String? namePet;
 
   @override
   Widget build(BuildContext context) {
-    initializeDateFormatting("ru_RU");
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppString.orderingService,
+          'AppString.orderingService',
           style: textTheme.titleMedium,
         ),
         centerTitle: true,
@@ -57,14 +53,13 @@ class _OrderingServiceState extends State<OrderingServicePage> {
           },
         ),
       ),
-      body: BlocListener<AddOrderBloc, AddOrderState>(
+      body: BlocListener<OrderBloc, OrderState>(
         listener: (context, state) {
           state.mapOrNull(failure: (value) {
             CustomSnackBar.showError(context, value.message);
-          }, success: (value) {
+          }, loaded: (value) {
             context.goNamed(
               RoutesNames.orderPage,
-              extra: value.order,
             );
           });
         },
@@ -75,7 +70,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  AppString.durationService,
+                  'AppString.durationService',
                   style: textTheme.labelLarge,
                 ),
                 const SizedBox(
@@ -118,8 +113,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                    '${DateFormat.MMMMEEEEd("ru_RU").format(date)}, ${time ?? ''}'),
+                Text('${DateFormat.MMMMEEEEd().format(date)}, ${time ?? ''}'),
                 const SizedBox(
                   height: 10,
                 ),
@@ -142,7 +136,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        AppString.selectTime,
+                        'AppString.selectTime',
                       ),
                       Text(time != null ? '${time!.hour}:${time!.minute}' : ''),
                     ],
@@ -151,7 +145,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(AppString.forWhichPets),
+                const Text('AppString.forWhichPets'),
                 PetSelectionWidget(
                   onSelected: (List<String> ids, List<String> names) {
                     setState(() {
@@ -183,31 +177,28 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                         price == null ||
                         petIds == null) {
                       CustomSnackBar.showError(
-                          context, AppString.noDataSelected);
+                          context, 'AppString.noDataSelected');
                     } else {
-                      context.read<AddOrderBloc>().add(
-                            AddOrderEvent.addOrder(
-                              order: Order(
-                                idService: idService,
+                      context.read<OrderBloc>().add(
+                            OrderEvent.addOrder(
+                              order: OrderModel(
+                                serviceId: idService,
                                 duration: duration!,
                                 price: price!,
                                 date: date.copyWith(
                                     hour: time!.hour, minute: time!.minute),
-                                status: 'Заказ принят',
-                                titleService: titleService,
-                                namePet: namePet,
                               ),
                               petIds: petIds!,
                             ),
                           );
                     }
                   },
-                  widget: BlocBuilder<AddOrderBloc, AddOrderState>(
+                  widget: BlocBuilder<OrderBloc, OrderState>(
                       builder: (context, state) {
                     return state.maybeMap(
-                        success: (_) => CircularProgressIndicator(),
+                        loaded: (_) => CircularProgressIndicator(),
                         orElse: () {
-                          return Text(AppString.order);
+                          return Text(AppString.weight);
                         });
                   }),
                 )

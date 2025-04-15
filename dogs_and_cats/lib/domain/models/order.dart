@@ -1,24 +1,26 @@
-import 'package:flutter/material.dart';
-
-class Order {
-  Order({
+class OrderModel {
+  OrderModel({
     this.id,
-    this.titleService,
-    this.namePet,
-    required this.idService,
+    required this.serviceId,
     required this.duration,
     required this.price,
     required this.date,
-    // required this.time,
-    required this.status,
+    this.status = Status.waiting,
   });
   final String? id;
-  final String? titleService;
-  final String? namePet;
-  final String idService;
+  final String serviceId;
   final String duration;
   final double price;
   final DateTime date;
-  // final DateTime time;
-  final String status;
+  final Status? status;
+}
+
+enum Status {
+  waiting('В ожидании'),
+  adopted('Принят'),
+  refusal('Отказ'),
+  done('Выполнено');
+
+  const Status(this.value);
+  final String value;
 }
