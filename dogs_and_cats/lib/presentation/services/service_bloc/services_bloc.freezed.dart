@@ -353,7 +353,7 @@ mixin _$ServicesState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_loaded value) loaded,
-    required TResult Function(_loadedService value) loadedService,
+    required TResult Function(_LoadedService value) loadedService,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -361,7 +361,7 @@ mixin _$ServicesState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loaded value)? loaded,
-    TResult? Function(_loadedService value)? loadedService,
+    TResult? Function(_LoadedService value)? loadedService,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -369,7 +369,7 @@ mixin _$ServicesState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_loaded value)? loaded,
-    TResult Function(_loadedService value)? loadedService,
+    TResult Function(_LoadedService value)? loadedService,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -477,7 +477,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_loaded value) loaded,
-    required TResult Function(_loadedService value) loadedService,
+    required TResult Function(_LoadedService value) loadedService,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -488,7 +488,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loaded value)? loaded,
-    TResult? Function(_loadedService value)? loadedService,
+    TResult? Function(_LoadedService value)? loadedService,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -499,7 +499,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_loaded value)? loaded,
-    TResult Function(_loadedService value)? loadedService,
+    TResult Function(_LoadedService value)? loadedService,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -628,7 +628,7 @@ class _$loadedImpl implements _loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_loaded value) loaded,
-    required TResult Function(_loadedService value) loadedService,
+    required TResult Function(_LoadedService value) loadedService,
     required TResult Function(_Failure value) failure,
   }) {
     return loaded(this);
@@ -639,7 +639,7 @@ class _$loadedImpl implements _loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loaded value)? loaded,
-    TResult? Function(_loadedService value)? loadedService,
+    TResult? Function(_LoadedService value)? loadedService,
     TResult? Function(_Failure value)? failure,
   }) {
     return loaded?.call(this);
@@ -650,7 +650,7 @@ class _$loadedImpl implements _loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_loaded value)? loaded,
-    TResult Function(_loadedService value)? loadedService,
+    TResult Function(_LoadedService value)? loadedService,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -674,20 +674,20 @@ abstract class _loaded implements ServicesState {
 }
 
 /// @nodoc
-abstract class _$$loadedServiceImplCopyWith<$Res> {
-  factory _$$loadedServiceImplCopyWith(
-          _$loadedServiceImpl value, $Res Function(_$loadedServiceImpl) then) =
-      __$$loadedServiceImplCopyWithImpl<$Res>;
+abstract class _$$LoadedServiceImplCopyWith<$Res> {
+  factory _$$LoadedServiceImplCopyWith(
+          _$LoadedServiceImpl value, $Res Function(_$LoadedServiceImpl) then) =
+      __$$LoadedServiceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Service service});
 }
 
 /// @nodoc
-class __$$loadedServiceImplCopyWithImpl<$Res>
-    extends _$ServicesStateCopyWithImpl<$Res, _$loadedServiceImpl>
-    implements _$$loadedServiceImplCopyWith<$Res> {
-  __$$loadedServiceImplCopyWithImpl(
-      _$loadedServiceImpl _value, $Res Function(_$loadedServiceImpl) _then)
+class __$$LoadedServiceImplCopyWithImpl<$Res>
+    extends _$ServicesStateCopyWithImpl<$Res, _$LoadedServiceImpl>
+    implements _$$LoadedServiceImplCopyWith<$Res> {
+  __$$LoadedServiceImplCopyWithImpl(
+      _$LoadedServiceImpl _value, $Res Function(_$LoadedServiceImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ServicesState
@@ -697,7 +697,7 @@ class __$$loadedServiceImplCopyWithImpl<$Res>
   $Res call({
     Object? service = null,
   }) {
-    return _then(_$loadedServiceImpl(
+    return _then(_$LoadedServiceImpl(
       service: null == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
@@ -708,8 +708,8 @@ class __$$loadedServiceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$loadedServiceImpl implements _loadedService {
-  const _$loadedServiceImpl({required this.service});
+class _$LoadedServiceImpl implements _LoadedService {
+  const _$LoadedServiceImpl({required this.service});
 
   @override
   final Service service;
@@ -723,7 +723,7 @@ class _$loadedServiceImpl implements _loadedService {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$loadedServiceImpl &&
+            other is _$LoadedServiceImpl &&
             (identical(other.service, service) || other.service == service));
   }
 
@@ -735,8 +735,8 @@ class _$loadedServiceImpl implements _loadedService {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$loadedServiceImplCopyWith<_$loadedServiceImpl> get copyWith =>
-      __$$loadedServiceImplCopyWithImpl<_$loadedServiceImpl>(this, _$identity);
+  _$$LoadedServiceImplCopyWith<_$LoadedServiceImpl> get copyWith =>
+      __$$LoadedServiceImplCopyWithImpl<_$LoadedServiceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -780,7 +780,7 @@ class _$loadedServiceImpl implements _loadedService {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_loaded value) loaded,
-    required TResult Function(_loadedService value) loadedService,
+    required TResult Function(_LoadedService value) loadedService,
     required TResult Function(_Failure value) failure,
   }) {
     return loadedService(this);
@@ -791,7 +791,7 @@ class _$loadedServiceImpl implements _loadedService {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loaded value)? loaded,
-    TResult? Function(_loadedService value)? loadedService,
+    TResult? Function(_LoadedService value)? loadedService,
     TResult? Function(_Failure value)? failure,
   }) {
     return loadedService?.call(this);
@@ -802,7 +802,7 @@ class _$loadedServiceImpl implements _loadedService {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_loaded value)? loaded,
-    TResult Function(_loadedService value)? loadedService,
+    TResult Function(_LoadedService value)? loadedService,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -813,16 +813,16 @@ class _$loadedServiceImpl implements _loadedService {
   }
 }
 
-abstract class _loadedService implements ServicesState {
-  const factory _loadedService({required final Service service}) =
-      _$loadedServiceImpl;
+abstract class _LoadedService implements ServicesState {
+  const factory _LoadedService({required final Service service}) =
+      _$LoadedServiceImpl;
 
   Service get service;
 
   /// Create a copy of ServicesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$loadedServiceImplCopyWith<_$loadedServiceImpl> get copyWith =>
+  _$$LoadedServiceImplCopyWith<_$LoadedServiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -933,7 +933,7 @@ class _$FailureImpl implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_loaded value) loaded,
-    required TResult Function(_loadedService value) loadedService,
+    required TResult Function(_LoadedService value) loadedService,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -944,7 +944,7 @@ class _$FailureImpl implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loaded value)? loaded,
-    TResult? Function(_loadedService value)? loadedService,
+    TResult? Function(_LoadedService value)? loadedService,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -955,7 +955,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_loaded value)? loaded,
-    TResult Function(_loadedService value)? loadedService,
+    TResult Function(_LoadedService value)? loadedService,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

@@ -8,7 +8,7 @@ class ServicesState with _$ServicesState {
   }) = _loaded;
   const factory ServicesState.loadedService({
     required Service service,
-  }) = _loadedService;
+  }) = _LoadedService;
   const factory ServicesState.failure({
     required String message,
   }) = _Failure;

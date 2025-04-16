@@ -1,3 +1,5 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomProfileButton extends StatelessWidget {
@@ -16,8 +18,14 @@ class CustomProfileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)))),
+        backgroundColor: WidgetStatePropertyAll(AppColors.buttonColor),
+        elevation: const WidgetStatePropertyAll(0),
+      ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -26,12 +34,12 @@ class CustomProfileButton extends StatelessWidget {
               children: [
                 Text(
                   mainInfoTitle,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: textTheme.bodyMedium,
                 ),
                 otherInfoTitle != null
                     ? Text(
                         otherInfoTitle!,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: textTheme.bodyMedium,
                       )
                     : const SizedBox.shrink()
               ],

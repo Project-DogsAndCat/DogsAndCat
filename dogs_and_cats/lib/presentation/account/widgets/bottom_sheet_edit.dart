@@ -1,3 +1,5 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,7 @@ class _BottomSheetEditState extends State<BottomSheetEdit> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,19 +41,27 @@ class _BottomSheetEditState extends State<BottomSheetEdit> {
               ),
             ),
             const SizedBox(
-              height: 15.0,
+              height: 20.0,
             ),
-            Text(widget.title, style: Theme.of(context).textTheme.bodyLarge),
+            Text(widget.title, style: textTheme.labelLarge),
+            const SizedBox(
+              height: 20.0,
+            ),
             ...widget.fields,
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 15.0),
             RoundedElevatedButton(
+              height: 50,
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   widget.onSave();
                   Navigator.pop(context);
                 }
               },
-              widget: const Text(AppString.update),
+              widget: Text(
+                AppString.update,
+                style:
+                    textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor),
+              ),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:dogs_and_cats/domain/models/person.dart';
@@ -32,6 +33,9 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
       child: Column(
         children: [
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.blue),
+            ),
             onPressed: () {
               showModalBottomSheet<void>(
                 context: context,
@@ -59,7 +63,7 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
                           );
                           return Text(
                             state.results.first.title,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: textTheme.bodyMedium,
                           );
                         },
                         selectedObjectBySearching: (state) {
@@ -69,12 +73,12 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
                           );
                           return Text(
                             state.selectedObject.title,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: textTheme.bodyMedium,
                           );
                         },
                         failure: (failure) => Text(
                           failure.message,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: textTheme.bodyMedium,
                         ),
                       );
                     },
@@ -95,6 +99,7 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
                       updatePerson: updatePerson!,
                     ));
               }
+              Navigator.pop(context);
             },
             widget: const Text(AppString.save),
           ),

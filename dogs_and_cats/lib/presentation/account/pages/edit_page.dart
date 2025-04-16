@@ -1,3 +1,5 @@
+import 'package:dogs_and_cats/core/theme/theme.dart';
+import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/presentation/account/pages/email_edit.dart';
 import 'package:dogs_and_cats/presentation/account/pages/name_edit.dart';
 import 'package:dogs_and_cats/presentation/account/pages/phone_edit.dart';
@@ -31,7 +33,7 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -39,12 +41,19 @@ class _EditPageState extends State<EditPage> {
             height: 5,
             width: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(50),
               color: Colors.grey[400],
             ),
           ),
           const SizedBox(
-            height: 15.0,
+            height: 20.0,
+          ),
+          Text(
+            AppString.personalData,
+            style: textTheme.labelLarge,
+          ),
+          const SizedBox(
+            height: 20.0,
           ),
           CustomProfileButton(
             mainInfoTitle:
@@ -61,8 +70,8 @@ class _EditPageState extends State<EditPage> {
             height: 10.0,
           ),
           CustomProfileButton(
-            mainInfoTitle: '${widget.person.phone}',
-            icon: Icons.person,
+            mainInfoTitle: widget.person.phone ?? AppString.phone,
+            icon: Icons.phone,
             onPressed: () {
               _showEditBottomSheet(
                 context,
@@ -75,7 +84,7 @@ class _EditPageState extends State<EditPage> {
           ),
           CustomProfileButton(
             mainInfoTitle: '${widget.person.email}',
-            icon: Icons.person,
+            icon: Icons.email,
             onPressed: () {
               _showEditBottomSheet(
                 context,

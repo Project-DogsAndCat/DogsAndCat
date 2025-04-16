@@ -63,7 +63,7 @@ class ServicePage extends StatelessWidget {
                                           .read<PetBloc>()
                                           .add(PetEvent.load());
                                     },
-                                    color: AppColors.buttonServiceColor,
+                                    color: AppColors.buttonColor,
                                     height: 100,
                                     widget: Row(
                                       crossAxisAlignment:

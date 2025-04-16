@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -38,13 +39,11 @@ class CustomTextFormField extends StatelessWidget {
       // inputFormatters: <TextInputFormatter>[
       //   FilteringTextInputFormatter.digitsOnly
       // ],
-      style: TextStyle(
-        color: color,
-      ),
+      style: textTheme.bodyMedium,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: TextStyle(color: color),
+        hintStyle: textTheme.bodyMedium,
         errorStyle: TextStyle(
           fontSize: 11,
         ),

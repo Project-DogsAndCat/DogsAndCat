@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/routes/route_names.dart';
+import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
 import 'map_page.dart';
 
@@ -16,11 +17,14 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppString.profile),
+        title: Text(
+          AppString.profile,
+          style: textTheme.titleMedium,
+        ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0),
         child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
             return state.map(
@@ -29,8 +33,15 @@ class ProfilePage extends StatelessWidget {
               ),
               loaded: (state) {
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      AppString.personalData,
+                      style: textTheme.labelLarge,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     CustomProfileButton(
                       onPressed: () {
                         showModalBottomSheet<void>(
@@ -50,16 +61,30 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(
                       height: 25.0,
                     ),
+                    Text(
+                      AppString.myPets,
+                      style: textTheme.labelLarge,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     CustomProfileButton(
                         onPressed: () {
                           context.goNamed(RoutesNames.pets, pathParameters: {
                             'backPage': RoutesNames.account
                           });
                         },
-                        mainInfoTitle: AppString.myPets,
+                        mainInfoTitle: AppString.pets,
                         icon: Icons.pets),
                     const SizedBox(
                       height: 25.0,
+                    ),
+                    Text(
+                      AppString.myAddress,
+                      style: textTheme.labelLarge,
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     CustomProfileButton(
                       onPressed: () {

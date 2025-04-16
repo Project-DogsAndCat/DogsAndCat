@@ -9,7 +9,7 @@ class AppColors {
   static const Color greyColor = Colors.grey;
   static const Color errorColor = Color(0xFFB00020);
   static const Color transparentColor = Colors.transparent;
-  static const Color buttonServiceColor = Color(0xffeaefd2);
+  static const Color buttonColor = Color(0xffeaefd2);
   static const Color bottomNavigationBarIconColor = Color(0xff939391);
 // // snack bar color
   static const Color snackBarBlue = Color(0xff3282B8);

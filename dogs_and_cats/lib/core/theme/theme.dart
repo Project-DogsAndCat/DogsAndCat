@@ -27,7 +27,6 @@ final textTheme = TextTheme(
     fontFamily: 'NimbusSanL',
   ),
 
-  //Для страницы услуг
   titleLarge: TextStyle(
     fontSize: 50,
     height: 0.9,

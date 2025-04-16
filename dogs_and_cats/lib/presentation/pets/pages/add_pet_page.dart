@@ -1,3 +1,6 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
+import 'package:dogs_and_cats/presentation/account/widgets/custom_choice_chip.dart';
 import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +51,21 @@ class _AddPetPageState extends State<AddPetPage> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              Container(
+                height: 5,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[400],
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Text(AppString.myPets, style: textTheme.labelLarge),
+              const SizedBox(
+                height: 20.0,
+              ),
               Expanded(
                 child: ListView(
                   children: [
@@ -118,26 +136,23 @@ class _AddPetPageState extends State<AddPetPage> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    Wrap(
-                      spacing: 10.0,
+                    Row(
                       children: [
-                        ChoiceChip(
-                          label: Text(AppString.boy),
-                          showCheckmark: false,
-                          selected: _isBoy == true,
-                          onSelected: (bool selected) {
+                        CustomChoiceChip(
+                          title: AppString.boy,
+                          isSelected: _isBoy == true,
+                          onSelected: (bool isBoy) {
                             setState(() {
-                              _isBoy = selected ? true : false;
+                              _isBoy = isBoy ? true : false;
                             });
                           },
                         ),
-                        ChoiceChip(
-                          label: Text(AppString.girl),
-                          showCheckmark: false,
-                          selected: _isBoy == false,
-                          onSelected: (bool selected) {
+                        CustomChoiceChip(
+                          title: AppString.girl,
+                          isSelected: _isBoy == false,
+                          onSelected: (bool isBoy) {
                             setState(() {
-                              _isBoy = selected ? false : true;
+                              _isBoy = isBoy ? false : true;
                             });
                           },
                         ),
