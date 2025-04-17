@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../account/widgets/custom_profile_button.dart';
-import '../blocs/pet_bloc.dart';
+import '../blocs/pet_bloc/pet_bloc.dart';
 import '../pages/edit_pet_page.dart';
 
 class ListPets extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
@@ -73,6 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                   CustomTextFormField(
                     controller: _emailController,
                     color: AppColors.whiteColor,
+                    colorText: textTheme.bodyMedium!
+                        .copyWith(color: AppColors.whiteColor),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;
@@ -92,6 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                   CustomTextFormField(
                     controller: _passwordController,
                     color: AppColors.whiteColor,
+                    colorText: textTheme.bodyMedium!
+                        .copyWith(color: AppColors.whiteColor),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return AppString.required;

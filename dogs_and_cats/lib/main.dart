@@ -8,7 +8,8 @@ import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dar
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
-import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -36,6 +37,7 @@ void main() async {
         BlocProvider(create: (_) => getIt<PetBloc>()..add(PetEvent.load())),
         BlocProvider(create: (_) => getIt<MapSuggestBloc>()),
         BlocProvider(create: (_) => getIt<MapSearchBloc>()),
+        BlocProvider(create: (_) => getIt<DogBreedBloc>()),
         BlocProvider(create: (_) => getIt<MapLocationCubit>()),
         BlocProvider(create: (_) => getIt<InformationDogSitterBloc>()),
       ],

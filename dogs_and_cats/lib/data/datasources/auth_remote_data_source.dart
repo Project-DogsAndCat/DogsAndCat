@@ -26,7 +26,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       }
 
       final json = response.session!.user.toJson();
-      json['roleUser'] = response.session!.user.userMetadata?['role'];
+      json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
       return PersonAuthDto.fromJson(json);
     } catch (e) {
@@ -38,7 +38,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<PersonAuthDto> signUpWithEmailPassword(
       {required String email, required String password}) async {
     try {
-      final permissions = {'role': 'dogsitter'};
+      final permissions = {'role_user': 'user'};
 
       final response = await supabaseClient.auth
           .signUp(password: password, email: email, data: permissions);
@@ -47,7 +47,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       }
 
       final json = response.user!.toJson();
-      json['roleUser'] = response.session!.user.userMetadata?['role'];
+      json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
       return PersonAuthDto.fromJson(json);
     } catch (e) {

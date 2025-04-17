@@ -1,11 +1,13 @@
 import 'package:dogs_and_cats/data/datasources/auth_remote_data_source.dart';
 import 'package:dogs_and_cats/data/repositories/auth_repository_impl.dart';
+import 'package:dogs_and_cats/data/repositories/dog_breed_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/dog_sitter_repositort_impl.dart';
 import 'package:dogs_and_cats/data/repositories/order_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/person_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/pet_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/service_repository_impl.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
+import 'package:dogs_and_cats/domain/repositories/dog_breed_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/location_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/map_search_repository.dart';
@@ -15,7 +17,8 @@ import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
-import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -58,6 +61,8 @@ Future<void> setup() async {
   _initMapSuggest();
 
   _initMapSearch();
+
+  _initDogBreed();
 
   _initMapLocation();
 
@@ -139,6 +144,14 @@ void _initMapSuggest() {
 void _initMapSearch() {
   getIt.registerLazySingleton<MapSearchBloc>(
       () => MapSearchBloc(repository: getIt<MapSearchRepository>()));
+}
+
+void _initDogBreed() {
+  getIt.registerLazySingleton<DogBreedRepository>(
+      () => DogBreedRepositoryImpl());
+
+  getIt.registerLazySingleton<DogBreedBloc>(
+      () => DogBreedBloc(repository: getIt<DogBreedRepository>()));
 }
 
 void _initMapLocation() {

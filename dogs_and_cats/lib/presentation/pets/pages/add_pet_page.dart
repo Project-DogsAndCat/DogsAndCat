@@ -1,8 +1,9 @@
-import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_choice_chip.dart';
 import 'package:dogs_and_cats/presentation/pets/cubit/pet_edit_cubit.dart';
+import 'package:dogs_and_cats/presentation/pets/pages/dog_breed_search_page.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/properties_page.dart';
+import 'package:dogs_and_cats/presentation/pets/widgets/button_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +12,7 @@ import '../../../core/widgets/custom_switch.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../../domain/models/pet.dart';
-import '../blocs/pet_bloc.dart';
+import '../blocs/pet_bloc/pet_bloc.dart';
 import '../widgets/date_picker.dart';
 
 class AddPetPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class AddPetPage extends StatefulWidget {
 class _AddPetPageState extends State<AddPetPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  final _breedController = TextEditingController();
+  final _dogBreedController = TextEditingController();
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
   DateTime bHDay = DateTime.now();
@@ -32,7 +33,7 @@ class _AddPetPageState extends State<AddPetPage> {
   @override
   void dispose() {
     _nameController.dispose();
-    _breedController.dispose();
+    _dogBreedController.dispose();
     _ageController.dispose();
     _weightController.dispose();
     super.dispose();
@@ -83,16 +84,19 @@ class _AddPetPageState extends State<AddPetPage> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    CustomTextFormField(
-                      controller: _breedController,
-                      hintText: AppString.breed,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return AppString.required;
-                        }
-                        return null;
+                    SearchButton(
+                      onTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          elevation: 0,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => DogBreedSearchPage(
+                            controller: _dogBreedController,
+                          ),
+                        );
                       },
-                      keyboardType: TextInputType.text,
+                      controller: _dogBreedController,
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -211,7 +215,7 @@ class _AddPetPageState extends State<AddPetPage> {
   Pet createPet(String? selectedCategory, String? otherFeatures) {
     Pet pet = Pet(
         name: _nameController.text,
-        breed: _breedController.text,
+        breed: _dogBreedController.text,
         dateBhD: bHDay,
         weight: int.parse(_weightController.text),
         gender: _isBoy! ? AppString.boy : AppString.girl,

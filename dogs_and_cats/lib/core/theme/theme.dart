@@ -14,7 +14,7 @@ final textTheme = TextTheme(
   titleMedium: TextStyle(
     fontSize: 25,
     fontWeight: FontWeight.w900,
-    color: AppColors.backGroundColor,
+    color: AppColors.whiteColor,
     fontFamily: 'NimbusSanL',
   ),
 

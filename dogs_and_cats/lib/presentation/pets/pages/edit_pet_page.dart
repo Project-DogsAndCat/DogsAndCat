@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/widgets/custom_switch.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
-import '../blocs/pet_bloc.dart';
+import '../blocs/pet_bloc/pet_bloc.dart';
 
 class EditPetPage extends StatefulWidget {
   const EditPetPage({super.key, required this.pet});

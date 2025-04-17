@@ -2,7 +2,7 @@ import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
-import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:flutter/material.dart';

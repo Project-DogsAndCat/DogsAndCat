@@ -14,6 +14,7 @@ class PersonAuthDto {
 
   final String id;
   final String email;
+  @JsonKey(name: 'role_user')
   final String role;
 
   PersonAuth toDomain() => PersonAuth(id: id, email: email, role: role);

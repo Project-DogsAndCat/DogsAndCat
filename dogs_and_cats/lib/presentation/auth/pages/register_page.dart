@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/routes/route_names.dart';
+import '../../../core/theme/theme.dart';
 import '../../../core/utils/validation_rules.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 
@@ -85,6 +86,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       CustomTextFormField(
                         controller: _firstNameController,
                         color: AppColors.whiteColor,
+                        colorText: textTheme.bodyMedium!
+                            .copyWith(color: AppColors.whiteColor),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -101,6 +104,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       CustomTextFormField(
                         controller: _lastNameController,
                         color: AppColors.whiteColor,
+                        colorText: textTheme.bodyMedium!
+                            .copyWith(color: AppColors.whiteColor),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -117,6 +122,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       CustomTextFormField(
                         controller: _emailController,
                         color: AppColors.whiteColor,
+                        colorText: textTheme.bodyMedium!
+                            .copyWith(color: AppColors.whiteColor),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
@@ -136,6 +143,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       CustomTextFormField(
                         controller: _passwordController,
                         color: AppColors.whiteColor,
+                        colorText: textTheme.bodyMedium!
+                            .copyWith(color: AppColors.whiteColor),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return AppString.required;
