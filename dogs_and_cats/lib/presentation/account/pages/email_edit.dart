@@ -42,7 +42,7 @@ class _EmailEditState extends State<EmailEdit> {
           keyboardType: TextInputType.text,
           validator: (value) {
             if (isValidatingEmail()) {
-              return AppString.required;
+              return AppString.providedValidEmail;
             }
             return null;
           },

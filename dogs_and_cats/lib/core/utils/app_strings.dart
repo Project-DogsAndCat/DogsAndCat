@@ -6,6 +6,7 @@ class AppString {
   static const lastName = 'Фамилия';
   static const address = 'Адрес';
   static const myAddress = 'Мой адрес';
+  static const addImage = 'Добавить фото';
 
   static const firstAndLastName = 'Имя и Фамилия';
   static const personalData = 'Личные данные';
@@ -44,6 +45,7 @@ class AppString {
   static const boy = 'Мальчик';
   static const girl = 'Девочка';
   static const pets = 'Питомцы';
+  static const enterBreed = 'Введите породу';
 
   static const internalServerError = 'Отсутствует соединение с интернетом';
   static const internetNotFound = 'Отсутствует соединение с интернетом';

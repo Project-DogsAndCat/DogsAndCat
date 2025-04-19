@@ -89,10 +89,12 @@ class _AddPetPageState extends State<AddPetPage> {
                         showModalBottomSheet(
                           isScrollControlled: true,
                           elevation: 0,
-                          backgroundColor: Colors.transparent,
                           context: context,
-                          builder: (context) => DogBreedSearchPage(
-                            controller: _dogBreedController,
+                          builder: (context) => SizedBox(
+                            height: MediaQuery.of(context).size.height - 80,
+                            child: DogBreedSearchPage(
+                              controller: _dogBreedController,
+                            ),
                           ),
                         );
                       },

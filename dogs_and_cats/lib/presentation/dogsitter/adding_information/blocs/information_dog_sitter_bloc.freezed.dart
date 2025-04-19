@@ -20,18 +20,21 @@ mixin _$InformationDogSitterEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String position) addInformation,
+    required TResult Function(Uint8List imageBytes) addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String position)? addInformation,
+    TResult? Function(Uint8List imageBytes)? addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String position)? addInformation,
+    TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$InformationDogSitterEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_AddImage value) addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_AddImage value)? addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$LoadImpl implements _Load {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String position) addInformation,
+    required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return load();
   }
@@ -129,6 +136,7 @@ class _$LoadImpl implements _Load {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String position)? addInformation,
+    TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return load?.call();
   }
@@ -138,6 +146,7 @@ class _$LoadImpl implements _Load {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String position)? addInformation,
+    TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -151,6 +160,7 @@ class _$LoadImpl implements _Load {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_AddImage value) addImage,
   }) {
     return load(this);
   }
@@ -160,6 +170,7 @@ class _$LoadImpl implements _Load {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_AddImage value)? addImage,
   }) {
     return load?.call(this);
   }
@@ -169,6 +180,7 @@ class _$LoadImpl implements _Load {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -254,6 +266,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(String position) addInformation,
+    required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return addInformation(position);
   }
@@ -263,6 +276,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(String position)? addInformation,
+    TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return addInformation?.call(position);
   }
@@ -272,6 +286,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(String position)? addInformation,
+    TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
     if (addInformation != null) {
@@ -285,6 +300,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
     required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_AddImage value) addImage,
   }) {
     return addInformation(this);
   }
@@ -294,6 +310,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
     TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_AddImage value)? addImage,
   }) {
     return addInformation?.call(this);
   }
@@ -303,6 +320,7 @@ class _$AddInformationImpl implements _AddInformation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
     TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) {
     if (addInformation != null) {
@@ -322,6 +340,155 @@ abstract class _AddInformation implements InformationDogSitterEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddInformationImplCopyWith<_$AddInformationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddImageImplCopyWith<$Res> {
+  factory _$$AddImageImplCopyWith(
+          _$AddImageImpl value, $Res Function(_$AddImageImpl) then) =
+      __$$AddImageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List imageBytes});
+}
+
+/// @nodoc
+class __$$AddImageImplCopyWithImpl<$Res>
+    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$AddImageImpl>
+    implements _$$AddImageImplCopyWith<$Res> {
+  __$$AddImageImplCopyWithImpl(
+      _$AddImageImpl _value, $Res Function(_$AddImageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InformationDogSitterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageBytes = null,
+  }) {
+    return _then(_$AddImageImpl(
+      imageBytes: null == imageBytes
+          ? _value.imageBytes
+          : imageBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddImageImpl implements _AddImage {
+  const _$AddImageImpl({required this.imageBytes});
+
+  @override
+  final Uint8List imageBytes;
+
+  @override
+  String toString() {
+    return 'InformationDogSitterEvent.addImage(imageBytes: $imageBytes)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddImageImpl &&
+            const DeepCollectionEquality()
+                .equals(other.imageBytes, imageBytes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(imageBytes));
+
+  /// Create a copy of InformationDogSitterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddImageImplCopyWith<_$AddImageImpl> get copyWith =>
+      __$$AddImageImplCopyWithImpl<_$AddImageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(String position) addInformation,
+    required TResult Function(Uint8List imageBytes) addImage,
+  }) {
+    return addImage(imageBytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(String position)? addInformation,
+    TResult? Function(Uint8List imageBytes)? addImage,
+  }) {
+    return addImage?.call(imageBytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(String position)? addInformation,
+    TResult Function(Uint8List imageBytes)? addImage,
+    required TResult orElse(),
+  }) {
+    if (addImage != null) {
+      return addImage(imageBytes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_AddImage value) addImage,
+  }) {
+    return addImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_AddImage value)? addImage,
+  }) {
+    return addImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_AddImage value)? addImage,
+    required TResult orElse(),
+  }) {
+    if (addImage != null) {
+      return addImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddImage implements InformationDogSitterEvent {
+  const factory _AddImage({required final Uint8List imageBytes}) =
+      _$AddImageImpl;
+
+  Uint8List get imageBytes;
+
+  /// Create a copy of InformationDogSitterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddImageImplCopyWith<_$AddImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

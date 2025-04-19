@@ -17,7 +17,7 @@ import '../../presentation/dogsitter/adding_information/pages/add_information.da
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session != null ? '/register' : '/services',
+    initialLocation: session == null ? '/register' : '/addInformation',
     routes: [
       GoRoute(
           name: RoutesNames.register,

@@ -9,6 +9,8 @@ abstract interface class AuthRemoteDataSource {
 
   Future<PersonAuthDto> loginWithEmailPassword(
       {required String email, required String password});
+
+  Future<void> signOut();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -38,7 +40,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<PersonAuthDto> signUpWithEmailPassword(
       {required String email, required String password}) async {
     try {
-      final permissions = {'role_user': 'user'};
+      final permissions = {'role_user': 'dogsitter'};
 
       final response = await supabaseClient.auth
           .signUp(password: password, email: email, data: permissions);
@@ -50,6 +52,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
       return PersonAuthDto.fromJson(json);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      if (supabaseClient.auth.currentUser == null) {
+        throw ServerException('Пользователь не найден');
+      }
+      await supabaseClient.auth.signOut();
     } catch (e) {
       throw ServerException(e.toString());
     }

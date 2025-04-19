@@ -9,6 +9,7 @@ import 'package:fpdart/src/either.dart';
 
 class DogBreedRepositoryImpl implements DogBreedRepository {
   final List<DogBreed> cache = [];
+  List<DogBreed> filterList = [];
 
   @override
   Future<Either<Failure, List<DogBreed>>> getDogBreed() async {
@@ -17,8 +18,9 @@ class DogBreedRepositoryImpl implements DogBreedRepository {
       final List<dynamic> json = jsonDecode(jsonStr);
       final dogBreeds =
           json.map((json) => DogBreedDto.fromJson(json).toDomain()).toList();
-
+      cache.clear();
       cache.addAll(dogBreeds);
+
       return right(dogBreeds);
     } catch (e) {
       return left(Failure(message: e.toString()));
@@ -28,12 +30,13 @@ class DogBreedRepositoryImpl implements DogBreedRepository {
   @override
   Either<Failure, List<DogBreed>> getSearchDogBreed({required String query}) {
     try {
-      final List<DogBreed> filter = cache
+      filterList.clear();
+      filterList = cache
           .where((breed) =>
-              breed.name.toLowerCase().startsWith(query.trim().toLowerCase()) ||
-              breed.name.toLowerCase().contains(query.trim().toLowerCase()))
+              breed.name.toLowerCase().contains(query.trim().toLowerCase()) ||
+              breed.name.toLowerCase().startsWith(query.trim().toLowerCase()))
           .toList();
-      return right(filter);
+      return right(filterList);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

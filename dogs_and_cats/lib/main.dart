@@ -5,8 +5,10 @@ import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_sea
 import 'package:dogs_and_cats/presentation/account/blocs/map_suggest_bloc/map_suggest_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
-import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
@@ -25,6 +27,7 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => getIt<LoginBloc>()),
         BlocProvider(create: (_) => getIt<AuthBloc>()),
         BlocProvider(create: (_) => getIt<ThemeCubit>()),
         BlocProvider(
@@ -37,9 +40,11 @@ void main() async {
         BlocProvider(create: (_) => getIt<PetBloc>()..add(PetEvent.load())),
         BlocProvider(create: (_) => getIt<MapSuggestBloc>()),
         BlocProvider(create: (_) => getIt<MapSearchBloc>()),
-        BlocProvider(create: (_) => getIt<DogBreedBloc>()),
+        BlocProvider(
+            create: (_) => getIt<DogBreedBloc>()..add(DogBreedEvent.load())),
         BlocProvider(create: (_) => getIt<MapLocationCubit>()),
         BlocProvider(create: (_) => getIt<InformationDogSitterBloc>()),
+        BlocProvider(create: (_) => getIt<ImageCubit>()),
       ],
       child: MyApp(),
     ),

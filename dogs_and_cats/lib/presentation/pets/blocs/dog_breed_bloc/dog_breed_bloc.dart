@@ -32,6 +32,8 @@ class DogBreedBloc extends Bloc<DogBreedEvent, DogBreedState> {
     final result = repository.getSearchDogBreed(query: event.query);
     result.fold(
         (failure) => emit(DogBreedState.failure(message: failure.message)),
-        (dogBreeds) => emit(DogBreedState.success(dogBreeds: dogBreeds)));
+        (dogBreeds) {
+      emit(DogBreedState.success(dogBreeds: dogBreeds));
+    });
   }
 }

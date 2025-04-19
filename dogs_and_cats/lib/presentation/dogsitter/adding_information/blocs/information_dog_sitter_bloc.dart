@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,8 +17,10 @@ class InformationDogSitterBloc
       : super(const InformationDogSitterState.initial()) {
     on<InformationDogSitterEvent>((event, emit) async {
       await event.map(
-          load: (_) => _load(emit),
-          addInformation: (event) => _addInformation(emit, event));
+        load: (_) => _load(emit),
+        addInformation: (event) => _addInformation(emit, event),
+        addImage: (event) => _addImage(emit, event),
+      );
     });
   }
 
@@ -35,6 +39,16 @@ class InformationDogSitterBloc
     emit(InformationDogSitterState.loading());
 
     final result = await repository.addInformation(position: event.position);
+
+    result.fold(
+        (failure) =>
+            emit(InformationDogSitterState.failure(message: failure.message)),
+        (_) => add(_Load()));
+  }
+
+  Future<void> _addImage(
+      Emitter<InformationDogSitterState> emit, _AddImage event) async {
+    final result = await repository.addImage(imageBytes: event.imageBytes);
 
     result.fold(
         (failure) =>

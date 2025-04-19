@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,8 @@ class AddInformation extends StatefulWidget {
 }
 
 class _AddInformationState extends State<AddInformation> {
-  String? selectedPosition;
+  String? _selectedPosition;
+  String? _imageUrl;
 
   @override
   void dispose() {
@@ -54,44 +56,49 @@ class _AddInformationState extends State<AddInformation> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Avatar(imageUrl: _imageUrl),
+                const SizedBox(
+                  height: 10.0,
+                ),
                 PositionDropDownButtonField(
-                  selectedValue: selectedPosition ?? dropdownItems.first.value!,
+                  selectedValue:
+                      _selectedPosition ?? dropdownItems.first.value!,
                   onChanged: (newValue) {
                     setState(() {
-                      selectedPosition = newValue;
+                      _selectedPosition = newValue;
                     });
                   },
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
                 RoundedElevatedButton(
                   onPressed: () {
-                    if (selectedPosition != null) {
+                    if (_selectedPosition != null) {
                       context.read<InformationDogSitterBloc>().add(
                           InformationDogSitterEvent.addInformation(
-                              position: selectedPosition!));
+                              position: _selectedPosition!));
                     }
                   },
                   widget: BlocBuilder<InformationDogSitterBloc,
                       InformationDogSitterState>(
                     builder: (context, state) {
-                      return state.maybeMap(loading: (_) {
-                        return CircularProgressIndicator(
-                          color: Colors.white,
-                        );
-                      }, orElse: () {
-                        return Text(
-                          AppString.save,
-                          style: const TextStyle(
-                              color: AppColors.whiteColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        );
-                      });
+                      return state.maybeMap(
+                        loading: (_) {
+                          return CircularProgressIndicator(
+                            color: Colors.white,
+                          );
+                        },
+                        orElse: () {
+                          return Text(
+                            AppString.save,
+                            style: const TextStyle(
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          );
+                        },
+                      );
                     },
                   ),
                 ),

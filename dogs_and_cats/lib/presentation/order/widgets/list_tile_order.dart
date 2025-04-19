@@ -6,7 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../order_bloc/order_bloc.dart';
 
 class ListTileOrder extends StatelessWidget {
-  const ListTileOrder({super.key, required this.order, required this.service});
+  const ListTileOrder({
+    super.key,
+    required this.order,
+    required this.service,
+  });
   final OrderModel order;
   final Service service;
 

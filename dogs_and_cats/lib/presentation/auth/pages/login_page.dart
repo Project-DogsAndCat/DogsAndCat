@@ -2,7 +2,8 @@ import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
-import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             horizontal: 16,
             vertical: 10,
           ),
-          child: BlocListener<AuthBloc, AuthState>(
+          child: BlocListener<LoginBloc, LoginState>(
             listener: (context, state) {
               state.map(
                 initial: (_) {},
@@ -56,8 +57,10 @@ class _LoginPageState extends State<LoginPage> {
                   clearText();
                   CustomSnackBar.showSuccess(context, AppString.loginSuccess);
                   if (state.person.role == 'user') {
+                    context.read<AuthBloc>().add(AuthEvent.userLogin());
                     context.goNamed(RoutesNames.services);
                   } else if (state.person.role == 'dogsitter') {
+                    context.read<AuthBloc>().add(AuthEvent.userLogin());
                     context.goNamed(RoutesNames.addInformation);
                   }
                 },
@@ -126,14 +129,14 @@ class _LoginPageState extends State<LoginPage> {
                   RoundedElevatedButton(
                     onPressed: () {
                       if (_registerFormKey.currentState!.validate()) {
-                        context.read<AuthBloc>().add(
-                              AuthEvent.signIn(
+                        context.read<LoginBloc>().add(
+                              LoginEvent.signIn(
                                   email: _emailController.text,
                                   password: _passwordController.text),
                             );
                       }
                     },
-                    widget: BlocBuilder<AuthBloc, AuthState>(
+                    widget: BlocBuilder<LoginBloc, LoginState>(
                       builder: (context, state) {
                         return state.maybeMap(loading: (_) {
                           return CircularProgressIndicator(

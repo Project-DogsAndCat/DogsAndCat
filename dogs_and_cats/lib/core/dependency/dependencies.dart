@@ -15,8 +15,10 @@ import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
-import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
@@ -44,6 +46,8 @@ Future<void> setup() async {
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseAnnonKey);
   getIt.registerLazySingleton<SupabaseClient>(() => supabase.client);
+  _initLogin();
+
   _initAuth();
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -67,9 +71,11 @@ Future<void> setup() async {
   _initMapLocation();
 
   _initDogSitter();
+
+  _initImageCubit();
 }
 
-void _initAuth() {
+void _initLogin() {
   getIt.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(supabaseClient: getIt<SupabaseClient>()));
 
@@ -77,7 +83,12 @@ void _initAuth() {
       remoteDataSource: getIt<AuthRemoteDataSource>(),
       supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerFactory<AuthBloc>(() => AuthBloc(getIt<AuthRepository>()));
+  getIt.registerFactory<LoginBloc>(() => LoginBloc(getIt<AuthRepository>()));
+}
+
+void _initAuth() {
+  getIt.registerFactory<AuthBloc>(
+      () => AuthBloc(repository: getIt<AuthRepository>()));
 }
 
 void _initTheme() {
@@ -131,6 +142,11 @@ void _initDogSitter() {
 
   getIt.registerLazySingleton<InformationDogSitterBloc>(
       () => InformationDogSitterBloc(repository: getIt<DogSitterRepository>()));
+}
+
+void _initImageCubit() {
+  getIt.registerLazySingleton<ImageCubit>(
+      () => ImageCubit(repository: getIt<DogSitterRepository>()));
 }
 
 void _initMapSuggest() {

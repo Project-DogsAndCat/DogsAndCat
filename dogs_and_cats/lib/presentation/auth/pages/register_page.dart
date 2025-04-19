@@ -2,7 +2,7 @@ import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/app_images.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
-import 'package:dogs_and_cats/presentation/auth/bloc/auth_bloc.dart';
+import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
-              child: BlocListener<AuthBloc, AuthState>(
+              child: BlocListener<LoginBloc, LoginState>(
                 listener: (context, state) {
                   state.map(
                       initial: (_) {},
@@ -174,8 +174,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       RoundedElevatedButton(
                         onPressed: () {
                           if (_registerFormKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(
-                                  AuthEvent.signUp(
+                            context.read<LoginBloc>().add(
+                                  LoginEvent.signUp(
                                       firstName: _firstNameController.text,
                                       lastName: _lastNameController.text,
                                       email: _emailController.text,
@@ -183,7 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 );
                           }
                         },
-                        widget: BlocBuilder<AuthBloc, AuthState>(
+                        widget: BlocBuilder<LoginBloc, LoginState>(
                           builder: (context, state) {
                             return state.maybeMap(loading: (_) {
                               return CircularProgressIndicator(

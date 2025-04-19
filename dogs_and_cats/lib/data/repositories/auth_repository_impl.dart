@@ -1,5 +1,5 @@
 import 'package:dogs_and_cats/core/error/failure.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/server_exception.dart';
@@ -53,6 +53,16 @@ class AuthRepositoryImpl implements AuthRepository {
       await supabaseClient.from(TableNames.person).update(json).eq('id', id);
     } catch (e) {
       throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> signOut() async {
+    try {
+      await remoteDataSource.signOut();
+      return right(unit);
+    } on ServerException catch (e) {
+      return left(Failure(message: e.message));
     }
   }
 }

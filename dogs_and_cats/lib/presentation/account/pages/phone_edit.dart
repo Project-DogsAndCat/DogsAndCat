@@ -6,6 +6,8 @@ import 'package:dogs_and_cats/presentation/account/widgets/bottom_sheet_edit.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/validation_rules.dart';
+
 class PhoneEdit extends StatefulWidget {
   const PhoneEdit({super.key, required this.person});
   final Person person;
@@ -39,8 +41,8 @@ class _PhoneEditState extends State<PhoneEdit> {
           hintText: AppString.phone,
           keyboardType: TextInputType.text,
           validator: (value) {
-            if (value!.isEmpty) {
-              return AppString.required;
+            if (isValidatingEmail()) {
+              return AppString.providedValidPhone;
             }
             return null;
           },
@@ -56,5 +58,13 @@ class _PhoneEditState extends State<PhoneEdit> {
             );
       },
     );
+  }
+
+  bool isValidatingEmail() {
+    if (_phoneController.text.isEmpty) return false;
+    if (ValidationRules.phoneValidation.hasMatch(_phoneController.text)) {
+      return false;
+    }
+    return true;
   }
 }
