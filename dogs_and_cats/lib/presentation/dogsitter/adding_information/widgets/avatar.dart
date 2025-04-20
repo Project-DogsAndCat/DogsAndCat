@@ -9,8 +9,10 @@ import '../cubits/image_cubit.dart';
 class Avatar extends StatefulWidget {
   const Avatar({
     super.key,
+    required this.existImage,
   });
 
+  final Function() existImage;
   @override
   State<Avatar> createState() => _AvatarState();
 }
@@ -52,6 +54,8 @@ class _AvatarState extends State<Avatar> {
               return;
             }
             final imageByBytes = await image.readAsBytes();
+
+            widget.existImage();
             if (mounted) {
               context.read<ImageCubit>().addImage(imageBytes: imageByBytes);
             }

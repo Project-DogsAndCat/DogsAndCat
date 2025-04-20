@@ -8,6 +8,7 @@ import 'package:fpdart/src/unit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/utils/table_names.dart';
+import '../../domain/models/service.dart';
 import '../models/person/person_dto.dart';
 
 class DogSitterRepositoryImpl implements DogSitterRepository {
@@ -15,13 +16,27 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
   final SupabaseClient supabaseClient;
   @override
   Future<Either<Failure, Unit>> addInformation(
-      {required String position}) async {
+      {required Set<Service> selectedServices}) async {
     try {
       final personId = supabaseClient.auth.currentUser!.id;
 
-      await supabaseClient
+      final dogSitter = await supabaseClient
           .from(TableNames.dogsitters)
-          .insert({'person_id': personId, 'position': position});
+          .insert({'person_id': personId})
+          .select()
+          .single();
+
+      final dogSitterId = dogSitter['id'];
+
+      await supabaseClient
+          .from(TableNames.participation)
+          .insert(selectedServices
+              .map((service) => {
+                    'dogsitter_id': dogSitterId,
+                    'service_id': service.id,
+                  })
+              .toList());
+
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

@@ -5,18 +5,18 @@ part 'person_dto.g.dart';
 
 @JsonSerializable()
 class PersonDto {
-  PersonDto({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phone,
-    this.role,
-    this.latitude,
-    this.longitude,
-    this.rating,
-    this.position,
-  });
+  PersonDto(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.role,
+      this.latitude,
+      this.longitude,
+      this.rating,
+      this.serviceId,
+      this.status});
   final String? id;
   @JsonKey(name: 'first_name')
   final String? firstName;
@@ -28,7 +28,16 @@ class PersonDto {
   final double? latitude;
   final double? longitude;
   final double? rating;
-  final String? position;
+  @JsonKey(name: 'service_id')
+  final String? serviceId;
+  final String? status;
+
+  Status getStatus(String? status) {
+    return Status.values.firstWhere(
+      (item) => item.value == status,
+      orElse: () => Status.free,
+    );
+  }
 
   Person toDomain() => Person(
         id: id,
@@ -40,7 +49,8 @@ class PersonDto {
         latitude: latitude,
         longitude: longitude,
         rating: rating,
-        position: position,
+        serviceId: serviceId,
+        status: getStatus(status),
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -53,7 +63,8 @@ class PersonDto {
         latitude: object.latitude,
         longitude: object.longitude,
         rating: object.rating,
-        position: object.position,
+        serviceId: object.serviceId,
+        status: object.status?.value,
       );
 
   factory PersonDto.fromJson(Map<String, dynamic> json) =>

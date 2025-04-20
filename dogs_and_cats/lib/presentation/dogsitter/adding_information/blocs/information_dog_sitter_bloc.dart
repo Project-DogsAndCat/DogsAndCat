@@ -5,6 +5,7 @@ import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../domain/models/person.dart';
+import '../../../../domain/models/service.dart';
 
 part 'information_dog_sitter_bloc.freezed.dart';
 part 'information_dog_sitter_event.dart';
@@ -18,7 +19,7 @@ class InformationDogSitterBloc
     on<InformationDogSitterEvent>((event, emit) async {
       await event.map(
         load: (_) => _load(emit),
-        addInformation: (event) => _addInformation(emit, event),
+        selectPositions: (event) => _selectPositions(emit, event),
         addImage: (event) => _addImage(emit, event),
       );
     });
@@ -34,11 +35,12 @@ class InformationDogSitterBloc
         (person) => emit(InformationDogSitterState.loaded(person: person)));
   }
 
-  Future<void> _addInformation(
-      Emitter<InformationDogSitterState> emit, _AddInformation event) async {
+  Future<void> _selectPositions(
+      Emitter<InformationDogSitterState> emit, _SelectPositions event) async {
     emit(InformationDogSitterState.loading());
 
-    final result = await repository.addInformation(position: event.position);
+    final result = await repository.addInformation(
+        selectedServices: event.selectedServices);
 
     result.fold(
         (failure) =>

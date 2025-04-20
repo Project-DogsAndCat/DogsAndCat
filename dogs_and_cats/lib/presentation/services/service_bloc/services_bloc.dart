@@ -20,11 +20,6 @@ class ServicesBloc extends Bloc<ServicesEvent, ServicesState> {
   }
 
   Future<void> _load(Emitter<ServicesState> emit) async {
-    // final result = await repository.getServices();
-    // result.fold(
-    //     (failure) => emit(ServicesState.failure(message: failure.message)),
-    //     (service) => emit(ServicesState.loaded(service: service)));
-
     try {
       final result = await repository.getServices();
       emit(ServicesState.loaded(service: result));

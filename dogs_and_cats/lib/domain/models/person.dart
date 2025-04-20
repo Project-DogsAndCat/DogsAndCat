@@ -8,7 +8,8 @@ class Person {
   final double? latitude;
   final double? longitude;
   final double? rating;
-  final String? position;
+  final String? serviceId;
+  final Status? status;
   Person({
     this.id,
     this.firstName,
@@ -19,7 +20,8 @@ class Person {
     this.latitude,
     this.longitude,
     this.rating,
-    this.position,
+    this.serviceId,
+    this.status,
   });
 
   Person copyWith({
@@ -32,6 +34,7 @@ class Person {
     double? longitude,
     double? rating,
     String? position,
+    Status? status,
   }) {
     return Person(
       firstName: firstName ?? this.firstName,
@@ -42,7 +45,15 @@ class Person {
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       rating: rating ?? this.rating,
-      position: position ?? this.position,
+      status: status ?? this.status,
     );
   }
+}
+
+enum Status {
+  busy('Занят'),
+  free('Свободен');
+
+  const Status(this.value);
+  final String value;
 }

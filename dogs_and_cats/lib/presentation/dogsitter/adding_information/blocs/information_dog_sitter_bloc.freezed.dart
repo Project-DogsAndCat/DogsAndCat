@@ -19,21 +19,21 @@ mixin _$InformationDogSitterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String position) addInformation,
+    required TResult Function(Set<Service> selectedServices) selectPositions,
     required TResult Function(Uint8List imageBytes) addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String position)? addInformation,
+    TResult? Function(Set<Service> selectedServices)? selectPositions,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String position)? addInformation,
+    TResult Function(Set<Service> selectedServices)? selectPositions,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) =>
@@ -41,21 +41,21 @@ mixin _$InformationDogSitterEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_SelectPositions value) selectPositions,
     required TResult Function(_AddImage value) addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_SelectPositions value)? selectPositions,
     TResult? Function(_AddImage value)? addImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_SelectPositions value)? selectPositions,
     TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String position) addInformation,
+    required TResult Function(Set<Service> selectedServices) selectPositions,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return load();
@@ -135,7 +135,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String position)? addInformation,
+    TResult? Function(Set<Service> selectedServices)? selectPositions,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return load?.call();
@@ -145,7 +145,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String position)? addInformation,
+    TResult Function(Set<Service> selectedServices)? selectPositions,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
@@ -159,7 +159,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_SelectPositions value) selectPositions,
     required TResult Function(_AddImage value) addImage,
   }) {
     return load(this);
@@ -169,7 +169,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_SelectPositions value)? selectPositions,
     TResult? Function(_AddImage value)? addImage,
   }) {
     return load?.call(this);
@@ -179,7 +179,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_SelectPositions value)? selectPositions,
     TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) {
@@ -195,20 +195,20 @@ abstract class _Load implements InformationDogSitterEvent {
 }
 
 /// @nodoc
-abstract class _$$AddInformationImplCopyWith<$Res> {
-  factory _$$AddInformationImplCopyWith(_$AddInformationImpl value,
-          $Res Function(_$AddInformationImpl) then) =
-      __$$AddInformationImplCopyWithImpl<$Res>;
+abstract class _$$SelectPositionsImplCopyWith<$Res> {
+  factory _$$SelectPositionsImplCopyWith(_$SelectPositionsImpl value,
+          $Res Function(_$SelectPositionsImpl) then) =
+      __$$SelectPositionsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String position});
+  $Res call({Set<Service> selectedServices});
 }
 
 /// @nodoc
-class __$$AddInformationImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$AddInformationImpl>
-    implements _$$AddInformationImplCopyWith<$Res> {
-  __$$AddInformationImplCopyWithImpl(
-      _$AddInformationImpl _value, $Res Function(_$AddInformationImpl) _then)
+class __$$SelectPositionsImplCopyWithImpl<$Res>
+    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$SelectPositionsImpl>
+    implements _$$SelectPositionsImplCopyWith<$Res> {
+  __$$SelectPositionsImplCopyWithImpl(
+      _$SelectPositionsImpl _value, $Res Function(_$SelectPositionsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of InformationDogSitterEvent
@@ -216,81 +216,88 @@ class __$$AddInformationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = null,
+    Object? selectedServices = null,
   }) {
-    return _then(_$AddInformationImpl(
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$SelectPositionsImpl(
+      selectedServices: null == selectedServices
+          ? _value._selectedServices
+          : selectedServices // ignore: cast_nullable_to_non_nullable
+              as Set<Service>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AddInformationImpl implements _AddInformation {
-  const _$AddInformationImpl({required this.position});
+class _$SelectPositionsImpl implements _SelectPositions {
+  const _$SelectPositionsImpl({required final Set<Service> selectedServices})
+      : _selectedServices = selectedServices;
 
+  final Set<Service> _selectedServices;
   @override
-  final String position;
+  Set<Service> get selectedServices {
+    if (_selectedServices is EqualUnmodifiableSetView) return _selectedServices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_selectedServices);
+  }
 
   @override
   String toString() {
-    return 'InformationDogSitterEvent.addInformation(position: $position)';
+    return 'InformationDogSitterEvent.selectPositions(selectedServices: $selectedServices)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddInformationImpl &&
-            (identical(other.position, position) ||
-                other.position == position));
+            other is _$SelectPositionsImpl &&
+            const DeepCollectionEquality()
+                .equals(other._selectedServices, _selectedServices));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, position);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_selectedServices));
 
   /// Create a copy of InformationDogSitterEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddInformationImplCopyWith<_$AddInformationImpl> get copyWith =>
-      __$$AddInformationImplCopyWithImpl<_$AddInformationImpl>(
+  _$$SelectPositionsImplCopyWith<_$SelectPositionsImpl> get copyWith =>
+      __$$SelectPositionsImplCopyWithImpl<_$SelectPositionsImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String position) addInformation,
+    required TResult Function(Set<Service> selectedServices) selectPositions,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
-    return addInformation(position);
+    return selectPositions(selectedServices);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String position)? addInformation,
+    TResult? Function(Set<Service> selectedServices)? selectPositions,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
-    return addInformation?.call(position);
+    return selectPositions?.call(selectedServices);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String position)? addInformation,
+    TResult Function(Set<Service> selectedServices)? selectPositions,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
-    if (addInformation != null) {
-      return addInformation(position);
+    if (selectPositions != null) {
+      return selectPositions(selectedServices);
     }
     return orElse();
   }
@@ -299,47 +306,47 @@ class _$AddInformationImpl implements _AddInformation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_SelectPositions value) selectPositions,
     required TResult Function(_AddImage value) addImage,
   }) {
-    return addInformation(this);
+    return selectPositions(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_SelectPositions value)? selectPositions,
     TResult? Function(_AddImage value)? addImage,
   }) {
-    return addInformation?.call(this);
+    return selectPositions?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_SelectPositions value)? selectPositions,
     TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) {
-    if (addInformation != null) {
-      return addInformation(this);
+    if (selectPositions != null) {
+      return selectPositions(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddInformation implements InformationDogSitterEvent {
-  const factory _AddInformation({required final String position}) =
-      _$AddInformationImpl;
+abstract class _SelectPositions implements InformationDogSitterEvent {
+  const factory _SelectPositions(
+      {required final Set<Service> selectedServices}) = _$SelectPositionsImpl;
 
-  String get position;
+  Set<Service> get selectedServices;
 
   /// Create a copy of InformationDogSitterEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddInformationImplCopyWith<_$AddInformationImpl> get copyWith =>
+  _$$SelectPositionsImplCopyWith<_$SelectPositionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -414,7 +421,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String position) addInformation,
+    required TResult Function(Set<Service> selectedServices) selectPositions,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return addImage(imageBytes);
@@ -424,7 +431,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String position)? addInformation,
+    TResult? Function(Set<Service> selectedServices)? selectPositions,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return addImage?.call(imageBytes);
@@ -434,7 +441,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String position)? addInformation,
+    TResult Function(Set<Service> selectedServices)? selectPositions,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
@@ -448,7 +455,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_AddInformation value) addInformation,
+    required TResult Function(_SelectPositions value) selectPositions,
     required TResult Function(_AddImage value) addImage,
   }) {
     return addImage(this);
@@ -458,7 +465,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_AddInformation value)? addInformation,
+    TResult? Function(_SelectPositions value)? selectPositions,
     TResult? Function(_AddImage value)? addImage,
   }) {
     return addImage?.call(this);
@@ -468,7 +475,7 @@ class _$AddImageImpl implements _AddImage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_AddInformation value)? addInformation,
+    TResult Function(_SelectPositions value)? selectPositions,
     TResult Function(_AddImage value)? addImage,
     required TResult orElse(),
   }) {

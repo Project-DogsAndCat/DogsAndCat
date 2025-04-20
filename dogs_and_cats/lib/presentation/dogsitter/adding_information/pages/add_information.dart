@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/avatar.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/positions_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,11 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/routes/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/positions.dart';
 import '../../../../core/widgets/rounded_elevated_button.dart';
+import '../../../../domain/models/service.dart';
 import '../../../auth/widgets/custom_snackbar.dart';
 import '../../adding_information/blocs/information_dog_sitter_bloc.dart';
-import '../widgets/drop_down_button_field.dart';
 
 class AddInformation extends StatefulWidget {
   const AddInformation({super.key});
@@ -20,8 +20,8 @@ class AddInformation extends StatefulWidget {
 }
 
 class _AddInformationState extends State<AddInformation> {
-  String? _selectedPosition;
-  String? _imageUrl;
+  Set<Service> _selectedServices = {};
+  bool _existImage = false;
 
   @override
   void dispose() {
@@ -56,16 +56,21 @@ class _AddInformationState extends State<AddInformation> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Avatar(imageUrl: _imageUrl),
+                Avatar(existImage: () {
+                  setState(() {
+                    _existImage = true;
+                  });
+                }),
                 const SizedBox(
                   height: 10.0,
                 ),
-                PositionDropDownButtonField(
-                  selectedValue:
-                      _selectedPosition ?? dropdownItems.first.value!,
-                  onChanged: (newValue) {
+                PositionsList(
+                  selectedServices: _selectedServices,
+                  onChanged: (value, isSelected) {
                     setState(() {
-                      _selectedPosition = newValue;
+                      isSelected
+                          ? _selectedServices.add(value)
+                          : _selectedServices.remove(value);
                     });
                   },
                 ),
@@ -74,10 +79,10 @@ class _AddInformationState extends State<AddInformation> {
                 ),
                 RoundedElevatedButton(
                   onPressed: () {
-                    if (_selectedPosition != null) {
+                    if (_selectedServices.isNotEmpty && !_existImage) {
                       context.read<InformationDogSitterBloc>().add(
-                          InformationDogSitterEvent.addInformation(
-                              position: _selectedPosition!));
+                          InformationDogSitterEvent.selectPositions(
+                              selectedServices: _selectedServices));
                     }
                   },
                   widget: BlocBuilder<InformationDogSitterBloc,
