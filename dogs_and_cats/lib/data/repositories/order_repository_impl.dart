@@ -10,6 +10,7 @@ import '../../core/utils/table_names.dart';
 class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
+
   List<OrderModel> cache = [];
 
   @override
@@ -70,9 +71,13 @@ class OrderRepositoryImpl implements OrderRepository {
 
     final orders =
         json.map((json) => OrderDto.fromJson(json).toDomain()).toList();
-    print(orders);
     _updateCache(orders);
     return orders;
+  }
+
+  @override
+  Future<List<OrderModel>> getOrderInfoWithFilter(Status status) async {
+    return cache.where((order) => order.status == status).toList();
   }
 
   void _clearCache() {

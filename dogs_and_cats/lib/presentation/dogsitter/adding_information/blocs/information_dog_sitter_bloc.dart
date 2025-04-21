@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
+import 'package:dogs_and_cats/domain/models/dogsitter.dart';
 import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../domain/models/person.dart';
 import '../../../../domain/models/service.dart';
 
 part 'information_dog_sitter_bloc.freezed.dart';
@@ -27,12 +27,13 @@ class InformationDogSitterBloc
 
   Future<void> _load(Emitter<InformationDogSitterState> emit) async {
     emit(InformationDogSitterState.loading());
-    final result = await repository.getPerson();
+    final result = await repository.getDogsitter();
 
     result.fold(
         (failure) =>
             emit(InformationDogSitterState.failure(message: failure.message)),
-        (person) => emit(InformationDogSitterState.loaded(person: person)));
+        (dogsitter) =>
+            emit(InformationDogSitterState.loaded(dogsitter: dogsitter)));
   }
 
   Future<void> _selectPositions(

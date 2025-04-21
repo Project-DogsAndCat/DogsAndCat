@@ -15,9 +15,6 @@ PersonDto _$PersonDtoFromJson(Map<String, dynamic> json) => PersonDto(
       role: json['role'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
-      rating: (json['rating'] as num?)?.toDouble(),
-      serviceId: json['service_id'] as String?,
-      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$PersonDtoToJson(PersonDto instance) => <String, dynamic>{
@@ -29,7 +26,4 @@ Map<String, dynamic> _$PersonDtoToJson(PersonDto instance) => <String, dynamic>{
       'role': instance.role,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'rating': instance.rating,
-      'service_id': instance.serviceId,
-      'status': instance.status,
     };

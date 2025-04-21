@@ -6,6 +6,7 @@ import 'package:dogs_and_cats/data/repositories/order_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/person_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/pet_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/service_repository_impl.dart';
+import 'package:dogs_and_cats/data/repositories/task_repository_impl.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/dog_breed_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
@@ -14,11 +15,13 @@ import 'package:dogs_and_cats/domain/repositories/map_search_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
+import 'package:dogs_and_cats/domain/repositories/task_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/todo/blocs/task_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
@@ -73,6 +76,8 @@ Future<void> setup() async {
   _initDogSitter();
 
   _initImageCubit();
+
+  _initTask();
 }
 
 void _initLogin() {
@@ -123,8 +128,9 @@ void _initOrder() {
       () => OrderRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
   getIt.registerLazySingleton<OrderBloc>(() => OrderBloc(
-      orderRepository: getIt<OrderRepository>(),
-      serviceRepository: getIt<ServiceRepository>()));
+        orderRepository: getIt<OrderRepository>(),
+        serviceRepository: getIt<ServiceRepository>(),
+      ));
 }
 
 void _initPets() {
@@ -179,4 +185,13 @@ void _initMapLocation() {
 
   getIt.registerLazySingleton<MapLocationCubit>(
       () => MapLocationCubit(service: getIt<MapService>()));
+}
+
+void _initTask() {
+  getIt.registerLazySingleton<TaskRepository>(
+      () => TaskRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
+
+  getIt.registerLazySingleton<TaskBloc>(() => TaskBloc(
+      dogSitterRepository: getIt<DogSitterRepository>(),
+      taskRepository: getIt<TaskRepository>()));
 }

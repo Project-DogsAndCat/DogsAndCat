@@ -19,9 +19,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   }) : super(OrderState.loading()) {
     on<OrderEvent>((event, emit) async {
       await event.map(
-          addOrder: (event) => _addOrder(emit, event),
-          load: (event) => _load(emit, event),
-          cancelOrder: (event) => _cancelOrder(emit, event));
+        addOrder: (event) => _addOrder(emit, event),
+        load: (event) => _load(emit, event),
+        cancelOrder: (event) => _cancelOrder(emit, event),
+      );
     });
   }
 
@@ -37,10 +38,18 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   Future<void> _load(Emitter<OrderState> emit, _Load event) async {
     try {
-      final response = await Future.wait([
-        orderRepository.getOrders(),
-        serviceRepository.getServices(),
-      ]);
+      List<List<Object>> response;
+      if (event.status == null) {
+        response = await Future.wait([
+          orderRepository.getOrders(),
+          serviceRepository.getServices(),
+        ]);
+      } else {
+        response = await Future.wait([
+          orderRepository.getOrderInfoWithFilter(event.status!),
+          serviceRepository.getServices(),
+        ]);
+      }
 
       final orders = response[0].cast<OrderModel>();
       final services = response[1].cast<Service>();

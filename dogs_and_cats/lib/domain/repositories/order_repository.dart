@@ -10,4 +10,6 @@ abstract interface class OrderRepository {
   Future<List<OrderModel>> getOrders();
 
   Future<Either<Failure, Unit>> cancelOrder({required OrderModel order});
+
+  Future<List<OrderModel>> getOrderInfoWithFilter(Status status);
 }

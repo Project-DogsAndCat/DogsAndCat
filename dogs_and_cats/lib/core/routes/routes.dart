@@ -3,6 +3,7 @@ import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
 import 'package:dogs_and_cats/presentation/order/pages/order_page.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
@@ -17,7 +18,7 @@ import '../../presentation/dogsitter/adding_information/pages/add_information.da
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session == null ? '/register' : '/addInformation',
+    initialLocation: session != null ? '/todo' : '/addInformation',
     routes: [
       GoRoute(
           name: RoutesNames.register,
@@ -41,6 +42,10 @@ final GoRouter router = GoRouter(
           name: RoutesNames.addInformation,
           path: '/addInformation',
           builder: (context, state) => AddInformation()),
+      GoRoute(
+          name: RoutesNames.todo,
+          path: '/todo',
+          builder: (context, state) => TodoPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

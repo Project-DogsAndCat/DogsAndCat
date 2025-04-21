@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'information_dog_sitter_bloc.dart';
+part of 'dog_breed_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,72 +15,65 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$InformationDogSitterEvent {
+mixin _$DogBreedEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(Uint8List imageBytes) addImage,
+    required TResult Function(String query) runFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(Uint8List imageBytes)? addImage,
+    TResult? Function(String query)? runFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(Uint8List imageBytes)? addImage,
+    TResult Function(String query)? runFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_SelectPositions value) selectPositions,
-    required TResult Function(_AddImage value) addImage,
+    required TResult Function(_RunFilter value) runFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_SelectPositions value)? selectPositions,
-    TResult? Function(_AddImage value)? addImage,
+    TResult? Function(_RunFilter value)? runFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_SelectPositions value)? selectPositions,
-    TResult Function(_AddImage value)? addImage,
+    TResult Function(_RunFilter value)? runFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InformationDogSitterEventCopyWith<$Res> {
-  factory $InformationDogSitterEventCopyWith(InformationDogSitterEvent value,
-          $Res Function(InformationDogSitterEvent) then) =
-      _$InformationDogSitterEventCopyWithImpl<$Res, InformationDogSitterEvent>;
+abstract class $DogBreedEventCopyWith<$Res> {
+  factory $DogBreedEventCopyWith(
+          DogBreedEvent value, $Res Function(DogBreedEvent) then) =
+      _$DogBreedEventCopyWithImpl<$Res, DogBreedEvent>;
 }
 
 /// @nodoc
-class _$InformationDogSitterEventCopyWithImpl<$Res,
-        $Val extends InformationDogSitterEvent>
-    implements $InformationDogSitterEventCopyWith<$Res> {
-  _$InformationDogSitterEventCopyWithImpl(this._value, this._then);
+class _$DogBreedEventCopyWithImpl<$Res, $Val extends DogBreedEvent>
+    implements $DogBreedEventCopyWith<$Res> {
+  _$DogBreedEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of InformationDogSitterEvent
+  /// Create a copy of DogBreedEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -93,12 +86,12 @@ abstract class _$$LoadImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$LoadImpl>
+    extends _$DogBreedEventCopyWithImpl<$Res, _$LoadImpl>
     implements _$$LoadImplCopyWith<$Res> {
   __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterEvent
+  /// Create a copy of DogBreedEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -109,7 +102,7 @@ class _$LoadImpl implements _Load {
 
   @override
   String toString() {
-    return 'InformationDogSitterEvent.load()';
+    return 'DogBreedEvent.load()';
   }
 
   @override
@@ -125,8 +118,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(Uint8List imageBytes) addImage,
+    required TResult Function(String query) runFilter,
   }) {
     return load();
   }
@@ -135,8 +127,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(Uint8List imageBytes)? addImage,
+    TResult? Function(String query)? runFilter,
   }) {
     return load?.call();
   }
@@ -145,8 +136,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(Uint8List imageBytes)? addImage,
+    TResult Function(String query)? runFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -159,8 +149,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_SelectPositions value) selectPositions,
-    required TResult Function(_AddImage value) addImage,
+    required TResult Function(_RunFilter value) runFilter,
   }) {
     return load(this);
   }
@@ -169,8 +158,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_SelectPositions value)? selectPositions,
-    TResult? Function(_AddImage value)? addImage,
+    TResult? Function(_RunFilter value)? runFilter,
   }) {
     return load?.call(this);
   }
@@ -179,8 +167,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_SelectPositions value)? selectPositions,
-    TResult Function(_AddImage value)? addImage,
+    TResult Function(_RunFilter value)? runFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -190,114 +177,102 @@ class _$LoadImpl implements _Load {
   }
 }
 
-abstract class _Load implements InformationDogSitterEvent {
+abstract class _Load implements DogBreedEvent {
   const factory _Load() = _$LoadImpl;
 }
 
 /// @nodoc
-abstract class _$$SelectPositionsImplCopyWith<$Res> {
-  factory _$$SelectPositionsImplCopyWith(_$SelectPositionsImpl value,
-          $Res Function(_$SelectPositionsImpl) then) =
-      __$$SelectPositionsImplCopyWithImpl<$Res>;
+abstract class _$$RunFilterImplCopyWith<$Res> {
+  factory _$$RunFilterImplCopyWith(
+          _$RunFilterImpl value, $Res Function(_$RunFilterImpl) then) =
+      __$$RunFilterImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Set<Service> selectedServices});
+  $Res call({String query});
 }
 
 /// @nodoc
-class __$$SelectPositionsImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$SelectPositionsImpl>
-    implements _$$SelectPositionsImplCopyWith<$Res> {
-  __$$SelectPositionsImplCopyWithImpl(
-      _$SelectPositionsImpl _value, $Res Function(_$SelectPositionsImpl) _then)
+class __$$RunFilterImplCopyWithImpl<$Res>
+    extends _$DogBreedEventCopyWithImpl<$Res, _$RunFilterImpl>
+    implements _$$RunFilterImplCopyWith<$Res> {
+  __$$RunFilterImplCopyWithImpl(
+      _$RunFilterImpl _value, $Res Function(_$RunFilterImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterEvent
+  /// Create a copy of DogBreedEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedServices = null,
+    Object? query = null,
   }) {
-    return _then(_$SelectPositionsImpl(
-      selectedServices: null == selectedServices
-          ? _value._selectedServices
-          : selectedServices // ignore: cast_nullable_to_non_nullable
-              as Set<Service>,
+    return _then(_$RunFilterImpl(
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectPositionsImpl implements _SelectPositions {
-  const _$SelectPositionsImpl({required final Set<Service> selectedServices})
-      : _selectedServices = selectedServices;
+class _$RunFilterImpl implements _RunFilter {
+  const _$RunFilterImpl({required this.query});
 
-  final Set<Service> _selectedServices;
   @override
-  Set<Service> get selectedServices {
-    if (_selectedServices is EqualUnmodifiableSetView) return _selectedServices;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_selectedServices);
-  }
+  final String query;
 
   @override
   String toString() {
-    return 'InformationDogSitterEvent.selectPositions(selectedServices: $selectedServices)';
+    return 'DogBreedEvent.runFilter(query: $query)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectPositionsImpl &&
-            const DeepCollectionEquality()
-                .equals(other._selectedServices, _selectedServices));
+            other is _$RunFilterImpl &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_selectedServices));
+  int get hashCode => Object.hash(runtimeType, query);
 
-  /// Create a copy of InformationDogSitterEvent
+  /// Create a copy of DogBreedEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectPositionsImplCopyWith<_$SelectPositionsImpl> get copyWith =>
-      __$$SelectPositionsImplCopyWithImpl<_$SelectPositionsImpl>(
-          this, _$identity);
+  _$$RunFilterImplCopyWith<_$RunFilterImpl> get copyWith =>
+      __$$RunFilterImplCopyWithImpl<_$RunFilterImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(Uint8List imageBytes) addImage,
+    required TResult Function(String query) runFilter,
   }) {
-    return selectPositions(selectedServices);
+    return runFilter(query);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(Uint8List imageBytes)? addImage,
+    TResult? Function(String query)? runFilter,
   }) {
-    return selectPositions?.call(selectedServices);
+    return runFilter?.call(query);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(Uint8List imageBytes)? addImage,
+    TResult Function(String query)? runFilter,
     required TResult orElse(),
   }) {
-    if (selectPositions != null) {
-      return selectPositions(selectedServices);
+    if (runFilter != null) {
+      return runFilter(query);
     }
     return orElse();
   }
@@ -306,206 +281,53 @@ class _$SelectPositionsImpl implements _SelectPositions {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_SelectPositions value) selectPositions,
-    required TResult Function(_AddImage value) addImage,
+    required TResult Function(_RunFilter value) runFilter,
   }) {
-    return selectPositions(this);
+    return runFilter(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_SelectPositions value)? selectPositions,
-    TResult? Function(_AddImage value)? addImage,
+    TResult? Function(_RunFilter value)? runFilter,
   }) {
-    return selectPositions?.call(this);
+    return runFilter?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_SelectPositions value)? selectPositions,
-    TResult Function(_AddImage value)? addImage,
+    TResult Function(_RunFilter value)? runFilter,
     required TResult orElse(),
   }) {
-    if (selectPositions != null) {
-      return selectPositions(this);
+    if (runFilter != null) {
+      return runFilter(this);
     }
     return orElse();
   }
 }
 
-abstract class _SelectPositions implements InformationDogSitterEvent {
-  const factory _SelectPositions(
-      {required final Set<Service> selectedServices}) = _$SelectPositionsImpl;
+abstract class _RunFilter implements DogBreedEvent {
+  const factory _RunFilter({required final String query}) = _$RunFilterImpl;
 
-  Set<Service> get selectedServices;
+  String get query;
 
-  /// Create a copy of InformationDogSitterEvent
+  /// Create a copy of DogBreedEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectPositionsImplCopyWith<_$SelectPositionsImpl> get copyWith =>
+  _$$RunFilterImplCopyWith<_$RunFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AddImageImplCopyWith<$Res> {
-  factory _$$AddImageImplCopyWith(
-          _$AddImageImpl value, $Res Function(_$AddImageImpl) then) =
-      __$$AddImageImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Uint8List imageBytes});
-}
-
-/// @nodoc
-class __$$AddImageImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterEventCopyWithImpl<$Res, _$AddImageImpl>
-    implements _$$AddImageImplCopyWith<$Res> {
-  __$$AddImageImplCopyWithImpl(
-      _$AddImageImpl _value, $Res Function(_$AddImageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InformationDogSitterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? imageBytes = null,
-  }) {
-    return _then(_$AddImageImpl(
-      imageBytes: null == imageBytes
-          ? _value.imageBytes
-          : imageBytes // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AddImageImpl implements _AddImage {
-  const _$AddImageImpl({required this.imageBytes});
-
-  @override
-  final Uint8List imageBytes;
-
-  @override
-  String toString() {
-    return 'InformationDogSitterEvent.addImage(imageBytes: $imageBytes)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddImageImpl &&
-            const DeepCollectionEquality()
-                .equals(other.imageBytes, imageBytes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(imageBytes));
-
-  /// Create a copy of InformationDogSitterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddImageImplCopyWith<_$AddImageImpl> get copyWith =>
-      __$$AddImageImplCopyWithImpl<_$AddImageImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(Uint8List imageBytes) addImage,
-  }) {
-    return addImage(imageBytes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(Uint8List imageBytes)? addImage,
-  }) {
-    return addImage?.call(imageBytes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(Uint8List imageBytes)? addImage,
-    required TResult orElse(),
-  }) {
-    if (addImage != null) {
-      return addImage(imageBytes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_SelectPositions value) selectPositions,
-    required TResult Function(_AddImage value) addImage,
-  }) {
-    return addImage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_SelectPositions value)? selectPositions,
-    TResult? Function(_AddImage value)? addImage,
-  }) {
-    return addImage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_SelectPositions value)? selectPositions,
-    TResult Function(_AddImage value)? addImage,
-    required TResult orElse(),
-  }) {
-    if (addImage != null) {
-      return addImage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddImage implements InformationDogSitterEvent {
-  const factory _AddImage({required final Uint8List imageBytes}) =
-      _$AddImageImpl;
-
-  Uint8List get imageBytes;
-
-  /// Create a copy of InformationDogSitterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddImageImplCopyWith<_$AddImageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$InformationDogSitterState {
+mixin _$DogBreedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Dogsitter dogsitter) loaded,
+    required TResult Function(List<DogBreed> dogBreeds) success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -513,7 +335,7 @@ mixin _$InformationDogSitterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Dogsitter dogsitter)? loaded,
+    TResult? Function(List<DogBreed> dogBreeds)? success,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -521,7 +343,7 @@ mixin _$InformationDogSitterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Dogsitter dogsitter)? loaded,
+    TResult Function(List<DogBreed> dogBreeds)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -530,7 +352,7 @@ mixin _$InformationDogSitterState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -538,7 +360,7 @@ mixin _$InformationDogSitterState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -546,7 +368,7 @@ mixin _$InformationDogSitterState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -554,24 +376,23 @@ mixin _$InformationDogSitterState {
 }
 
 /// @nodoc
-abstract class $InformationDogSitterStateCopyWith<$Res> {
-  factory $InformationDogSitterStateCopyWith(InformationDogSitterState value,
-          $Res Function(InformationDogSitterState) then) =
-      _$InformationDogSitterStateCopyWithImpl<$Res, InformationDogSitterState>;
+abstract class $DogBreedStateCopyWith<$Res> {
+  factory $DogBreedStateCopyWith(
+          DogBreedState value, $Res Function(DogBreedState) then) =
+      _$DogBreedStateCopyWithImpl<$Res, DogBreedState>;
 }
 
 /// @nodoc
-class _$InformationDogSitterStateCopyWithImpl<$Res,
-        $Val extends InformationDogSitterState>
-    implements $InformationDogSitterStateCopyWith<$Res> {
-  _$InformationDogSitterStateCopyWithImpl(this._value, this._then);
+class _$DogBreedStateCopyWithImpl<$Res, $Val extends DogBreedState>
+    implements $DogBreedStateCopyWith<$Res> {
+  _$DogBreedStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -584,13 +405,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$DogBreedStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -601,7 +422,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'InformationDogSitterState.initial()';
+    return 'DogBreedState.initial()';
   }
 
   @override
@@ -618,7 +439,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Dogsitter dogsitter) loaded,
+    required TResult Function(List<DogBreed> dogBreeds) success,
     required TResult Function(String message) failure,
   }) {
     return initial();
@@ -629,7 +450,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Dogsitter dogsitter)? loaded,
+    TResult? Function(List<DogBreed> dogBreeds)? success,
     TResult? Function(String message)? failure,
   }) {
     return initial?.call();
@@ -640,7 +461,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Dogsitter dogsitter)? loaded,
+    TResult Function(List<DogBreed> dogBreeds)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -655,7 +476,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -666,7 +487,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -677,7 +498,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -688,7 +509,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements InformationDogSitterState {
+abstract class _Initial implements DogBreedState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -701,13 +522,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$DogBreedStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -718,7 +539,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'InformationDogSitterState.loading()';
+    return 'DogBreedState.loading()';
   }
 
   @override
@@ -735,7 +556,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Dogsitter dogsitter) loaded,
+    required TResult Function(List<DogBreed> dogBreeds) success,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -746,7 +567,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Dogsitter dogsitter)? loaded,
+    TResult? Function(List<DogBreed> dogBreeds)? success,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -757,7 +578,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Dogsitter dogsitter)? loaded,
+    TResult Function(List<DogBreed> dogBreeds)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -772,7 +593,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -783,7 +604,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -794,7 +615,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -805,85 +626,92 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements InformationDogSitterState {
+abstract class _Loading implements DogBreedState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Dogsitter dogsitter});
+  $Res call({List<DogBreed> dogBreeds});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$DogBreedStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dogsitter = null,
+    Object? dogBreeds = null,
   }) {
-    return _then(_$LoadedImpl(
-      dogsitter: null == dogsitter
-          ? _value.dogsitter
-          : dogsitter // ignore: cast_nullable_to_non_nullable
-              as Dogsitter,
+    return _then(_$SuccessImpl(
+      dogBreeds: null == dogBreeds
+          ? _value._dogBreeds
+          : dogBreeds // ignore: cast_nullable_to_non_nullable
+              as List<DogBreed>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required this.dogsitter});
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl({required final List<DogBreed> dogBreeds})
+      : _dogBreeds = dogBreeds;
 
+  final List<DogBreed> _dogBreeds;
   @override
-  final Dogsitter dogsitter;
+  List<DogBreed> get dogBreeds {
+    if (_dogBreeds is EqualUnmodifiableListView) return _dogBreeds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dogBreeds);
+  }
 
   @override
   String toString() {
-    return 'InformationDogSitterState.loaded(dogsitter: $dogsitter)';
+    return 'DogBreedState.success(dogBreeds: $dogBreeds)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.dogsitter, dogsitter) ||
-                other.dogsitter == dogsitter));
+            other is _$SuccessImpl &&
+            const DeepCollectionEquality()
+                .equals(other._dogBreeds, _dogBreeds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, dogsitter);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_dogBreeds));
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Dogsitter dogsitter) loaded,
+    required TResult Function(List<DogBreed> dogBreeds) success,
     required TResult Function(String message) failure,
   }) {
-    return loaded(dogsitter);
+    return success(dogBreeds);
   }
 
   @override
@@ -891,10 +719,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Dogsitter dogsitter)? loaded,
+    TResult? Function(List<DogBreed> dogBreeds)? success,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(dogsitter);
+    return success?.call(dogBreeds);
   }
 
   @override
@@ -902,12 +730,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Dogsitter dogsitter)? loaded,
+    TResult Function(List<DogBreed> dogBreeds)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(dogsitter);
+    if (success != null) {
+      return success(dogBreeds);
     }
     return orElse();
   }
@@ -917,10 +745,10 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
-    return loaded(this);
+    return success(this);
   }
 
   @override
@@ -928,10 +756,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
-    return loaded?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -939,26 +767,27 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements InformationDogSitterState {
-  const factory _Loaded({required final Dogsitter dogsitter}) = _$LoadedImpl;
+abstract class _Success implements DogBreedState {
+  const factory _Success({required final List<DogBreed> dogBreeds}) =
+      _$SuccessImpl;
 
-  Dogsitter get dogsitter;
+  List<DogBreed> get dogBreeds;
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -973,13 +802,13 @@ abstract class _$$FailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$InformationDogSitterStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$DogBreedStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1005,7 +834,7 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'InformationDogSitterState.failure(message: $message)';
+    return 'DogBreedState.failure(message: $message)';
   }
 
   @override
@@ -1019,7 +848,7 @@ class _$FailureImpl implements _Failure {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1032,7 +861,7 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Dogsitter dogsitter) loaded,
+    required TResult Function(List<DogBreed> dogBreeds) success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1043,7 +872,7 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Dogsitter dogsitter)? loaded,
+    TResult? Function(List<DogBreed> dogBreeds)? success,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1054,7 +883,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Dogsitter dogsitter)? loaded,
+    TResult Function(List<DogBreed> dogBreeds)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1069,7 +898,7 @@ class _$FailureImpl implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -1080,7 +909,7 @@ class _$FailureImpl implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -1091,7 +920,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -1102,12 +931,12 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements InformationDogSitterState {
+abstract class _Failure implements DogBreedState {
   const factory _Failure({required final String message}) = _$FailureImpl;
 
   String get message;
 
-  /// Create a copy of InformationDogSitterState
+  /// Create a copy of DogBreedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>

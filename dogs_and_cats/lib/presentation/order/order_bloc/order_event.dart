@@ -6,7 +6,9 @@ class OrderEvent with _$OrderEvent {
     required OrderModel order,
     required List<String> petIds,
   }) = _AddOrder;
-  const factory OrderEvent.load() = _Load;
+  const factory OrderEvent.load({
+    Status? status,
+  }) = _Load;
   const factory OrderEvent.cancelOrder({required OrderModel order}) =
       _CancelOrder;
 }

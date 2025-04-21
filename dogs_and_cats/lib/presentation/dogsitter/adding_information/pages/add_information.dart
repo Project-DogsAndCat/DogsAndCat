@@ -46,7 +46,7 @@ class _AddInformationState extends State<AddInformation> {
                 loading: (_) {},
                 loaded: (_) {
                   CustomSnackBar.showSuccess(context, AppString.loginSuccess);
-                  context.goNamed(RoutesNames.account);
+                  context.goNamed(RoutesNames.todo);
                 },
                 failure: (state) {
                   CustomSnackBar.showError(context, state.message);

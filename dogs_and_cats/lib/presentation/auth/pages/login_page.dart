@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     context.goNamed(RoutesNames.services);
                   } else if (state.person.role == 'dogsitter') {
                     context.read<AuthBloc>().add(AuthEvent.userLogin());
-                    context.goNamed(RoutesNames.addInformation);
+                    context.goNamed(RoutesNames.todo);
                   }
                 },
                 failure: (state) {

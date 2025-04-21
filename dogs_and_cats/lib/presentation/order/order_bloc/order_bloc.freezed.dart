@@ -19,21 +19,21 @@ mixin _$OrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function() load,
+    required TResult Function(Status? status) load,
     required TResult Function(OrderModel order) cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function()? load,
+    TResult? Function(Status? status)? load,
     TResult? Function(OrderModel order)? cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function()? load,
+    TResult Function(Status? status)? load,
     TResult Function(OrderModel order)? cancelOrder,
     required TResult orElse(),
   }) =>
@@ -168,7 +168,7 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function() load,
+    required TResult Function(Status? status) load,
     required TResult Function(OrderModel order) cancelOrder,
   }) {
     return addOrder(order, petIds);
@@ -178,7 +178,7 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function()? load,
+    TResult? Function(Status? status)? load,
     TResult? Function(OrderModel order)? cancelOrder,
   }) {
     return addOrder?.call(order, petIds);
@@ -188,7 +188,7 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function()? load,
+    TResult Function(Status? status)? load,
     TResult Function(OrderModel order)? cancelOrder,
     required TResult orElse(),
   }) {
@@ -253,6 +253,8 @@ abstract class _$$LoadImplCopyWith<$Res> {
   factory _$$LoadImplCopyWith(
           _$LoadImpl value, $Res Function(_$LoadImpl) then) =
       __$$LoadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Status? status});
 }
 
 /// @nodoc
@@ -264,57 +266,82 @@ class __$$LoadImplCopyWithImpl<$Res>
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+  }) {
+    return _then(_$LoadImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadImpl implements _Load {
-  const _$LoadImpl();
+  const _$LoadImpl({this.status});
+
+  @override
+  final Status? status;
 
   @override
   String toString() {
-    return 'OrderEvent.load()';
+    return 'OrderEvent.load(status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadImpl &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, status);
+
+  /// Create a copy of OrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function() load,
+    required TResult Function(Status? status) load,
     required TResult Function(OrderModel order) cancelOrder,
   }) {
-    return load();
+    return load(status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function()? load,
+    TResult? Function(Status? status)? load,
     TResult? Function(OrderModel order)? cancelOrder,
   }) {
-    return load?.call();
+    return load?.call(status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function()? load,
+    TResult Function(Status? status)? load,
     TResult Function(OrderModel order)? cancelOrder,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load();
+      return load(status);
     }
     return orElse();
   }
@@ -355,7 +382,15 @@ class _$LoadImpl implements _Load {
 }
 
 abstract class _Load implements OrderEvent {
-  const factory _Load() = _$LoadImpl;
+  const factory _Load({final Status? status}) = _$LoadImpl;
+
+  Status? get status;
+
+  /// Create a copy of OrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -427,7 +462,7 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function() load,
+    required TResult Function(Status? status) load,
     required TResult Function(OrderModel order) cancelOrder,
   }) {
     return cancelOrder(order);
@@ -437,7 +472,7 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function()? load,
+    TResult? Function(Status? status)? load,
     TResult? Function(OrderModel order)? cancelOrder,
   }) {
     return cancelOrder?.call(order);
@@ -447,7 +482,7 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function()? load,
+    TResult Function(Status? status)? load,
     TResult Function(OrderModel order)? cancelOrder,
     required TResult orElse(),
   }) {

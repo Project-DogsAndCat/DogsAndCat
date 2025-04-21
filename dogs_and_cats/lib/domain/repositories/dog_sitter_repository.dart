@@ -1,17 +1,17 @@
 import 'dart:typed_data';
 
+import 'package:dogs_and_cats/domain/models/dogsitter.dart';
 import 'package:dogs_and_cats/domain/models/service.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../core/error/failure.dart';
-import '../models/person.dart';
 
 abstract interface class DogSitterRepository {
   Future<Either<Failure, Unit>> addInformation({
     required Set<Service> selectedServices,
   });
 
-  Future<Either<Failure, Person>> getPerson();
+  Future<Either<Failure, Dogsitter>> getDogsitter();
 
   Future<Either<Failure, Unit>> addImage({
     required Uint8List imageBytes,

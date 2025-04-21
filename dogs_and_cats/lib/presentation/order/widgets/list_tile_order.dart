@@ -20,6 +20,8 @@ class ListTileOrder extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(order.status.value),
+        Text(order.date.toString()),
+        Text(order.price.toString()),
         Text(service.title),
         const SizedBox(
           height: 10.0,
