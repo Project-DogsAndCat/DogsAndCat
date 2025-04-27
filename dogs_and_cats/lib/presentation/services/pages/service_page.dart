@@ -78,7 +78,7 @@ class ServicePage extends StatelessWidget {
                                                   BorderRadius.circular(16),
                                               color: AppColors.whiteColor),
                                           child: SvgPicture.asset(
-                                            state.service[index].image,
+                                            state.service[index].image!,
                                             // width: 40,
                                             // height: 40,
                                           ),

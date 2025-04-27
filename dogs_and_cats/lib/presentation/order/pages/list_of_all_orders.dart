@@ -47,8 +47,8 @@ class _ListOfAllOrdersState extends State<ListOfAllOrders> {
                     key: ValueKey(widget.status),
                     itemBuilder: (context, index) {
                       return ListTileOrder(
-                        order: state.orders[index],
-                        service: state.services[index],
+                        task: state.tasks[index],
+                        // service: state.services[index],
                       );
                     },
                     separatorBuilder: (context, _) {
@@ -56,7 +56,7 @@ class _ListOfAllOrdersState extends State<ListOfAllOrders> {
                         height: 10.0,
                       );
                     },
-                    itemCount: state.orders.length,
+                    itemCount: state.tasks.length,
                   );
                 },
                 failure: (state) => Text(state.message),

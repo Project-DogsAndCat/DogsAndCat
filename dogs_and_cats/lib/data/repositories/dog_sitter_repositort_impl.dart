@@ -46,19 +46,31 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
     }
   }
 
+  // @override
+  // Future<Either<Failure, Dogsitter>> getDogsitter() async {
+  //   try {
+  //     final personId = supabaseClient.auth.currentUser!.id;
+  //
+  //     final response = await supabaseClient.from('dogsitters').select('''
+  //   *,
+  //   person:person_id(*),
+  //   service_ids:participation(service_id)
+  // ''').eq('person_id', personId);
+  //
+  //     final dogsitter = DogsitterDto.fromJson(response[0]).toDomain();
+  //
+  //     return right(dogsitter);
+  //   } catch (e) {
+  //     return left(Failure(message: e.toString()));
+  //   }
+  // }
+
   @override
   Future<Either<Failure, Dogsitter>> getDogsitter() async {
     try {
-      final personId = supabaseClient.auth.currentUser!.id;
-
-      final response = await supabaseClient.from('dogsitters').select('''
-    *, 
-    person:person_id(*), 
-    service_ids:participation(service_id) 
-  ''').eq('person_id', personId);
-
-      final dogsitter = DogsitterDto.fromJson(response[0]).toDomain();
-
+      final json = await supabaseClient.rpc('get_dogsitter_services',
+          params: {'per_person_id': supabaseClient.auth.currentUser!.id});
+      final dogsitter = DogsitterDto.fromJson(json).toDomain();
       return right(dogsitter);
     } catch (e) {
       return left(Failure(message: e.toString()));

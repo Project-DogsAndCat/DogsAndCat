@@ -1,10 +1,9 @@
 import 'package:dogs_and_cats/domain/models/order.dart';
+import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:dogs_and_cats/domain/repositories/order_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../domain/models/service.dart';
 
 part 'order_bloc.freezed.dart';
 part 'order_event.dart';
@@ -37,30 +36,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   }
 
   Future<void> _load(Emitter<OrderState> emit, _Load event) async {
-    try {
-      List<List<Object>> response;
-      if (event.status == null) {
-        response = await Future.wait([
-          orderRepository.getOrders(),
-          serviceRepository.getServices(),
-        ]);
-      } else {
-        response = await Future.wait([
-          orderRepository.getOrderInfoWithFilter(event.status!),
-          serviceRepository.getServices(),
-        ]);
-      }
-
-      final orders = response[0].cast<OrderModel>();
-      final services = response[1].cast<Service>();
-
-      final mapService = {for (var item in services) item.id: item};
-
-      final result =
-          orders.map((order) => mapService[order.serviceId]!).toList();
-      emit(OrderState.loaded(orders: orders, services: result));
-    } catch (e) {
-      emit(OrderState.failure(message: e.toString()));
+    if (event.status == null) {
+      final response = await orderRepository.getOrders();
+      response.fold(
+          (failure) => emit(OrderState.failure(message: failure.message)),
+          (task) => emit(OrderState.loaded(tasks: task.cast<TaskModel>())));
+    } else {
+      final responseWithFilter =
+          await orderRepository.getOrderInfoWithFilter(event.status!);
+      emit(OrderState.loaded(tasks: responseWithFilter));
     }
   }
 

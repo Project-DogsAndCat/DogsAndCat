@@ -17,7 +17,16 @@ class TodoPage extends StatelessWidget {
             loaded: (state) => ListView.separated(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(state.tasks[index].serviceTitle),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(state.tasks[index].serviceTitle),
+                        Text(state.tasks[index].order.duration),
+                        Text(state.tasks[index].order.price.toString()),
+                        Text(state.tasks[index].order.date.toString()),
+                        Text(state.tasks[index].order.status.value),
+                      ],
+                    ),
                     subtitle: Text(state.tasks[index].person.firstName!),
                   );
                 },

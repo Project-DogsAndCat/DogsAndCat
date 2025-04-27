@@ -19,21 +19,21 @@ mixin _$TaskState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -124,7 +124,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -134,7 +134,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -144,7 +144,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -199,7 +199,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Task> tasks});
+  $Res call({List<TaskModel> tasks});
 }
 
 /// @nodoc
@@ -221,7 +221,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       tasks: null == tasks
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
+              as List<TaskModel>,
     ));
   }
 }
@@ -229,11 +229,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<Task> tasks}) : _tasks = tasks;
+  const _$LoadedImpl({required final List<TaskModel> tasks}) : _tasks = tasks;
 
-  final List<Task> _tasks;
+  final List<TaskModel> _tasks;
   @override
-  List<Task> get tasks {
+  List<TaskModel> get tasks {
     if (_tasks is EqualUnmodifiableListView) return _tasks;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tasks);
@@ -268,7 +268,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
     return loaded(tasks);
@@ -278,7 +278,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
     return loaded?.call(tasks);
@@ -288,7 +288,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -334,9 +334,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements TaskState {
-  const factory _Loaded({required final List<Task> tasks}) = _$LoadedImpl;
+  const factory _Loaded({required final List<TaskModel> tasks}) = _$LoadedImpl;
 
-  List<Task> get tasks;
+  List<TaskModel> get tasks;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -414,7 +414,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -424,7 +424,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Task> tasks)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -434,7 +434,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -496,19 +496,19 @@ mixin _$TaskEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Task task) edit,
+    required TResult Function(TaskModel task) edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Task task)? edit,
+    TResult? Function(TaskModel task)? edit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Task task)? edit,
+    TResult Function(TaskModel task)? edit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -594,7 +594,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Task task) edit,
+    required TResult Function(TaskModel task) edit,
   }) {
     return load();
   }
@@ -603,7 +603,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Task task)? edit,
+    TResult? Function(TaskModel task)? edit,
   }) {
     return load?.call();
   }
@@ -612,7 +612,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Task task)? edit,
+    TResult Function(TaskModel task)? edit,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -663,7 +663,7 @@ abstract class _$$EditImplCopyWith<$Res> {
           _$EditImpl value, $Res Function(_$EditImpl) then) =
       __$$EditImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Task task});
+  $Res call({TaskModel task});
 }
 
 /// @nodoc
@@ -684,7 +684,7 @@ class __$$EditImplCopyWithImpl<$Res>
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as Task,
+              as TaskModel,
     ));
   }
 }
@@ -695,7 +695,7 @@ class _$EditImpl implements _Edit {
   const _$EditImpl({required this.task});
 
   @override
-  final Task task;
+  final TaskModel task;
 
   @override
   String toString() {
@@ -725,7 +725,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(Task task) edit,
+    required TResult Function(TaskModel task) edit,
   }) {
     return edit(task);
   }
@@ -734,7 +734,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(Task task)? edit,
+    TResult? Function(TaskModel task)? edit,
   }) {
     return edit?.call(task);
   }
@@ -743,7 +743,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(Task task)? edit,
+    TResult Function(TaskModel task)? edit,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -785,9 +785,9 @@ class _$EditImpl implements _Edit {
 }
 
 abstract class _Edit implements TaskEvent {
-  const factory _Edit({required final Task task}) = _$EditImpl;
+  const factory _Edit({required final TaskModel task}) = _$EditImpl;
 
-  Task get task;
+  TaskModel get task;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.

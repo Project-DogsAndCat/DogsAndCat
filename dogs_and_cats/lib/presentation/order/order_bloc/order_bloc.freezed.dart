@@ -545,22 +545,21 @@ mixin _$OrderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<OrderModel> orders, List<Service> services)
-        loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -652,8 +651,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<OrderModel> orders, List<Service> services)
-        loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -663,7 +661,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -673,7 +671,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -728,7 +726,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<OrderModel> orders, List<Service> services});
+  $Res call({List<TaskModel> tasks});
 }
 
 /// @nodoc
@@ -744,18 +742,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orders = null,
-    Object? services = null,
+    Object? tasks = null,
   }) {
     return _then(_$LoadedImpl(
-      orders: null == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
-      services: null == services
-          ? _value._services
-          : services // ignore: cast_nullable_to_non_nullable
-              as List<Service>,
+      tasks: null == tasks
+          ? _value._tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<TaskModel>,
     ));
   }
 }
@@ -763,31 +756,19 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
-      {required final List<OrderModel> orders,
-      required final List<Service> services})
-      : _orders = orders,
-        _services = services;
+  const _$LoadedImpl({required final List<TaskModel> tasks}) : _tasks = tasks;
 
-  final List<OrderModel> _orders;
+  final List<TaskModel> _tasks;
   @override
-  List<OrderModel> get orders {
-    if (_orders is EqualUnmodifiableListView) return _orders;
+  List<TaskModel> get tasks {
+    if (_tasks is EqualUnmodifiableListView) return _tasks;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orders);
-  }
-
-  final List<Service> _services;
-  @override
-  List<Service> get services {
-    if (_services is EqualUnmodifiableListView) return _services;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_services);
+    return EqualUnmodifiableListView(_tasks);
   }
 
   @override
   String toString() {
-    return 'OrderState.loaded(orders: $orders, services: $services)';
+    return 'OrderState.loaded(tasks: $tasks)';
   }
 
   @override
@@ -795,15 +776,12 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders) &&
-            const DeepCollectionEquality().equals(other._services, _services));
+            const DeepCollectionEquality().equals(other._tasks, _tasks));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_orders),
-      const DeepCollectionEquality().hash(_services));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
 
   /// Create a copy of OrderState
   /// with the given fields replaced by the non-null parameter values.
@@ -817,33 +795,32 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<OrderModel> orders, List<Service> services)
-        loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
-    return loaded(orders, services);
+    return loaded(tasks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(orders, services);
+    return loaded?.call(tasks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(orders, services);
+      return loaded(tasks);
     }
     return orElse();
   }
@@ -884,12 +861,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements OrderState {
-  const factory _Loaded(
-      {required final List<OrderModel> orders,
-      required final List<Service> services}) = _$LoadedImpl;
+  const factory _Loaded({required final List<TaskModel> tasks}) = _$LoadedImpl;
 
-  List<OrderModel> get orders;
-  List<Service> get services;
+  List<TaskModel> get tasks;
 
   /// Create a copy of OrderState
   /// with the given fields replaced by the non-null parameter values.
@@ -967,8 +941,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<OrderModel> orders, List<Service> services)
-        loaded,
+    required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -978,7 +951,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -988,7 +961,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<OrderModel> orders, List<Service> services)? loaded,
+    TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {

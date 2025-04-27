@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/domain/models/person.dart';
+import 'package:dogs_and_cats/domain/models/service.dart';
 
 class Dogsitter {
   Dogsitter({
@@ -12,7 +13,7 @@ class Dogsitter {
   final double rating;
   final StatusDogSitter status;
   final Person person;
-  final List<String> serviceIds;
+  final List<Service> serviceIds;
 }
 
 enum StatusDogSitter {

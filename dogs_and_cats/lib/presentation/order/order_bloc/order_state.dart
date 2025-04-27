@@ -4,8 +4,7 @@ part of 'order_bloc.dart';
 class OrderState with _$OrderState {
   const factory OrderState.loading() = _Loading;
   const factory OrderState.loaded({
-    required List<OrderModel> orders,
-    required List<Service> services,
+    required List<TaskModel> tasks,
   }) = _Loaded;
   const factory OrderState.failure({
     required String message,

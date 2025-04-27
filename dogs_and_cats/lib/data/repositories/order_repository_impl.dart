@@ -1,5 +1,7 @@
 import 'package:dogs_and_cats/data/models/order/order_dto.dart';
+import 'package:dogs_and_cats/data/models/task/task_dto.dart';
 import 'package:dogs_and_cats/domain/models/order.dart';
+import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:dogs_and_cats/domain/repositories/order_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -11,7 +13,7 @@ class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
 
-  List<OrderModel> cache = [];
+  List<TaskModel> cache = [];
 
   @override
   Future<Either<Failure, Unit>> addOrder(
@@ -59,32 +61,39 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<List<OrderModel>> getOrders() async {
-    if (cache.isNotEmpty) return cache;
+  Future<Either<Failure, List<TaskModel>>> getOrders() async {
+    try {
+      if (cache.isNotEmpty) return right(cache.cast<TaskModel>());
+      final personId = supabaseClient.auth.currentUser!.id;
 
-    final personId = supabaseClient.auth.currentUser!.id;
-
-    final json = await supabaseClient
-        .from(TableNames.orders)
-        .select()
-        .eq('person_id', personId);
-
-    final orders =
-        json.map((json) => OrderDto.fromJson(json).toDomain()).toList();
-    _updateCache(orders);
-    return orders;
+      final json = await supabaseClient.rpc('get_order', params: {
+        'curr_person_id': personId,
+      });
+      final tasks = json
+          .map((json) => TaskDto.fromJson(json).toDomain())
+          .toList()
+          .cast<TaskModel>();
+      _updateCache(tasks);
+      return right(tasks);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
   }
 
   @override
-  Future<List<OrderModel>> getOrderInfoWithFilter(Status status) async {
-    return cache.where((order) => order.status == status).toList();
+  Future<List<TaskModel>> getOrderInfoWithFilter(Status status) async {
+    if (cache.isEmpty) getOrders();
+    return cache
+        .where((task) => task.order.status.value == status.value)
+        .toList()
+        .cast<TaskModel>();
   }
 
   void _clearCache() {
     cache.clear();
   }
 
-  void _updateCache(List<OrderModel> data) {
+  void _updateCache(List<TaskModel> data) {
     cache = data;
   }
 }

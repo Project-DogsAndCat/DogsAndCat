@@ -7,20 +7,20 @@ part of 'dogsitter_dto.dart';
 // **************************************************************************
 
 DogsitterDto _$DogsitterDtoFromJson(Map<String, dynamic> json) => DogsitterDto(
-      id: json['id'] as String,
-      rating: (json['rating'] as num).toDouble(),
-      status: json['status'] as String,
+      id: json['dogsitter_id'] as String,
+      rating: (json['rating'] as num?)?.toDouble(),
+      status: json['status'] as String?,
       person: PersonDto.fromJson(json['person'] as Map<String, dynamic>),
-      serviceIds: (json['service_id'] as List<dynamic>)
-          .map((e) => e as String)
+      services: (json['services'] as List<dynamic>)
+          .map((e) => ServiceDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$DogsitterDtoToJson(DogsitterDto instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'dogsitter_id': instance.id,
       'rating': instance.rating,
       'status': instance.status,
-      'person': instance.person,
-      'service_id': instance.serviceIds,
+      'person': instance.person.toJson(),
+      'services': instance.services.map((e) => e.toJson()).toList(),
     };

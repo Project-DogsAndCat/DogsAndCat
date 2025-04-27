@@ -1,5 +1,6 @@
 import 'package:dogs_and_cats/data/models/order/order_dto.dart';
 import 'package:dogs_and_cats/data/models/person/person_dto.dart';
+import 'package:dogs_and_cats/data/models/pet/pet_dto.dart';
 import 'package:dogs_and_cats/data/models/service/service_dto.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -11,48 +12,43 @@ part 'task_dto.g.dart';
 class TaskDto {
   TaskDto({
     required this.orderId,
-    required this.serviceId,
     required this.date,
     required this.status,
     required this.duration,
     required this.price,
     required this.person,
     required this.service,
+    required this.pet,
   });
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'order_id')
   final String orderId;
-  @JsonKey(name: 'service_id')
-  final String serviceId;
   final DateTime date;
   final String status;
   final String duration;
   final double price;
   final PersonDto person;
-  @JsonKey(name: 'services')
   final ServiceDto service;
+  @JsonKey(name: 'pets')
+  final List<PetDto> pet;
 
   Status getStatusOrder({required String status}) {
     return Status.values.firstWhere((value) => value.value == status,
         orElse: () => Status.waiting);
   }
 
-  Task toDomain() => Task(
+  TaskModel toDomain() => TaskModel(
         serviceTitle: service.title,
         order: OrderDto(
-                serviceId: serviceId,
+                id: orderId,
+                serviceId: service.id,
                 duration: duration,
                 price: price,
                 date: date,
                 status: status)
             .toDomain(),
         person: person.toDomain(),
+        pet: pet.map((element) => element.toDomain()).toList(),
       );
-
-  // factory TaskDto.fromDomain(Task object) => TaskDto(
-  //       serviceTitle: object.,
-  //       order: OrderDto.fromDomain(object.order),
-  //       person: PersonDto.fromDomain(object.person),
-  //     );
 
   factory TaskDto.fromJson(Map<String, dynamic> json) =>
       _$TaskDtoFromJson(json);
