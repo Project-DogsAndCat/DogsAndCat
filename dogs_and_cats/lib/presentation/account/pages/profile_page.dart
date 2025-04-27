@@ -121,7 +121,7 @@ class ProfilePage extends StatelessWidget {
                             context
                                 .read<AuthBloc>()
                                 .add(AuthEvent.userLogOut());
-                            context.goNamed(RoutesNames.register);
+                            context.goNamed(RoutesNames.choseRole);
                           },
                           mainInfoTitle: AppString.logout,
                           icon: Icons.exit_to_app),

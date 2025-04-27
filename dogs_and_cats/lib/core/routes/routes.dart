@@ -1,9 +1,11 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
+import 'package:dogs_and_cats/presentation/auth/pages/choose_role.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
 import 'package:dogs_and_cats/presentation/order/pages/order_page.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
@@ -18,16 +20,32 @@ import '../../presentation/dogsitter/adding_information/pages/add_information.da
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session != null ? '/todo' : '/addInformation',
+    initialLocation: session == null
+        ? '/choseRole'
+        : (session!.user.userMetadata?['role_user'] == 'dogsitter'
+            ? '/todo'
+            : '/services'),
     routes: [
       GoRoute(
+          name: RoutesNames.choseRole,
+          path: '/choseRole',
+          builder: (context, state) => const ChooseRole()),
+      GoRoute(
           name: RoutesNames.register,
-          path: '/register',
-          builder: (context, state) => const RegisterPage()),
+          path: '/register/:isUser',
+          builder: (context, state) => RegisterPage(
+                isUser: bool.parse(state.pathParameters['isUser']!),
+              )),
       GoRoute(
           name: RoutesNames.login,
-          path: '/login',
-          builder: (context, state) => const LoginPage()),
+          path: '/login/:isUser',
+          builder: (context, state) => LoginPage(
+                isUser: bool.parse(state.pathParameters['isUser']!),
+              )),
+      GoRoute(
+          name: RoutesNames.contact,
+          path: '/contact',
+          builder: (context, state) => const ContactPage()),
       GoRoute(
           name: RoutesNames.pets,
           path: '/pets/:backPage',
@@ -37,15 +55,15 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.orderingService,
           path: '/ordering',
-          builder: (context, state) => OrderingServicePage()),
+          builder: (context, state) => const OrderingServicePage()),
       GoRoute(
           name: RoutesNames.addInformation,
           path: '/addInformation',
-          builder: (context, state) => AddInformation()),
+          builder: (context, state) => const AddInformation()),
       GoRoute(
           name: RoutesNames.todo,
           path: '/todo',
-          builder: (context, state) => TodoPage()),
+          builder: (context, state) => const TodoPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),
@@ -70,7 +88,7 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.account,
                 path: '/profile',
-                builder: (context, state) => ProfilePage(),
+                builder: (context, state) => const ProfilePage(),
               )
             ]),
             StatefulShellBranch(routes: [

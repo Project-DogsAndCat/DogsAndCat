@@ -85,6 +85,6 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   void _updateCache(List<OrderModel> data) {
-    cache.addAll(data);
+    cache = data;
   }
 }

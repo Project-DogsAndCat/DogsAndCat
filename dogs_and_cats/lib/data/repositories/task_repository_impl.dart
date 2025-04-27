@@ -13,26 +13,9 @@ class TaskRepositoryImpl implements TaskRepository {
       {required List<String> serviceIds}) async {
     try {
       final jsonList = await supabaseClient.from('orders').select('''
-    id,
-    service_id,
-    date,
-    status,
-    duration,
-    price,
-    person:person_id!inner(
-      email,
-      phone,
-      first_name,
-      last_name,
-      latitude,
-      longitude
-    ),
-    services:service_id!inner(
-      id,
-      title,
-      description,
-      image
-    )
+    id, service_id, date, status, duration, price,
+    person:person_id!inner(email, phone, first_name, last_name, latitude, longitude),
+    services:service_id!inner(id, title, description, image)
   ''').eq('status', 'В ожидании').inFilter('service_id', serviceIds);
 
       final List<Task> tasks = jsonList

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/cubit/theme_cubit.dart';
-import '../../dogsitter/contact/pages/contact_page.dart';
+import '../../dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
 import '../widgets/settings_list_card.dart';
 
 class SettingsPage extends StatelessWidget {

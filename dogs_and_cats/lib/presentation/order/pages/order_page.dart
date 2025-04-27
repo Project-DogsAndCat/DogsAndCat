@@ -1,58 +1,63 @@
-import 'package:dogs_and_cats/domain/models/order.dart';
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
-import 'package:dogs_and_cats/presentation/order/widgets/list_tile_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/models/order.dart';
+import 'list_of_all_orders.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Заказ'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => context
-                  .read<OrderBloc>()
-                  .add(OrderEvent.load(status: Status.waiting)),
-              child: Text('Фильтр'),
-            ),
-            Expanded(
-              child: BlocBuilder<OrderBloc, OrderState>(
-                builder: (context, state) {
-                  return state.map(
-                    loading: (_) => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    loaded: (state) {
-                      return ListView.separated(
-                        itemBuilder: (context, index) {
-                          return ListTileOrder(
-                            order: state.orders[index],
-                            service: state.services[index],
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(
-                            height: 10.0,
-                          );
-                        },
-                        itemCount: state.orders.length,
-                      );
-                    },
-                    failure: (state) => Text(state.message),
-                  );
-                },
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Заказ'),
+          bottom: const TabBar(
+            labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
+            isScrollable: true,
+            tabs: [
+              Tab(
+                text: 'Все',
               ),
-            ),
-          ],
+              Tab(
+                text: 'Предстоящие',
+              ),
+              Tab(
+                text: 'Выполненные',
+              ),
+              Tab(
+                text: 'Отмененные',
+              ),
+            ],
+          ),
         ),
+        body: TabBarView(children: [
+          BlocProvider(
+            create: (context) => getIt<OrderBloc>()..add(OrderEvent.load()),
+            child: ListOfAllOrders(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<OrderBloc>()
+              ..add(OrderEvent.load(status: Status.adopted)),
+            child: ListOfAllOrders(status: Status.adopted),
+          ),
+          BlocProvider(
+            create: (context) =>
+                getIt<OrderBloc>()..add(OrderEvent.load(status: Status.done)),
+            child: ListOfAllOrders(status: Status.done),
+          ),
+          BlocProvider(
+            create: (context) => getIt<OrderBloc>()
+              ..add(OrderEvent.load(status: Status.refusal)),
+            child: ListOfAllOrders(
+              status: Status.refusal,
+            ),
+          ),
+        ]),
       ),
     );
   }

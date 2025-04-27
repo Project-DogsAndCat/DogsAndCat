@@ -14,7 +14,8 @@ import '../../../core/utils/validation_rules.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.isUser});
+  final bool isUser;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -56,12 +57,15 @@ class _LoginPageState extends State<LoginPage> {
                 success: (state) {
                   clearText();
                   CustomSnackBar.showSuccess(context, AppString.loginSuccess);
-                  if (state.person.role == 'user') {
-                    context.read<AuthBloc>().add(AuthEvent.userLogin());
+                  context.read<AuthBloc>().add(AuthEvent.userLogin());
+                  if (state.person.role == 'dogsitter') {
+                    if (!widget.isUser) {
+                      context.goNamed(RoutesNames.todo);
+                    } else {
+                      context.goNamed(RoutesNames.services);
+                    }
+                  } else if (state.person.role == 'user') {
                     context.goNamed(RoutesNames.services);
-                  } else if (state.person.role == 'dogsitter') {
-                    context.read<AuthBloc>().add(AuthEvent.userLogin());
-                    context.goNamed(RoutesNames.todo);
                   }
                 },
                 failure: (state) {
@@ -159,7 +163,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.goNamed(RoutesNames.register);
+                      context.goNamed(RoutesNames.register,
+                          pathParameters: {'isUser': widget.isUser.toString()});
                     },
                     child: RichText(
                       text: TextSpan(

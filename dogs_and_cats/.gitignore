@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/release
 
 dogs_and_cats/android/java_pid20196.hprof
+lib/core/secrets

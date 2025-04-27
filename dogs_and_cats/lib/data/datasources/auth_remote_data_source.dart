@@ -31,8 +31,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
       return PersonAuthDto.fromJson(json);
+    } on ServerException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException(e.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -40,20 +42,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<PersonAuthDto> signUpWithEmailPassword(
       {required String email, required String password}) async {
     try {
-      final permissions = {'role_user': 'dogsitter'};
+      final permissions = {'role_user': 'user'};
 
       final response = await supabaseClient.auth
           .signUp(password: password, email: email, data: permissions);
       if (response.user == null) {
-        throw ServerException('Пользователь не найден');
+        throw Exception('Пользователь не найден');
       }
 
       final json = response.user!.toJson();
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
       return PersonAuthDto.fromJson(json);
+    } on ServerException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
-      throw ServerException(e.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -64,8 +68,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ServerException('Пользователь не найден');
       }
       await supabaseClient.auth.signOut();
-    } catch (e) {
-      throw ServerException(e.toString());
+    } on ServerException catch (e) {
+      throw ServerException(e.message);
     }
   }
 }

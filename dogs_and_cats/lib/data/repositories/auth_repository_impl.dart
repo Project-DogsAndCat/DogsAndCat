@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/server_exception.dart';
+import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 import '../../domain/models/person_auth.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -25,6 +26,11 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(person.toDomain());
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
+    } catch (e) {
+      if (e.toString().contains('SocketException')) {
+        return left(Failure(message: AppString.internetNotFound));
+      }
+      return left(Failure(message: e.toString()));
     }
   }
 
@@ -44,6 +50,8 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(person.toDomain());
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
     }
   }
 
@@ -52,7 +60,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await supabaseClient.from(TableNames.person).update(json).eq('id', id);
     } catch (e) {
-      throw ServerException(e.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -63,6 +71,8 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(unit);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
     }
   }
 }

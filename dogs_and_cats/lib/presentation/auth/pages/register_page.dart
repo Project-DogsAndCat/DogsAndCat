@@ -14,7 +14,8 @@ import '../../../core/utils/validation_rules.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  const RegisterPage({super.key, required this.isUser});
+  final bool isUser;
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -64,10 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         clearText();
                         CustomSnackBar.showSuccess(
                             context, AppString.accountCreated);
-                        if (state.person.role == 'user') {
+                        if (widget.isUser) {
                           context.goNamed(RoutesNames.services);
-                        } else if (state.person.role == 'dogsitter') {
-                          context.goNamed(RoutesNames.addInformation);
+                        } else {
+                          context.goNamed(RoutesNames.contact);
                         }
                       },
                       failure: (state) {
@@ -206,7 +207,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.goNamed(RoutesNames.login);
+                          context.goNamed(RoutesNames.login, pathParameters: {
+                            'isUser': widget.isUser.toString()
+                          });
                         },
                         child: RichText(
                           text: TextSpan(
