@@ -1,16 +1,19 @@
-import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
-import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
+import '../blocs/profile_bloc/profile_bloc.dart';
 
 class BottomSheetEdit extends StatefulWidget {
-  const BottomSheetEdit(
-      {super.key,
-      required this.title,
-      required this.onSave,
-      required this.fields});
+  const BottomSheetEdit({
+    super.key,
+    required this.title,
+    required this.onSave,
+    required this.fields,
+  });
   final String title;
   final VoidCallback onSave;
   final List<Widget> fields;
@@ -57,10 +60,19 @@ class _BottomSheetEditState extends State<BottomSheetEdit> {
                   Navigator.pop(context);
                 }
               },
-              widget: Text(
-                AppString.update,
-                style:
-                    textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor),
+              widget: BlocBuilder<ProfileBloc, ProfileState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () => Text(
+                      AppString.update,
+                      style: textTheme.bodyMedium!
+                          .copyWith(color: AppColors.whiteColor),
+                    ),
+                    loading: (_) => CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                },
               ),
             ),
           ],

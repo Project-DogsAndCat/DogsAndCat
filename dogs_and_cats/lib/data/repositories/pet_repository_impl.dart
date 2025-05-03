@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dogs_and_cats/core/error/failure.dart';
 import 'package:dogs_and_cats/core/error/server_exception.dart';
 import 'package:dogs_and_cats/core/utils/table_names.dart';
@@ -6,6 +8,7 @@ import 'package:dogs_and_cats/domain/models/pet.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/utils/app_strings.dart';
 import '../../domain/repositories/pet_repository.dart';
 import '../models/pet/pet_edit_dto.dart';
 
@@ -24,6 +27,8 @@ class PetRepositoryImpl implements PetRepository {
       final List<Pet> pets =
           json.map((json) => PetDto.fromJson(json).toDomain()).toList();
       return right(pets);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
     }
@@ -38,6 +43,8 @@ class PetRepositoryImpl implements PetRepository {
       await supabaseClient.from(TableNames.pets).insert(json);
 
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -54,6 +61,8 @@ class PetRepositoryImpl implements PetRepository {
           .update(updateJson)
           .eq('id', id);
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

@@ -19,7 +19,7 @@ import 'package:dogs_and_cats/domain/repositories/task_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
-import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/dog_sitter_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/blocs/task_bloc.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/dog_breed_bloc/dog_breed_bloc.dart';
@@ -146,8 +146,8 @@ void _initDogSitter() {
   getIt.registerLazySingleton<DogSitterRepository>(
       () => DogSitterRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<InformationDogSitterBloc>(
-      () => InformationDogSitterBloc(repository: getIt<DogSitterRepository>()));
+  getIt.registerLazySingleton<DogSitterBloc>(
+      () => DogSitterBloc(repository: getIt<DogSitterRepository>()));
 }
 
 void _initImageCubit() {
@@ -191,7 +191,7 @@ void _initTask() {
   getIt.registerLazySingleton<TaskRepository>(
       () => TaskRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<TaskBloc>(() => TaskBloc(
+  getIt.registerFactory<TaskBloc>(() => TaskBloc(
       dogSitterRepository: getIt<DogSitterRepository>(),
       taskRepository: getIt<TaskRepository>()));
 }

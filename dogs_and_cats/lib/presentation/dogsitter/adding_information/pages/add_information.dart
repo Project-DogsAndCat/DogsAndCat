@@ -10,7 +10,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/rounded_elevated_button.dart';
 import '../../../../domain/models/service.dart';
 import '../../../auth/widgets/custom_snackbar.dart';
-import '../../adding_information/blocs/information_dog_sitter_bloc.dart';
+import '../../adding_information/blocs/dog_sitter_bloc.dart';
 
 class AddInformation extends StatefulWidget {
   const AddInformation({super.key});
@@ -20,7 +20,7 @@ class AddInformation extends StatefulWidget {
 }
 
 class _AddInformationState extends State<AddInformation> {
-  Set<Service> _selectedServices = {};
+  final Set<Service> _selectedServices = {};
   bool _existImage = false;
 
   @override
@@ -38,15 +38,14 @@ class _AddInformationState extends State<AddInformation> {
             horizontal: 16,
             vertical: 10,
           ),
-          child:
-              BlocListener<InformationDogSitterBloc, InformationDogSitterState>(
+          child: BlocListener<DogSitterBloc, DogSitterState>(
             listener: (context, state) {
               state.map(
                 initial: (_) {},
                 loading: (_) {},
-                loaded: (_) {
+                loaded: (state) {
                   CustomSnackBar.showSuccess(context, AppString.loginSuccess);
-                  context.goNamed(RoutesNames.todo);
+                  context.goNamed(RoutesNames.todo, extra: state.dogsitter);
                 },
                 failure: (state) {
                   CustomSnackBar.showError(context, state.message);
@@ -80,13 +79,12 @@ class _AddInformationState extends State<AddInformation> {
                 RoundedElevatedButton(
                   onPressed: () {
                     if (_selectedServices.isNotEmpty && !_existImage) {
-                      context.read<InformationDogSitterBloc>().add(
-                          InformationDogSitterEvent.selectPositions(
+                      context.read<DogSitterBloc>().add(
+                          DogSitterEvent.selectPositions(
                               selectedServices: _selectedServices));
                     }
                   },
-                  widget: BlocBuilder<InformationDogSitterBloc,
-                      InformationDogSitterState>(
+                  widget: BlocBuilder<DogSitterBloc, DogSitterState>(
                     builder: (context, state) {
                       return state.maybeMap(
                         loading: (_) {

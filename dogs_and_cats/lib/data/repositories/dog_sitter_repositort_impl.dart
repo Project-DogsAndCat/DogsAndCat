@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dogs_and_cats/core/error/failure.dart';
@@ -8,6 +9,7 @@ import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 import '../../domain/models/service.dart';
 
@@ -41,29 +43,12 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
               .toList());
 
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }
-
-  // @override
-  // Future<Either<Failure, Dogsitter>> getDogsitter() async {
-  //   try {
-  //     final personId = supabaseClient.auth.currentUser!.id;
-  //
-  //     final response = await supabaseClient.from('dogsitters').select('''
-  //   *,
-  //   person:person_id(*),
-  //   service_ids:participation(service_id)
-  // ''').eq('person_id', personId);
-  //
-  //     final dogsitter = DogsitterDto.fromJson(response[0]).toDomain();
-  //
-  //     return right(dogsitter);
-  //   } catch (e) {
-  //     return left(Failure(message: e.toString()));
-  //   }
-  // }
 
   @override
   Future<Either<Failure, Dogsitter>> getDogsitter() async {
@@ -72,6 +57,25 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
           params: {'per_person_id': supabaseClient.auth.currentUser!.id});
       final dogsitter = DogsitterDto.fromJson(json).toDomain();
       return right(dogsitter);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateStatus({
+    required StatusDogSitter status,
+  }) async {
+    try {
+      final personId = supabaseClient.auth.currentUser!.id;
+
+      await supabaseClient.from(TableNames.dogsitters).update({
+        'status': status.value,
+      }).eq('person_id', personId);
+
+      return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -90,6 +94,8 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
               ));
 
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -106,6 +112,8 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
         't': DateTime.now().millisecondsSinceEpoch.toString()
       }).toString();
       return right(imageUrl);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

@@ -15,6 +15,385 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$TaskEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Status status) load,
+    required TResult Function(
+            Status prevStatus, Status newStatus, String orderId)
+        accept,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Status status)? load,
+    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Status status)? load,
+    TResult Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Accept value) accept,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Accept value)? accept,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Accept value)? accept,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaskEventCopyWith<$Res> {
+  factory $TaskEventCopyWith(TaskEvent value, $Res Function(TaskEvent) then) =
+      _$TaskEventCopyWithImpl<$Res, TaskEvent>;
+}
+
+/// @nodoc
+class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
+    implements $TaskEventCopyWith<$Res> {
+  _$TaskEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$LoadImplCopyWith<$Res> {
+  factory _$$LoadImplCopyWith(
+          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
+      __$$LoadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Status status});
+}
+
+/// @nodoc
+class __$$LoadImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$LoadImpl>
+    implements _$$LoadImplCopyWith<$Res> {
+  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+  }) {
+    return _then(_$LoadImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadImpl implements _Load {
+  const _$LoadImpl({required this.status});
+
+  @override
+  final Status status;
+
+  @override
+  String toString() {
+    return 'TaskEvent.load(status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadImpl &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Status status) load,
+    required TResult Function(
+            Status prevStatus, Status newStatus, String orderId)
+        accept,
+  }) {
+    return load(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Status status)? load,
+    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+  }) {
+    return load?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Status status)? load,
+    TResult Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Accept value) accept,
+  }) {
+    return load(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Accept value)? accept,
+  }) {
+    return load?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Accept value)? accept,
+    required TResult orElse(),
+  }) {
+    if (load != null) {
+      return load(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Load implements TaskEvent {
+  const factory _Load({required final Status status}) = _$LoadImpl;
+
+  Status get status;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AcceptImplCopyWith<$Res> {
+  factory _$$AcceptImplCopyWith(
+          _$AcceptImpl value, $Res Function(_$AcceptImpl) then) =
+      __$$AcceptImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Status prevStatus, Status newStatus, String orderId});
+}
+
+/// @nodoc
+class __$$AcceptImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$AcceptImpl>
+    implements _$$AcceptImplCopyWith<$Res> {
+  __$$AcceptImplCopyWithImpl(
+      _$AcceptImpl _value, $Res Function(_$AcceptImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? prevStatus = null,
+    Object? newStatus = null,
+    Object? orderId = null,
+  }) {
+    return _then(_$AcceptImpl(
+      prevStatus: null == prevStatus
+          ? _value.prevStatus
+          : prevStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
+      newStatus: null == newStatus
+          ? _value.newStatus
+          : newStatus // ignore: cast_nullable_to_non_nullable
+              as Status,
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AcceptImpl implements _Accept {
+  const _$AcceptImpl(
+      {required this.prevStatus,
+      required this.newStatus,
+      required this.orderId});
+
+  @override
+  final Status prevStatus;
+  @override
+  final Status newStatus;
+  @override
+  final String orderId;
+
+  @override
+  String toString() {
+    return 'TaskEvent.accept(prevStatus: $prevStatus, newStatus: $newStatus, orderId: $orderId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptImpl &&
+            (identical(other.prevStatus, prevStatus) ||
+                other.prevStatus == prevStatus) &&
+            (identical(other.newStatus, newStatus) ||
+                other.newStatus == newStatus) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, prevStatus, newStatus, orderId);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AcceptImplCopyWith<_$AcceptImpl> get copyWith =>
+      __$$AcceptImplCopyWithImpl<_$AcceptImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Status status) load,
+    required TResult Function(
+            Status prevStatus, Status newStatus, String orderId)
+        accept,
+  }) {
+    return accept(prevStatus, newStatus, orderId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Status status)? load,
+    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+  }) {
+    return accept?.call(prevStatus, newStatus, orderId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Status status)? load,
+    TResult Function(Status prevStatus, Status newStatus, String orderId)?
+        accept,
+    required TResult orElse(),
+  }) {
+    if (accept != null) {
+      return accept(prevStatus, newStatus, orderId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Accept value) accept,
+  }) {
+    return accept(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Accept value)? accept,
+  }) {
+    return accept?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Accept value)? accept,
+    required TResult orElse(),
+  }) {
+    if (accept != null) {
+      return accept(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Accept implements TaskEvent {
+  const factory _Accept(
+      {required final Status prevStatus,
+      required final Status newStatus,
+      required final String orderId}) = _$AcceptImpl;
+
+  Status get prevStatus;
+  Status get newStatus;
+  String get orderId;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AcceptImplCopyWith<_$AcceptImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$TaskState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -488,310 +867,5 @@ abstract class _Failure implements TaskState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$TaskEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function(TaskModel task) edit,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function(TaskModel task)? edit,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function(TaskModel task)? edit,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TaskEventCopyWith<$Res> {
-  factory $TaskEventCopyWith(TaskEvent value, $Res Function(TaskEvent) then) =
-      _$TaskEventCopyWithImpl<$Res, TaskEvent>;
-}
-
-/// @nodoc
-class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
-    implements $TaskEventCopyWith<$Res> {
-  _$TaskEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$LoadImplCopyWith<$Res> {
-  factory _$$LoadImplCopyWith(
-          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
-      __$$LoadImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$LoadImpl>
-    implements _$$LoadImplCopyWith<$Res> {
-  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadImpl implements _Load {
-  const _$LoadImpl();
-
-  @override
-  String toString() {
-    return 'TaskEvent.load()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function(TaskModel task) edit,
-  }) {
-    return load();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function(TaskModel task)? edit,
-  }) {
-    return load?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function(TaskModel task)? edit,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-  }) {
-    return load(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-  }) {
-    return load?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Load implements TaskEvent {
-  const factory _Load() = _$LoadImpl;
-}
-
-/// @nodoc
-abstract class _$$EditImplCopyWith<$Res> {
-  factory _$$EditImplCopyWith(
-          _$EditImpl value, $Res Function(_$EditImpl) then) =
-      __$$EditImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({TaskModel task});
-}
-
-/// @nodoc
-class __$$EditImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$EditImpl>
-    implements _$$EditImplCopyWith<$Res> {
-  __$$EditImplCopyWithImpl(_$EditImpl _value, $Res Function(_$EditImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? task = null,
-  }) {
-    return _then(_$EditImpl(
-      task: null == task
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
-              as TaskModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$EditImpl implements _Edit {
-  const _$EditImpl({required this.task});
-
-  @override
-  final TaskModel task;
-
-  @override
-  String toString() {
-    return 'TaskEvent.edit(task: $task)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$EditImpl &&
-            (identical(other.task, task) || other.task == task));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, task);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
-      __$$EditImplCopyWithImpl<_$EditImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function(TaskModel task) edit,
-  }) {
-    return edit(task);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function(TaskModel task)? edit,
-  }) {
-    return edit?.call(task);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function(TaskModel task)? edit,
-    required TResult orElse(),
-  }) {
-    if (edit != null) {
-      return edit(task);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-  }) {
-    return edit(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-  }) {
-    return edit?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    required TResult orElse(),
-  }) {
-    if (edit != null) {
-      return edit(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Edit implements TaskEvent {
-  const factory _Edit({required final TaskModel task}) = _$EditImpl;
-
-  TaskModel get task;
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EditImplCopyWith<_$EditImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

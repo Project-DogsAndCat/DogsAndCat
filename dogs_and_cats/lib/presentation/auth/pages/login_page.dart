@@ -56,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                 loading: (_) {},
                 success: (state) {
                   clearText();
-                  CustomSnackBar.showSuccess(context, AppString.loginSuccess);
                   context.read<AuthBloc>().add(AuthEvent.userLogin());
                   if (state.person.role == 'dogsitter') {
                     if (!widget.isUser) {

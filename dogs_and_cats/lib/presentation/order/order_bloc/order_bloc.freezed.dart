@@ -20,21 +20,21 @@ mixin _$OrderEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
     required TResult Function(Status? status) load,
-    required TResult Function(OrderModel order) cancelOrder,
+    required TResult Function(String orderId) cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
     TResult? Function(Status? status)? load,
-    TResult? Function(OrderModel order)? cancelOrder,
+    TResult? Function(String orderId)? cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
     TResult Function(Status? status)? load,
-    TResult Function(OrderModel order)? cancelOrder,
+    TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,7 +169,7 @@ class _$AddOrderImpl implements _AddOrder {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
     required TResult Function(Status? status) load,
-    required TResult Function(OrderModel order) cancelOrder,
+    required TResult Function(String orderId) cancelOrder,
   }) {
     return addOrder(order, petIds);
   }
@@ -179,7 +179,7 @@ class _$AddOrderImpl implements _AddOrder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
     TResult? Function(Status? status)? load,
-    TResult? Function(OrderModel order)? cancelOrder,
+    TResult? Function(String orderId)? cancelOrder,
   }) {
     return addOrder?.call(order, petIds);
   }
@@ -189,7 +189,7 @@ class _$AddOrderImpl implements _AddOrder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
     TResult Function(Status? status)? load,
-    TResult Function(OrderModel order)? cancelOrder,
+    TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
     if (addOrder != null) {
@@ -317,7 +317,7 @@ class _$LoadImpl implements _Load {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
     required TResult Function(Status? status) load,
-    required TResult Function(OrderModel order) cancelOrder,
+    required TResult Function(String orderId) cancelOrder,
   }) {
     return load(status);
   }
@@ -327,7 +327,7 @@ class _$LoadImpl implements _Load {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
     TResult? Function(Status? status)? load,
-    TResult? Function(OrderModel order)? cancelOrder,
+    TResult? Function(String orderId)? cancelOrder,
   }) {
     return load?.call(status);
   }
@@ -337,7 +337,7 @@ class _$LoadImpl implements _Load {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
     TResult Function(Status? status)? load,
-    TResult Function(OrderModel order)? cancelOrder,
+    TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -399,7 +399,7 @@ abstract class _$$CancelOrderImplCopyWith<$Res> {
           _$CancelOrderImpl value, $Res Function(_$CancelOrderImpl) then) =
       __$$CancelOrderImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OrderModel order});
+  $Res call({String orderId});
 }
 
 /// @nodoc
@@ -415,13 +415,13 @@ class __$$CancelOrderImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? order = null,
+    Object? orderId = null,
   }) {
     return _then(_$CancelOrderImpl(
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderModel,
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -429,14 +429,14 @@ class __$$CancelOrderImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CancelOrderImpl implements _CancelOrder {
-  const _$CancelOrderImpl({required this.order});
+  const _$CancelOrderImpl({required this.orderId});
 
   @override
-  final OrderModel order;
+  final String orderId;
 
   @override
   String toString() {
-    return 'OrderEvent.cancelOrder(order: $order)';
+    return 'OrderEvent.cancelOrder(orderId: $orderId)';
   }
 
   @override
@@ -444,11 +444,11 @@ class _$CancelOrderImpl implements _CancelOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CancelOrderImpl &&
-            (identical(other.order, order) || other.order == order));
+            (identical(other.orderId, orderId) || other.orderId == orderId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, order);
+  int get hashCode => Object.hash(runtimeType, orderId);
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -463,9 +463,9 @@ class _$CancelOrderImpl implements _CancelOrder {
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
     required TResult Function(Status? status) load,
-    required TResult Function(OrderModel order) cancelOrder,
+    required TResult Function(String orderId) cancelOrder,
   }) {
-    return cancelOrder(order);
+    return cancelOrder(orderId);
   }
 
   @override
@@ -473,9 +473,9 @@ class _$CancelOrderImpl implements _CancelOrder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
     TResult? Function(Status? status)? load,
-    TResult? Function(OrderModel order)? cancelOrder,
+    TResult? Function(String orderId)? cancelOrder,
   }) {
-    return cancelOrder?.call(order);
+    return cancelOrder?.call(orderId);
   }
 
   @override
@@ -483,11 +483,11 @@ class _$CancelOrderImpl implements _CancelOrder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
     TResult Function(Status? status)? load,
-    TResult Function(OrderModel order)? cancelOrder,
+    TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
     if (cancelOrder != null) {
-      return cancelOrder(order);
+      return cancelOrder(orderId);
     }
     return orElse();
   }
@@ -528,10 +528,10 @@ class _$CancelOrderImpl implements _CancelOrder {
 }
 
 abstract class _CancelOrder implements OrderEvent {
-  const factory _CancelOrder({required final OrderModel order}) =
+  const factory _CancelOrder({required final String orderId}) =
       _$CancelOrderImpl;
 
-  OrderModel get order;
+  String get orderId;
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.

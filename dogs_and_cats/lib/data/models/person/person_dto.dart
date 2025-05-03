@@ -52,5 +52,14 @@ class PersonDto {
   factory PersonDto.fromJson(Map<String, dynamic> json) =>
       _$PersonDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonDtoToJson(this);
+  Map<String, dynamic> toJson() {
+    final json = _$PersonDtoToJson(this);
+    json.remove('latitude');
+    json.remove('longitude');
+
+    if (latitude != null && longitude != null) {
+      json['point'] = 'POINT($longitude $latitude)';
+    }
+    return json;
+  }
 }

@@ -19,6 +19,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() retry,
     required TResult Function(Person originalPerson, Person updatePerson) edit,
     required TResult Function(String email) editEmail,
   }) =>
@@ -26,6 +27,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? retry,
     TResult? Function(Person originalPerson, Person updatePerson)? edit,
     TResult? Function(String email)? editEmail,
   }) =>
@@ -33,6 +35,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? retry,
     TResult Function(Person originalPerson, Person updatePerson)? edit,
     TResult Function(String email)? editEmail,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Retry value) retry,
     required TResult Function(_Edit value) edit,
     required TResult Function(_EditEmail value) editEmail,
   }) =>
@@ -48,6 +52,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Retry value)? retry,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_EditEmail value)? editEmail,
   }) =>
@@ -55,6 +60,7 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Retry value)? retry,
     TResult Function(_Edit value)? edit,
     TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
@@ -124,6 +130,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() retry,
     required TResult Function(Person originalPerson, Person updatePerson) edit,
     required TResult Function(String email) editEmail,
   }) {
@@ -134,6 +141,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? retry,
     TResult? Function(Person originalPerson, Person updatePerson)? edit,
     TResult? Function(String email)? editEmail,
   }) {
@@ -144,6 +152,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? retry,
     TResult Function(Person originalPerson, Person updatePerson)? edit,
     TResult Function(String email)? editEmail,
     required TResult orElse(),
@@ -158,6 +167,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Retry value) retry,
     required TResult Function(_Edit value) edit,
     required TResult Function(_EditEmail value) editEmail,
   }) {
@@ -168,6 +178,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Retry value)? retry,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_EditEmail value)? editEmail,
   }) {
@@ -178,6 +189,7 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Retry value)? retry,
     TResult Function(_Edit value)? edit,
     TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
@@ -191,6 +203,123 @@ class _$LoadImpl implements _Load {
 
 abstract class _Load implements ProfileEvent {
   const factory _Load() = _$LoadImpl;
+}
+
+/// @nodoc
+abstract class _$$RetryImplCopyWith<$Res> {
+  factory _$$RetryImplCopyWith(
+          _$RetryImpl value, $Res Function(_$RetryImpl) then) =
+      __$$RetryImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RetryImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$RetryImpl>
+    implements _$$RetryImplCopyWith<$Res> {
+  __$$RetryImplCopyWithImpl(
+      _$RetryImpl _value, $Res Function(_$RetryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$RetryImpl implements _Retry {
+  const _$RetryImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.retry()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RetryImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() retry,
+    required TResult Function(Person originalPerson, Person updatePerson) edit,
+    required TResult Function(String email) editEmail,
+  }) {
+    return retry();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? retry,
+    TResult? Function(Person originalPerson, Person updatePerson)? edit,
+    TResult? Function(String email)? editEmail,
+  }) {
+    return retry?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? retry,
+    TResult Function(Person originalPerson, Person updatePerson)? edit,
+    TResult Function(String email)? editEmail,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Retry value) retry,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_EditEmail value) editEmail,
+  }) {
+    return retry(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Retry value)? retry,
+    TResult? Function(_Edit value)? edit,
+    TResult? Function(_EditEmail value)? editEmail,
+  }) {
+    return retry?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Retry value)? retry,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_EditEmail value)? editEmail,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Retry implements ProfileEvent {
+  const factory _Retry() = _$RetryImpl;
 }
 
 /// @nodoc
@@ -271,6 +400,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() retry,
     required TResult Function(Person originalPerson, Person updatePerson) edit,
     required TResult Function(String email) editEmail,
   }) {
@@ -281,6 +411,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? retry,
     TResult? Function(Person originalPerson, Person updatePerson)? edit,
     TResult? Function(String email)? editEmail,
   }) {
@@ -291,6 +422,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? retry,
     TResult Function(Person originalPerson, Person updatePerson)? edit,
     TResult Function(String email)? editEmail,
     required TResult orElse(),
@@ -305,6 +437,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Retry value) retry,
     required TResult Function(_Edit value) edit,
     required TResult Function(_EditEmail value) editEmail,
   }) {
@@ -315,6 +448,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Retry value)? retry,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_EditEmail value)? editEmail,
   }) {
@@ -325,6 +459,7 @@ class _$EditImpl implements _Edit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Retry value)? retry,
     TResult Function(_Edit value)? edit,
     TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),
@@ -420,6 +555,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() retry,
     required TResult Function(Person originalPerson, Person updatePerson) edit,
     required TResult Function(String email) editEmail,
   }) {
@@ -430,6 +566,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? retry,
     TResult? Function(Person originalPerson, Person updatePerson)? edit,
     TResult? Function(String email)? editEmail,
   }) {
@@ -440,6 +577,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? retry,
     TResult Function(Person originalPerson, Person updatePerson)? edit,
     TResult Function(String email)? editEmail,
     required TResult orElse(),
@@ -454,6 +592,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_Retry value) retry,
     required TResult Function(_Edit value) edit,
     required TResult Function(_EditEmail value) editEmail,
   }) {
@@ -464,6 +603,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
+    TResult? Function(_Retry value)? retry,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_EditEmail value)? editEmail,
   }) {
@@ -474,6 +614,7 @@ class _$EditEmailImpl implements _EditEmail {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_Retry value)? retry,
     TResult Function(_Edit value)? edit,
     TResult Function(_EditEmail value)? editEmail,
     required TResult orElse(),

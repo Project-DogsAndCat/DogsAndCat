@@ -7,7 +7,7 @@ import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bl
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
-import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/information_dog_sitter_bloc.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/dog_sitter_bloc.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/blocs/task_bloc.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
@@ -43,9 +43,9 @@ void main() async {
         BlocProvider(
             create: (_) => getIt<DogBreedBloc>()..add(DogBreedEvent.load())),
         BlocProvider(create: (_) => getIt<MapLocationCubit>()),
-        BlocProvider(create: (_) => getIt<InformationDogSitterBloc>()),
+        BlocProvider(create: (_) => getIt<DogSitterBloc>()),
         BlocProvider(create: (_) => getIt<ImageCubit>()),
-        BlocProvider(create: (_) => getIt<TaskBloc>()..add(TaskEvent.load())),
+        BlocProvider(create: (_) => getIt<TaskBloc>()),
       ],
       child: MyApp(),
     ),

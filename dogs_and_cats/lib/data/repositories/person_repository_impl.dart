@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dogs_and_cats/core/error/failure.dart';
+import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/data/models/person/person_dto.dart';
 import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
@@ -15,12 +18,15 @@ class PersonRepositoryImpl implements PersonRepository {
   Future<Either<Failure, Person>> getPerson() async {
     try {
       final personId = supabaseClient.auth.currentUser!.id;
-      final jsonList = await supabaseClient
-          .from(TableNames.person)
-          .select()
-          .eq('id', personId);
-      final person = PersonDto.fromJson(jsonList.first);
+
+      final json = await supabaseClient.rpc('get_person', params: {
+        '_id': personId,
+      }).single();
+
+      final person = PersonDto.fromJson(json);
       return right(person.toDomain());
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -40,6 +46,8 @@ class PersonRepositoryImpl implements PersonRepository {
           .update(json)
           .eq('id', personId);
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -72,6 +80,8 @@ class PersonRepositoryImpl implements PersonRepository {
         return left(Failure(message: 'Не удалось изменить E-mail'));
       }
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

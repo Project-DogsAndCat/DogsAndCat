@@ -10,6 +10,7 @@ import '../../../core/utils/validation_rules.dart';
 
 class EmailEdit extends StatefulWidget {
   const EmailEdit({super.key, required this.person});
+
   final Person person;
 
   @override
@@ -33,26 +34,26 @@ class _EmailEditState extends State<EmailEdit> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomSheetEdit(
-      title: AppString.email,
-      fields: [
-        CustomTextFormField(
-          controller: _emailController,
-          hintText: AppString.email,
-          keyboardType: TextInputType.text,
-          validator: (value) {
-            if (isValidatingEmail()) {
-              return AppString.providedValidEmail;
-            }
-            return null;
-          },
-        )
-      ],
-      onSave: () {
-        context
-            .read<ProfileBloc>()
-            .add(ProfileEvent.editEmail(email: _emailController.text));
-      },
+    return  BottomSheetEdit(
+        title: AppString.email,
+        fields: [
+          CustomTextFormField(
+            controller: _emailController,
+            hintText: AppString.email,
+            keyboardType: TextInputType.text,
+            validator: (value) {
+              if (isValidatingEmail()) {
+                return AppString.providedValidEmail;
+              }
+              return null;
+            },
+          )
+        ],
+        onSave: () {
+          context
+              .read<ProfileBloc>()
+              .add(ProfileEvent.editEmail(email: _emailController.text));
+        },
     );
   }
 

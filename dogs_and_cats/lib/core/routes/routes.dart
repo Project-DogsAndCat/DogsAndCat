@@ -6,7 +6,7 @@ import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
-import 'package:dogs_and_cats/presentation/order/pages/order_page.dart';
+import 'package:dogs_and_cats/presentation/order/pages/list_tasks.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
@@ -22,9 +22,9 @@ final session = getIt<SupabaseClient>().auth.currentSession;
 final GoRouter router = GoRouter(
     initialLocation: session == null
         ? '/choseRole'
-        : (session!.user.userMetadata?['role_user'] == 'dogsitter'
-            ? '/todo'
-            : '/services'),
+        : (session!.user.userMetadata?['role_user'] != 'dogsitter'
+            ? '/services'
+            : '/todo'),
     routes: [
       GoRoute(
           name: RoutesNames.choseRole,
@@ -63,7 +63,7 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.todo,
           path: '/todo',
-          builder: (context, state) => const TodoPage()),
+          builder: (context, state) => TodoPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

@@ -2,12 +2,11 @@ import 'package:dogs_and_cats/core/error/failure.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../core/error/server_exception.dart';
-import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 import '../../domain/models/person_auth.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_data_source.dart';
+import '../models/person_auth/person_auth_dto.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(
@@ -20,16 +19,22 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, PersonAuth>> loginWithEmailPassword(
       {required String email, required String password}) async {
     try {
-      final person = await remoteDataSource.loginWithEmailPassword(
-          email: email, password: password);
-
-      return right(person.toDomain());
-    } on ServerException catch (e) {
-      return left(Failure(message: e.message));
-    } catch (e) {
-      if (e.toString().contains('SocketException')) {
-        return left(Failure(message: AppString.internetNotFound));
+      final response = await supabaseClient.auth
+          .signInWithPassword(email: email, password: password);
+      if (response.user == null) {
+        return left(Failure(message: 'Пользователь не найден'));
       }
+
+      final json = response.session!.user.toJson();
+      json['role_user'] = response.session!.user.userMetadata?['role_user'];
+
+      return right(PersonAuthDto.fromJson(json).toDomain());
+    } on AuthApiException catch (e) {
+      final error = authException(e);
+      return left(error);
+    } on AuthRetryableFetchException catch (e) {
+      return left(Failure(message: 'Проблемы с сетью'));
+    } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }
@@ -41,15 +46,26 @@ class AuthRepositoryImpl implements AuthRepository {
       required String email,
       required String password}) async {
     try {
-      final person = await remoteDataSource.signUpWithEmailPassword(
-          email: email, password: password);
+      final permissions = {'role_user': 'user'};
+      final response = await supabaseClient.auth
+          .signUp(password: password, email: email, data: permissions);
 
-      final json = {'first_name': firstName, 'last_name': lastName};
-      _addPerson(id: person.id, json: json);
+      if (response.user == null) {
+        return left(Failure(message: 'Пользователь не найден'));
+      }
 
-      return right(person.toDomain());
-    } on ServerException catch (e) {
-      return left(Failure(message: e.message));
+      final json = response.user!.toJson();
+      json['role_user'] = response.session!.user.userMetadata?['role_user'];
+
+      final addName = {'first_name': firstName, 'last_name': lastName};
+      await _addPerson(id: response.user!.id, json: addName);
+
+      return right(PersonAuthDto.fromJson(json).toDomain());
+    } on AuthApiException catch (e) {
+      final error = authException(e);
+      return left(error);
+    } on AuthRetryableFetchException catch (e) {
+      return left(Failure(message: 'Проблемы с сетью'));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -69,8 +85,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.signOut();
       return right(unit);
-    } on ServerException catch (e) {
-      return left(Failure(message: e.message));
+    } on AuthRetryableFetchException catch (e) {
+      return left(Failure(message: 'Проблемы с сетью'));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

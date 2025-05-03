@@ -37,25 +37,20 @@ class OrderPage extends StatelessWidget {
         ),
         body: TabBarView(children: [
           BlocProvider(
-            create: (context) => getIt<OrderBloc>()..add(OrderEvent.load()),
+            create: (context) => getIt<OrderBloc>(),
             child: ListOfAllOrders(),
           ),
           BlocProvider(
-            create: (context) => getIt<OrderBloc>()
-              ..add(OrderEvent.load(status: Status.adopted)),
+            create: (context) => getIt<OrderBloc>(),
             child: ListOfAllOrders(status: Status.adopted),
           ),
           BlocProvider(
-            create: (context) =>
-                getIt<OrderBloc>()..add(OrderEvent.load(status: Status.done)),
+            create: (context) => getIt<OrderBloc>(),
             child: ListOfAllOrders(status: Status.done),
           ),
           BlocProvider(
-            create: (context) => getIt<OrderBloc>()
-              ..add(OrderEvent.load(status: Status.refusal)),
-            child: ListOfAllOrders(
-              status: Status.refusal,
-            ),
+            create: (context) => getIt<OrderBloc>(),
+            child: ListOfAllOrders(status: Status.refusal),
           ),
         ]),
       ),

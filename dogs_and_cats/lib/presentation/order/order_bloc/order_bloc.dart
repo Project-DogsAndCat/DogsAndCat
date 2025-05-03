@@ -52,7 +52,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       Emitter<OrderState> emit, _CancelOrder event) async {
     emit(OrderState.loading());
 
-    final result = await orderRepository.cancelOrder(order: event.order);
+    final result = await orderRepository.cancel(orderId: event.orderId);
 
     result.fold((failure) => emit(OrderState.failure(message: failure.message)),
         (orders) => add(_Load()));

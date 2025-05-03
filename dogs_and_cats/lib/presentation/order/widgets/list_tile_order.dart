@@ -1,4 +1,3 @@
-import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,9 +16,10 @@ class ListTileOrder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(task.person.firstName!),
         Text(task.serviceTitle),
         Text(task.order.date.toString()),
-        Text(task.order.id ?? 'null'),
+        Text(task.order.id!),
         Text(task.order.duration),
         Text(task.order.status.value),
         Text(task.order.price.toString()),
@@ -29,10 +29,9 @@ class ListTileOrder extends StatelessWidget {
         GestureDetector(
           child: Text('Отменить заказ'),
           onTap: () {
-            final orderCancel = task.order.copyWith(status: Status.refusal);
             context
                 .read<OrderBloc>()
-                .add(OrderEvent.cancelOrder(order: orderCancel));
+                .add(OrderEvent.cancelOrder(orderId: task.order.id!));
           },
         )
       ],

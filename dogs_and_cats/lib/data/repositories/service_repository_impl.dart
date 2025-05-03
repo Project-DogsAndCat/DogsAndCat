@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dogs_and_cats/core/error/failure.dart';
 import 'package:dogs_and_cats/data/models/service/service_dto.dart';
 import 'package:dogs_and_cats/data/models/service_characteristic/service_characteristic_dto.dart';
@@ -7,24 +9,13 @@ import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 
 class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
 
-  // @override
-  // Future<Either<Failure, List<Service>>> getServices() async {
-  //   try {
-  //     final json = await supabaseClient.from(TableNames.services).select('');
-  //     List<Service> services = json
-  //         .map((element) => ServiceDto.fromJson(element).toDomain())
-  //         .toList();
-  //     return right(services);
-  //   } catch (e) {
-  //     return left(Failure(message: e.toString()));
-  //   }
-  // }
   @override
   Future<List<Service>> getServices() async {
     final json = await supabaseClient.from(TableNames.services).select('');
@@ -44,6 +35,8 @@ class ServiceRepositoryImpl implements ServiceRepository {
           .single();
       final service = ServiceDto.fromJson(json).toDomain();
       return right(service);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -62,6 +55,8 @@ class ServiceRepositoryImpl implements ServiceRepository {
               ServiceCharacteristicDto.fromJson(element).toDomain())
           .toList();
       return right(cache);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

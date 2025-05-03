@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dogs_and_cats/data/models/order/order_dto.dart';
 import 'package:dogs_and_cats/data/models/task/task_dto.dart';
 import 'package:dogs_and_cats/domain/models/order.dart';
@@ -7,6 +9,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/failure.dart';
+import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
@@ -40,21 +43,24 @@ class OrderRepositoryImpl implements OrderRepository {
           .toList());
 
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> cancelOrder({required OrderModel order}) async {
+  Future<Either<Failure, Unit>> cancel({required String orderId}) async {
     try {
       _clearCache();
-      final dto = OrderDto.fromDomain(order);
 
       await supabaseClient
           .from(TableNames.orders)
-          .update({'status': dto.status}).eq('id', dto.id!);
+          .update({'status': Status.refusal.value}).eq('id', orderId);
       return right(unit);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -69,12 +75,19 @@ class OrderRepositoryImpl implements OrderRepository {
       final json = await supabaseClient.rpc('get_order', params: {
         'curr_person_id': personId,
       });
+
+      if (json == null) {
+        return left(Failure(message: 'Вы не сделали еще ни одного заказа.'));
+      }
+
       final tasks = json
           .map((json) => TaskDto.fromJson(json).toDomain())
           .toList()
           .cast<TaskModel>();
       _updateCache(tasks);
       return right(tasks);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -82,7 +95,8 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future<List<TaskModel>> getOrderInfoWithFilter(Status status) async {
-    if (cache.isEmpty) getOrders();
+    if (cache.isEmpty) await getOrders();
+
     return cache
         .where((task) => task.order.status.value == status.value)
         .toList()

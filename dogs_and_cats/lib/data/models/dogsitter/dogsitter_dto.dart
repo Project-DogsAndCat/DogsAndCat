@@ -15,7 +15,7 @@ class DogsitterDto {
     required this.services,
   });
 
-  @JsonKey(name: 'dogsitter_id') // Маппинг поля из JSON
+  @JsonKey(name: 'dogsitter_id')
   final String id;
 
   @JsonKey(name: 'rating')
@@ -27,7 +27,7 @@ class DogsitterDto {
   @JsonKey(name: 'person')
   final PersonDto person;
 
-  @JsonKey(name: 'services') // Маппинг массива services
+  @JsonKey(name: 'services')
   final List<ServiceDto> services;
 
   StatusDogSitter getStatus(String? status) {

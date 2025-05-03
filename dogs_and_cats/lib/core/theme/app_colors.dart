@@ -14,7 +14,7 @@ class AppColors {
   static const Color telegramColor = Color(0xff3399ff);
 // // snack bar color
   static const Color snackBarBlue = Color(0xff3282B8);
-  static const Color snackBarRed = Color(0xffc72c41);
+  static const Color snackBarRed = Color(0xffb13f4f);
   static const Color snackBarGreen = Color(0xff2D6A4F);
   static const Color yellowColor = Colors.yellow;
 }

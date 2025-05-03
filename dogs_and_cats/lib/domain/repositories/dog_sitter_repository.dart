@@ -13,6 +13,10 @@ abstract interface class DogSitterRepository {
 
   Future<Either<Failure, Dogsitter>> getDogsitter();
 
+  Future<Either<Failure, Unit>> updateStatus({
+    required StatusDogSitter status,
+  });
+
   Future<Either<Failure, Unit>> addImage({
     required Uint8List imageBytes,
   });

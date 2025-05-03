@@ -14,20 +14,20 @@ class ListOfAllOrders extends StatefulWidget {
 }
 
 class _ListOfAllOrdersState extends State<ListOfAllOrders> {
-  late final OrderBloc _bloc;
-
   @override
   void initState() {
     super.initState();
-    _bloc = context.read<OrderBloc>()
-      ..add(OrderEvent.load(status: widget.status));
+    context.read<OrderBloc>().add(OrderEvent.load(status: widget.status));
   }
 
   @override
   void didUpdateWidget(ListOfAllOrders oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.status != widget.status) {
-      _bloc.add(OrderEvent.load(status: widget.status));
+      final bloc = context.read<OrderBloc>();
+      if (bloc.isClosed) {
+        bloc.add(OrderEvent.load(status: widget.status));
+      }
     }
   }
 

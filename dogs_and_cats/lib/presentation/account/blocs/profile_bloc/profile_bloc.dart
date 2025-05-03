@@ -13,14 +13,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({required this.repository}) : super(ProfileState.loading()) {
     on<ProfileEvent>((event, emit) async {
       await event.map(
-        load: (event) => _load(event, emit),
+        load: (_) => _load(emit),
+        retry: (_) => _retry(emit),
         edit: (event) => _edit(event, emit),
         editEmail: (event) => _ediEmail(event, emit),
       );
     });
   }
 
-  Future<void> _load(_Load event, Emitter<ProfileState> emit) async {
+  Future<void> _load(Emitter<ProfileState> emit) async {
     final result = await repository.getPerson();
 
     result.fold(
@@ -49,5 +50,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     result.fold(
         (failure) => emit(ProfileState.failure(message: failure.message)),
         (_) => add(_Load()));
+  }
+
+  Future<void> _retry(Emitter<ProfileState> emit) async {
+    emit(ProfileState.loading());
+    add(_Load());
   }
 }
