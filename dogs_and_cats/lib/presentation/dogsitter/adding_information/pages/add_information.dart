@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/routes/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../../core/widgets/rounded_elevated_button.dart';
 import '../../../../domain/models/service.dart';
-import '../../../auth/widgets/custom_snackbar.dart';
 import '../../adding_information/blocs/dog_sitter_bloc.dart';
 
 class AddInformation extends StatefulWidget {

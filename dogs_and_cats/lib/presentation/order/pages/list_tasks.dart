@@ -46,7 +46,7 @@ class OrderPage extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => getIt<OrderBloc>(),
-            child: ListOfAllOrders(status: Status.done),
+            child: ListOfAllOrders(status: Status.complete),
           ),
           BlocProvider(
             create: (context) => getIt<OrderBloc>(),

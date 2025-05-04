@@ -29,6 +29,7 @@
 //   final String image;
 // }
 
+import 'package:dogs_and_cats/domain/models/dogsitter.dart';
 import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
@@ -38,10 +39,12 @@ class TaskModel {
     required this.serviceTitle,
     required this.order,
     required this.person,
+    required this.dogsitter,
     required this.pet,
   });
   final String serviceTitle;
   final OrderModel order;
   final Person person;
+  final Dogsitter? dogsitter;
   final List<Pet> pet;
 }

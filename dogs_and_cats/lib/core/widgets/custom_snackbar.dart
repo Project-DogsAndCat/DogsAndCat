@@ -18,11 +18,11 @@ class CustomSnackBar {
   static void _showSnackBar(
       BuildContext context, String message, Color color, String title) {
     Flushbar(
-      flushbarPosition: FlushbarPosition.TOP,
+      flushbarPosition: FlushbarPosition.BOTTOM,
       title: title,
       message: message,
       duration: Duration(seconds: 3),
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(15.0),
       borderRadius: BorderRadius.circular(8),
       backgroundColor: color,
     ).show(context);

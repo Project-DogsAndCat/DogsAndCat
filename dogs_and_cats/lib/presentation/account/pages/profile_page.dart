@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
-import '../../auth/widgets/custom_snackbar.dart';
+import '../../../core/widgets/custom_snackbar.dart';
 import 'map_page.dart';
 
 class ProfilePage extends StatelessWidget {

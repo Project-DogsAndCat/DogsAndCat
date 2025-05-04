@@ -1,7 +1,7 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
-import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
+import 'package:dogs_and_cats/core/widgets/custom_snackbar.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/date_picker_widget.dart';

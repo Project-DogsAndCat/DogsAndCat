@@ -25,9 +25,6 @@ class DogSitterBloc extends Bloc<DogSitterEvent, DogSitterState> {
     });
   }
 
-  Dogsitter? _dogsitter;
-  Dogsitter? get dogsiterrInfo => _dogsitter;
-
   Future<void> _load(Emitter<DogSitterState> emit) async {
     emit(DogSitterState.loading());
     final result = await repository.getDogsitter();
@@ -35,7 +32,6 @@ class DogSitterBloc extends Bloc<DogSitterEvent, DogSitterState> {
     result.fold(
         (failure) => emit(DogSitterState.failure(message: failure.message)),
         (dogsitter) {
-      _dogsitter = dogsitter;
       emit(DogSitterState.loaded(dogsitter: dogsitter));
     });
   }
@@ -64,19 +60,10 @@ class DogSitterBloc extends Bloc<DogSitterEvent, DogSitterState> {
       Emitter<DogSitterState> emit, _UpdateStatus event) async {
     emit(DogSitterState.loading());
 
-    final newStatus = _changeStatus(status: event.currentStatus);
-
-    final result = await repository.updateStatus(status: newStatus);
+    final result = await repository.updateStatus(status: event.currentStatus);
 
     result.fold(
         (failure) => emit(DogSitterState.failure(message: failure.message)),
         (_) => add(_Load()));
-  }
-
-  StatusDogSitter _changeStatus({required StatusDogSitter status}) {
-    if (status == StatusDogSitter.busy) {
-      return StatusDogSitter.free;
-    }
-    return StatusDogSitter.busy;
   }
 }

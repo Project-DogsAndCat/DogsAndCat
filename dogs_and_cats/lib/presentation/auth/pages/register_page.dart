@@ -1,9 +1,9 @@
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/app_images.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
+import 'package:dogs_and_cats/core/widgets/custom_snackbar.dart';
 import 'package:dogs_and_cats/core/widgets/custom_text_form_field.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
-import 'package:dogs_and_cats/presentation/auth/widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

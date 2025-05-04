@@ -15,7 +15,6 @@ import '../../core/utils/table_names.dart';
 class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
-
   List<TaskModel> cache = [];
 
   @override
@@ -76,9 +75,7 @@ class OrderRepositoryImpl implements OrderRepository {
         'curr_person_id': personId,
       });
 
-      if (json == null) {
-        return left(Failure(message: 'Вы не сделали еще ни одного заказа.'));
-      }
+      if (json == null) return right([]);
 
       final tasks = json
           .map((json) => TaskDto.fromJson(json).toDomain())
@@ -93,15 +90,15 @@ class OrderRepositoryImpl implements OrderRepository {
     }
   }
 
-  @override
-  Future<List<TaskModel>> getOrderInfoWithFilter(Status status) async {
-    if (cache.isEmpty) await getOrders();
-
-    return cache
-        .where((task) => task.order.status.value == status.value)
-        .toList()
-        .cast<TaskModel>();
-  }
+  // @override
+  // Future<List<TaskModel>> getOrderInfoWithFilter(Status status) async {
+  //   if (cache.isEmpty) await getOrders();
+  //
+  //   return cache
+  //       .where((task) => task.order.status.value == status.value)
+  //       .toList()
+  //       .cast<TaskModel>();
+  // }
 
   void _clearCache() {
     cache.clear();

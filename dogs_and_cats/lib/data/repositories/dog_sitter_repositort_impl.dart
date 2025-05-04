@@ -16,6 +16,8 @@ import '../../domain/models/service.dart';
 class DogSitterRepositoryImpl implements DogSitterRepository {
   DogSitterRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
+  // Dogsitter? cache;
+
   @override
   Future<Either<Failure, Unit>> addInformation(
       {required Set<Service> selectedServices}) async {
@@ -41,7 +43,7 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
                     'service_id': service.id,
                   })
               .toList());
-
+      // clearCache();
       return right(unit);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -53,10 +55,19 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
   @override
   Future<Either<Failure, Dogsitter>> getDogsitter() async {
     try {
+      // if (cache != null) return right(cache!);
+
       final json = await supabaseClient.rpc('get_dogsitter_services',
           params: {'per_person_id': supabaseClient.auth.currentUser!.id});
+
+      if (json == null) return left(Failure(message: 'Не найден выгульщик'));
+
       final dogsitter = DogsitterDto.fromJson(json).toDomain();
+
+      // updateCache(dogsitter);
       return right(dogsitter);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -93,6 +104,7 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
                 upsert: true,
               ));
 
+      // clearCache();
       return right(unit);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -111,6 +123,8 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
       imageUrl = Uri.parse(imageUrl).replace(queryParameters: {
         't': DateTime.now().millisecondsSinceEpoch.toString()
       }).toString();
+
+      // clearCache();
       return right(imageUrl);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -118,4 +132,12 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
       return left(Failure(message: e.toString()));
     }
   }
+
+  // void clearCache() {
+  //   cache = null;
+  // }
+  //
+  // void updateCache(Dogsitter dogsitter) {
+  //   cache = dogsitter;
+  // }
 }

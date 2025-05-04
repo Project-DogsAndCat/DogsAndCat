@@ -6,30 +6,24 @@ import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/models/order.dart';
+import '../dogsitter/dogsitter_dto.dart';
+
 part 'task_dto.g.dart';
 
 @JsonSerializable()
 class TaskDto {
   TaskDto({
-    required this.orderId,
-    required this.date,
-    required this.status,
-    required this.duration,
-    required this.price,
-    required this.person,
     required this.service,
-    required this.pet,
+    required this.order,
+    required this.person,
+    required this.dogsitter,
+    required this.pets,
   });
-  @JsonKey(name: 'order_id')
-  final String orderId;
-  final DateTime date;
-  final String status;
-  final String duration;
-  final double price;
-  final PersonDto person;
   final ServiceDto service;
-  @JsonKey(name: 'pets')
-  final List<PetDto> pet;
+  final OrderDto order;
+  final PersonDto person;
+  final DogsitterDto? dogsitter;
+  final List<PetDto> pets;
 
   Status getStatusOrder({required String status}) {
     return Status.values.firstWhere((value) => value.value == status,
@@ -38,16 +32,10 @@ class TaskDto {
 
   TaskModel toDomain() => TaskModel(
         serviceTitle: service.title,
-        order: OrderDto(
-                id: orderId,
-                serviceId: service.id,
-                duration: duration,
-                price: price,
-                date: date,
-                status: status)
-            .toDomain(),
+        order: order.toDomain(),
         person: person.toDomain(),
-        pet: pet.map((element) => element.toDomain()).toList(),
+        dogsitter: dogsitter?.toDomain(),
+        pet: pets.map((element) => element.toDomain()).toList(),
       );
 
   factory TaskDto.fromJson(Map<String, dynamic> json) =>

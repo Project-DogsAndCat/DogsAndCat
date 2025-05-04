@@ -14,4 +14,6 @@ class RoutesNames {
   static const settings = 'settings';
   static const addInformation = 'addInformation';
   static const todo = 'todo';
+  static const dogsitterSettings = 'dogsitterSettings';
+  static const dogsitterAccount = 'dogsitterAccount';
 }

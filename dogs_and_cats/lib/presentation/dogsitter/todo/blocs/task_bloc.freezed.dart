@@ -18,43 +18,57 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Status status) load,
-    required TResult Function(
-            Status prevStatus, Status newStatus, String orderId)
-        accept,
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Status status)? load,
-    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Status status)? load,
-    TResult Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
     required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,100 +95,79 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
 }
 
 /// @nodoc
-abstract class _$$LoadImplCopyWith<$Res> {
-  factory _$$LoadImplCopyWith(
-          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
-      __$$LoadImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Status status});
+abstract class _$$LoadAllTaskImplCopyWith<$Res> {
+  factory _$$LoadAllTaskImplCopyWith(
+          _$LoadAllTaskImpl value, $Res Function(_$LoadAllTaskImpl) then) =
+      __$$LoadAllTaskImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$LoadImpl>
-    implements _$$LoadImplCopyWith<$Res> {
-  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+class __$$LoadAllTaskImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$LoadAllTaskImpl>
+    implements _$$LoadAllTaskImplCopyWith<$Res> {
+  __$$LoadAllTaskImplCopyWithImpl(
+      _$LoadAllTaskImpl _value, $Res Function(_$LoadAllTaskImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-  }) {
-    return _then(_$LoadImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadImpl implements _Load {
-  const _$LoadImpl({required this.status});
-
-  @override
-  final Status status;
+class _$LoadAllTaskImpl implements _LoadAllTask {
+  const _$LoadAllTaskImpl();
 
   @override
   String toString() {
-    return 'TaskEvent.load(status: $status)';
+    return 'TaskEvent.loadAllTask()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadImpl &&
-            (identical(other.status, status) || other.status == status));
+        (other.runtimeType == runtimeType && other is _$LoadAllTaskImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Status status) load,
-    required TResult Function(
-            Status prevStatus, Status newStatus, String orderId)
-        accept,
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
   }) {
-    return load(status);
+    return loadAllTask();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Status status)? load,
-    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
   }) {
-    return load?.call(status);
+    return loadAllTask?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Status status)? load,
-    TResult Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(status);
+    if (loadAllTask != null) {
+      return loadAllTask();
     }
     return orElse();
   }
@@ -182,45 +175,292 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
     required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
   }) {
-    return load(this);
+    return loadAllTask(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
   }) {
-    return load?.call(this);
+    return loadAllTask?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(this);
+    if (loadAllTask != null) {
+      return loadAllTask(this);
     }
     return orElse();
   }
 }
 
-abstract class _Load implements TaskEvent {
-  const factory _Load({required final Status status}) = _$LoadImpl;
+abstract class _LoadAllTask implements TaskEvent {
+  const factory _LoadAllTask() = _$LoadAllTaskImpl;
+}
 
-  Status get status;
+/// @nodoc
+abstract class _$$LoadAcceptedTaskImplCopyWith<$Res> {
+  factory _$$LoadAcceptedTaskImplCopyWith(_$LoadAcceptedTaskImpl value,
+          $Res Function(_$LoadAcceptedTaskImpl) then) =
+      __$$LoadAcceptedTaskImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadAcceptedTaskImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$LoadAcceptedTaskImpl>
+    implements _$$LoadAcceptedTaskImplCopyWith<$Res> {
+  __$$LoadAcceptedTaskImplCopyWithImpl(_$LoadAcceptedTaskImpl _value,
+      $Res Function(_$LoadAcceptedTaskImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$LoadAcceptedTaskImpl implements _LoadAcceptedTask {
+  const _$LoadAcceptedTaskImpl();
+
+  @override
+  String toString() {
+    return 'TaskEvent.loadAcceptedTask()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadAcceptedTaskImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
+  }) {
+    return loadAcceptedTask();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
+  }) {
+    return loadAcceptedTask?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
+    required TResult orElse(),
+  }) {
+    if (loadAcceptedTask != null) {
+      return loadAcceptedTask();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
+    required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
+  }) {
+    return loadAcceptedTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
+  }) {
+    return loadAcceptedTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
+    required TResult orElse(),
+  }) {
+    if (loadAcceptedTask != null) {
+      return loadAcceptedTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadAcceptedTask implements TaskEvent {
+  const factory _LoadAcceptedTask() = _$LoadAcceptedTaskImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadCompletedTaskImplCopyWith<$Res> {
+  factory _$$LoadCompletedTaskImplCopyWith(_$LoadCompletedTaskImpl value,
+          $Res Function(_$LoadCompletedTaskImpl) then) =
+      __$$LoadCompletedTaskImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadCompletedTaskImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$LoadCompletedTaskImpl>
+    implements _$$LoadCompletedTaskImplCopyWith<$Res> {
+  __$$LoadCompletedTaskImplCopyWithImpl(_$LoadCompletedTaskImpl _value,
+      $Res Function(_$LoadCompletedTaskImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadCompletedTaskImpl implements _LoadCompletedTask {
+  const _$LoadCompletedTaskImpl();
+
+  @override
+  String toString() {
+    return 'TaskEvent.loadCompletedTask()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadCompletedTaskImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
+  }) {
+    return loadCompletedTask();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
+  }) {
+    return loadCompletedTask?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
+    required TResult orElse(),
+  }) {
+    if (loadCompletedTask != null) {
+      return loadCompletedTask();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
+    required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
+  }) {
+    return loadCompletedTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
+  }) {
+    return loadCompletedTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
+    required TResult orElse(),
+  }) {
+    if (loadCompletedTask != null) {
+      return loadCompletedTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadCompletedTask implements TaskEvent {
+  const factory _LoadCompletedTask() = _$LoadCompletedTaskImpl;
 }
 
 /// @nodoc
@@ -229,7 +469,7 @@ abstract class _$$AcceptImplCopyWith<$Res> {
           _$AcceptImpl value, $Res Function(_$AcceptImpl) then) =
       __$$AcceptImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Status prevStatus, Status newStatus, String orderId});
+  $Res call({String orderId});
 }
 
 /// @nodoc
@@ -245,19 +485,9 @@ class __$$AcceptImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? prevStatus = null,
-    Object? newStatus = null,
     Object? orderId = null,
   }) {
     return _then(_$AcceptImpl(
-      prevStatus: null == prevStatus
-          ? _value.prevStatus
-          : prevStatus // ignore: cast_nullable_to_non_nullable
-              as Status,
-      newStatus: null == newStatus
-          ? _value.newStatus
-          : newStatus // ignore: cast_nullable_to_non_nullable
-              as Status,
       orderId: null == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -269,21 +499,14 @@ class __$$AcceptImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AcceptImpl implements _Accept {
-  const _$AcceptImpl(
-      {required this.prevStatus,
-      required this.newStatus,
-      required this.orderId});
+  const _$AcceptImpl({required this.orderId});
 
-  @override
-  final Status prevStatus;
-  @override
-  final Status newStatus;
   @override
   final String orderId;
 
   @override
   String toString() {
-    return 'TaskEvent.accept(prevStatus: $prevStatus, newStatus: $newStatus, orderId: $orderId)';
+    return 'TaskEvent.accept(orderId: $orderId)';
   }
 
   @override
@@ -291,15 +514,11 @@ class _$AcceptImpl implements _Accept {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AcceptImpl &&
-            (identical(other.prevStatus, prevStatus) ||
-                other.prevStatus == prevStatus) &&
-            (identical(other.newStatus, newStatus) ||
-                other.newStatus == newStatus) &&
             (identical(other.orderId, orderId) || other.orderId == orderId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prevStatus, newStatus, orderId);
+  int get hashCode => Object.hash(runtimeType, orderId);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -312,34 +531,39 @@ class _$AcceptImpl implements _Accept {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Status status) load,
-    required TResult Function(
-            Status prevStatus, Status newStatus, String orderId)
-        accept,
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
   }) {
-    return accept(prevStatus, newStatus, orderId);
+    return accept(orderId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Status status)? load,
-    TResult? Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
   }) {
-    return accept?.call(prevStatus, newStatus, orderId);
+    return accept?.call(orderId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Status status)? load,
-    TResult Function(Status prevStatus, Status newStatus, String orderId)?
-        accept,
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
     if (accept != null) {
-      return accept(prevStatus, newStatus, orderId);
+      return accept(orderId);
     }
     return orElse();
   }
@@ -347,8 +571,11 @@ class _$AcceptImpl implements _Accept {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
     required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
   }) {
     return accept(this);
   }
@@ -356,8 +583,11 @@ class _$AcceptImpl implements _Accept {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
   }) {
     return accept?.call(this);
   }
@@ -365,8 +595,11 @@ class _$AcceptImpl implements _Accept {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
     TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
     required TResult orElse(),
   }) {
     if (accept != null) {
@@ -377,19 +610,172 @@ class _$AcceptImpl implements _Accept {
 }
 
 abstract class _Accept implements TaskEvent {
-  const factory _Accept(
-      {required final Status prevStatus,
-      required final Status newStatus,
-      required final String orderId}) = _$AcceptImpl;
+  const factory _Accept({required final String orderId}) = _$AcceptImpl;
 
-  Status get prevStatus;
-  Status get newStatus;
   String get orderId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AcceptImplCopyWith<_$AcceptImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CompleteImplCopyWith<$Res> {
+  factory _$$CompleteImplCopyWith(
+          _$CompleteImpl value, $Res Function(_$CompleteImpl) then) =
+      __$$CompleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String orderId});
+}
+
+/// @nodoc
+class __$$CompleteImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$CompleteImpl>
+    implements _$$CompleteImplCopyWith<$Res> {
+  __$$CompleteImplCopyWithImpl(
+      _$CompleteImpl _value, $Res Function(_$CompleteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderId = null,
+  }) {
+    return _then(_$CompleteImpl(
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CompleteImpl implements _Complete {
+  const _$CompleteImpl({required this.orderId});
+
+  @override
+  final String orderId;
+
+  @override
+  String toString() {
+    return 'TaskEvent.complete(orderId: $orderId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CompleteImpl &&
+            (identical(other.orderId, orderId) || other.orderId == orderId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, orderId);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CompleteImplCopyWith<_$CompleteImpl> get copyWith =>
+      __$$CompleteImplCopyWithImpl<_$CompleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadAllTask,
+    required TResult Function() loadAcceptedTask,
+    required TResult Function() loadCompletedTask,
+    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId) complete,
+  }) {
+    return complete(orderId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadAllTask,
+    TResult? Function()? loadAcceptedTask,
+    TResult? Function()? loadCompletedTask,
+    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId)? complete,
+  }) {
+    return complete?.call(orderId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadAllTask,
+    TResult Function()? loadAcceptedTask,
+    TResult Function()? loadCompletedTask,
+    TResult Function(String orderId)? accept,
+    TResult Function(String orderId)? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete(orderId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadAllTask value) loadAllTask,
+    required TResult Function(_LoadAcceptedTask value) loadAcceptedTask,
+    required TResult Function(_LoadCompletedTask value) loadCompletedTask,
+    required TResult Function(_Accept value) accept,
+    required TResult Function(_Complete value) complete,
+  }) {
+    return complete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadAllTask value)? loadAllTask,
+    TResult? Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult? Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult? Function(_Accept value)? accept,
+    TResult? Function(_Complete value)? complete,
+  }) {
+    return complete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadAllTask value)? loadAllTask,
+    TResult Function(_LoadAcceptedTask value)? loadAcceptedTask,
+    TResult Function(_LoadCompletedTask value)? loadCompletedTask,
+    TResult Function(_Accept value)? accept,
+    TResult Function(_Complete value)? complete,
+    required TResult orElse(),
+  }) {
+    if (complete != null) {
+      return complete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Complete implements TaskEvent {
+  const factory _Complete({required final String orderId}) = _$CompleteImpl;
+
+  String get orderId;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CompleteImplCopyWith<_$CompleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

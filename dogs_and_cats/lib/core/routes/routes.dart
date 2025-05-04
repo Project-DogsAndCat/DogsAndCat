@@ -15,7 +15,10 @@ import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../presentation/dogsitter/account/dogsitter_account.dart';
 import '../../presentation/dogsitter/adding_information/pages/add_information.dart';
+import '../../presentation/dogsitter/scaffold_with_navbar/pages/dogsitter_scaffold_with_navbar.dart';
+import '../../presentation/dogsitter/settings/dogsitter_settings.dart';
 
 final session = getIt<SupabaseClient>().auth.currentSession;
 
@@ -60,10 +63,10 @@ final GoRouter router = GoRouter(
           name: RoutesNames.addInformation,
           path: '/addInformation',
           builder: (context, state) => const AddInformation()),
-      GoRoute(
-          name: RoutesNames.todo,
-          path: '/todo',
-          builder: (context, state) => TodoPage()),
+      // GoRoute(
+      //     name: RoutesNames.todo,
+      //     path: '/todo',
+      //     builder: (context, state) => TodoPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),
@@ -96,6 +99,34 @@ final GoRouter router = GoRouter(
                 name: RoutesNames.settings,
                 path: '/settings',
                 builder: (context, state) => const SettingsPage(),
+              )
+            ]),
+          ]),
+      StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) =>
+              DogsitterScaffoldWithNavbar(navigationShell: navigationShell),
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  name: RoutesNames.todo,
+                  path: '/todo',
+                  builder: (context, state) => const TodoPage(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                name: RoutesNames.dogsitterSettings,
+                path: '/dogsitterSettings',
+                builder: (context, state) => const DogsitterSettings(),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                name: RoutesNames.dogsitterAccount,
+                path: '/dogsitterAccount',
+                builder: (context, state) => const DogsitterAccount(),
               )
             ]),
           ]),

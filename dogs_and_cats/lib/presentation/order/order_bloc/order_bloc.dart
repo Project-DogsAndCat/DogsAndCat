@@ -36,16 +36,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   }
 
   Future<void> _load(Emitter<OrderState> emit, _Load event) async {
-    if (event.status == null) {
-      final response = await orderRepository.getOrders();
-      response.fold(
-          (failure) => emit(OrderState.failure(message: failure.message)),
-          (task) => emit(OrderState.loaded(tasks: task.cast<TaskModel>())));
-    } else {
-      final responseWithFilter =
-          await orderRepository.getOrderInfoWithFilter(event.status!);
-      emit(OrderState.loaded(tasks: responseWithFilter));
-    }
+    final response = await orderRepository.getOrders();
+    response.fold(
+        (failure) => emit(OrderState.failure(message: failure.message)),
+        (task) => emit(OrderState.loaded(tasks: task.cast<TaskModel>())));
   }
 
   Future<void> _cancelOrder(

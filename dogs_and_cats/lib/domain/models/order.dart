@@ -36,7 +36,7 @@ enum Status {
   waiting('В ожидании'),
   adopted('Принят'),
   refusal('Отменен'),
-  done('Выполнено');
+  complete('Выполнено');
 
   const Status(this.value);
   final String value;

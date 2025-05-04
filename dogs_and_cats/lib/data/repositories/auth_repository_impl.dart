@@ -32,7 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on AuthApiException catch (e) {
       final error = authException(e);
       return left(error);
-    } on AuthRetryableFetchException catch (e) {
+    } on AuthRetryableFetchException catch (_) {
       return left(Failure(message: 'Проблемы с сетью'));
     } catch (e) {
       return left(Failure(message: e.toString()));
@@ -64,7 +64,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on AuthApiException catch (e) {
       final error = authException(e);
       return left(error);
-    } on AuthRetryableFetchException catch (e) {
+    } on AuthRetryableFetchException catch (_) {
       return left(Failure(message: 'Проблемы с сетью'));
     } catch (e) {
       return left(Failure(message: e.toString()));
@@ -85,7 +85,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await remoteDataSource.signOut();
       return right(unit);
-    } on AuthRetryableFetchException catch (e) {
+    } on AuthRetryableFetchException catch (_) {
       return left(Failure(message: 'Проблемы с сетью'));
     } catch (e) {
       return left(Failure(message: e.toString()));
