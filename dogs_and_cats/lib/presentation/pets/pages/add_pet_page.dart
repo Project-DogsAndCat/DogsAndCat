@@ -7,6 +7,7 @@ import 'package:dogs_and_cats/presentation/pets/widgets/button_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_switch.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
@@ -196,7 +197,11 @@ class _AddPetPageState extends State<AddPetPage> {
               BlocBuilder<PetEditCubit, PetEditState>(
                 builder: (context, state) {
                   return RoundedElevatedButton(
-                    widget: const Text(AppString.save),
+                    widget: Text(
+                      AppString.save,
+                      style: textTheme.bodyMedium!
+                          .copyWith(color: AppColors.whiteColor),
+                    ),
                     onPressed: () {
                       if (_formKey.currentState!.validate() && _isBoy != null) {
                         Pet pet = createPet(

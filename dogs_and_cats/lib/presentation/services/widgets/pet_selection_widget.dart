@@ -3,6 +3,8 @@ import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme/theme.dart';
+
 class PetSelectionWidget extends StatefulWidget {
   final Function(List<String>, List<String>) onSelected;
 
@@ -27,9 +29,14 @@ class _PetSelectionWidgetState extends State<PetSelectionWidget> {
           loaded: (value) => Wrap(
             spacing: 5.0,
             children: List.generate(value.pets.length, (int index) {
+              bool isSelected = _selectedPetIds.contains(value.pets[index].id);
               return ChoiceChip(
-                label: Text(value.pets[index].name),
-                selected: _selectedPetIds.contains(value.pets[index].id),
+                label: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text(value.pets[index].name),
+                ),
+                selected: isSelected,
                 onSelected: (selected) {
                   setState(() {
                     if (selected) {
@@ -45,7 +52,14 @@ class _PetSelectionWidgetState extends State<PetSelectionWidget> {
                   widget.onSelected(_selectedPetIds, selectedNames);
                 },
                 showCheckmark: false,
+                labelStyle: isSelected
+                    ? textTheme.bodyLarge!.copyWith(color: AppColors.whiteColor)
+                    : textTheme.bodyLarge,
                 selectedColor: AppColors.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  side: const BorderSide(color: Colors.transparent),
+                ),
               );
             }).toList(),
           ),

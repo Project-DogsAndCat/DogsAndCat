@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/auxiliary_data/pet_properties.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/theme.dart';
 import '../cubit/pet_edit_cubit.dart';
 
 class PropertiesPage extends StatefulWidget {
@@ -41,17 +43,32 @@ class _PropertiesPageState extends State<PropertiesPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('К чему нам нужно быть готовым?'),
+        Text(
+          'К чему нам нужно быть готовым?',
+          style: textTheme.labelMedium,
+        ),
+        SizedBox(
+          height: 15,
+        ),
         Wrap(
           children: List<Widget>.generate(
             PetProperties.properties.length,
             (index) => Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: ChoiceChip(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                 showCheckmark: false,
-                label: Text(PetProperties.properties[index]),
+                label: Text(
+                  PetProperties.properties[index],
+                  style: textTheme.bodyMedium,
+                ),
                 selected: widget._selectedCategory
                     .contains(PetProperties.properties[index]),
+                selectedColor: AppColors.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  side: const BorderSide(color: Colors.transparent),
+                ),
                 onSelected: (bool selected) {
                   _chooseCategory(selected, index);
                   _updateProperties(selectedCategory: widget._selectedCategory);
@@ -61,7 +78,7 @@ class _PropertiesPageState extends State<PropertiesPage> {
           ).toList(),
         ),
         const SizedBox(
-          height: 10.0,
+          height: 15.0,
         ),
         CustomTextFormField(
           onChanged: (text) {

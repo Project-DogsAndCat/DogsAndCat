@@ -34,7 +34,6 @@ class _CustomChoiceChipState extends State<CustomChoiceChip> {
           ),
           showCheckmark: false,
           selectedColor: AppColors.primaryColor,
-          backgroundColor: AppColors.buttonColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
             side: const BorderSide(color: Colors.transparent),

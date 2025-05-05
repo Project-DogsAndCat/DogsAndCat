@@ -1,6 +1,7 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/gestures/tap.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class DatePickerWidget extends StatelessWidget {
@@ -26,10 +27,10 @@ class DatePickerWidget extends StatelessWidget {
       locale: "ru_RU",
       selectionColor: AppColors.primaryColor,
       selectedTextColor: AppColors.whiteColor,
-      dateTextStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-      dayTextStyle: TextStyle(fontSize: 11, fontWeight: FontWeight.w400),
-      monthTextStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
       onDateChange: onDateChange,
+      monthTextStyle: textTheme.bodyLarge!,
+      dayTextStyle: textTheme.labelLarge!,
+      dateTextStyle: textTheme.bodyLarge!,
     );
   }
 }

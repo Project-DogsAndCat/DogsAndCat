@@ -12,6 +12,7 @@ class PetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {

@@ -6,7 +6,6 @@ import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
-import 'package:dogs_and_cats/presentation/order/pages/list_tasks.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
@@ -19,16 +18,22 @@ import '../../presentation/dogsitter/account/dogsitter_account.dart';
 import '../../presentation/dogsitter/adding_information/pages/add_information.dart';
 import '../../presentation/dogsitter/scaffold_with_navbar/pages/dogsitter_scaffold_with_navbar.dart';
 import '../../presentation/dogsitter/settings/dogsitter_settings.dart';
+import '../../presentation/order/pages/list_tasks.dart';
+import '../welcome_pages/onboarding_view.dart';
 
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session == null
-        ? '/choseRole'
-        : (session!.user.userMetadata?['role_user'] != 'dogsitter'
-            ? '/services'
-            : '/todo'),
+    initialLocation: session != null
+        ? '/onboardingView'
+        : (session!.user.userMetadata?['role_user'] == 'dogsitter'
+            ? '/todo'
+            : '/services'),
     routes: [
+      GoRoute(
+          name: RoutesNames.onboardingView,
+          path: '/onboardingView',
+          builder: (context, state) => const OnboardingView()),
       GoRoute(
           name: RoutesNames.choseRole,
           path: '/choseRole',
@@ -63,10 +68,6 @@ final GoRouter router = GoRouter(
           name: RoutesNames.addInformation,
           path: '/addInformation',
           builder: (context, state) => const AddInformation()),
-      // GoRoute(
-      //     name: RoutesNames.todo,
-      //     path: '/todo',
-      //     builder: (context, state) => TodoPage()),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),

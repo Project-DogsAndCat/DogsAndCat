@@ -21,7 +21,6 @@ class CustomProfileButton extends StatelessWidget {
       style: ButtonStyle(
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)))),
-        backgroundColor: WidgetStatePropertyAll(AppColors.buttonColor),
         elevation: const WidgetStatePropertyAll(0),
       ),
       child: Padding(

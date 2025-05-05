@@ -32,6 +32,8 @@ class AppString {
   static const noDataSelected = 'Не все данные выбраны для заказа';
   static const forWhichPets = 'Для какого питомца?';
 
+  static const serviceType = 'Тип услуги';
+
   static const myPets = 'Мои питомцы';
   static const nameOfPet = 'Имя питомца';
   static const breed = 'Порода';

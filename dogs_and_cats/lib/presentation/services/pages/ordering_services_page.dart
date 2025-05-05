@@ -43,7 +43,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'AppString.orderingService',
+          AppString.orderingService,
           style: textTheme.titleMedium,
         ),
         centerTitle: true,
@@ -60,7 +60,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'AppString.durationService',
+                AppString.durationService,
                 style: textTheme.labelLarge,
               ),
               const SizedBox(
@@ -72,27 +72,31 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                   loaded: (value) {
                     idService = value.idService;
                     titleService = value.titleService;
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(
-                          value.characteristics.length,
-                          (int index) {
-                            return DurationAndPriceSelectionWidget(
-                              index: index,
-                              duration: value.characteristics[index].time,
-                              price: value.characteristics[index].price,
-                              selected: _selectedValue == index,
-                              onSelected: (String duration, double price) {
-                                setState(() {
-                                  _selectedValue = index;
-                                  this.duration = duration;
-                                  this.price = price;
-                                });
-                              },
-                            );
-                          },
-                        ),
+                    return SizedBox(
+                      height: 70,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: value.characteristics.length,
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 6,
+                          );
+                        },
+                        itemBuilder: (BuildContext context, int index) {
+                          return DurationAndPriceSelectionWidget(
+                            index: index,
+                            duration: value.characteristics[index].time,
+                            price: value.characteristics[index].price,
+                            selected: _selectedValue == index,
+                            onSelected: (String duration, double price) {
+                              setState(() {
+                                _selectedValue = index;
+                                this.duration = duration;
+                                this.price = price;
+                              });
+                            },
+                          );
+                        },
                       ),
                     );
                   },
@@ -101,14 +105,17 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 );
               }),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
-              Text('${DateFormat.MMMMEEEEd().format(date)}, ${time ?? ''}'),
+              Text(
+                '${DateFormat.MMMMEEEEd('RU-ru').format(date)}, ${time ?? ''}',
+                style: textTheme.labelLarge,
+              ),
               const SizedBox(
                 height: 10,
               ),
               DatePickerWidget(
-                height: 100,
+                height: 90,
                 width: 80,
                 daysCount: 15,
                 onDateChange: (selectedDate) {
@@ -118,24 +125,36 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               RoundedElevatedButton(
                 onPressed: () => _showTimePicker(),
                 widget: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'AppString.selectTime',
+                    Text(
+                      AppString.selectTime,
+                      style: textTheme.bodyMedium!
+                          .copyWith(color: AppColors.whiteColor),
                     ),
-                    Text(time != null ? '${time!.hour}:${time!.minute}' : ''),
+                    Text(
+                      time != null ? '${time!.hour}:${time!.minute}' : '',
+                      style: textTheme.bodyMedium!
+                          .copyWith(color: AppColors.whiteColor),
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
-              const Text('AppString.forWhichPets'),
+              Text(
+                AppString.forWhichPets,
+                style: textTheme.labelLarge,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               PetSelectionWidget(
                 onSelected: (List<String> ids, List<String> names) {
                   setState(() {
@@ -153,12 +172,14 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                     'backPage': RoutesNames.orderingService
                   });
                 },
-                child: const Text(
+                child: Text(
                   AppString.addPet,
+                  style: textTheme.bodyLarge!
+                      .copyWith(color: AppColors.primaryColor),
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               RoundedElevatedButton(
                 onPressed: () {
@@ -188,7 +209,9 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                   return state.maybeMap(
                       loading: (_) => CircularProgressIndicator(),
                       orElse: () {
-                        return Text(AppString.weight);
+                        return Text(AppString.order,
+                            style: textTheme.bodyMedium!
+                                .copyWith(color: AppColors.whiteColor));
                       });
                 }),
               )

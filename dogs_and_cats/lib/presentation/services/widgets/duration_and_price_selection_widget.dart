@@ -28,27 +28,37 @@ class _DurationAndPriceSelectionWidgetState
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
-      label: Column(
-        children: [
-          Text(
-            widget.duration,
-            style: textTheme.bodyMedium,
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          Text(
-            '${widget.price.toStringAsFixed(0)} руб',
-            style: textTheme.bodyMedium,
-          )
-        ],
+      label: SizedBox(
+        height: 60,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              widget.duration,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              '${widget.price.toStringAsFixed(0)} руб',
+            )
+          ],
+        ),
+      ),
+      labelStyle: widget.selected
+          ? textTheme.bodyLarge!.copyWith(color: AppColors.whiteColor)
+          : textTheme.bodyLarge,
+      selectedColor: AppColors.primaryColor,
+      // backgroundColor: AppColors.buttonColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
+        side: const BorderSide(color: Colors.transparent),
       ),
       selected: widget.selected,
       onSelected: (bool selected) {
         widget.onSelected(widget.duration, widget.price);
       },
       showCheckmark: false,
-      selectedColor: AppColors.primaryColor,
     );
   }
 }

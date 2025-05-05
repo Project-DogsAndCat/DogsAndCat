@@ -6,7 +6,6 @@ final textTheme = TextTheme(
   titleSmall: TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w600,
-    color: AppColors.backGroundColor,
     fontFamily: 'NimbusSanL',
   ),
 
@@ -14,7 +13,6 @@ final textTheme = TextTheme(
   titleMedium: TextStyle(
     fontSize: 25,
     fontWeight: FontWeight.w900,
-    color: AppColors.whiteColor,
     fontFamily: 'NimbusSanL',
   ),
 
@@ -23,7 +21,6 @@ final textTheme = TextTheme(
     fontSize: 18,
     height: 0.9,
     fontWeight: FontWeight.w900,
-    color: AppColors.backGroundColor,
     fontFamily: 'NimbusSanL',
   ),
 
@@ -31,20 +28,23 @@ final textTheme = TextTheme(
     fontSize: 50,
     height: 0.9,
     fontWeight: FontWeight.w500,
-    color: AppColors.backGroundColor,
     fontFamily: 'NimbusSanL',
   ),
   labelMedium: TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w900,
-    color: AppColors.backGroundColor,
     fontFamily: 'NimbusSanL',
   ),
   bodyMedium: TextStyle(
     height: 1,
     fontSize: 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.backGroundColor,
+    fontFamily: 'NimbusSanL',
+  ),
+  bodyLarge: TextStyle(
+    height: 1,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
     fontFamily: 'NimbusSanL',
   ),
 );
@@ -53,11 +53,18 @@ final lightTheme = ThemeData(
   textTheme: ThemeData.light()
       .textTheme
       .merge(textTheme)
-      .copyWith(bodyMedium: TextStyle(color: Colors.black)),
+      .copyWith(bodyLarge: TextStyle(color: Colors.black)),
   primaryColor: AppColors.appColor,
   useMaterial3: true,
   scaffoldBackgroundColor: Color(0xFFF8FAEC),
-  colorScheme: ColorScheme.light(surface: Color(0xFFF8FAEC)),
+  colorScheme: ColorScheme.light(surface: AppColors.buttonColor),
+  appBarTheme: AppBarTheme(backgroundColor: Color(0xFFF8FAEC)),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: AppColors.backGroundColor,
+    ),
+  ),
+  bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFF8FAEC)),
 );
 
 final darkTheme = ThemeData(
@@ -68,5 +75,12 @@ final darkTheme = ThemeData(
   primaryColor: AppColors.appColor,
   useMaterial3: true,
   scaffoldBackgroundColor: Color(0xFF232323),
-  colorScheme: ColorScheme.dark(surface: Color(0xFF232323)),
+  colorScheme: ColorScheme.dark(surface: Colors.black),
+  appBarTheme: AppBarTheme(backgroundColor: Color(0xFF232323)),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: AppColors.whiteColor,
+    ),
+  ),
+  bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF232323)),
 );
