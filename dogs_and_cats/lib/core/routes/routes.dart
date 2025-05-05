@@ -24,7 +24,7 @@ import '../welcome_pages/onboarding_view.dart';
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
-    initialLocation: session != null
+    initialLocation: session == null
         ? '/onboardingView'
         : (session!.user.userMetadata?['role_user'] == 'dogsitter'
             ? '/todo'

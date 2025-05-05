@@ -31,10 +31,10 @@ class PetsPage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   showModalBottomSheet<void>(
-                      context: context,
-                      builder: (newContext) {
-                        return AddPetPage();
-                      });
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => AddPetPage(),
+                  );
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,

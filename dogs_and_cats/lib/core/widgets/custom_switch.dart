@@ -22,6 +22,7 @@ class CustomSwitch extends StatelessWidget {
               title,
             ),
             Switch(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               value: value,
               onChanged: onChanged,
               activeColor: AppColors.whiteColor,

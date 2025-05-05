@@ -7,11 +7,11 @@ class CustomChoiceChip extends StatefulWidget {
     super.key,
     required this.title,
     required this.isSelected,
-    required this.onSelected,
+    this.onSelected,
   });
   final String title;
   final bool isSelected;
-  final Function(bool) onSelected;
+  final Function(bool)? onSelected;
 
   @override
   State<CustomChoiceChip> createState() => _CustomChoiceChipState();

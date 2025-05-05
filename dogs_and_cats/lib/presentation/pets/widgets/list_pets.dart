@@ -32,6 +32,7 @@ class ListPets extends StatelessWidget {
                       icon: Icons.add,
                       onPressed: () {
                         showModalBottomSheet<void>(
+                            isScrollControlled: true,
                             context: context,
                             builder: (newContext) {
                               return EditPetPage(
