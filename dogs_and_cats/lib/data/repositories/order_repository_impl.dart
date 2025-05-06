@@ -21,7 +21,7 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<Either<Failure, Unit>> addOrder(
       {required OrderModel order, required List<String> petIds}) async {
     try {
-      _clearCache();
+      // _clearCache();
       final dto = OrderDto.fromDomain(order);
       dto.personId = supabaseClient.auth.currentUser!.id;
       final json = dto.toJson();
@@ -52,7 +52,7 @@ class OrderRepositoryImpl implements OrderRepository {
   @override
   Future<Either<Failure, Unit>> cancel({required String orderId}) async {
     try {
-      _clearCache();
+      // _clearCache();
 
       await supabaseClient
           .from(TableNames.orders)
@@ -68,7 +68,7 @@ class OrderRepositoryImpl implements OrderRepository {
   @override
   Future<Either<Failure, List<TaskModel>>> getOrders() async {
     try {
-      if (cache.isNotEmpty) return right(cache.cast<TaskModel>());
+      // if (cache.isNotEmpty) return right(cache.cast<TaskModel>());
       final personId = supabaseClient.auth.currentUser!.id;
 
       final json = await supabaseClient.rpc('get_order', params: {
@@ -81,7 +81,7 @@ class OrderRepositoryImpl implements OrderRepository {
           .map((json) => TaskDto.fromJson(json).toDomain())
           .toList()
           .cast<TaskModel>();
-      _updateCache(tasks);
+      // _updateCache(tasks);
       return right(tasks);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -90,21 +90,11 @@ class OrderRepositoryImpl implements OrderRepository {
     }
   }
 
-  // @override
-  // Future<List<TaskModel>> getOrderInfoWithFilter(Status status) async {
-  //   if (cache.isEmpty) await getOrders();
-  //
-  //   return cache
-  //       .where((task) => task.order.status.value == status.value)
-  //       .toList()
-  //       .cast<TaskModel>();
+  // void _clearCache() {
+  //   cache.clear();
   // }
-
-  void _clearCache() {
-    cache.clear();
-  }
-
-  void _updateCache(List<TaskModel> data) {
-    cache = data;
-  }
+  //
+  // void _updateCache(List<TaskModel> data) {
+  //   cache = data;
+  // }
 }

@@ -36,7 +36,7 @@ void main() async {
         BlocProvider(
             create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
         BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),
-        BlocProvider(create: (_) => getIt<OrderBloc>()..add(OrderEvent.load())),
+        BlocProvider(create: (_) => getIt<OrderBloc>()),
         BlocProvider(create: (_) => getIt<PetBloc>()..add(PetEvent.load())),
         BlocProvider(create: (_) => getIt<MapSuggestBloc>()),
         BlocProvider(create: (_) => getIt<MapSearchBloc>()),

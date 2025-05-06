@@ -129,7 +129,6 @@ void _initOrder() {
 
   getIt.registerFactory<OrderBloc>(() => OrderBloc(
         orderRepository: getIt<OrderRepository>(),
-        serviceRepository: getIt<ServiceRepository>(),
       ));
 }
 

@@ -7,9 +7,13 @@ class OrderEvent with _$OrderEvent {
     required List<String> petIds,
   }) = _AddOrder;
 
-  const factory OrderEvent.load({
-    Status? status,
-  }) = _Load;
+  const factory OrderEvent.loadAllOrders() = _LoadAllOrders;
+
+  const factory OrderEvent.loadRefusalOrders() = _LoadRefusalOrders;
+
+  const factory OrderEvent.loadAdoptedOrders() = _LoadAdoptedOrders;
+
+  const factory OrderEvent.loadCompletedOrders() = _LoadCompletedOrders;
 
   const factory OrderEvent.cancelOrder({
     required String orderId,

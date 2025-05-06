@@ -26,8 +26,7 @@ class ListTasks extends StatelessWidget {
               },
               loaded: (state) {
                 if (state.tasks.isEmpty) {
-                  CustomSnackBar.showInfo(
-                      context, 'Пока нет ни одного предстоящего заказа');
+                  CustomSnackBar.showInfo(context, 'Здесь пока ничего нет :)');
                 }
               },
               orElse: () {});

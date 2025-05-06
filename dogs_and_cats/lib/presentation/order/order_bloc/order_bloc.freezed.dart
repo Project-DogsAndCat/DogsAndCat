@@ -19,21 +19,30 @@ mixin _$OrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function(Status? status) load,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function(Status? status)? load,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function(Status? status)? load,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) =>
@@ -41,21 +50,30 @@ mixin _$OrderEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddOrder value) addOrder,
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
     required TResult Function(_CancelOrder value) cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddOrder value)? addOrder,
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult? Function(_CancelOrder value)? cancelOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddOrder value)? addOrder,
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult Function(_CancelOrder value)? cancelOrder,
     required TResult orElse(),
   }) =>
@@ -168,7 +186,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function(Status? status) load,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
   }) {
     return addOrder(order, petIds);
@@ -178,7 +199,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function(Status? status)? load,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
   }) {
     return addOrder?.call(order, petIds);
@@ -188,7 +212,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function(Status? status)? load,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
@@ -202,7 +229,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddOrder value) addOrder,
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
     required TResult Function(_CancelOrder value) cancelOrder,
   }) {
     return addOrder(this);
@@ -212,7 +242,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddOrder value)? addOrder,
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult? Function(_CancelOrder value)? cancelOrder,
   }) {
     return addOrder?.call(this);
@@ -222,7 +255,10 @@ class _$AddOrderImpl implements _AddOrder {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddOrder value)? addOrder,
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult Function(_CancelOrder value)? cancelOrder,
     required TResult orElse(),
   }) {
@@ -249,99 +285,82 @@ abstract class _AddOrder implements OrderEvent {
 }
 
 /// @nodoc
-abstract class _$$LoadImplCopyWith<$Res> {
-  factory _$$LoadImplCopyWith(
-          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
-      __$$LoadImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Status? status});
+abstract class _$$LoadAllOrdersImplCopyWith<$Res> {
+  factory _$$LoadAllOrdersImplCopyWith(
+          _$LoadAllOrdersImpl value, $Res Function(_$LoadAllOrdersImpl) then) =
+      __$$LoadAllOrdersImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadImplCopyWithImpl<$Res>
-    extends _$OrderEventCopyWithImpl<$Res, _$LoadImpl>
-    implements _$$LoadImplCopyWith<$Res> {
-  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
+class __$$LoadAllOrdersImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$LoadAllOrdersImpl>
+    implements _$$LoadAllOrdersImplCopyWith<$Res> {
+  __$$LoadAllOrdersImplCopyWithImpl(
+      _$LoadAllOrdersImpl _value, $Res Function(_$LoadAllOrdersImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = freezed,
-  }) {
-    return _then(_$LoadImpl(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status?,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadImpl implements _Load {
-  const _$LoadImpl({this.status});
-
-  @override
-  final Status? status;
+class _$LoadAllOrdersImpl implements _LoadAllOrders {
+  const _$LoadAllOrdersImpl();
 
   @override
   String toString() {
-    return 'OrderEvent.load(status: $status)';
+    return 'OrderEvent.loadAllOrders()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadImpl &&
-            (identical(other.status, status) || other.status == status));
+        (other.runtimeType == runtimeType && other is _$LoadAllOrdersImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
-
-  /// Create a copy of OrderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function(Status? status) load,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
   }) {
-    return load(status);
+    return loadAllOrders();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function(Status? status)? load,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
   }) {
-    return load?.call(status);
+    return loadAllOrders?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function(Status? status)? load,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(status);
+    if (loadAllOrders != null) {
+      return loadAllOrders();
     }
     return orElse();
   }
@@ -350,47 +369,436 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddOrder value) addOrder,
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
     required TResult Function(_CancelOrder value) cancelOrder,
   }) {
-    return load(this);
+    return loadAllOrders(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddOrder value)? addOrder,
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult? Function(_CancelOrder value)? cancelOrder,
   }) {
-    return load?.call(this);
+    return loadAllOrders?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddOrder value)? addOrder,
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult Function(_CancelOrder value)? cancelOrder,
     required TResult orElse(),
   }) {
-    if (load != null) {
-      return load(this);
+    if (loadAllOrders != null) {
+      return loadAllOrders(this);
     }
     return orElse();
   }
 }
 
-abstract class _Load implements OrderEvent {
-  const factory _Load({final Status? status}) = _$LoadImpl;
+abstract class _LoadAllOrders implements OrderEvent {
+  const factory _LoadAllOrders() = _$LoadAllOrdersImpl;
+}
 
-  Status? get status;
+/// @nodoc
+abstract class _$$LoadRefusalOrdersImplCopyWith<$Res> {
+  factory _$$LoadRefusalOrdersImplCopyWith(_$LoadRefusalOrdersImpl value,
+          $Res Function(_$LoadRefusalOrdersImpl) then) =
+      __$$LoadRefusalOrdersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadRefusalOrdersImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$LoadRefusalOrdersImpl>
+    implements _$$LoadRefusalOrdersImplCopyWith<$Res> {
+  __$$LoadRefusalOrdersImplCopyWithImpl(_$LoadRefusalOrdersImpl _value,
+      $Res Function(_$LoadRefusalOrdersImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$LoadRefusalOrdersImpl implements _LoadRefusalOrders {
+  const _$LoadRefusalOrdersImpl();
+
+  @override
+  String toString() {
+    return 'OrderEvent.loadRefusalOrders()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadRefusalOrdersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OrderModel order, List<String> petIds) addOrder,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
+    required TResult Function(String orderId) cancelOrder,
+  }) {
+    return loadRefusalOrders();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
+    TResult? Function(String orderId)? cancelOrder,
+  }) {
+    return loadRefusalOrders?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
+    TResult Function(String orderId)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadRefusalOrders != null) {
+      return loadRefusalOrders();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddOrder value) addOrder,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
+    required TResult Function(_CancelOrder value) cancelOrder,
+  }) {
+    return loadRefusalOrders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddOrder value)? addOrder,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult? Function(_CancelOrder value)? cancelOrder,
+  }) {
+    return loadRefusalOrders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddOrder value)? addOrder,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult Function(_CancelOrder value)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadRefusalOrders != null) {
+      return loadRefusalOrders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadRefusalOrders implements OrderEvent {
+  const factory _LoadRefusalOrders() = _$LoadRefusalOrdersImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadAdoptedOrdersImplCopyWith<$Res> {
+  factory _$$LoadAdoptedOrdersImplCopyWith(_$LoadAdoptedOrdersImpl value,
+          $Res Function(_$LoadAdoptedOrdersImpl) then) =
+      __$$LoadAdoptedOrdersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadAdoptedOrdersImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$LoadAdoptedOrdersImpl>
+    implements _$$LoadAdoptedOrdersImplCopyWith<$Res> {
+  __$$LoadAdoptedOrdersImplCopyWithImpl(_$LoadAdoptedOrdersImpl _value,
+      $Res Function(_$LoadAdoptedOrdersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadAdoptedOrdersImpl implements _LoadAdoptedOrders {
+  const _$LoadAdoptedOrdersImpl();
+
+  @override
+  String toString() {
+    return 'OrderEvent.loadAdoptedOrders()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadAdoptedOrdersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OrderModel order, List<String> petIds) addOrder,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
+    required TResult Function(String orderId) cancelOrder,
+  }) {
+    return loadAdoptedOrders();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
+    TResult? Function(String orderId)? cancelOrder,
+  }) {
+    return loadAdoptedOrders?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
+    TResult Function(String orderId)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadAdoptedOrders != null) {
+      return loadAdoptedOrders();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddOrder value) addOrder,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
+    required TResult Function(_CancelOrder value) cancelOrder,
+  }) {
+    return loadAdoptedOrders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddOrder value)? addOrder,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult? Function(_CancelOrder value)? cancelOrder,
+  }) {
+    return loadAdoptedOrders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddOrder value)? addOrder,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult Function(_CancelOrder value)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadAdoptedOrders != null) {
+      return loadAdoptedOrders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadAdoptedOrders implements OrderEvent {
+  const factory _LoadAdoptedOrders() = _$LoadAdoptedOrdersImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadCompletedOrdersImplCopyWith<$Res> {
+  factory _$$LoadCompletedOrdersImplCopyWith(_$LoadCompletedOrdersImpl value,
+          $Res Function(_$LoadCompletedOrdersImpl) then) =
+      __$$LoadCompletedOrdersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadCompletedOrdersImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$LoadCompletedOrdersImpl>
+    implements _$$LoadCompletedOrdersImplCopyWith<$Res> {
+  __$$LoadCompletedOrdersImplCopyWithImpl(_$LoadCompletedOrdersImpl _value,
+      $Res Function(_$LoadCompletedOrdersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadCompletedOrdersImpl implements _LoadCompletedOrders {
+  const _$LoadCompletedOrdersImpl();
+
+  @override
+  String toString() {
+    return 'OrderEvent.loadCompletedOrders()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadCompletedOrdersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(OrderModel order, List<String> petIds) addOrder,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
+    required TResult Function(String orderId) cancelOrder,
+  }) {
+    return loadCompletedOrders();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
+    TResult? Function(String orderId)? cancelOrder,
+  }) {
+    return loadCompletedOrders?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(OrderModel order, List<String> petIds)? addOrder,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
+    TResult Function(String orderId)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadCompletedOrders != null) {
+      return loadCompletedOrders();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddOrder value) addOrder,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
+    required TResult Function(_CancelOrder value) cancelOrder,
+  }) {
+    return loadCompletedOrders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddOrder value)? addOrder,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult? Function(_CancelOrder value)? cancelOrder,
+  }) {
+    return loadCompletedOrders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddOrder value)? addOrder,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
+    TResult Function(_CancelOrder value)? cancelOrder,
+    required TResult orElse(),
+  }) {
+    if (loadCompletedOrders != null) {
+      return loadCompletedOrders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadCompletedOrders implements OrderEvent {
+  const factory _LoadCompletedOrders() = _$LoadCompletedOrdersImpl;
 }
 
 /// @nodoc
@@ -462,7 +870,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderModel order, List<String> petIds) addOrder,
-    required TResult Function(Status? status) load,
+    required TResult Function() loadAllOrders,
+    required TResult Function() loadRefusalOrders,
+    required TResult Function() loadAdoptedOrders,
+    required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
   }) {
     return cancelOrder(orderId);
@@ -472,7 +883,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult? Function(Status? status)? load,
+    TResult? Function()? loadAllOrders,
+    TResult? Function()? loadRefusalOrders,
+    TResult? Function()? loadAdoptedOrders,
+    TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
   }) {
     return cancelOrder?.call(orderId);
@@ -482,7 +896,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderModel order, List<String> petIds)? addOrder,
-    TResult Function(Status? status)? load,
+    TResult Function()? loadAllOrders,
+    TResult Function()? loadRefusalOrders,
+    TResult Function()? loadAdoptedOrders,
+    TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
     required TResult orElse(),
   }) {
@@ -496,7 +913,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddOrder value) addOrder,
-    required TResult Function(_Load value) load,
+    required TResult Function(_LoadAllOrders value) loadAllOrders,
+    required TResult Function(_LoadRefusalOrders value) loadRefusalOrders,
+    required TResult Function(_LoadAdoptedOrders value) loadAdoptedOrders,
+    required TResult Function(_LoadCompletedOrders value) loadCompletedOrders,
     required TResult Function(_CancelOrder value) cancelOrder,
   }) {
     return cancelOrder(this);
@@ -506,7 +926,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddOrder value)? addOrder,
-    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadAllOrders value)? loadAllOrders,
+    TResult? Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult? Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult? Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult? Function(_CancelOrder value)? cancelOrder,
   }) {
     return cancelOrder?.call(this);
@@ -516,7 +939,10 @@ class _$CancelOrderImpl implements _CancelOrder {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddOrder value)? addOrder,
-    TResult Function(_Load value)? load,
+    TResult Function(_LoadAllOrders value)? loadAllOrders,
+    TResult Function(_LoadRefusalOrders value)? loadRefusalOrders,
+    TResult Function(_LoadAdoptedOrders value)? loadAdoptedOrders,
+    TResult Function(_LoadCompletedOrders value)? loadCompletedOrders,
     TResult Function(_CancelOrder value)? cancelOrder,
     required TResult orElse(),
   }) {
@@ -544,6 +970,7 @@ abstract class _CancelOrder implements OrderEvent {
 mixin _$OrderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
@@ -551,6 +978,7 @@ mixin _$OrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
@@ -558,6 +986,7 @@ mixin _$OrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
@@ -566,6 +995,7 @@ mixin _$OrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
@@ -573,6 +1003,7 @@ mixin _$OrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
@@ -580,6 +1011,7 @@ mixin _$OrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
@@ -607,6 +1039,123 @@ class _$OrderStateCopyWithImpl<$Res, $Val extends OrderState>
 
   /// Create a copy of OrderState
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$OrderStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
+
+  @override
+  String toString() {
+    return 'OrderState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<TaskModel> tasks) loaded,
+    required TResult Function(String message) failure,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<TaskModel> tasks)? loaded,
+    TResult? Function(String message)? failure,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<TaskModel> tasks)? loaded,
+    TResult Function(String message)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements OrderState {
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -650,6 +1199,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
@@ -660,6 +1210,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
@@ -670,6 +1221,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
@@ -684,6 +1236,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
@@ -694,6 +1247,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
@@ -704,6 +1258,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
@@ -794,6 +1349,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
@@ -804,6 +1360,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
@@ -814,6 +1371,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
@@ -828,6 +1386,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
@@ -838,6 +1397,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
@@ -848,6 +1408,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,
@@ -940,6 +1501,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) loaded,
     required TResult Function(String message) failure,
@@ -950,6 +1512,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? loaded,
     TResult? Function(String message)? failure,
@@ -960,6 +1523,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? loaded,
     TResult Function(String message)? failure,
@@ -974,6 +1538,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failure value) failure,
@@ -984,6 +1549,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failure value)? failure,
@@ -994,6 +1560,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Failure value)? failure,

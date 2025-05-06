@@ -14,7 +14,7 @@ import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../presentation/dogsitter/account/dogsitter_account.dart';
+import '../../presentation/dogsitter/account/pages/dogsitter_account.dart';
 import '../../presentation/dogsitter/adding_information/pages/add_information.dart';
 import '../../presentation/dogsitter/scaffold_with_navbar/pages/dogsitter_scaffold_with_navbar.dart';
 import '../../presentation/dogsitter/settings/dogsitter_settings.dart';
@@ -118,17 +118,17 @@ final GoRouter router = GoRouter(
             ),
             StatefulShellBranch(routes: [
               GoRoute(
-                name: RoutesNames.dogsitterSettings,
-                path: '/dogsitterSettings',
-                builder: (context, state) => const DogsitterSettings(),
-              ),
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
                 name: RoutesNames.dogsitterAccount,
                 path: '/dogsitterAccount',
                 builder: (context, state) => const DogsitterAccount(),
               )
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                name: RoutesNames.dogsitterSettings,
+                path: '/dogsitterSettings',
+                builder: (context, state) => const DogsitterSettings(),
+              ),
             ]),
           ]),
     ]);
