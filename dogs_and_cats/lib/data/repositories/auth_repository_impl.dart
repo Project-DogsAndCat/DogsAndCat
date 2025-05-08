@@ -5,14 +5,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../core/utils/table_names.dart';
 import '../../domain/models/person_auth.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_remote_data_source.dart';
 import '../models/person_auth/person_auth_dto.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(
-      {required this.remoteDataSource, required this.supabaseClient});
+  AuthRepositoryImpl({required this.supabaseClient});
 
-  final AuthRemoteDataSource remoteDataSource;
   final SupabaseClient supabaseClient;
 
   @override
@@ -83,7 +80,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, Unit>> signOut() async {
     try {
-      await remoteDataSource.signOut();
+      // await remoteDataSource.signOut();
       return right(unit);
     } on AuthRetryableFetchException catch (_) {
       return left(Failure(message: 'Проблемы с сетью'));

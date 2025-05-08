@@ -22,7 +22,7 @@ class ListTasks extends StatelessWidget {
         listener: (context, state) {
           state.maybeMap(
               failure: (state) {
-                CustomSnackBar.showInfo(context, state.message);
+                CustomSnackBar.showError(context, state.message);
               },
               loaded: (state) {
                 if (state.tasks.isEmpty) {

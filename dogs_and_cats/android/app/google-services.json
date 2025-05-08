@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "127740446297",
+    "project_id": "dogs-and-cats-1b675",
+    "storage_bucket": "dogs-and-cats-1b675.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127740446297:android:2923919db42f419fb59348",
+        "android_client_info": {
+          "package_name": "com.example.dogs_and_cats"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgacUM5UegZvF-70Dy88itamlPBXgOrYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

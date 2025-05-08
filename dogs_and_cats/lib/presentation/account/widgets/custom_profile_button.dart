@@ -1,4 +1,3 @@
-import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,3 @@
-import 'package:dogs_and_cats/data/datasources/auth_remote_data_source.dart';
 import 'package:dogs_and_cats/data/repositories/auth_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/dog_breed_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/dog_sitter_repositort_impl.dart';
@@ -32,7 +31,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../data/repositories/location_reposory_impl.dart';
 import '../../data/repositories/map_search_repository_impl.dart';
+import '../../data/repositories/user_fmc_repository_impl.dart';
 import '../../domain/repositories/order_repository.dart';
+import '../../domain/repositories/user_fcm_repository.dart';
 import '../../domain/services/map_service.dart';
 import '../../presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import '../../presentation/account/blocs/map_suggest_bloc/map_suggest_bloc.dart';
@@ -49,7 +50,10 @@ Future<void> setup() async {
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseAnnonKey);
   getIt.registerLazySingleton<SupabaseClient>(() => supabase.client);
+
   _initLogin();
+
+  _initFmc();
 
   _initAuth();
 
@@ -81,27 +85,10 @@ Future<void> setup() async {
 }
 
 void _initLogin() {
-  getIt.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(supabaseClient: getIt<SupabaseClient>()));
-
-  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-      remoteDataSource: getIt<AuthRemoteDataSource>(),
-      supabaseClient: getIt<SupabaseClient>()));
+  getIt.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
   getIt.registerFactory<LoginBloc>(() => LoginBloc(getIt<AuthRepository>()));
-}
-
-void _initAuth() {
-  getIt.registerFactory<AuthBloc>(
-      () => AuthBloc(repository: getIt<AuthRepository>()));
-}
-
-void _initTheme() {
-  getIt.registerLazySingleton<SettingsRepository>(
-      () => SettingsRepositoryImpl(preferences: getIt<SharedPreferences>()));
-
-  getIt.registerLazySingleton<ThemeCubit>(
-      () => ThemeCubit(repository: getIt<SettingsRepository>()));
 }
 
 void _initProfile() {
@@ -110,6 +97,25 @@ void _initProfile() {
 
   getIt.registerLazySingleton<ProfileBloc>(
       () => ProfileBloc(repository: getIt<PersonRepository>()));
+}
+
+void _initFmc() {
+  getIt.registerLazySingleton<UserFmcRepository>(
+      () => UserFmcRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
+}
+
+void _initAuth() {
+  getIt.registerFactory<AuthBloc>(() => AuthBloc(
+      authRepository: getIt<AuthRepository>(),
+      fmcRepository: getIt<UserFmcRepository>()));
+}
+
+void _initTheme() {
+  getIt.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(preferences: getIt<SharedPreferences>()));
+
+  getIt.registerLazySingleton<ThemeCubit>(
+      () => ThemeCubit(repository: getIt<SettingsRepository>()));
 }
 
 void _initServices() {
