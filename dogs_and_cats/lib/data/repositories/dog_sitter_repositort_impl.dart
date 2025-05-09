@@ -93,6 +93,21 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
   }
 
   @override
+  Future<Either<Failure, Unit>> updateRating({
+    required double rating,
+    required String dogsitterId,
+  }) async {
+    try {
+      await supabaseClient
+          .from(TableNames.dogsitters)
+          .update({'rating': rating}).eq('id', dogsitterId);
+      return right(unit);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, Unit>> addImage(
       {required Uint8List imageBytes}) async {
     try {

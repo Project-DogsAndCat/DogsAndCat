@@ -90,6 +90,19 @@ class OrderRepositoryImpl implements OrderRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, Unit>> updateScore(
+      {required double rating, required String orderId}) async {
+    try {
+      await supabaseClient
+          .from(TableNames.orders)
+          .update({'score': rating}).eq('id', orderId);
+      return right(unit);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
   // void _clearCache() {
   //   cache.clear();
   // }

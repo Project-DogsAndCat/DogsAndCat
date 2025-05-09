@@ -31,6 +31,8 @@ class AppString {
   static const selectTime = 'Выберите время';
   static const noDataSelected = 'Не все данные выбраны для заказа';
   static const forWhichPets = 'Для какого питомца?';
+  static const orderDetails = 'Детали заказа';
+  static const scoreService = 'Спасибо что оценили услугу';
 
   static const serviceType = 'Тип услуги';
 

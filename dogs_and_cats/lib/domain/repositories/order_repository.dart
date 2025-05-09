@@ -16,5 +16,7 @@ abstract interface class OrderRepository {
     required String orderId,
   });
 
+  Future<Either<Failure, Unit>> updateScore(
+      {required double rating, required String orderId});
   // Future<List<TaskModel>> getOrderInfoWithFilter(Status status);
 }

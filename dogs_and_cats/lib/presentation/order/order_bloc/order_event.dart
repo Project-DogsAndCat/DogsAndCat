@@ -18,4 +18,10 @@ class OrderEvent with _$OrderEvent {
   const factory OrderEvent.cancelOrder({
     required String orderId,
   }) = _CancelOrder;
+
+  const factory OrderEvent.addRating({
+    required double rating,
+    required String dogsitterId,
+    required String orderId,
+  }) = _AddRating;
 }

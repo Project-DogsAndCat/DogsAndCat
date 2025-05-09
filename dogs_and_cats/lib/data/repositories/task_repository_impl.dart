@@ -28,7 +28,7 @@ class TaskRepositoryImpl implements TaskRepository {
       if (cache['all_task']!.isNotEmpty) return right(cache['all_task']!);
 
       List<String> serIds =
-          dogsitter.serviceIds.map((element) => element.id).toList();
+          dogsitter.serviceIds!.map((element) => element.id).toList();
       final json = await supabaseClient.rpc('get_task', params: {
         'status_order': Status.waiting.value,
         '_point':

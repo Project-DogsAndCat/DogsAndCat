@@ -60,6 +60,7 @@ dependencies:
   http: ^1.4.0
   flutter_local_notifications: ^19.1.0
   firebase_analytics: ^11.4.5
+  flutter_rating_bar: ^4.0.1
 
 
 dev_dependencies:

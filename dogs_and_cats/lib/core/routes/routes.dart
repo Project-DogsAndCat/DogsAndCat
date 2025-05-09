@@ -1,11 +1,13 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
+import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/choose_role.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
+import 'package:dogs_and_cats/presentation/order/pages/order_details.dart';
 import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
@@ -64,6 +66,13 @@ final GoRouter router = GoRouter(
           name: RoutesNames.orderingService,
           path: '/ordering',
           builder: (context, state) => const OrderingServicePage()),
+      GoRoute(
+          name: RoutesNames.orderDetails,
+          path: '/orderDetails',
+          builder: (context, state) {
+            TaskModel task = state.extra as TaskModel;
+            return OrderDetails(task: task);
+          }),
       GoRoute(
           name: RoutesNames.addInformation,
           path: '/addInformation',

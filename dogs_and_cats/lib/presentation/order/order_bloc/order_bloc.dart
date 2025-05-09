@@ -1,5 +1,6 @@
 import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
+import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/order_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,8 +11,10 @@ part 'order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderRepository orderRepository;
+  DogSitterRepository dogSitterRepository;
   OrderBloc({
     required this.orderRepository,
+    required this.dogSitterRepository,
   }) : super(OrderState.initial()) {
     on<OrderEvent>((event, emit) async {
       await event.map(
@@ -21,6 +24,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         loadAdoptedOrders: (_) => _loadAdoptedOrders(emit),
         loadCompletedOrders: (_) => _loadCompletedOrders(emit),
         cancelOrder: (event) => _cancelOrder(emit, event),
+        addRating: (event) => _updateRating(emit, event),
       );
     });
   }
@@ -83,5 +87,22 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       filtered = orders.where((order) => order.order.status == status).toList();
     });
     return filtered;
+  }
+
+  Future<void> _updateRating(Emitter<OrderState> emit, _AddRating event) async {
+    try {
+      emit(OrderState.loading());
+      await Future.wait([
+        dogSitterRepository.updateRating(
+          rating: event.rating,
+          dogsitterId: event.dogsitterId,
+        ),
+        orderRepository.updateScore(
+            rating: event.rating, orderId: event.orderId),
+      ]);
+      emit(OrderState.successAddRating());
+    } catch (e) {
+      emit(OrderState.failure(message: e.toString()));
+    }
   }
 }

@@ -10,6 +10,7 @@ class RoutesNames {
   static const account = 'account';
   static const orderingService = 'orderingService';
   static const order = 'order';
+  static const orderDetails = 'orderDetails';
   static const pets = 'pets';
   static const settings = 'settings';
   static const addInformation = 'addInformation';

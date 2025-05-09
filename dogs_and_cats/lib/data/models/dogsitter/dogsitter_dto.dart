@@ -12,7 +12,7 @@ class DogsitterDto {
     this.rating,
     this.status,
     required this.person,
-    required this.services,
+    this.services,
   });
 
   @JsonKey(name: 'dogsitter_id')
@@ -28,7 +28,7 @@ class DogsitterDto {
   final PersonDto person;
 
   @JsonKey(name: 'services')
-  final List<ServiceDto> services;
+  final List<ServiceDto>? services;
 
   StatusDogSitter getStatus(String? status) {
     return StatusDogSitter.values.firstWhere(
@@ -42,7 +42,7 @@ class DogsitterDto {
         rating: rating ?? 0.0,
         status: getStatus(status),
         person: person.toDomain(),
-        serviceIds: services.map((element) => element.toDomain()).toList(),
+        serviceIds: services?.map((element) => element.toDomain()).toList(),
       );
 
   factory DogsitterDto.fromDomain(Dogsitter object) => DogsitterDto(
@@ -51,7 +51,7 @@ class DogsitterDto {
         status: object.status.value,
         person: PersonDto.fromDomain(object.person),
         services: object.serviceIds
-            .map((element) => ServiceDto.fromDomain(element))
+            ?.map((element) => ServiceDto.fromDomain(element))
             .toList(),
       );
 

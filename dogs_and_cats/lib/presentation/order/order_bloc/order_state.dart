@@ -10,4 +10,5 @@ class OrderState with _$OrderState {
   const factory OrderState.failure({
     required String message,
   }) = _Failure;
+  const factory OrderState.successAddRating() = _SuccessAddRating;
 }

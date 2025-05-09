@@ -13,6 +13,7 @@ class OrderDto {
     required this.price,
     required this.date,
     required this.status,
+    this.score,
   });
   final String? id;
   @JsonKey(name: 'person_id')
@@ -23,6 +24,7 @@ class OrderDto {
   final double price;
   final DateTime date;
   final String status;
+  final double? score;
 
   OrderModel toDomain() => OrderModel(
         id: id,
@@ -31,6 +33,7 @@ class OrderDto {
         price: price,
         date: date,
         status: getStatus(status),
+        score: score,
       );
 
   factory OrderDto.fromDomain(OrderModel object) => OrderDto(
@@ -40,6 +43,7 @@ class OrderDto {
         price: object.price,
         date: object.date,
         status: object.status.value,
+        score: object.score,
       );
 
   Status getStatus(String priority) {

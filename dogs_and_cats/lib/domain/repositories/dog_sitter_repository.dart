@@ -17,6 +17,11 @@ abstract interface class DogSitterRepository {
     required StatusDogSitter status,
   });
 
+  Future<Either<Failure, Unit>> updateRating({
+    required double rating,
+    required String dogsitterId,
+  });
+
   Future<Either<Failure, Unit>> addImage({
     required Uint8List imageBytes,
   });

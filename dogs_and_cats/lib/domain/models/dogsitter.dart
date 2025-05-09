@@ -7,13 +7,13 @@ class Dogsitter {
     required this.rating,
     required this.status,
     required this.person,
-    required this.serviceIds,
+    this.serviceIds,
   });
   final String id;
   final double rating;
   final StatusDogSitter status;
   final Person person;
-  final List<Service> serviceIds;
+  final List<Service>? serviceIds;
 }
 
 enum StatusDogSitter {
