@@ -13,8 +13,19 @@ import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_snackbar.dart';
 import 'map_page.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    context.read<ProfileBloc>().add(ProfileEvent.load());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +51,7 @@ class ProfilePage extends StatelessWidget {
           child: BlocListener<ProfileBloc, ProfileState>(
             listener: (context, state) {
               state.map(
+                initial: (_) {},
                 loading: (_) {},
                 loaded: (_) {},
                 failure: (state) =>
@@ -49,6 +61,7 @@ class ProfilePage extends StatelessWidget {
             child: BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, state) {
                 return state.map(
+                    initial: (_) => Container(),
                     loading: (_) => Center(
                           child: CircularProgressIndicator(),
                         ),

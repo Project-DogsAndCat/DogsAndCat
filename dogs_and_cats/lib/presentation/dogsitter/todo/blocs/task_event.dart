@@ -10,6 +10,7 @@ class TaskEvent with _$TaskEvent {
 
   const factory TaskEvent.accept({
     required String orderId,
+    required Person person,
   }) = _Accept;
 
   const factory TaskEvent.complete({

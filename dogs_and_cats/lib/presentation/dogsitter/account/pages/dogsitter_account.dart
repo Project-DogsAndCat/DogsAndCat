@@ -22,6 +22,12 @@ class DogsitterAccount extends StatefulWidget {
 
 class _DogsitterAccountState extends State<DogsitterAccount> {
   @override
+  void initState() {
+    context.read<ProfileBloc>().add(ProfileEvent.load());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,6 +51,7 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
           child: BlocListener<ProfileBloc, ProfileState>(
             listener: (context, state) {
               state.map(
+                initial: (_) {},
                 loading: (_) {},
                 loaded: (_) {},
                 failure: (state) =>
@@ -54,6 +61,7 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
             child: BlocBuilder<ProfileBloc, ProfileState>(
               builder: (context, state) {
                 return state.map(
+                    initial: (_) => Container(),
                     loading: (_) => Center(
                           child: CircularProgressIndicator(),
                         ),

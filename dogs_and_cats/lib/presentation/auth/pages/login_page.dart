@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/routes/route_names.dart';
+import '../../../core/theme/cubit/theme_cubit.dart';
 import '../../../core/utils/validation_rules.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 success: (state) {
                   clearText();
                   context.read<AuthBloc>().add(AuthEvent.userLogin());
+                  context.read<ThemeCubit>().checkThemeSelected();
                   if (state.person.role == 'dogsitter') {
                     if (!widget.isUser) {
                       context.goNamed(RoutesNames.todo);
@@ -64,7 +66,11 @@ class _LoginPageState extends State<LoginPage> {
                       context.goNamed(RoutesNames.services);
                     }
                   } else if (state.person.role == 'user') {
-                    context.goNamed(RoutesNames.services);
+                    if (!widget.isUser) {
+                      context.goNamed(RoutesNames.contact);
+                    } else {
+                      context.goNamed(RoutesNames.services);
+                    }
                   }
                 },
                 failure: (state) {

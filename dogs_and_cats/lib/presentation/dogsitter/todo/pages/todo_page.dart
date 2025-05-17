@@ -63,6 +63,7 @@ class TodoPage extends StatelessWidget {
   void _acceptOrder(BuildContext context, TaskModel task) {
     context.read<TaskBloc>().add(TaskEvent.accept(
           orderId: task.order.id!,
+          person: task.person,
         ));
   }
 

@@ -14,6 +14,7 @@ class PersonDto {
     this.role,
     this.latitude,
     this.longitude,
+    this.token,
   });
 
   final String? id;
@@ -26,6 +27,7 @@ class PersonDto {
   final String? role;
   final double? latitude;
   final double? longitude;
+  final String? token;
 
   Person toDomain() => Person(
         id: id,
@@ -36,6 +38,7 @@ class PersonDto {
         role: role,
         latitude: latitude,
         longitude: longitude,
+        token: token,
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -47,6 +50,7 @@ class PersonDto {
         role: object.role,
         latitude: object.latitude,
         longitude: object.longitude,
+        token: object.token,
       );
 
   factory PersonDto.fromJson(Map<String, dynamic> json) =>

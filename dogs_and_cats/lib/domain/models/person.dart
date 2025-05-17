@@ -7,6 +7,7 @@ class Person {
   final String? role;
   final double? latitude;
   final double? longitude;
+  final String? token;
   Person({
     this.id,
     this.firstName,
@@ -16,19 +17,20 @@ class Person {
     this.role,
     this.latitude,
     this.longitude,
+    this.token,
   });
 
-  Person copyWith({
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? phone,
-    String? role,
-    double? latitude,
-    double? longitude,
-    double? rating,
-    String? position,
-  }) {
+  Person copyWith(
+      {String? firstName,
+      String? lastName,
+      String? email,
+      String? phone,
+      String? role,
+      double? latitude,
+      double? longitude,
+      double? rating,
+      String? position,
+      String? token}) {
     return Person(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
@@ -37,6 +39,7 @@ class Person {
       role: role ?? this.role,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
+      token: token ?? this.token,
     );
   }
 }

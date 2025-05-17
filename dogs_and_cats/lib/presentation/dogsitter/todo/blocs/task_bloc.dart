@@ -5,7 +5,9 @@ import 'package:dogs_and_cats/domain/repositories/task_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../domain/models/person.dart';
 import '../../../../domain/models/task.dart';
+import '../../../../domain/repositories/send_message_http_repository.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -14,17 +16,20 @@ part 'task_state.dart';
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository taskRepository;
   final DogSitterRepository dogSitterRepository;
+  final SendMessageHttpRepository sendMessageRepository;
   TaskBloc({
     required this.taskRepository,
     required this.dogSitterRepository,
+    required this.sendMessageRepository,
   }) : super(TaskState.loading()) {
     on<TaskEvent>((event, emit) async {
       await event.map(
-          loadAllTask: (_) => _loadAllTask(emit),
-          loadAcceptedTask: (_) => _loadAcceptedTask(emit),
-          loadCompletedTask: (_) => _loadCompletedTask(emit),
-          accept: (event) => _accept(emit, event),
-          complete: (event) => _complete(emit, event));
+        loadAllTask: (_) => _loadAllTask(emit),
+        loadAcceptedTask: (_) => _loadAcceptedTask(emit),
+        loadCompletedTask: (_) => _loadCompletedTask(emit),
+        accept: (event) => _accept(emit, event),
+        complete: (event) => _complete(emit, event),
+      );
     });
   }
 
@@ -97,9 +102,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       await dogsitterResult.fold<Future<void>>(
           (failure) async => emit(TaskState.failure(message: failure.message)),
           (dogsitter) async {
-        final acceptResult = await taskRepository.acceptTask(
-            orderId: event.orderId, dogsitterId: dogsitter.id);
-        acceptResult.fold(
+        final result = await Future.wait([
+          taskRepository.acceptTask(
+              orderId: event.orderId, dogsitterId: dogsitter.id),
+          sendMessageRepository.sendMessage(
+              userFcmToken: event.person.token!,
+              dogsitter: dogsitter.person.firstName!)
+        ]);
+        result[0].fold(
             (failure) => emit(TaskState.failure(message: failure.message)),
             (_) => add(_LoadAllTask()));
       });

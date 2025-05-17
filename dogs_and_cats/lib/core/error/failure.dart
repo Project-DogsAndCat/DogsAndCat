@@ -11,6 +11,8 @@ Failure authException(AuthApiException exception) {
       return Failure(message: 'Непральный E-mail или пароль');
     case '429':
       return Failure(message: 'Слишком много запросов');
+    case '422':
+      return Failure(message: 'Пользователь уже зарегистрирован');
     case '500':
       return Failure(message: 'Внутренняя ошибка сервера');
     default:

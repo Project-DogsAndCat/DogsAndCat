@@ -50,7 +50,6 @@ class AuthRepositoryImpl implements AuthRepository {
       if (response.user == null) {
         return left(Failure(message: 'Пользователь не найден'));
       }
-
       final json = response.user!.toJson();
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
 
@@ -80,7 +79,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, Unit>> signOut() async {
     try {
-      // await remoteDataSource.signOut();
+      await supabaseClient.auth.signOut();
       return right(unit);
     } on AuthRetryableFetchException catch (_) {
       return left(Failure(message: 'Проблемы с сетью'));

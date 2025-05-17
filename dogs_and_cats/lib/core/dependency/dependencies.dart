@@ -4,6 +4,7 @@ import 'package:dogs_and_cats/data/repositories/dog_sitter_repositort_impl.dart'
 import 'package:dogs_and_cats/data/repositories/order_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/person_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/pet_repository_impl.dart';
+import 'package:dogs_and_cats/data/repositories/send_message_http_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/service_repository_impl.dart';
 import 'package:dogs_and_cats/data/repositories/task_repository_impl.dart';
 import 'package:dogs_and_cats/domain/repositories/auth_repository.dart';
@@ -13,6 +14,7 @@ import 'package:dogs_and_cats/domain/repositories/location_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/map_search_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/person_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/pet_repository.dart';
+import 'package:dogs_and_cats/domain/repositories/send_message_http_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/service_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/task_repository.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
@@ -197,7 +199,13 @@ void _initTask() {
   getIt.registerLazySingleton<TaskRepository>(
       () => TaskRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerFactory<TaskBloc>(() => TaskBloc(
-      dogSitterRepository: getIt<DogSitterRepository>(),
-      taskRepository: getIt<TaskRepository>()));
+  getIt.registerLazySingleton<SendMessageHttpRepository>(
+      () => SendMessageHttpRepositoryImpl());
+
+  getIt.registerFactory<TaskBloc>(
+    () => TaskBloc(
+        dogSitterRepository: getIt<DogSitterRepository>(),
+        taskRepository: getIt<TaskRepository>(),
+        sendMessageRepository: getIt<SendMessageHttpRepository>()),
+  );
 }

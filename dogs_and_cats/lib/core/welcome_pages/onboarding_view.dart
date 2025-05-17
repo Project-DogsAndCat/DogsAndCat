@@ -1,9 +1,9 @@
+import 'package:cupertino_onboarding/cupertino_onboarding.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/welcome_pages/animated_wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_onboarding/cupertino_onboarding.dart';
 import 'package:go_router/go_router.dart';
 
 import '../theme/theme.dart';
@@ -50,7 +50,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       title: AnimatedWrapper(
         index: 1,
         child: Text(
-          'Добро пожаловать в Петсерство',
+          'Добро пожаловать в Dogs&Cats',
           style: textTheme.titleLarge!
               .copyWith(color: AppColors.whiteColor, fontSize: 40),
         ),

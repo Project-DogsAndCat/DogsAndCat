@@ -21,7 +21,7 @@ mixin _$TaskEvent {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$TaskEvent {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$TaskEvent {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) =>
@@ -138,7 +138,7 @@ class _$LoadAllTaskImpl implements _LoadAllTask {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) {
     return loadAllTask();
@@ -150,7 +150,7 @@ class _$LoadAllTaskImpl implements _LoadAllTask {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) {
     return loadAllTask?.call();
@@ -162,7 +162,7 @@ class _$LoadAllTaskImpl implements _LoadAllTask {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
@@ -261,7 +261,7 @@ class _$LoadAcceptedTaskImpl implements _LoadAcceptedTask {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) {
     return loadAcceptedTask();
@@ -273,7 +273,7 @@ class _$LoadAcceptedTaskImpl implements _LoadAcceptedTask {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) {
     return loadAcceptedTask?.call();
@@ -285,7 +285,7 @@ class _$LoadAcceptedTaskImpl implements _LoadAcceptedTask {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
@@ -384,7 +384,7 @@ class _$LoadCompletedTaskImpl implements _LoadCompletedTask {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) {
     return loadCompletedTask();
@@ -396,7 +396,7 @@ class _$LoadCompletedTaskImpl implements _LoadCompletedTask {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) {
     return loadCompletedTask?.call();
@@ -408,7 +408,7 @@ class _$LoadCompletedTaskImpl implements _LoadCompletedTask {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
@@ -469,7 +469,7 @@ abstract class _$$AcceptImplCopyWith<$Res> {
           _$AcceptImpl value, $Res Function(_$AcceptImpl) then) =
       __$$AcceptImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String orderId});
+  $Res call({String orderId, Person person});
 }
 
 /// @nodoc
@@ -486,12 +486,17 @@ class __$$AcceptImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = null,
+    Object? person = null,
   }) {
     return _then(_$AcceptImpl(
       orderId: null == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String,
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as Person,
     ));
   }
 }
@@ -499,14 +504,16 @@ class __$$AcceptImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AcceptImpl implements _Accept {
-  const _$AcceptImpl({required this.orderId});
+  const _$AcceptImpl({required this.orderId, required this.person});
 
   @override
   final String orderId;
+  @override
+  final Person person;
 
   @override
   String toString() {
-    return 'TaskEvent.accept(orderId: $orderId)';
+    return 'TaskEvent.accept(orderId: $orderId, person: $person)';
   }
 
   @override
@@ -514,11 +521,12 @@ class _$AcceptImpl implements _Accept {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AcceptImpl &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.person, person) || other.person == person));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, orderId);
+  int get hashCode => Object.hash(runtimeType, orderId, person);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -534,10 +542,10 @@ class _$AcceptImpl implements _Accept {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) {
-    return accept(orderId);
+    return accept(orderId, person);
   }
 
   @override
@@ -546,10 +554,10 @@ class _$AcceptImpl implements _Accept {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) {
-    return accept?.call(orderId);
+    return accept?.call(orderId, person);
   }
 
   @override
@@ -558,12 +566,12 @@ class _$AcceptImpl implements _Accept {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {
     if (accept != null) {
-      return accept(orderId);
+      return accept(orderId, person);
     }
     return orElse();
   }
@@ -610,9 +618,12 @@ class _$AcceptImpl implements _Accept {
 }
 
 abstract class _Accept implements TaskEvent {
-  const factory _Accept({required final String orderId}) = _$AcceptImpl;
+  const factory _Accept(
+      {required final String orderId,
+      required final Person person}) = _$AcceptImpl;
 
   String get orderId;
+  Person get person;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -692,7 +703,7 @@ class _$CompleteImpl implements _Complete {
     required TResult Function() loadAllTask,
     required TResult Function() loadAcceptedTask,
     required TResult Function() loadCompletedTask,
-    required TResult Function(String orderId) accept,
+    required TResult Function(String orderId, Person person) accept,
     required TResult Function(String orderId) complete,
   }) {
     return complete(orderId);
@@ -704,7 +715,7 @@ class _$CompleteImpl implements _Complete {
     TResult? Function()? loadAllTask,
     TResult? Function()? loadAcceptedTask,
     TResult? Function()? loadCompletedTask,
-    TResult? Function(String orderId)? accept,
+    TResult? Function(String orderId, Person person)? accept,
     TResult? Function(String orderId)? complete,
   }) {
     return complete?.call(orderId);
@@ -716,7 +727,7 @@ class _$CompleteImpl implements _Complete {
     TResult Function()? loadAllTask,
     TResult Function()? loadAcceptedTask,
     TResult Function()? loadCompletedTask,
-    TResult Function(String orderId)? accept,
+    TResult Function(String orderId, Person person)? accept,
     TResult Function(String orderId)? complete,
     required TResult orElse(),
   }) {

@@ -11,19 +11,24 @@ class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit({required repository})
       : _repository = repository,
         super(ThemeState(brightness: Brightness.dark)) {
-    _checkThemeSelected();
+    checkThemeSelected();
   }
 
   final SettingsRepository _repository;
-  final session = getIt<SupabaseClient>().auth.currentSession;
 
   Future<void> setThemeBrightness(Brightness brightness) async {
+    final session = getIt<SupabaseClient>().auth.currentSession;
     emit(ThemeState(brightness: brightness));
     await _repository.setDarkThemeSelected(
         personId: session?.user.id, selected: brightness == Brightness.dark);
   }
 
-  void _checkThemeSelected() {
+  void resetTheme() {
+    emit(ThemeState(brightness: Brightness.light));
+  }
+
+  void checkThemeSelected() {
+    final session = getIt<SupabaseClient>().auth.currentSession;
     final brightness =
         _repository.isDarkThemeSelected(personId: session?.user.id)
             ? Brightness.dark

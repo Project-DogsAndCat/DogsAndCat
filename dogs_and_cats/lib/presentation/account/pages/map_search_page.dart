@@ -20,75 +20,80 @@ class _MapSearchPageState extends State<MapSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextFormField(
-          onChanged: (text) {
-            context
-                .read<MapSuggestBloc>()
-                .add(MapSuggestEvent.queryChanged(query: text));
-          },
-          controller: addressController,
-          hintText: AppString.address,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            context
-                .read<MapSuggestBloc>()
-                .add(MapSuggestEvent.getSuggestResult());
-          },
-          child: const Text(AppString.search),
-        ),
-        BlocBuilder<MapSuggestBloc, MapSuggestState>(
-          builder: (context, state) {
-            return state.map(
-              initial: (_) => Container(),
-              loading: (_) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              success: (results) {
-                return SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    itemCount: results.results.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          context.read<MapSearchBloc>().add(
-                              MapSearchEvent.setSelectObject(
-                                  item: results.results[index]));
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Column(
+        children: [
+          CustomTextFormField(
+            onChanged: (text) {
+              context
+                  .read<MapSuggestBloc>()
+                  .add(MapSuggestEvent.queryChanged(query: text));
+            },
+            controller: addressController,
+            hintText: AppString.address,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context
+                  .read<MapSuggestBloc>()
+                  .add(MapSuggestEvent.getSuggestResult());
+            },
+            child: const Text(AppString.search),
+          ),
+          BlocBuilder<MapSuggestBloc, MapSuggestState>(
+            builder: (context, state) {
+              return state.map(
+                initial: (_) => Container(),
+                loading: (_) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                success: (results) {
+                  return SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      itemCount: results.results.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            context.read<MapSearchBloc>().add(
+                                MapSearchEvent.setSelectObject(
+                                    item: results.results[index]));
 
-                          if (widget.mapController != null) {
-                            widget.mapController!.moveCamera(
-                              CameraUpdate.newCameraPosition(
-                                CameraPosition(
-                                  target: Point(
-                                      latitude: results
-                                          .results[index].point!.latitude,
-                                      longitude: results
-                                          .results[index].point!.longitude),
-                                ).copyWith(zoom: 18.0),
-                              ),
-                            );
-                          }
-                          Navigator.pop(context);
-                        },
-                        child: ListTile(
-                          title: Text(results.results[index].title),
-                          subtitle: Text(
-                            results.results[index].displayText.toString(),
+                            if (widget.mapController != null) {
+                              widget.mapController!.moveCamera(
+                                CameraUpdate.newCameraPosition(
+                                  CameraPosition(
+                                    target: Point(
+                                        latitude: results
+                                            .results[index].point!.latitude,
+                                        longitude: results
+                                            .results[index].point!.longitude),
+                                  ).copyWith(zoom: 18.0),
+                                ),
+                              );
+                            }
+                            Navigator.pop(context);
+                          },
+                          child: ListTile(
+                            title: Text(results.results[index].title),
+                            subtitle: Text(
+                              results.results[index].displayText.toString(),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-              failure: (message) => Text(message.message),
-            );
-          },
-        ),
-      ],
+                        );
+                      },
+                    ),
+                  );
+                },
+                failure: (message) => Text(message.message),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

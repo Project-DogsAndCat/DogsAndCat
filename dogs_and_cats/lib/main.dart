@@ -88,8 +88,7 @@ void main() async {
         BlocProvider(create: (_) => getIt<LoginBloc>()),
         BlocProvider(create: (_) => getIt<AuthBloc>()),
         BlocProvider(create: (_) => getIt<ThemeCubit>()),
-        BlocProvider(
-            create: (_) => getIt<ProfileBloc>()..add(ProfileEvent.load())),
+        BlocProvider(create: (_) => getIt<ProfileBloc>()),
         BlocProvider(
             create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
         BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),

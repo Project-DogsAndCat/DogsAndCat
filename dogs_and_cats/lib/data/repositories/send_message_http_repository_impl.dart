@@ -19,11 +19,13 @@ class SendMessageHttpRepositoryImpl implements SendMessageHttpRepository {
       var response = await http.post(url,
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer   "refresh_token_expires_in',
+            'Authorization':
+                'Bearer ...',
           },
           body: jsonEncode({
             "message": {
-              "token": userFcmToken,
+              "token":
+                  '...',
               "notification": {
                 "title": "Ваш заказ приняли",
                 "body": "Вас будет обслуживать $dogsitter",

@@ -23,8 +23,8 @@ class UserFmcRepositoryImpl implements UserFmcRepository {
       }
 
       await supabaseClient
-          .from(TableNames.userFcmTokens)
-          .upsert({'person_id': person.id, 'token': token});
+          .from(TableNames.person)
+          .update({'token': token}).eq('id', person.id);
 
       return right(unit);
     } on SocketException catch (_) {
