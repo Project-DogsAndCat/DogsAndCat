@@ -38,16 +38,11 @@ class ListOfAllOrders extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                   loaded: (state) {
-                    return ListView.separated(
+                    return ListView.builder(
                       itemBuilder: (context, index) {
                         return ListTileOrder(
                           task: state.tasks[index],
                           // service: state.services[index],
-                        );
-                      },
-                      separatorBuilder: (context, _) {
-                        return const SizedBox(
-                          height: 10.0,
                         );
                       },
                       itemCount: state.tasks.length,

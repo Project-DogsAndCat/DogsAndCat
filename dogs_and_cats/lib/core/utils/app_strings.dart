@@ -33,6 +33,11 @@ class AppString {
   static const forWhichPets = 'Для какого питомца?';
   static const orderDetails = 'Детали заказа';
   static const scoreService = 'Спасибо что оценили услугу';
+  static const serviceFor = 'Для кого услуга';
+  static const ordering = 'Заказ';
+  static const costOfService = 'Стоимость услуги';
+  static const forPayment = 'К оплате';
+  static const cancelOrder = 'Отменить заказ';
 
   static const serviceType = 'Тип услуги';
 

@@ -57,7 +57,10 @@ final lightTheme = ThemeData(
   primaryColor: AppColors.appColor,
   useMaterial3: true,
   scaffoldBackgroundColor: Color(0xFFF8FAEC),
-  colorScheme: ColorScheme.light(surface: AppColors.buttonColor),
+  colorScheme: ColorScheme.light(
+    surface: AppColors.buttonColor,
+    primaryContainer: AppColors.buttonColor,
+  ),
   appBarTheme: AppBarTheme(backgroundColor: Color(0xFFF8FAEC)),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: TextButton.styleFrom(
@@ -75,7 +78,10 @@ final darkTheme = ThemeData(
   primaryColor: AppColors.appColor,
   useMaterial3: true,
   scaffoldBackgroundColor: Color(0xFF232323),
-  colorScheme: ColorScheme.dark(surface: Colors.black),
+  colorScheme: ColorScheme.dark(
+    surface: Colors.black,
+    primaryContainer: Colors.black,
+  ),
   appBarTheme: AppBarTheme(backgroundColor: Color(0xFF232323)),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: TextButton.styleFrom(
