@@ -21,6 +21,12 @@ class _PetSelectionWidgetState extends State<PetSelectionWidget> {
   final List<String> _selectedPetIds = [];
 
   @override
+  void initState() {
+    context.read<PetBloc>().add(PetEvent.load());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<PetBloc, PetState>(
       builder: (context, state) {

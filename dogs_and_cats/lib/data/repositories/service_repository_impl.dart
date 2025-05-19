@@ -16,6 +16,8 @@ class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
 
+  final Map<String, List<ServiceCharacteristic>> _cache = {};
+
   @override
   Future<List<Service>> getServices() async {
     final json = await supabaseClient.from(TableNames.services).select('');
@@ -46,15 +48,22 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, List<ServiceCharacteristic>>>
       getCharacteristicsService({required String id}) async {
     try {
+      if (_cache['id'] != null && _cache['id']!.isNotEmpty) {
+        return right(_cache['id']!);
+      }
+
       final json = await supabaseClient
           .from('service_characteristics')
           .select()
           .eq('service_id', id);
-      List<ServiceCharacteristic> cache = json
+
+      final servicesCharacteristics = json
           .map((element) =>
               ServiceCharacteristicDto.fromJson(element).toDomain())
           .toList();
-      return right(cache);
+
+      _cache[id] = servicesCharacteristics;
+      return right(servicesCharacteristics);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
     } catch (e) {

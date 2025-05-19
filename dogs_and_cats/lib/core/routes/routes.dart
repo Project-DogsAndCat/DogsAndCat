@@ -1,6 +1,7 @@
 import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/choose_role.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
@@ -13,6 +14,9 @@ import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_w
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
 import 'package:dogs_and_cats/presentation/services/pages/service_page.dart';
 import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -23,9 +27,11 @@ import '../../presentation/dogsitter/settings/dogsitter_settings.dart';
 import '../../presentation/order/pages/list_tasks.dart';
 import '../welcome_pages/onboarding_view.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final session = getIt<SupabaseClient>().auth.currentSession;
 
 final GoRouter router = GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: session == null
         ? '/onboardingView'
         : (session!.user.userMetadata?['role_user'] == 'dogsitter'
@@ -55,13 +61,14 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.contact,
           path: '/contact',
-          builder: (context, state) => const ContactPage()),
+          builder: (context, state) => ContactPage(
+                color: state.extra as Color,
+              )),
       GoRoute(
           name: RoutesNames.pets,
           path: '/pets/:backPage',
-          builder: (context, state) => PetsPage(
-                backPage: state.pathParameters['backPage']!,
-              )),
+          builder: (context, state) =>
+              PetsPage(backPage: state.pathParameters['backPage']!)),
       GoRoute(
           name: RoutesNames.orderingService,
           path: '/ordering',
@@ -101,7 +108,10 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.account,
                 path: '/profile',
-                builder: (context, state) => const ProfilePage(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => getIt<ProfileBloc>(),
+                  child: ProfilePage(),
+                ),
               )
             ]),
             StatefulShellBranch(routes: [
@@ -129,7 +139,10 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.dogsitterAccount,
                 path: '/dogsitterAccount',
-                builder: (context, state) => const DogsitterAccount(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => getIt<ProfileBloc>(),
+                  child: DogsitterAccount(),
+                ),
               )
             ]),
             StatefulShellBranch(routes: [

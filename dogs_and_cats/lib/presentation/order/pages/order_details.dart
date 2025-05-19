@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/routes/route_names.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_snackbar.dart';
@@ -49,13 +48,13 @@ class OrderDetails extends StatelessWidget {
                 const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 30),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               OrderStatusWidget(
                 status: task.order.status.value,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Text(
@@ -92,7 +91,7 @@ class OrderDetails extends StatelessWidget {
                         task.pet[index].name,
                         style: textTheme.labelMedium,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 3.0,
                       ),
                       Text(
@@ -130,11 +129,11 @@ class OrderDetails extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
-                    Divider(),
-                    SizedBox(
+                    const Divider(),
+                    const SizedBox(
                       height: 10.0,
                     ),
                     _buildPriceRow(),
@@ -155,10 +154,10 @@ class OrderDetails extends StatelessWidget {
                     color: Colors.amber,
                   ),
                   onRatingUpdate: (rating) {
-                    context.read<OrderBloc>().add(OrderEvent.addRating(
-                        rating: rating,
-                        dogsitterId: task.dogsitter!.id,
-                        orderId: task.order.id!));
+                    // context.read<OrderBloc>().add(OrderEvent.addRating(
+                    //     rating: rating,
+                    //     dogsitterId: task.dogsitter!.id,
+                    //     orderId: task.order.id!));
                   },
                 ),
             ]),

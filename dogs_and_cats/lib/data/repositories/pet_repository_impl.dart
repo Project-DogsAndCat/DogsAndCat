@@ -15,17 +15,21 @@ import '../models/pet/pet_edit_dto.dart';
 class PetRepositoryImpl implements PetRepository {
   PetRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
+  final List<Pet> _cache = [];
 
   @override
   Future<Either<Failure, List<Pet>>> getPets({required String id}) async {
     try {
+      if (_cache.isNotEmpty) return right(_cache);
+
       final json = await supabaseClient
           .from(TableNames.pets)
           .select('')
           .eq('person_id', id);
 
-      final List<Pet> pets =
+      final pets =
           json.map((json) => PetDto.fromJson(json).toDomain()).toList();
+      _cache.addAll(pets);
       return right(pets);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -37,6 +41,7 @@ class PetRepositoryImpl implements PetRepository {
   @override
   Future<Either<Failure, Unit>> addPet({required PetDto dto}) async {
     try {
+      _cache.clear();
       dto.personId = supabaseClient.auth.currentUser!.id;
       final json = dto.toJson();
       json.remove('id');
@@ -53,6 +58,7 @@ class PetRepositoryImpl implements PetRepository {
   @override
   Future<Either<Failure, Unit>> updatePet({required PetEditDto pet}) async {
     try {
+      _cache.clear();
       final id = pet.id;
       final updateJson = pet.toJson();
       updateJson.remove('id');

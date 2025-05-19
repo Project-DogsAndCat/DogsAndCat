@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dogs_and_cats/core/error/failure.dart';
@@ -15,34 +16,24 @@ import '../../domain/models/task.dart';
 class TaskRepositoryImpl implements TaskRepository {
   TaskRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
-  final Map<String, List<TaskModel>> cache = {
-    'all_task': [],
-    'from_distributions': []
-  };
 
-  @override
-  Future<Either<Failure, List<TaskModel>>> getAllTasks({
+  Future<Either<Failure, List<TaskModel>>> _getAllTasks({
     required Dogsitter dogsitter,
   }) async {
     try {
-      if (cache['all_task']!.isNotEmpty) return right(cache['all_task']!);
-
       List<String> serIds =
           dogsitter.serviceIds!.map((element) => element.id).toList();
       final json = await supabaseClient.rpc('get_task', params: {
         'status_order': Status.waiting.value,
         '_point':
             'POINT(${dogsitter.person.longitude} ${dogsitter.person.latitude})',
-        'service_ids': serIds,
+        'service_ids': serIds
       });
       if (json == null) return right([]);
-
       final tasks = json
           .map((json) => TaskDto.fromJson(json).toDomain())
           .toList()
           .cast<TaskModel>();
-
-      addToCache(key: 'all_task', tasks: tasks);
       return right(tasks);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));
@@ -52,83 +43,45 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> completeTask({
-    required String orderId,
-  }) async {
+  Stream<Either<Failure, List<TaskModel>>> watchTasks(
+      {required Dogsitter dogsitter}) {
+    final controller = StreamController<Either<Failure, List<TaskModel>>>();
+    RealtimeChannel? channel;
     try {
-      await supabaseClient
-          .from(TableNames.orders)
-          .update({'status': Status.complete.value}).eq('id', orderId);
-
-      clearCache();
-      return right(unit);
-    } on SocketException catch (_) {
-      return left(Failure(message: AppString.internetNotFound));
+      channel = supabaseClient
+          .channel('all_tasks_changes')
+          .onPostgresChanges(
+            event: PostgresChangeEvent.all,
+            schema: 'public',
+            table: TableNames.orders,
+            callback: (_) => _handleTaskChange(controller, dogsitter),
+          )
+          .subscribe((status, [error]) {
+        if (status == RealtimeSubscribeStatus.subscribed) {
+          _handleTaskChange(controller, dogsitter);
+        }
+        if (status == RealtimeSubscribeStatus.channelError) {
+          controller.add(left(Failure(message: "Subscription error")));
+        }
+      });
     } catch (e) {
-      return left(Failure(message: e.toString()));
+      controller.add(left(Failure(message: e.toString())));
     }
+    controller.onCancel = () {
+      channel?.unsubscribe();
+      controller.close();
+    };
+    return controller.stream;
   }
 
-  @override
-  Future<Either<Failure, Unit>> acceptTask({
-    required String orderId,
-    required String dogsitterId,
-  }) async {
+  void _handleTaskChange(
+      StreamController<Either<Failure, List<TaskModel>>> controller,
+      Dogsitter dogsitter) async {
     try {
-      await Future.wait([
-        supabaseClient
-            .from(TableNames.orders)
-            .update({'status': Status.adopted.value}).eq('id', orderId),
-        supabaseClient
-            .from(TableNames.distributions)
-            .insert({'dogsitter_id': dogsitterId, 'order_id': orderId})
-      ]);
-
-      clearCache();
-      return right(unit);
-    } on SocketException catch (_) {
-      return left(Failure(message: AppString.internetNotFound));
+      final result = await _getAllTasks(dogsitter: dogsitter);
+      controller.add(result);
     } catch (e) {
-      return left(Failure(message: e.toString()));
+      controller.add(left(Failure(message: e.toString())));
     }
-  }
-
-  @override
-  Future<Either<Failure, List<TaskModel>>> getDistributions(
-      {required String dogsitterId}) async {
-    try {
-      if (cache['from_distributions']!.isNotEmpty) {
-        return right(cache['from_distributions']!);
-      }
-
-      final json = await supabaseClient
-          .rpc('get_distributions', params: {'d_dogsitter_id': dogsitterId});
-
-      if (json == null) return right([]);
-
-      final tasks = json
-          .map((json) => TaskDto.fromJson(json).toDomain())
-          .toList()
-          .cast<TaskModel>();
-
-      addToCache(key: 'from_distributions', tasks: tasks);
-      return right(tasks);
-    } on SocketException catch (_) {
-      return left(Failure(message: AppString.internetNotFound));
-    } catch (e) {
-      return left(Failure(message: e.toString()));
-    }
-  }
-
-  void addToCache({
-    required String key,
-    required List<TaskModel> tasks,
-  }) {
-    cache[key]!.addAll(tasks);
-  }
-
-  void clearCache() {
-    cache['all_task']!.clear();
-    cache['from_distributions']!.clear();
   }
 }

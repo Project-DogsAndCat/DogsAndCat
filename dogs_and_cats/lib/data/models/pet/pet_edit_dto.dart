@@ -7,20 +7,26 @@ part 'pet_edit_dto.g.dart';
 class PetEditDto {
   PetEditDto(
       {required this.id,
+      required this.weight,
       required this.selectedCategory,
       required this.otherFeatures});
 
   final String id;
+  final int weight;
   @JsonKey(name: 'selected_category')
   final String selectedCategory;
   @JsonKey(name: 'other_features')
   final String otherFeatures;
 
   PetEdit toDomain() => PetEdit(
-      id: id, selectedCategory: selectedCategory, otherFeatures: otherFeatures);
+      id: id,
+      weight: weight,
+      selectedCategory: selectedCategory,
+      otherFeatures: otherFeatures);
 
   factory PetEditDto.fromDomain(PetEdit object) => PetEditDto(
       id: object.id,
+      weight: object.weight,
       selectedCategory: object.selectedCategory,
       otherFeatures: object.otherFeatures);
 

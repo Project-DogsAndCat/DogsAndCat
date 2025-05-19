@@ -28,7 +28,7 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
           .from(TableNames.dogsitters)
           .insert({
             'person_id': personId,
-            'status': StatusDogSitter.free,
+            'status': StatusDogSitter.free.value,
           })
           .select()
           .single();
@@ -111,10 +111,15 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
   Future<Either<Failure, Unit>> addImage(
       {required Uint8List imageBytes}) async {
     try {
-      final personId = supabaseClient.auth.currentUser!.id;
+      final person = supabaseClient.auth.currentUser;
+
+      if (person == null) {
+        return left(Failure(message: 'Пользователь не найден'));
+      }
+
       await supabaseClient.storage
           .from('photo')
-          .uploadBinary('/$personId/photo', imageBytes,
+          .uploadBinary('/${person!.id}/photo', imageBytes,
               fileOptions: FileOptions(
                 upsert: true,
               ));
@@ -134,6 +139,27 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
       final personId = supabaseClient.auth.currentUser!.id;
       String imageUrl =
           supabaseClient.storage.from('photo').getPublicUrl('$personId/photo');
+
+      imageUrl = Uri.parse(imageUrl).replace(queryParameters: {
+        't': DateTime.now().millisecondsSinceEpoch.toString()
+      }).toString();
+
+      // clearCache();
+      return right(imageUrl);
+    } on SocketException catch (_) {
+      return left(Failure(message: AppString.internetNotFound));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getImageUrlById({
+    required String id,
+  }) async {
+    try {
+      String imageUrl =
+          supabaseClient.storage.from('photo').getPublicUrl('$id/photo');
 
       imageUrl = Uri.parse(imageUrl).replace(queryParameters: {
         't': DateTime.now().millisecondsSinceEpoch.toString()

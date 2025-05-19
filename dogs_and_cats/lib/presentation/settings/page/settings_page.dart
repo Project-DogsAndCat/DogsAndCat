@@ -1,5 +1,7 @@
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
+import 'package:dogs_and_cats/presentation/settings/bloc/become_dogsitter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -50,7 +52,12 @@ class SettingsPage extends StatelessWidget {
                     showModalBottomSheet(
                         context: context,
                         builder: (newContext) {
-                          return ContactPage();
+                          return BlocProvider(
+                            create: (context) => getIt<BecomeDogsitterCubit>(),
+                            child: ContactPage(
+                              isNeedBecome: true,
+                            ),
+                          );
                         });
                   },
                   mainInfoTitle: AppString.becomeDogsitter,

@@ -9,7 +9,7 @@ class DogSitterEvent with _$DogSitterEvent {
   }) = _SelectPositions;
 
   const factory DogSitterEvent.updateStatus({
-    required StatusDogSitter currentStatus,
+    required StatusDogSitter status,
   }) = _UpdateStatus;
 
   const factory DogSitterEvent.addImage({

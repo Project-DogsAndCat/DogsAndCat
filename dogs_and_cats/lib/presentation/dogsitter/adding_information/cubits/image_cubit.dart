@@ -24,4 +24,13 @@ class ImageCubit extends Cubit<ImageState> {
     result.fold((failure) => emit(ImageState.failure(message: failure.message)),
         (imageUrl) => emit(ImageState.loaded(imageUrl: imageUrl)));
   }
+
+  Future<void> getImageUrlById({
+    required String id,
+  }) async {
+    final result = await repository.getImageUrlById(id: id);
+
+    result.fold((failure) => emit(ImageState.failure(message: failure.message)),
+        (imageUrl) => emit(ImageState.loaded(imageUrl: imageUrl)));
+  }
 }

@@ -23,10 +23,12 @@ class Pet {
 class PetEdit {
   PetEdit(
       {required this.id,
+      required this.weight,
       required this.selectedCategory,
       required this.otherFeatures});
 
   final String id;
+  final int weight;
   final String selectedCategory;
   final String otherFeatures;
 }

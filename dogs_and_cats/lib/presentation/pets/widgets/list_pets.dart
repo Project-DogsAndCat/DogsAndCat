@@ -32,13 +32,14 @@ class ListPets extends StatelessWidget {
                       icon: Icons.add,
                       onPressed: () {
                         showModalBottomSheet<void>(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (newContext) {
-                              return EditPetPage(
-                                pet: state.pets[index],
-                              );
-                            });
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (newContext) {
+                            return EditPetPage(
+                              pet: state.pets[index],
+                            );
+                          },
+                        );
                       },
                     ),
                   );

@@ -11,6 +11,7 @@ PersonAuthDto _$PersonAuthDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       email: json['email'] as String,
       role: json['role_user'] as String,
+      isAddedInfo: json['is_added_info'] as bool,
     );
 
 Map<String, dynamic> _$PersonAuthDtoToJson(PersonAuthDto instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$PersonAuthDtoToJson(PersonAuthDto instance) =>
       'id': instance.id,
       'email': instance.email,
       'role_user': instance.role,
+      'is_added_info': instance.isAddedInfo,
     };

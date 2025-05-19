@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
+import 'package:dogs_and_cats/domain/models/dogsitter.dart';
 import 'package:dogs_and_cats/domain/repositories/send_message_http_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ import '../../core/error/failure.dart';
 class SendMessageHttpRepositoryImpl implements SendMessageHttpRepository {
   @override
   Future<Either<Failure, Unit>> sendMessage(
-      {required String userFcmToken, required String dogsitter}) async {
+      {required String userFcmToken, required Dogsitter dogsitter}) async {
     try {
       final url = Uri.parse(
         'https://fcm.googleapis.com/v1/projects/dogs-and-cats-1b675/messages:send',
@@ -20,15 +21,17 @@ class SendMessageHttpRepositoryImpl implements SendMessageHttpRepository {
           headers: {
             'Content-Type': 'application/json',
             'Authorization':
-                'Bearer ...',
+                'Bearer ',
           },
           body: jsonEncode({
             "message": {
-              "token":
-                  '...',
+              "token": userFcmToken,
               "notification": {
                 "title": "Ваш заказ приняли",
                 "body": "Вас будет обслуживать $dogsitter",
+              },
+              "data": {
+                "id": dogsitter.person.id,
               }
             }
           }));

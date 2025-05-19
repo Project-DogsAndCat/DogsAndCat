@@ -5,19 +5,7 @@ import '../models/dogsitter.dart';
 import '../models/task.dart';
 
 abstract interface class TaskRepository {
-  Future<Either<Failure, List<TaskModel>>> getAllTasks({
+  Stream<Either<Failure, List<TaskModel>>> watchTasks({
     required Dogsitter dogsitter,
-  });
-
-  Future<Either<Failure, List<TaskModel>>> getDistributions(
-      {required String dogsitterId});
-
-  Future<Either<Failure, Unit>> completeTask({
-    required String orderId,
-  });
-
-  Future<Either<Failure, Unit>> acceptTask({
-    required String orderId,
-    required String dogsitterId,
   });
 }

@@ -24,7 +24,7 @@ class ListTileOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Padding(
@@ -36,21 +36,21 @@ class ListTileOrder extends StatelessWidget {
                 OrderStatusWidget(
                   status: task.order.status.value,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 Text(
                   '${DateFormat.MMMMEEEEd('RU-ru').format(task.order.date)}, ${DateFormat.Hm('RU-ru').format(task.order.date)}',
                   style: textTheme.bodyLarge,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 Text(
                   task.serviceTitle,
                   style: textTheme.bodyMedium,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 Row(

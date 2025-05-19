@@ -20,7 +20,7 @@ mixin _$DogSitterEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(StatusDogSitter currentStatus) updateStatus,
+    required TResult Function(StatusDogSitter status) updateStatus,
     required TResult Function(Uint8List imageBytes) addImage,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$DogSitterEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult? Function(StatusDogSitter status)? updateStatus,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$DogSitterEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult Function(StatusDogSitter status)? updateStatus,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) =>
@@ -131,7 +131,7 @@ class _$LoadImpl implements _Load {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(StatusDogSitter currentStatus) updateStatus,
+    required TResult Function(StatusDogSitter status) updateStatus,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return load();
@@ -142,7 +142,7 @@ class _$LoadImpl implements _Load {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult? Function(StatusDogSitter status)? updateStatus,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return load?.call();
@@ -153,7 +153,7 @@ class _$LoadImpl implements _Load {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult Function(StatusDogSitter status)? updateStatus,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
@@ -284,7 +284,7 @@ class _$SelectPositionsImpl implements _SelectPositions {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(StatusDogSitter currentStatus) updateStatus,
+    required TResult Function(StatusDogSitter status) updateStatus,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return selectPositions(selectedServices);
@@ -295,7 +295,7 @@ class _$SelectPositionsImpl implements _SelectPositions {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult? Function(StatusDogSitter status)? updateStatus,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return selectPositions?.call(selectedServices);
@@ -306,7 +306,7 @@ class _$SelectPositionsImpl implements _SelectPositions {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult Function(StatusDogSitter status)? updateStatus,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
@@ -373,7 +373,7 @@ abstract class _$$UpdateStatusImplCopyWith<$Res> {
           _$UpdateStatusImpl value, $Res Function(_$UpdateStatusImpl) then) =
       __$$UpdateStatusImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({StatusDogSitter currentStatus});
+  $Res call({StatusDogSitter status});
 }
 
 /// @nodoc
@@ -389,12 +389,12 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentStatus = null,
+    Object? status = null,
   }) {
     return _then(_$UpdateStatusImpl(
-      currentStatus: null == currentStatus
-          ? _value.currentStatus
-          : currentStatus // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as StatusDogSitter,
     ));
   }
@@ -403,14 +403,14 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateStatusImpl implements _UpdateStatus {
-  const _$UpdateStatusImpl({required this.currentStatus});
+  const _$UpdateStatusImpl({required this.status});
 
   @override
-  final StatusDogSitter currentStatus;
+  final StatusDogSitter status;
 
   @override
   String toString() {
-    return 'DogSitterEvent.updateStatus(currentStatus: $currentStatus)';
+    return 'DogSitterEvent.updateStatus(status: $status)';
   }
 
   @override
@@ -418,12 +418,11 @@ class _$UpdateStatusImpl implements _UpdateStatus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateStatusImpl &&
-            (identical(other.currentStatus, currentStatus) ||
-                other.currentStatus == currentStatus));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentStatus);
+  int get hashCode => Object.hash(runtimeType, status);
 
   /// Create a copy of DogSitterEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -438,10 +437,10 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(StatusDogSitter currentStatus) updateStatus,
+    required TResult Function(StatusDogSitter status) updateStatus,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
-    return updateStatus(currentStatus);
+    return updateStatus(status);
   }
 
   @override
@@ -449,10 +448,10 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult? Function(StatusDogSitter status)? updateStatus,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
-    return updateStatus?.call(currentStatus);
+    return updateStatus?.call(status);
   }
 
   @override
@@ -460,12 +459,12 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult Function(StatusDogSitter status)? updateStatus,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {
     if (updateStatus != null) {
-      return updateStatus(currentStatus);
+      return updateStatus(status);
     }
     return orElse();
   }
@@ -509,10 +508,10 @@ class _$UpdateStatusImpl implements _UpdateStatus {
 }
 
 abstract class _UpdateStatus implements DogSitterEvent {
-  const factory _UpdateStatus({required final StatusDogSitter currentStatus}) =
+  const factory _UpdateStatus({required final StatusDogSitter status}) =
       _$UpdateStatusImpl;
 
-  StatusDogSitter get currentStatus;
+  StatusDogSitter get status;
 
   /// Create a copy of DogSitterEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -593,7 +592,7 @@ class _$AddImageImpl implements _AddImage {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(Set<Service> selectedServices) selectPositions,
-    required TResult Function(StatusDogSitter currentStatus) updateStatus,
+    required TResult Function(StatusDogSitter status) updateStatus,
     required TResult Function(Uint8List imageBytes) addImage,
   }) {
     return addImage(imageBytes);
@@ -604,7 +603,7 @@ class _$AddImageImpl implements _AddImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
     TResult? Function(Set<Service> selectedServices)? selectPositions,
-    TResult? Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult? Function(StatusDogSitter status)? updateStatus,
     TResult? Function(Uint8List imageBytes)? addImage,
   }) {
     return addImage?.call(imageBytes);
@@ -615,7 +614,7 @@ class _$AddImageImpl implements _AddImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(Set<Service> selectedServices)? selectPositions,
-    TResult Function(StatusDogSitter currentStatus)? updateStatus,
+    TResult Function(StatusDogSitter status)? updateStatus,
     TResult Function(Uint8List imageBytes)? addImage,
     required TResult orElse(),
   }) {

@@ -1,52 +1,87 @@
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/presentation/settings/bloc/become_dogsitter_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/secrets/secrets.dart';
+import '../../../../core/widgets/custom_snackbar.dart';
 
 class ContactPage extends StatelessWidget {
-  const ContactPage({super.key});
+  const ContactPage({
+    super.key,
+    this.color,
+    this.isNeedBecome = false,
+  });
+  final Color? color;
+  final bool isNeedBecome;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Свяжитесь с администратором',
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  child: const Icon(
-                    Icons.telegram,
-                    size: 55,
-                    color: AppColors.telegramColor,
+      backgroundColor: color,
+      body: BlocListener<BecomeDogsitterCubit, BecomeDogsitterState>(
+        listener: (context, state) {
+          state.map(
+              initial: (_) {},
+              loading: (_) {},
+              success: (_) {
+                CustomSnackBar.showSuccess(
+                    context, 'Теперь вы владеете правами догситтера');
+              },
+              failure: (state) {
+                CustomSnackBar.showError(context, state.message);
+              });
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Свяжитесь с администратором',
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    child: const Icon(
+                      Icons.telegram,
+                      size: 55,
+                      color: AppColors.telegramColor,
+                    ),
+                    onTap: () {
+                      _launchUrl();
+                    },
                   ),
-                  onTap: () {
-                    _launchUrl();
-                  },
-                ),
-                const SizedBox(
-                  width: 25.0,
-                ),
-                GestureDetector(
-                  child: const Icon(
-                    Icons.phone,
-                    size: 55,
-                    color: AppColors.primaryColor,
+                  const SizedBox(
+                    width: 25.0,
                   ),
-                  onTap: () {
-                    _launchTel();
-                  },
-                ),
-              ],
-            ),
-          ],
+                  GestureDetector(
+                    child: const Icon(
+                      Icons.phone,
+                      size: 55,
+                      color: AppColors.primaryColor,
+                    ),
+                    onTap: () {
+                      _launchTel();
+                    },
+                  ),
+                ],
+              ),
+              isNeedBecome
+                  ? GestureDetector(
+                      child: const Icon(
+                        Icons.fast_forward,
+                        size: 55,
+                        color: AppColors.primaryColor,
+                      ),
+                      onTap: () {
+                        context.read<BecomeDogsitterCubit>().becomeDogsitter();
+                      },
+                    )
+                  : Container()
+            ],
+          ),
         ),
       ),
     );

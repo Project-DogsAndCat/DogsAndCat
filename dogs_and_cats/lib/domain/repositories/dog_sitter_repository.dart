@@ -27,4 +27,8 @@ abstract interface class DogSitterRepository {
   });
 
   Future<Either<Failure, String>> getImageUrl();
+
+  Future<Either<Failure, String>> getImageUrlById({
+    required String id,
+  });
 }

@@ -10,7 +10,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository authRepository;
-  UserFmcRepository fmcRepository;
+  UserFcmRepository fmcRepository;
   AuthBloc({
     required this.authRepository,
     required this.fmcRepository,
@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final messaging = FirebaseMessaging.instance;
     final token = await messaging.getToken();
     if (token != null) {
-      final result = await fmcRepository.upsertFmcToken(token: token);
+      final result = await fmcRepository.upsertFcmToken(token: token);
       result.fold(
           (failure) => emit(AuthState.failure(
               message: 'Что-то пошло не так. Попробуйте позже')),

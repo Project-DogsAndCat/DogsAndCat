@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-import '../../../core/utils/app_strings.dart';
 import '../../../domain/models/location.dart';
 import '../../../domain/models/person.dart';
 import '../blocs/map_suggest_bloc/map_suggest_bloc.dart';

@@ -24,7 +24,6 @@ class EditPetPage extends StatefulWidget {
 }
 
 class _EditPetPageState extends State<EditPetPage> {
-  final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _breadController;
   late TextEditingController _ageController;
@@ -63,133 +62,129 @@ class _EditPetPageState extends State<EditPetPage> {
         child: ConstrainedBox(
           constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height * 0.57),
-          child: Form(
-            key: _formKey,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  Container(
-                    height: 5,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[400],
-                    ),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                Container(
+                  height: 5,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey[400],
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(AppString.myPets, style: textTheme.labelLarge),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        CustomTextFormField(
-                          controller: _nameController,
-                          hintText: AppString.nameOfPet,
-                          readOnly: true,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        CustomTextFormField(
-                          controller: _breadController,
-                          hintText: AppString.breed,
-                          readOnly: true,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomTextFormField(
-                                controller: _ageController,
-                                hintText: AppString.age,
-                                readOnly: true,
-                              ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(AppString.myPets, style: textTheme.labelLarge),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      CustomTextFormField(
+                        controller: _nameController,
+                        hintText: AppString.nameOfPet,
+                        readOnly: true,
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      CustomTextFormField(
+                        controller: _breadController,
+                        hintText: AppString.breed,
+                        readOnly: true,
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomTextFormField(
+                              controller: _ageController,
+                              hintText: AppString.age,
+                              readOnly: true,
                             ),
-                            const SizedBox(
-                              width: 8.0,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          Expanded(
+                            child: CustomTextFormField(
+                              controller: _weightController,
+                              hintText: AppString.weight,
+                              keyboardType: TextInputType.number,
                             ),
-                            Expanded(
-                              child: CustomTextFormField(
-                                controller: _weightController,
-                                hintText: AppString.weight,
-                                keyboardType: TextInputType.number,
-                                validator: _validateWeight,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Row(
-                          spacing: 10.0,
-                          children: [
-                            CustomChoiceChip(
-                              title: AppString.boy,
-                              isSelected: widget.pet.gender == AppString.boy,
-                            ),
-                            CustomChoiceChip(
-                              title: AppString.girl,
-                              isSelected: widget.pet.gender == AppString.girl,
-                            ),
-                          ],
-                        ),
-                        CustomSwitch(
-                          title: AppString.propertiesPet,
-                          value: _isNeedProperties,
-                          onChanged: (value) {
-                            setState(() {
-                              _isNeedProperties = value;
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Visibility(
-                          visible: _isNeedProperties,
-                          child: BlocBuilder<PetEditCubit, PetEditState>(
-                              builder: (context, state) {
-                            return PropertiesPage(
-                              otherFeatures: state.otherFeatures ?? '',
-                              selectedCategory: state.selectedCategory ?? {},
-                            );
-                          }),
-                        ),
-                        const SizedBox(
-                          height: 25.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                  BlocBuilder<PetEditCubit, PetEditState>(
-                    builder: (context, state) {
-                      return RoundedElevatedButton(
-                        widget: Text(
-                          AppString.save,
-                          style: textTheme.bodyMedium!
-                              .copyWith(color: AppColors.whiteColor),
-                        ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<PetBloc>().add(PetEvent.edit(
-                                pet: createPetForEdit(
-                                    state.selectedCategoryString,
-                                    state.otherFeatures)));
-                          }
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        spacing: 10.0,
+                        children: [
+                          CustomChoiceChip(
+                            title: AppString.boy,
+                            isSelected: widget.pet.gender == AppString.boy,
+                          ),
+                          CustomChoiceChip(
+                            title: AppString.girl,
+                            isSelected: widget.pet.gender == AppString.girl,
+                          ),
+                        ],
+                      ),
+                      CustomSwitch(
+                        title: AppString.propertiesPet,
+                        value: _isNeedProperties,
+                        onChanged: (value) {
+                          setState(() {
+                            _isNeedProperties = value;
+                          });
                         },
-                      );
-                    },
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Visibility(
+                        visible: _isNeedProperties,
+                        child: BlocBuilder<PetEditCubit, PetEditState>(
+                            builder: (context, state) {
+                          return PropertiesPage(
+                            otherFeatures: state.otherFeatures ?? '',
+                            selectedCategory: state.selectedCategory ?? {},
+                          );
+                        }),
+                      ),
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                BlocBuilder<PetEditCubit, PetEditState>(
+                  builder: (context, state) {
+                    return RoundedElevatedButton(
+                      widget: Text(
+                        AppString.save,
+                        style: textTheme.bodyMedium!
+                            .copyWith(color: AppColors.whiteColor),
+                      ),
+                      onPressed: () {
+                        if (_validateWeight(_weightController.text)) {
+                          context.read<PetBloc>().add(PetEvent.edit(
+                              pet: createPetForEdit(
+                                  state.selectedCategoryString,
+                                  state.otherFeatures)));
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -200,12 +195,14 @@ class _EditPetPageState extends State<EditPetPage> {
   PetEdit createPetForEdit(String? selectedCategory, String? otherFeatures) {
     return PetEdit(
         id: widget.pet.id!,
+        weight: int.parse(_weightController.text),
         selectedCategory: selectedCategory ?? '',
         otherFeatures: otherFeatures ?? '');
   }
 
-  String? _validateWeight(String? value) {
-    if (value?.isEmpty ?? true) return AppString.required;
-    return null;
+  bool _validateWeight(String value) {
+    if (value.isEmpty) return false;
+    if (double.tryParse(value) == null) return false;
+    return true;
   }
 }

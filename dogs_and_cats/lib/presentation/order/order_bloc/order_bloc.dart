@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
-import 'package:dogs_and_cats/domain/repositories/dog_sitter_repository.dart';
 import 'package:dogs_and_cats/domain/repositories/order_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../core/error/failure.dart';
 
 part 'order_bloc.freezed.dart';
 part 'order_event.dart';
@@ -11,11 +15,20 @@ part 'order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderRepository orderRepository;
-  DogSitterRepository dogSitterRepository;
+  late final StreamSubscription<Either<Failure, List<TaskModel>>> _subscription;
+
+  Status? _status = Status.complete;
   OrderBloc({
     required this.orderRepository,
-    required this.dogSitterRepository,
-  }) : super(OrderState.initial()) {
+  }) : super(OrderState.loading()) {
+    _subscription = orderRepository.watchOrders().listen((result) {
+      result
+          .fold((failure) => emit(OrderState.failure(message: failure.message)),
+              (orders) {
+        final filtered = _applyFilter(orders, _status);
+        emit(OrderState.loaded(tasks: filtered));
+      });
+    });
     on<OrderEvent>((event, emit) async {
       await event.map(
         addOrder: (event) => _addOrder(emit, event),
@@ -24,9 +37,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         loadAdoptedOrders: (_) => _loadAdoptedOrders(emit),
         loadCompletedOrders: (_) => _loadCompletedOrders(emit),
         cancelOrder: (event) => _cancelOrder(emit, event),
-        addRating: (event) => _updateRating(emit, event),
       );
     });
+  }
+
+  List<TaskModel> _applyFilter(List<TaskModel> tasks, Status? filter) {
+    if (filter == null) return tasks;
+    return tasks.where((task) => task.order.status == filter).toList();
   }
 
   Future<void> _addOrder(Emitter<OrderState> emit, _AddOrder event) async {
@@ -36,16 +53,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         order: event.order, petIds: event.petIds);
 
     result.fold((failure) => emit(OrderState.failure(message: failure.message)),
-        (_) => add(_LoadAllOrders()));
-  }
-
-  Future<void> _loadAllOrders(Emitter<OrderState> emit) async {
-    emit(OrderState.loading());
-
-    final response = await orderRepository.getOrders();
-    response.fold(
-        (failure) => emit(OrderState.failure(message: failure.message)),
-        (task) => emit(OrderState.loaded(tasks: task.cast<TaskModel>())));
+        (_) => emit(OrderState.initial()));
   }
 
   Future<void> _cancelOrder(
@@ -55,54 +63,28 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     final result = await orderRepository.cancel(orderId: event.orderId);
 
     result.fold((failure) => emit(OrderState.failure(message: failure.message)),
-        (orders) => add(_LoadAllOrders()));
+        (orders) => emit(OrderState.initial()));
+  }
+
+  Future<void> _loadAllOrders(Emitter<OrderState> emit) async {
+    _status = null;
   }
 
   Future<void> _loadRefusalOrders(Emitter<OrderState> emit) async {
-    emit(OrderState.loading());
-    final tasks = await filteredTask(status: Status.refusal, emit: emit);
-    emit(OrderState.loaded(tasks: tasks));
+    _status = Status.refusal;
   }
 
   Future<void> _loadAdoptedOrders(Emitter<OrderState> emit) async {
-    emit(OrderState.loading());
-    final tasks = await filteredTask(status: Status.adopted, emit: emit);
-    emit(OrderState.loaded(tasks: tasks));
+    _status = Status.adopted;
   }
 
   Future<void> _loadCompletedOrders(Emitter<OrderState> emit) async {
-    emit(OrderState.loading());
-    final tasks = await filteredTask(status: Status.complete, emit: emit);
-    emit(OrderState.loaded(tasks: tasks));
+    _status = Status.complete;
   }
 
-  Future<List<TaskModel>> filteredTask(
-      {required Status status, required Emitter<OrderState> emit}) async {
-    final result = await orderRepository.getOrders();
-    List<TaskModel> filtered = [];
-    result.fold((failure) {
-      emit(OrderState.failure(message: failure.message));
-      return;
-    }, (orders) {
-      filtered = orders.where((order) => order.order.status == status).toList();
-    });
-    return filtered;
-  }
-
-  Future<void> _updateRating(Emitter<OrderState> emit, _AddRating event) async {
-    try {
-      emit(OrderState.loading());
-      await Future.wait([
-        dogSitterRepository.updateRating(
-          rating: event.rating,
-          dogsitterId: event.dogsitterId,
-        ),
-        orderRepository.updateScore(
-            rating: event.rating, orderId: event.orderId),
-      ]);
-      emit(OrderState.successAddRating());
-    } catch (e) {
-      emit(OrderState.failure(message: e.toString()));
-    }
+  @override
+  Future<void> close() {
+    _subscription.cancel();
+    return super.close();
   }
 }

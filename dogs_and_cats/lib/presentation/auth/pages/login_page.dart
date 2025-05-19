@@ -61,13 +61,19 @@ class _LoginPageState extends State<LoginPage> {
                   context.read<ThemeCubit>().checkThemeSelected();
                   if (state.person.role == 'dogsitter') {
                     if (!widget.isUser) {
-                      context.goNamed(RoutesNames.todo);
+                      if (state.person.isAddedInfo) {
+                        context.goNamed(RoutesNames.todo);
+                      }
+                      if (!state.person.isAddedInfo) {
+                        context.goNamed(RoutesNames.addInformation);
+                      }
                     } else {
                       context.goNamed(RoutesNames.services);
                     }
                   } else if (state.person.role == 'user') {
                     if (!widget.isUser) {
-                      context.goNamed(RoutesNames.contact);
+                      context.goNamed(RoutesNames.contact,
+                          extra: AppColors.backGroundColor);
                     } else {
                       context.goNamed(RoutesNames.services);
                     }

@@ -6,40 +6,49 @@ import 'package:image_picker/image_picker.dart';
 
 import '../cubits/image_cubit.dart';
 
-class Avatar extends StatefulWidget {
-  const Avatar({
+class AvatarDogSitter extends StatefulWidget {
+  const AvatarDogSitter({
     super.key,
     required this.existImage,
   });
 
   final Function() existImage;
   @override
-  State<Avatar> createState() => _AvatarState();
+  State<AvatarDogSitter> createState() => _AvatarDogSitterState();
 }
 
-class _AvatarState extends State<Avatar> {
+class _AvatarDogSitterState extends State<AvatarDogSitter> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BlocBuilder<ImageCubit, ImageState>(
-          builder: (context, state) {
-            return state.map(
-              loading: (_) =>
-                  Container(height: 150.0, width: 150.0, color: Colors.green),
-              loaded: (state) => SizedBox(
-                width: 150.0,
-                height: 150.0,
-                child: Image.network(
-                  state.imageUrl,
-                  fit: BoxFit.cover,
+        Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: BlocBuilder<ImageCubit, ImageState>(
+            builder: (context, state) {
+              return state.map(
+                loading: (_) => Container(
+                  height: 150.0,
+                  width: 150.0,
+                  color: Colors.green,
                 ),
-              ),
-              failure: (state) => Center(
-                child: Text(state.message),
-              ),
-            );
-          },
+                loaded: (state) => SizedBox(
+                  width: 150.0,
+                  height: 150.0,
+                  child: Image.network(
+                    state.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                failure: (state) => Center(
+                  child: Text(
+                    state.message,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
         const SizedBox(
           height: 10.0,
@@ -50,9 +59,8 @@ class _AvatarState extends State<Avatar> {
             final ImagePicker picker = ImagePicker();
             final XFile? image =
                 await picker.pickImage(source: ImageSource.gallery);
-            if (image == null) {
-              return;
-            }
+            if (image == null) return;
+
             final imageByBytes = await image.readAsBytes();
 
             widget.existImage();

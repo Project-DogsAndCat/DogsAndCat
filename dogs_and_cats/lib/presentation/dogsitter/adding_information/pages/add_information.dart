@@ -1,9 +1,11 @@
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/avatar.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/positions_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/dependency/dependencies.dart';
 import '../../../../core/routes/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -24,88 +26,87 @@ class _AddInformationState extends State<AddInformation> {
   bool _existImage = false;
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 10,
-          ),
-          child: BlocListener<DogSitterBloc, DogSitterState>(
-            listener: (context, state) {
-              state.map(
-                initial: (_) {},
-                loading: (_) {},
-                loaded: (state) {
-                  CustomSnackBar.showSuccess(context, AppString.loginSuccess);
-                  context.goNamed(RoutesNames.todo, extra: state.dogsitter);
-                },
-                failure: (state) {
-                  CustomSnackBar.showError(context, state.message);
-                },
-              );
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Avatar(existImage: () {
-                  setState(() {
-                    _existImage = true;
-                  });
-                }),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                PositionsList(
-                  selectedServices: _selectedServices,
-                  onChanged: (value, isSelected) {
+    return BlocProvider(
+      create: (context) => getIt<ImageCubit>(),
+      child: Scaffold(
+        backgroundColor: AppColors.backGroundColor,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 10,
+            ),
+            child: BlocListener<DogSitterBloc, DogSitterState>(
+              listener: (context, state) {
+                state.map(
+                  initial: (_) {},
+                  loading: (_) {},
+                  loaded: (state) {
+                    CustomSnackBar.showSuccess(context, AppString.loginSuccess);
+                    context.goNamed(RoutesNames.todo, extra: state.dogsitter);
+                  },
+                  failure: (state) {
+                    CustomSnackBar.showError(context, state.message);
+                  },
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AvatarDogSitter(existImage: () {
                     setState(() {
-                      isSelected
-                          ? _selectedServices.add(value)
-                          : _selectedServices.remove(value);
+                      _existImage = true;
                     });
-                  },
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                RoundedElevatedButton(
-                  onPressed: () {
-                    if (_selectedServices.isNotEmpty && !_existImage) {
-                      context.read<DogSitterBloc>().add(
-                          DogSitterEvent.selectPositions(
-                              selectedServices: _selectedServices));
-                    }
-                  },
-                  widget: BlocBuilder<DogSitterBloc, DogSitterState>(
-                    builder: (context, state) {
-                      return state.maybeMap(
-                        loading: (_) {
-                          return CircularProgressIndicator(
-                            color: Colors.white,
-                          );
-                        },
-                        orElse: () {
-                          return Text(
-                            AppString.save,
-                            style: const TextStyle(
-                                color: AppColors.whiteColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          );
-                        },
-                      );
+                  }),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  PositionsList(
+                    selectedServices: _selectedServices,
+                    onChanged: (value, isSelected) {
+                      setState(() {
+                        isSelected
+                            ? _selectedServices.add(value)
+                            : _selectedServices.remove(value);
+                      });
                     },
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  RoundedElevatedButton(
+                    onPressed: () {
+                      if (_existImage && _selectedServices.isNotEmpty) {
+                        context.read<DogSitterBloc>().add(
+                            DogSitterEvent.selectPositions(
+                                selectedServices: _selectedServices));
+                        context.goNamed(RoutesNames.todo);
+                      }
+                    },
+                    widget: BlocBuilder<DogSitterBloc, DogSitterState>(
+                      builder: (context, state) {
+                        return state.maybeMap(
+                          loading: (_) {
+                            return CircularProgressIndicator(
+                              color: Colors.white,
+                            );
+                          },
+                          orElse: () {
+                            return Text(
+                              AppString.save,
+                              style: const TextStyle(
+                                  color: AppColors.whiteColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -9,7 +9,6 @@ import '../models/person_auth/person_auth_dto.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required this.supabaseClient});
-
   final SupabaseClient supabaseClient;
 
   @override
@@ -18,12 +17,15 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final response = await supabaseClient.auth
           .signInWithPassword(email: email, password: password);
+
       if (response.user == null) {
         return left(Failure(message: 'Пользователь не найден'));
       }
 
       final json = response.session!.user.toJson();
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
+      json['is_added_info'] =
+          response.session!.user.userMetadata?['is_added_info'];
 
       return right(PersonAuthDto.fromJson(json).toDomain());
     } on AuthApiException catch (e) {
@@ -37,21 +39,26 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, PersonAuth>> signUpWithEmailPassword(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String password}) async {
+  Future<Either<Failure, PersonAuth>> signUpWithEmailPassword({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  }) async {
     try {
-      final permissions = {'role_user': 'user'};
-      final response = await supabaseClient.auth
-          .signUp(password: password, email: email, data: permissions);
+      final response = await supabaseClient.auth.signUp(
+          password: password,
+          email: email,
+          data: {'role_user': 'user', 'is_added_info': false});
 
       if (response.user == null) {
         return left(Failure(message: 'Пользователь не найден'));
       }
+
       final json = response.user!.toJson();
       json['role_user'] = response.session!.user.userMetadata?['role_user'];
+      json['is_added_info'] =
+          response.session!.user.userMetadata?['is_added_info'];
 
       final addName = {'first_name': firstName, 'last_name': lastName};
       await _addPerson(id: response.user!.id, json: addName);

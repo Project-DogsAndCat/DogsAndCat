@@ -71,7 +71,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
                         } else if (state.person.role == 'user') {
                           if (!widget.isUser) {
-                            context.goNamed(RoutesNames.contact);
+                            context.goNamed(RoutesNames.contact,
+                                extra: AppColors.backGroundColor);
                           } else {
                             context.goNamed(RoutesNames.services);
                           }

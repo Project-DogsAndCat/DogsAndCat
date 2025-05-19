@@ -1,8 +1,10 @@
+import 'package:dogs_and_cats/core/dependency/dependencies.dart';
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_snackbar.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
+import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/date_picker_widget.dart';
@@ -149,13 +151,16 @@ class _OrderingServiceState extends State<OrderingServicePage> {
               const SizedBox(
                 height: 10,
               ),
-              PetSelectionWidget(
-                onSelected: (List<String> ids, List<String> names) {
-                  setState(() {
-                    petIds = ids;
-                    namePet = names.toString();
-                  });
-                },
+              BlocProvider(
+                create: (context) => getIt<PetBloc>(),
+                child: PetSelectionWidget(
+                  onSelected: (List<String> ids, List<String> names) {
+                    setState(() {
+                      petIds = ids;
+                      namePet = names.toString();
+                    });
+                  },
+                ),
               ),
               const SizedBox(
                 height: 10,

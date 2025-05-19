@@ -9,12 +9,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
 
-class UserFmcRepositoryImpl implements UserFmcRepository {
-  UserFmcRepositoryImpl({required this.supabaseClient});
+class UserFcmRepositoryImpl implements UserFcmRepository {
+  UserFcmRepositoryImpl({
+    required this.supabaseClient,
+  });
   final SupabaseClient supabaseClient;
 
   @override
-  Future<Either<Failure, Unit>> upsertFmcToken({required String token}) async {
+  Future<Either<Failure, Unit>> upsertFcmToken({required String token}) async {
     try {
       final person = supabaseClient.auth.currentUser;
 

@@ -10,7 +10,7 @@ abstract interface class OrderRepository {
     required List<String> petIds,
   });
 
-  Future<Either<Failure, List<TaskModel>>> getOrders();
+  Stream<Either<Failure, List<TaskModel>>> watchOrders();
 
   Future<Either<Failure, Unit>> cancel({
     required String orderId,
@@ -18,5 +18,4 @@ abstract interface class OrderRepository {
 
   Future<Either<Failure, Unit>> updateScore(
       {required double rating, required String orderId});
-  // Future<List<TaskModel>> getOrderInfoWithFilter(Status status);
 }
