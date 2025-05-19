@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
@@ -29,12 +30,15 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
+          const SizedBox(
+            height: 20.0,
+          ),
           ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.blue),
+            style: ElevatedButton.styleFrom(
+              shadowColor: Colors.transparent,
             ),
             onPressed: () {
               showModalBottomSheet<void>(
@@ -83,13 +87,16 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
                       );
                     },
                   ),
-                  const Icon(Icons.search),
+                  Icon(
+                    Icons.search,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ],
               ),
             ),
           ),
           const SizedBox(
-            height: 30.0,
+            height: 10.0,
           ),
           RoundedElevatedButton(
             onPressed: () {
@@ -101,7 +108,9 @@ class _ShowResultSearchState extends State<ShowResultSearch> {
               }
               Navigator.pop(context);
             },
-            widget: const Text(AppString.save),
+            widget: Text(AppString.save,
+                style: textTheme.bodyMedium!
+                    .copyWith(color: AppColors.whiteColor)),
           ),
         ],
       ),

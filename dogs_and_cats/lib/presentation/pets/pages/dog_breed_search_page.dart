@@ -1,7 +1,9 @@
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../blocs/dog_breed_bloc/dog_breed_bloc.dart';
 
@@ -32,12 +34,19 @@ class DogBreedSearchPage extends StatelessWidget {
             controller: controller,
             hintText: AppString.enterBreed,
             keyboardType: TextInputType.text,
+            suffixIcon: Icon(Icons.search),
           ),
         ),
         const SizedBox(
           height: 10.0,
         ),
-        const Divider(height: 1),
+        Divider(
+          color: AppColors.greyColor,
+          thickness: 0.5,
+        ),
+        SizedBox(
+          height: 20,
+        ),
         BlocBuilder<DogBreedBloc, DogBreedState>(builder: (context, state) {
           return state.map(
             initial: (_) => Container(),
@@ -52,7 +61,25 @@ class DogBreedSearchPage extends StatelessWidget {
                       controller.text = state.dogBreeds[index].name;
                       _onTapSearch(context);
                     },
-                    child: Text(state.dogBreeds[index].name),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.dogBreeds[index].name,
+                            style: textTheme.labelMedium,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Divider(
+                            color: AppColors.greyColor,
+                            thickness: 0.5,
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
                 separatorBuilder: (context, _) {

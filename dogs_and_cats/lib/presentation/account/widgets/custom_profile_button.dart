@@ -44,7 +44,7 @@ class CustomProfileButton extends StatelessWidget {
             ),
             Icon(
               icon,
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
             ),
           ],
         ),

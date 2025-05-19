@@ -1,7 +1,10 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
+import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
+import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../blocs/map_search_bloc/map_search_bloc.dart';
@@ -20,79 +23,122 @@ class _MapSearchPageState extends State<MapSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: Column(
-        children: [
-          CustomTextFormField(
-            onChanged: (text) {
-              context
-                  .read<MapSuggestBloc>()
-                  .add(MapSuggestEvent.queryChanged(query: text));
-            },
-            controller: addressController,
-            hintText: AppString.address,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context
-                  .read<MapSuggestBloc>()
-                  .add(MapSuggestEvent.getSuggestResult());
-            },
-            child: const Text(AppString.search),
-          ),
-          BlocBuilder<MapSuggestBloc, MapSuggestState>(
-            builder: (context, state) {
-              return state.map(
-                initial: (_) => Container(),
-                loading: (_) => const Center(
-                  child: CircularProgressIndicator(),
+    return SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.54),
+        child: Padding(
+          // padding: EdgeInsets.only(
+          //   bottom: MediaQuery.of(context).viewInsets.bottom,
+          // ),
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              top: 25,
+              left: 16,
+              right: 16),
+          child: Column(
+            children: [
+              Container(
+                height: 5,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.grey[400],
                 ),
-                success: (results) {
-                  return SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      itemCount: results.results.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<MapSearchBloc>().add(
-                                MapSearchEvent.setSelectObject(
-                                    item: results.results[index]));
-
-                            if (widget.mapController != null) {
-                              widget.mapController!.moveCamera(
-                                CameraUpdate.newCameraPosition(
-                                  CameraPosition(
-                                    target: Point(
-                                        latitude: results
-                                            .results[index].point!.latitude,
-                                        longitude: results
-                                            .results[index].point!.longitude),
-                                  ).copyWith(zoom: 18.0),
-                                ),
-                              );
-                            }
-                            Navigator.pop(context);
-                          },
-                          child: ListTile(
-                            title: Text(results.results[index].title),
-                            subtitle: Text(
-                              results.results[index].displayText.toString(),
-                            ),
-                          ),
-                        );
-                      },
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              CustomTextFormField(
+                onChanged: (text) {
+                  context
+                      .read<MapSuggestBloc>()
+                      .add(MapSuggestEvent.queryChanged(query: text));
+                },
+                controller: addressController,
+                hintText: AppString.address,
+                suffixIcon: Icon(Icons.search),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              RoundedElevatedButton(
+                onPressed: () {
+                  context
+                      .read<MapSuggestBloc>()
+                      .add(MapSuggestEvent.getSuggestResult());
+                },
+                widget: Text(
+                  AppString.search,
+                  style: textTheme.bodyMedium!
+                      .copyWith(color: AppColors.whiteColor),
+                ),
+              ),
+              BlocBuilder<MapSuggestBloc, MapSuggestState>(
+                builder: (context, state) {
+                  return state.map(
+                    initial: (_) => Container(),
+                    loading: (_) => const Center(
+                      child: CircularProgressIndicator(),
                     ),
+                    success: (results) {
+                      return SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: results.results.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                context.read<MapSearchBloc>().add(
+                                    MapSearchEvent.setSelectObject(
+                                        item: results.results[index]));
+
+                                if (widget.mapController != null) {
+                                  widget.mapController!.moveCamera(
+                                    CameraUpdate.newCameraPosition(
+                                      CameraPosition(
+                                        target: Point(
+                                            latitude: results
+                                                .results[index].point!.latitude,
+                                            longitude: results.results[index]
+                                                .point!.longitude),
+                                      ).copyWith(zoom: 18.0),
+                                    ),
+                                  );
+                                }
+                                Navigator.pop(context);
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      results.results[index].title,
+                                      style: textTheme.labelMedium,
+                                    ),
+                                    subtitle: Text(
+                                      results.results[index].displayText
+                                          .toString(),
+                                    ),
+                                  ),
+                                  Divider(
+                                    color: AppColors.greyColor,
+                                    thickness: 0.5,
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    failure: (message) => Text(message.message),
                   );
                 },
-                failure: (message) => Text(message.message),
-              );
-            },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

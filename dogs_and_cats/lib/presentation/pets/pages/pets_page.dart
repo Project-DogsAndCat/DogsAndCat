@@ -2,6 +2,7 @@ import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/theme.dart';
 import '../widgets/list_pets.dart';
 import 'add_pet_page.dart';
 
@@ -19,7 +20,10 @@ class PetsPage extends StatelessWidget {
             context.replaceNamed(backPage);
           },
         ),
-        title: const Text(AppString.myPets),
+        title: Text(
+          AppString.myPets,
+          style: textTheme.titleMedium,
+        ),
         centerTitle: true,
       ),
       body: Padding(

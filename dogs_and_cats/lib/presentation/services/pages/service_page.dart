@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/custom_service_button.dart';
+
 class ServicePage extends StatelessWidget {
   const ServicePage({
     super.key,
@@ -48,7 +50,7 @@ class ServicePage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return Column(
                                 children: [
-                                  RoundedElevatedButton(
+                                  CustomServiceButton(
                                     onPressed: () {
                                       context.replaceNamed(
                                           RoutesNames.orderingService);

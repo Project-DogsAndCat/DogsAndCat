@@ -20,11 +20,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'core/theme/cubit/theme_cubit.dart';
 import 'firebase_options.dart';
 import 'presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'presentation/services/service_bloc/services_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -121,6 +121,14 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         return MaterialApp.router(
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('ru', 'RU'), // Русский язык
+          ],
           debugShowCheckedModeBanner: false,
           title: 'Dogs & Cats',
           theme: state.isDark ? darkTheme : lightTheme,

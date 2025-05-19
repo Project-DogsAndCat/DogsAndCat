@@ -43,7 +43,7 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
               decoration: BoxDecoration(
                 color: Theme.of(context).brightness == Brightness.light
                     ? AppColors.backGroundColor
-                    : AppColors.blackColor,
+                    : AppColors.buttonColorDarkTheme,
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
                 ),
@@ -138,7 +138,10 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                                   size: displayWidth * .056,
                                   color: index ==
                                           widget.navigationShell.currentIndex
-                                      ? AppColors.backGroundColor
+                                      ? (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? AppColors.backGroundColor
+                                          : AppColors.whiteColor)
                                       : AppColors.bottomNavigationBarIconColor,
                                 ),
                               ],

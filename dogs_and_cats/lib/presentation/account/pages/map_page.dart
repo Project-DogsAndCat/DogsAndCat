@@ -32,78 +32,87 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: const Text(AppString.cancel),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 5,
+            width: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[400],
+            ),
           ),
-        ),
-        SizedBox(
-          height: 350,
-          width: double.infinity,
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              YandexMap(
-                onMapCreated: (controller) async {
-                  _mapController = controller;
-                  await _mapController!
-                      .moveCamera(CameraUpdate.newCameraPosition(_location));
-                  await _updateVisibleRegion();
-                },
-                onCameraPositionChanged:
-                    (cameraPosition, reason, finished) async {
-                  if (finished) {
-                    context.read<MapSearchBloc>().add(
-                        MapSearchEvent.pointChanged(
-                            point: cameraPosition.target));
-                    context
-                        .read<MapSearchBloc>()
-                        .add(MapSearchEvent.getSearchResult());
-                    setState(() {
-                      _location = cameraPosition;
-                    });
+          const SizedBox(
+            height: 20.0,
+          ),
+          SizedBox(
+            height: 350,
+            width: double.infinity,
+            child: Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                YandexMap(
+                  nightModeEnabled:
+                      Theme.of(context).brightness == Brightness.light
+                          ? false
+                          : true,
+                  onMapCreated: (controller) async {
+                    _mapController = controller;
+                    await _mapController!
+                        .moveCamera(CameraUpdate.newCameraPosition(_location));
                     await _updateVisibleRegion();
-                  }
-                },
-              ),
-              const Icon(
-                Icons.location_on,
-                size: 35.0,
-                color: Colors.red,
-              ),
-              Align(
-                alignment: const Alignment(-0.95, 0.95),
-                child: BlocBuilder<MapLocationCubit, MapLocationState>(
-                  builder: (context, state) {
-                    return state.map(loading: (_) {
-                      return Container();
-                    }, loaded: (state) {
-                      return GestureDetector(
-                        onTap: () {
-                          final currentLocation = state.location;
-                          _moveCameraPosition(currentLocation);
-                        },
-                        child: NearMeOutlined(),
-                      );
-                    });
+                  },
+                  onCameraPositionChanged:
+                      (cameraPosition, reason, finished) async {
+                    if (finished) {
+                      context.read<MapSearchBloc>().add(
+                          MapSearchEvent.pointChanged(
+                              point: cameraPosition.target));
+                      context
+                          .read<MapSearchBloc>()
+                          .add(MapSearchEvent.getSearchResult());
+                      setState(() {
+                        _location = cameraPosition;
+                      });
+                      await _updateVisibleRegion();
+                    }
                   },
                 ),
-              ),
-            ],
+                const Icon(
+                  Icons.location_on,
+                  size: 35.0,
+                  color: Colors.red,
+                ),
+                Align(
+                  alignment: const Alignment(-0.95, 0.95),
+                  child: BlocBuilder<MapLocationCubit, MapLocationState>(
+                    builder: (context, state) {
+                      return state.map(loading: (_) {
+                        return Container();
+                      }, loaded: (state) {
+                        return GestureDetector(
+                          onTap: () {
+                            final currentLocation = state.location;
+                            _moveCameraPosition(currentLocation);
+                          },
+                          child: NearMeOutlined(),
+                        );
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        ShowResultSearch(
-          mapController: _mapController,
-          person: widget.person,
-        ),
-      ],
+          ShowResultSearch(
+            mapController: _mapController,
+            person: widget.person,
+          ),
+        ],
+      ),
     );
   }
 

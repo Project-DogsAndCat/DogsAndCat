@@ -67,6 +67,7 @@ final lightTheme = ThemeData(
       foregroundColor: AppColors.backGroundColor,
     ),
   ),
+  iconTheme: IconThemeData(color: AppColors.backGroundColor),
   bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFF8FAEC)),
 );
 
@@ -79,8 +80,8 @@ final darkTheme = ThemeData(
   useMaterial3: true,
   scaffoldBackgroundColor: Color(0xFF232323),
   colorScheme: ColorScheme.dark(
-    surface: Colors.black,
-    primaryContainer: Colors.black,
+    surface: Color(0xFF37383D),
+    primaryContainer: Color(0xFF37383D),
   ),
   appBarTheme: AppBarTheme(backgroundColor: Color(0xFF232323)),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -88,5 +89,6 @@ final darkTheme = ThemeData(
       foregroundColor: AppColors.whiteColor,
     ),
   ),
+  iconTheme: IconThemeData(color: AppColors.whiteColor),
   bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF232323)),
 );

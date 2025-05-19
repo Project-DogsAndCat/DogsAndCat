@@ -8,6 +8,9 @@ class AppString {
   static const myAddress = 'Мой адрес';
   static const addImage = 'Добавить фото';
 
+  static const settings = 'Настройки';
+  static const darkTheme = 'Темная тема';
+
   static const firstAndLastName = 'Имя и Фамилия';
   static const personalData = 'Личные данные';
   static const required = 'Обязательные поля';
@@ -35,6 +38,7 @@ class AppString {
   static const scoreService = 'Спасибо что оценили услугу';
   static const serviceFor = 'Для кого услуга';
   static const ordering = 'Заказ';
+  static const orderings = 'Заказы';
   static const costOfService = 'Стоимость услуги';
   static const forPayment = 'К оплате';
   static const cancelOrder = 'Отменить заказ';

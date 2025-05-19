@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -19,6 +20,7 @@ class SettingsListCard extends StatelessWidget {
         children: [
           Text(
             title,
+            style: textTheme.bodyLarge,
           ),
           Switch(
             value: value,

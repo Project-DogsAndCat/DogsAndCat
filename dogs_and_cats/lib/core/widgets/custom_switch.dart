@@ -22,19 +22,21 @@ class CustomSwitch extends StatelessWidget {
               title,
             ),
             Switch(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               value: value,
               onChanged: onChanged,
               activeColor: AppColors.whiteColor,
               activeTrackColor: AppColors.primaryColor,
-              inactiveTrackColor: AppColors.bottomNavigationBarIconColor,
+              inactiveTrackColor: AppColors.blackColor,
               inactiveThumbColor: AppColors.whiteColor,
               trackOutlineColor: WidgetStateProperty.resolveWith(
                 (final Set<WidgetState> states) {
                   if (states.contains(WidgetState.selected)) {
                     return null;
                   }
-                  return AppColors.bottomNavigationBarIconColor;
+                  return Theme.of(context).brightness == Brightness.light
+                      ? AppColors.backGroundColor
+                      : AppColors.blackColor;
                 },
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_snackbar.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
+import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -127,21 +128,14 @@ class _OrderingServiceState extends State<OrderingServicePage> {
               const SizedBox(
                 height: 10,
               ),
-              RoundedElevatedButton(
+              CustomServiceButton(
                 onPressed: () => _showTimePicker(),
                 widget: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      AppString.selectTime,
-                      style: textTheme.bodyMedium!
-                          .copyWith(color: AppColors.whiteColor),
-                    ),
-                    Text(
-                      time != null ? '${time!.hour}:${time!.minute}' : '',
-                      style: textTheme.bodyMedium!
-                          .copyWith(color: AppColors.whiteColor),
-                    ),
+                    Text(AppString.selectTime, style: textTheme.bodyMedium),
+                    Text(time != null ? '${time!.hour}:${time!.minute}' : '',
+                        style: textTheme.bodyMedium),
                   ],
                 ),
               ),
@@ -230,9 +224,13 @@ class _OrderingServiceState extends State<OrderingServicePage> {
         builder: (context, child) {
           return Theme(
             data: Theme.of(context).copyWith(
-                colorScheme: const ColorScheme.light(
-              primary: AppColors.primaryColor,
-            )),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor:
+                      AppColors.primaryColor, // Цвет текста всех TextButton
+                ),
+              ),
+            ),
             child: MediaQuery(
                 data: MediaQuery.of(context)
                     .copyWith(alwaysUse24HourFormat: true),

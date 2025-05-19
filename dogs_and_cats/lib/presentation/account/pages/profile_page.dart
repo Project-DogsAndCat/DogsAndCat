@@ -137,18 +137,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             mainInfoTitle: AppString.address,
                             icon: Icons.map,
                           ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          CustomProfileButton(
-                              onPressed: () {
-                                context
-                                    .read<AuthBloc>()
-                                    .add(AuthEvent.userLogOut());
-                                context.goNamed(RoutesNames.choseRole);
-                              },
-                              mainInfoTitle: AppString.logout,
-                              icon: Icons.exit_to_app),
                         ],
                       );
                     },
