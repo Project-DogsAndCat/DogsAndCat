@@ -78,12 +78,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           CustomProfileButton(
                             onPressed: () {
+                              final bloc =
+                                  BlocProvider.of<ProfileBloc>(context);
                               showModalBottomSheet<void>(
                                 isScrollControlled: true,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return EditPage(
-                                    person: state.person,
+                                  return BlocProvider.value(
+                                    value: bloc,
+                                    child: EditPage(
+                                      person: state.person,
+                                    ),
                                   );
                                 },
                               );
@@ -123,13 +128,18 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           CustomProfileButton(
                             onPressed: () {
+                              final bloc =
+                                  BlocProvider.of<ProfileBloc>(context);
                               showModalBottomSheet<void>(
                                 isScrollControlled: true,
                                 context: context,
                                 enableDrag: false,
                                 builder: (newContext) {
-                                  return MapPage(
-                                    person: state.person,
+                                  return BlocProvider.value(
+                                    value: bloc,
+                                    child: MapPage(
+                                      person: state.person,
+                                    ),
                                   );
                                 },
                               );

@@ -11,6 +11,8 @@ class DistributionEvent with _$DistributionEvent {
     required String orderId,
     required Person person,
     required Dogsitter dogsitter,
+    required String serviceTitle,
+    required OrderModel order,
   }) = _Accept;
 
   const factory DistributionEvent.complete({

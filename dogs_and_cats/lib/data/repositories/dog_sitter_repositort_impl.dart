@@ -119,7 +119,7 @@ class DogSitterRepositoryImpl implements DogSitterRepository {
 
       await supabaseClient.storage
           .from('photo')
-          .uploadBinary('/${person!.id}/photo', imageBytes,
+          .uploadBinary('/${person.id}/photo', imageBytes,
               fileOptions: FileOptions(
                 upsert: true,
               ));

@@ -34,23 +34,35 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
             BlocBuilder<ImageCubit, ImageState>(
               builder: (context, state) {
                 return state.map(
-                    loading: (_) => Container(),
-                    loaded: (state) => SizedBox(
-                          width: 150.0,
-                          height: 150.0,
-                          child: Image.network(
-                            state.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                    failure: (state) => Text(state.message));
+                  loading: (_) => Container(),
+                  loaded: (state) => CircleAvatar(
+                    radius: 75,
+                    backgroundImage: NetworkImage(
+                      state.imageUrl,
+                    ),
+                  ),
+                  failure: (state) => Text(state.message),
+                );
               },
             ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Text(widget.message['name']),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Text(widget.message['price']),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Text(widget.message['serviceTitle']),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"))
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Close"),
+            )
           ],
         ),
       ),

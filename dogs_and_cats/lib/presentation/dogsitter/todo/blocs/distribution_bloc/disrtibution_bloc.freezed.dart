@@ -20,8 +20,8 @@ mixin _$DistributionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Status status, Dogsitter dogsitter) load,
-    required TResult Function(
-            String orderId, Person person, Dogsitter dogsitter)
+    required TResult Function(String orderId, Person person,
+            Dogsitter dogsitter, String serviceTitle, OrderModel order)
         accept,
     required TResult Function(String orderId, Dogsitter dogsitter) complete,
   }) =>
@@ -29,7 +29,8 @@ mixin _$DistributionEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Status status, Dogsitter dogsitter)? load,
-    TResult? Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult? Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult? Function(String orderId, Dogsitter dogsitter)? complete,
   }) =>
@@ -37,7 +38,8 @@ mixin _$DistributionEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Status status, Dogsitter dogsitter)? load,
-    TResult Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult Function(String orderId, Dogsitter dogsitter)? complete,
     required TResult orElse(),
@@ -187,8 +189,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Status status, Dogsitter dogsitter) load,
-    required TResult Function(
-            String orderId, Person person, Dogsitter dogsitter)
+    required TResult Function(String orderId, Person person,
+            Dogsitter dogsitter, String serviceTitle, OrderModel order)
         accept,
     required TResult Function(String orderId, Dogsitter dogsitter) complete,
   }) {
@@ -199,7 +201,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Status status, Dogsitter dogsitter)? load,
-    TResult? Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult? Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult? Function(String orderId, Dogsitter dogsitter)? complete,
   }) {
@@ -210,7 +213,8 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Status status, Dogsitter dogsitter)? load,
-    TResult Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult Function(String orderId, Dogsitter dogsitter)? complete,
     required TResult orElse(),
@@ -281,7 +285,12 @@ abstract class _$$AcceptImplCopyWith<$Res>
       __$$AcceptImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String orderId, Person person, Dogsitter dogsitter});
+  $Res call(
+      {String orderId,
+      Person person,
+      Dogsitter dogsitter,
+      String serviceTitle,
+      OrderModel order});
 }
 
 /// @nodoc
@@ -300,6 +309,8 @@ class __$$AcceptImplCopyWithImpl<$Res>
     Object? orderId = null,
     Object? person = null,
     Object? dogsitter = null,
+    Object? serviceTitle = null,
+    Object? order = null,
   }) {
     return _then(_$AcceptImpl(
       orderId: null == orderId
@@ -314,6 +325,14 @@ class __$$AcceptImplCopyWithImpl<$Res>
           ? _value.dogsitter
           : dogsitter // ignore: cast_nullable_to_non_nullable
               as Dogsitter,
+      serviceTitle: null == serviceTitle
+          ? _value.serviceTitle
+          : serviceTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as OrderModel,
     ));
   }
 }
@@ -322,7 +341,11 @@ class __$$AcceptImplCopyWithImpl<$Res>
 
 class _$AcceptImpl implements _Accept {
   const _$AcceptImpl(
-      {required this.orderId, required this.person, required this.dogsitter});
+      {required this.orderId,
+      required this.person,
+      required this.dogsitter,
+      required this.serviceTitle,
+      required this.order});
 
   @override
   final String orderId;
@@ -330,10 +353,14 @@ class _$AcceptImpl implements _Accept {
   final Person person;
   @override
   final Dogsitter dogsitter;
+  @override
+  final String serviceTitle;
+  @override
+  final OrderModel order;
 
   @override
   String toString() {
-    return 'DistributionEvent.accept(orderId: $orderId, person: $person, dogsitter: $dogsitter)';
+    return 'DistributionEvent.accept(orderId: $orderId, person: $person, dogsitter: $dogsitter, serviceTitle: $serviceTitle, order: $order)';
   }
 
   @override
@@ -344,11 +371,15 @@ class _$AcceptImpl implements _Accept {
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.person, person) || other.person == person) &&
             (identical(other.dogsitter, dogsitter) ||
-                other.dogsitter == dogsitter));
+                other.dogsitter == dogsitter) &&
+            (identical(other.serviceTitle, serviceTitle) ||
+                other.serviceTitle == serviceTitle) &&
+            (identical(other.order, order) || other.order == order));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, orderId, person, dogsitter);
+  int get hashCode =>
+      Object.hash(runtimeType, orderId, person, dogsitter, serviceTitle, order);
 
   /// Create a copy of DistributionEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -362,36 +393,38 @@ class _$AcceptImpl implements _Accept {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Status status, Dogsitter dogsitter) load,
-    required TResult Function(
-            String orderId, Person person, Dogsitter dogsitter)
+    required TResult Function(String orderId, Person person,
+            Dogsitter dogsitter, String serviceTitle, OrderModel order)
         accept,
     required TResult Function(String orderId, Dogsitter dogsitter) complete,
   }) {
-    return accept(orderId, person, dogsitter);
+    return accept(orderId, person, dogsitter, serviceTitle, order);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Status status, Dogsitter dogsitter)? load,
-    TResult? Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult? Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult? Function(String orderId, Dogsitter dogsitter)? complete,
   }) {
-    return accept?.call(orderId, person, dogsitter);
+    return accept?.call(orderId, person, dogsitter, serviceTitle, order);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Status status, Dogsitter dogsitter)? load,
-    TResult Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult Function(String orderId, Dogsitter dogsitter)? complete,
     required TResult orElse(),
   }) {
     if (accept != null) {
-      return accept(orderId, person, dogsitter);
+      return accept(orderId, person, dogsitter, serviceTitle, order);
     }
     return orElse();
   }
@@ -435,12 +468,16 @@ abstract class _Accept implements DistributionEvent {
   const factory _Accept(
       {required final String orderId,
       required final Person person,
-      required final Dogsitter dogsitter}) = _$AcceptImpl;
+      required final Dogsitter dogsitter,
+      required final String serviceTitle,
+      required final OrderModel order}) = _$AcceptImpl;
 
   String get orderId;
   Person get person;
   @override
   Dogsitter get dogsitter;
+  String get serviceTitle;
+  OrderModel get order;
 
   /// Create a copy of DistributionEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -530,8 +567,8 @@ class _$CompleteImpl implements _Complete {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Status status, Dogsitter dogsitter) load,
-    required TResult Function(
-            String orderId, Person person, Dogsitter dogsitter)
+    required TResult Function(String orderId, Person person,
+            Dogsitter dogsitter, String serviceTitle, OrderModel order)
         accept,
     required TResult Function(String orderId, Dogsitter dogsitter) complete,
   }) {
@@ -542,7 +579,8 @@ class _$CompleteImpl implements _Complete {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Status status, Dogsitter dogsitter)? load,
-    TResult? Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult? Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult? Function(String orderId, Dogsitter dogsitter)? complete,
   }) {
@@ -553,7 +591,8 @@ class _$CompleteImpl implements _Complete {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Status status, Dogsitter dogsitter)? load,
-    TResult Function(String orderId, Person person, Dogsitter dogsitter)?
+    TResult Function(String orderId, Person person, Dogsitter dogsitter,
+            String serviceTitle, OrderModel order)?
         accept,
     TResult Function(String orderId, Dogsitter dogsitter)? complete,
     required TResult orElse(),

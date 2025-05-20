@@ -71,6 +71,7 @@ class _NameEditState extends State<NameEdit> {
                     lastName: _lastNameController.text,
                   )),
             );
+        Navigator.pop(context);
       },
     );
   }

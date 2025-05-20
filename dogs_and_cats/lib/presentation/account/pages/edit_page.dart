@@ -5,8 +5,10 @@ import 'package:dogs_and_cats/presentation/account/pages/name_edit.dart';
 import 'package:dogs_and_cats/presentation/account/pages/phone_edit.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/models/person.dart';
+import '../blocs/profile_bloc/profile_bloc.dart';
 
 class EditPage extends StatefulWidget {
   const EditPage({super.key, required this.person});
@@ -17,19 +19,6 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
-  void _showEditBottomSheet(BuildContext context, Widget page) {
-    Navigator.pop(context);
-
-    showModalBottomSheet<void>(
-      context: context,
-      useRootNavigator: false,
-      isScrollControlled: true,
-      builder: (context) {
-        return page;
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,9 +49,17 @@ class _EditPageState extends State<EditPage> {
                 '${widget.person.firstName} ${widget.person.lastName}',
             icon: Icons.person,
             onPressed: () {
-              _showEditBottomSheet(
-                context,
-                NameEdit(person: widget.person),
+              final bloc = BlocProvider.of<ProfileBloc>(context);
+              showModalBottomSheet<void>(
+                context: context,
+                useRootNavigator: false,
+                isScrollControlled: true,
+                builder: (context) {
+                  return BlocProvider.value(
+                    value: bloc,
+                    child: NameEdit(person: widget.person),
+                  );
+                },
               );
             },
           ),
@@ -73,9 +70,17 @@ class _EditPageState extends State<EditPage> {
             mainInfoTitle: widget.person.phone ?? AppString.phone,
             icon: Icons.phone,
             onPressed: () {
-              _showEditBottomSheet(
-                context,
-                PhoneEdit(person: widget.person),
+              final bloc = BlocProvider.of<ProfileBloc>(context);
+              showModalBottomSheet<void>(
+                context: context,
+                useRootNavigator: false,
+                isScrollControlled: true,
+                builder: (context) {
+                  return BlocProvider.value(
+                    value: bloc,
+                    child: PhoneEdit(person: widget.person),
+                  );
+                },
               );
             },
           ),
@@ -86,11 +91,19 @@ class _EditPageState extends State<EditPage> {
             mainInfoTitle: '${widget.person.email}',
             icon: Icons.email,
             onPressed: () {
-              _showEditBottomSheet(
-                context,
-                EmailEdit(
-                  person: widget.person,
-                ),
+              final bloc = BlocProvider.of<ProfileBloc>(context);
+              showModalBottomSheet<void>(
+                context: context,
+                useRootNavigator: false,
+                isScrollControlled: true,
+                builder: (context) {
+                  return BlocProvider.value(
+                    value: bloc,
+                    child: EmailEdit(
+                      person: widget.person,
+                    ),
+                  );
+                },
               );
             },
           ),

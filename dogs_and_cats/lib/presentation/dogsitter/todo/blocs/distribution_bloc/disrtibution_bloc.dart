@@ -54,6 +54,8 @@ class DistributionBloc extends Bloc<DistributionEvent, DistributionState> {
       final result = await sendMessageRepository.sendMessage(
         userFcmToken: event.person.token!,
         dogsitter: event.dogsitter,
+        serviceTitle: event.serviceTitle,
+        order: event.order,
       );
       result.fold(
           (failure) =>
@@ -69,10 +71,12 @@ class DistributionBloc extends Bloc<DistributionEvent, DistributionState> {
     final result =
         await distributionRepository.completeTask(orderId: event.orderId);
 
-    result.fold(
-        (failure) => emit(DistributionState.failure(message: failure.message)),
-        (_) {
-      add(_Load(status: Status.complete, dogsitter: event.dogsitter));
+    result.fold((failure) {
+      if (!isClosed) emit(DistributionState.failure(message: failure.message));
+    }, (_) {
+      if (!isClosed) {
+        add(_Load(status: Status.complete, dogsitter: event.dogsitter));
+      }
     });
   }
 }

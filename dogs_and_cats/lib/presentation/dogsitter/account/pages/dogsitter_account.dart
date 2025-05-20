@@ -12,6 +12,7 @@ import '../../../account/blocs/profile_bloc/profile_bloc.dart';
 import '../../../account/pages/edit_page.dart';
 import '../../../account/pages/map_page.dart';
 import '../../../auth/blocs/auth_bloc/auth_bloc.dart';
+import '../widgets/profile_avatar.dart';
 
 class DogsitterAccount extends StatefulWidget {
   const DogsitterAccount({super.key});
@@ -62,13 +63,21 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
               builder: (context, state) {
                 return state.map(
                     initial: (_) => Container(),
-                    loading: (_) => Center(
+                    loading: (_) => const Center(
                           child: CircularProgressIndicator(),
                         ),
                     loaded: (state) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Center(
+                            child: ProfileAvatar(
+                              person: state.person,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25.0,
+                          ),
                           Text(
                             AppString.personalData,
                             style: textTheme.labelLarge,
@@ -78,12 +87,17 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
                           ),
                           CustomProfileButton(
                             onPressed: () {
+                              final bloc =
+                                  BlocProvider.of<ProfileBloc>(context);
                               showModalBottomSheet<void>(
                                 isScrollControlled: true,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return EditPage(
-                                    person: state.person,
+                                  return BlocProvider.value(
+                                    value: bloc,
+                                    child: EditPage(
+                                      person: state.person,
+                                    ),
                                   );
                                 },
                               );
@@ -91,9 +105,6 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
                             mainInfoTitle: state.person.firstName ?? '',
                             otherInfoTitle: state.person.lastName,
                             icon: Icons.add,
-                          ),
-                          const SizedBox(
-                            height: 25.0,
                           ),
                           const SizedBox(
                             height: 25.0,

@@ -110,7 +110,7 @@ final GoRouter router = GoRouter(
                 path: '/profile',
                 builder: (context, state) => BlocProvider(
                   create: (context) => getIt<ProfileBloc>(),
-                  child: ProfilePage(),
+                  child: const ProfilePage(),
                 ),
               )
             ]),
@@ -141,7 +141,7 @@ final GoRouter router = GoRouter(
                 path: '/dogsitterAccount',
                 builder: (context, state) => BlocProvider(
                   create: (context) => getIt<ProfileBloc>(),
-                  child: DogsitterAccount(),
+                  child: const DogsitterAccount(),
                 ),
               )
             ]),

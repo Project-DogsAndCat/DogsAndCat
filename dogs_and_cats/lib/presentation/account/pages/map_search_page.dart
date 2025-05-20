@@ -1,5 +1,4 @@
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
-import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
@@ -28,9 +27,6 @@ class _MapSearchPageState extends State<MapSearchPage> {
         constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.54),
         child: Padding(
-          // padding: EdgeInsets.only(
-          //   bottom: MediaQuery.of(context).viewInsets.bottom,
-          // ),
           padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
               top: 25,
@@ -54,6 +50,9 @@ class _MapSearchPageState extends State<MapSearchPage> {
                   context
                       .read<MapSuggestBloc>()
                       .add(MapSuggestEvent.queryChanged(query: text));
+                  context
+                      .read<MapSuggestBloc>()
+                      .add(MapSuggestEvent.getSuggestResult());
                 },
                 controller: addressController,
                 hintText: AppString.address,
@@ -61,18 +60,6 @@ class _MapSearchPageState extends State<MapSearchPage> {
               ),
               const SizedBox(
                 height: 10.0,
-              ),
-              RoundedElevatedButton(
-                onPressed: () {
-                  context
-                      .read<MapSuggestBloc>()
-                      .add(MapSuggestEvent.getSuggestResult());
-                },
-                widget: Text(
-                  AppString.search,
-                  style: textTheme.bodyMedium!
-                      .copyWith(color: AppColors.whiteColor),
-                ),
               ),
               BlocBuilder<MapSuggestBloc, MapSuggestState>(
                 builder: (context, state) {

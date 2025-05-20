@@ -15,7 +15,7 @@ import '../models/pet/pet_edit_dto.dart';
 class PetRepositoryImpl implements PetRepository {
   PetRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
-  final List<Pet> _cache = [];
+  List<Pet> _cache = [];
 
   @override
   Future<Either<Failure, List<Pet>>> getPets({required String id}) async {
@@ -29,7 +29,7 @@ class PetRepositoryImpl implements PetRepository {
 
       final pets =
           json.map((json) => PetDto.fromJson(json).toDomain()).toList();
-      _cache.addAll(pets);
+      _cache = pets;
       return right(pets);
     } on SocketException catch (_) {
       return left(Failure(message: AppString.internetNotFound));

@@ -32,6 +32,7 @@ class MapSuggestBloc extends Bloc<MapSuggestEvent, MapSuggestState> {
   Future<void> _getSuggestResult(Emitter<MapSuggestState> emit) async {
     emit(MapSuggestState.loading());
     try {
+      await Future.delayed(Duration(seconds: 1));
       final (session, sessionResultFuture) = await repository.suggestByText(
         searchText: _searchText,
         bBox: _visibleRegion.toBoundingBox(),

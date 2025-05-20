@@ -56,6 +56,7 @@ class _PhoneEditState extends State<PhoneEdit> {
                     phone: _phoneController.text,
                   )),
             );
+        Navigator.pop(context);
       },
     );
   }

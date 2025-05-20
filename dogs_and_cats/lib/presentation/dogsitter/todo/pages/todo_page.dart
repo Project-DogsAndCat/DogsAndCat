@@ -59,7 +59,10 @@ class _TodoPageState extends State<TodoPage> {
                               }),
                         ),
                         BlocProvider(
-                          create: (context) => getIt<DistributionBloc>(),
+                          create: (context) => getIt<DistributionBloc>()
+                            ..add(DistributionEvent.load(
+                                status: Status.adopted,
+                                dogsitter: state.dogsitter)),
                           child: ListDistributions(
                               status: Status.adopted,
                               buttonText: 'Выполнить',
@@ -69,7 +72,10 @@ class _TodoPageState extends State<TodoPage> {
                               }),
                         ),
                         BlocProvider(
-                          create: (context) => getIt<DistributionBloc>(),
+                          create: (context) => getIt<DistributionBloc>()
+                            ..add(DistributionEvent.load(
+                                status: Status.complete,
+                                dogsitter: state.dogsitter)),
                           child: ListDistributions(
                             status: Status.complete,
                             dogsitter: state.dogsitter,
@@ -91,6 +97,8 @@ class _TodoPageState extends State<TodoPage> {
           orderId: task.order.id!,
           person: task.person,
           dogsitter: dogsitter,
+          serviceTitle: task.serviceTitle,
+          order: task.order,
         ));
     context
         .read<DogSitterBloc>()

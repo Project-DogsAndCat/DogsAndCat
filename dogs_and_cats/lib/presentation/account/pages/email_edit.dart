@@ -34,26 +34,27 @@ class _EmailEditState extends State<EmailEdit> {
 
   @override
   Widget build(BuildContext context) {
-    return  BottomSheetEdit(
-        title: AppString.email,
-        fields: [
-          CustomTextFormField(
-            controller: _emailController,
-            hintText: AppString.email,
-            keyboardType: TextInputType.text,
-            validator: (value) {
-              if (isValidatingEmail()) {
-                return AppString.providedValidEmail;
-              }
-              return null;
-            },
-          )
-        ],
-        onSave: () {
-          context
-              .read<ProfileBloc>()
-              .add(ProfileEvent.editEmail(email: _emailController.text));
-        },
+    return BottomSheetEdit(
+      title: AppString.email,
+      fields: [
+        CustomTextFormField(
+          controller: _emailController,
+          hintText: AppString.email,
+          keyboardType: TextInputType.text,
+          validator: (value) {
+            if (isValidatingEmail()) {
+              return AppString.providedValidEmail;
+            }
+            return null;
+          },
+        )
+      ],
+      onSave: () {
+        context
+            .read<ProfileBloc>()
+            .add(ProfileEvent.editEmail(email: _emailController.text));
+        Navigator.pop(context);
+      },
     );
   }
 
