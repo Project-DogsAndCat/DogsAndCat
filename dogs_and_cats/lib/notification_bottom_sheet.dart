@@ -52,7 +52,7 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
             const SizedBox(
               height: 10.0,
             ),
-            Text(widget.message['price']),
+            Text(widget.message['price'].toString()),
             const SizedBox(
               height: 10.0,
             ),

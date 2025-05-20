@@ -21,7 +21,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   @override
   Future<List<Service>> getServices() async {
     final json = await supabaseClient.from(TableNames.services).select('');
-    List<Service> services =
+    final services =
         json.map((element) => ServiceDto.fromJson(element).toDomain()).toList();
     return services;
   }
@@ -48,8 +48,8 @@ class ServiceRepositoryImpl implements ServiceRepository {
   Future<Either<Failure, List<ServiceCharacteristic>>>
       getCharacteristicsService({required String id}) async {
     try {
-      if (_cache['id'] != null && _cache['id']!.isNotEmpty) {
-        return right(_cache['id']!);
+      if (_cache[id] != null && _cache[id]!.isNotEmpty) {
+        return right(_cache[id]!);
       }
 
       final json = await supabaseClient
