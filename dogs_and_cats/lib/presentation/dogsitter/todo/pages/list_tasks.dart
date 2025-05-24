@@ -45,7 +45,7 @@ class ListTasks extends StatelessWidget {
               loading: (_) => const Center(
                 child: CircularProgressIndicator(),
               ),
-              loaded: (state) => ListView.separated(
+              loaded: (state) => ListView.builder(
                   itemBuilder: (context, index) {
                     return BlocProvider(
                       create: (context) => getIt<DistributionBloc>(),
@@ -55,11 +55,6 @@ class ListTasks extends StatelessWidget {
                         dogsitter: dogsitter,
                         onPressed: onPressed,
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, _) {
-                    return const SizedBox(
-                      height: 10.0,
                     );
                   },
                   itemCount: state.tasks.length),

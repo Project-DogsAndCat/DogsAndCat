@@ -6,6 +6,7 @@ import 'package:dogs_and_cats/presentation/account/pages/profile_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/choose_role.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/login_page.dart';
 import 'package:dogs_and_cats/presentation/auth/pages/register_page.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/task_details.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/todo/pages/todo_page.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/want_to_be_a_dogditter/pages/contact_page.dart';
 import 'package:dogs_and_cats/presentation/order/pages/order_details.dart';
@@ -79,6 +80,13 @@ final GoRouter router = GoRouter(
           builder: (context, state) {
             TaskModel task = state.extra as TaskModel;
             return OrderDetails(task: task);
+          }),
+      GoRoute(
+          name: RoutesNames.taskDetails,
+          path: '/taskDetails',
+          builder: (context, state) {
+            TaskModel task = state.extra as TaskModel;
+            return TaskDetailsPage(task: task);
           }),
       GoRoute(
           name: RoutesNames.addInformation,

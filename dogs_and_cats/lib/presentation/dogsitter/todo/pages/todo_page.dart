@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/dependency/dependencies.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/theme.dart';
 import '../../../../domain/models/task.dart';
 
 class TodoPage extends StatefulWidget {
@@ -32,7 +34,16 @@ class _TodoPageState extends State<TodoPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Заказы'),
-          bottom: const TabBar(
+          bottom: TabBar(
+            indicatorColor: AppColors.primaryColor,
+            labelColor: AppColors.primaryColor,
+            dividerColor: AppColors.primaryColor,
+            dividerHeight: 1.5,
+            unselectedLabelStyle: textTheme.bodyMedium,
+            labelStyle: textTheme.bodyLarge,
+            labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
+            tabAlignment: TabAlignment.center,
+            isScrollable: true,
             tabs: [
               Tab(text: 'Все заказы'),
               Tab(text: 'Предстоящие'),

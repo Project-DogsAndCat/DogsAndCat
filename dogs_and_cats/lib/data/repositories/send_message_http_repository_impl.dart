@@ -61,7 +61,7 @@ class SendMessageHttpRepositoryImpl implements SendMessageHttpRepository {
   Future<String> _getAccessToken() async {
     final accountCredentials = ServiceAccountCredentials.fromJson(
       await rootBundle
-          .loadString('assets/json_key/dogs-and-cats-1b675-33e30306df42.json'),
+          .loadString('assets/json_key/dogs-and-cats-1b675-5ae223d950c5.json'),
     );
     final scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
 

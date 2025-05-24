@@ -2,7 +2,6 @@ import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +9,7 @@ import '../../../core/routes/route_names.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_snackbar.dart';
+import '../widgets/rating_bar_widget.dart';
 import '../../../domain/models/task.dart';
 import '../widgets/container_widget.dart';
 import '../widgets/order_status_widget.dart';
@@ -38,7 +38,7 @@ class OrderDetails extends StatelessWidget {
       ),
       body: BlocListener<OrderBloc, OrderState>(
         listener: (context, state) {
-          state.mapOrNull(successAddRating: (_) {
+          state.mapOrNull(successAddScore: (_) {
             CustomSnackBar.showSuccess(context, AppString.scoreService);
           });
         },
@@ -141,23 +141,13 @@ class OrderDetails extends StatelessWidget {
                 ),
               ),
               if (task.order.status.value == Status.complete.value)
-                RatingBar.builder(
-                  itemSize: 25,
-                  initialRating: task.order.score ?? 0,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    // context.read<OrderBloc>().add(OrderEvent.addRating(
-                    //     rating: rating,
-                    //     dogsitterId: task.dogsitter!.id,
-                    //     orderId: task.order.id!));
+                RatingBarWidget(
+                  initialRating: task.order.score,
+                  onRatingUpdate: (score) {
+                    context.read<OrderBloc>().add(OrderEvent.addScore(
+                        score: score,
+                        dogsitterId: task.dogsitter!.id,
+                        orderId: task.order.id!));
                   },
                 ),
             ]),

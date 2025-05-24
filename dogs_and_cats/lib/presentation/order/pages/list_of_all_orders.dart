@@ -13,7 +13,7 @@ class ListOfAllOrders extends StatelessWidget {
     return BlocListener<OrderBloc, OrderState>(
       listener: (context, state) {
         state.map(
-          successAddRating: (_) {},
+          successAddScore: (_) {},
           initial: (_) {},
           loading: (_) {},
           loaded: (state) {
@@ -33,7 +33,7 @@ class ListOfAllOrders extends StatelessWidget {
               builder: (context, state) {
                 return state.map(
                   initial: (_) => Container(),
-                  successAddRating: (_) => Container(),
+                  successAddScore: (_) => Container(),
                   loading: (_) => Center(
                     child: CircularProgressIndicator(),
                   ),

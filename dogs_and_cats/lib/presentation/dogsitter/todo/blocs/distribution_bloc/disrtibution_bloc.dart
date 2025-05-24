@@ -45,23 +45,25 @@ class DistributionBloc extends Bloc<DistributionEvent, DistributionState> {
 
   Future<void> _accept(Emitter<DistributionState> emit, _Accept event) async {
     emit(DistributionState.loading());
+
     final result = await distributionRepository.acceptTask(
         orderId: event.orderId, dogsitterId: event.dogsitter.id);
-    await result.fold(
-        (failure) async =>
-            emit(DistributionState.failure(message: failure.message)),
-        (_) async {
-      final result = await sendMessageRepository.sendMessage(
-        userFcmToken: event.person.token!,
-        dogsitter: event.dogsitter,
-        serviceTitle: event.serviceTitle,
-        order: event.order,
-      );
-      result.fold(
-          (failure) =>
-              emit(DistributionState.failure(message: failure.message)), (_) {
-        add(_Load(status: Status.adopted, dogsitter: event.dogsitter));
-      });
+    await result.fold((failure) async {
+      if (!isClosed) emit(DistributionState.failure(message: failure.message));
+    }, (_) async {
+      if (!isClosed) {
+        final result = await sendMessageRepository.sendMessage(
+          userFcmToken: event.person.token!,
+          dogsitter: event.dogsitter,
+          serviceTitle: event.serviceTitle,
+          order: event.order,
+        );
+        result.fold((failure) {
+          emit(DistributionState.failure(message: failure.message));
+        }, (_) {
+          add(_Load(status: Status.adopted, dogsitter: event.dogsitter));
+        });
+      }
     });
   }
 

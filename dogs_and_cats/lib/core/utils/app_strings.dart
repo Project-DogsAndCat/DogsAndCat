@@ -7,6 +7,7 @@ class AppString {
   static const address = 'Адрес';
   static const myAddress = 'Мой адрес';
   static const addImage = 'Добавить фото';
+  static const rating = 'Рейтинг';
 
   static const settings = 'Настройки';
   static const darkTheme = 'Темная тема';
@@ -55,6 +56,7 @@ class AppString {
   static const usualPet = 'Без особенностей';
   static const unusualPet = 'С особенностями';
   static const propertiesPet = 'Особенности поведения';
+  static const otherFeatures = 'Дополнительные особенности';
   static const boy = 'Мальчик';
   static const girl = 'Девочка';
   static const pets = 'Питомцы';

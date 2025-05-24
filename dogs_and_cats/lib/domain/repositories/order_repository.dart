@@ -16,6 +16,9 @@ abstract interface class OrderRepository {
     required String orderId,
   });
 
-  Future<Either<Failure, Unit>> updateScore(
-      {required double rating, required String orderId});
+  Future<Either<Failure, Unit>> addScore({
+    required String dogsitterId,
+    required String orderId,
+    required double score,
+  });
 }

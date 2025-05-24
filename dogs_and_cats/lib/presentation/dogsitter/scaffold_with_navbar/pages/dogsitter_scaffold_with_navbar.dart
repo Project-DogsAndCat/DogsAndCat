@@ -40,7 +40,9 @@ class _ScaffoldWithNavbarState extends State<DogsitterScaffoldWithNavbar> {
               padding: EdgeInsets.all(12),
               margin: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: AppColors.backGroundColor,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? AppColors.backGroundColor
+                    : AppColors.buttonColorDarkTheme,
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
                 ),

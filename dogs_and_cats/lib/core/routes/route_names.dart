@@ -15,6 +15,7 @@ class RoutesNames {
   static const settings = 'settings';
   static const addInformation = 'addInformation';
   static const todo = 'todo';
+  static const taskDetails = 'taskDetails';
   static const onboardingView = 'onboardingView';
   static const dogsitterSettings = 'dogsitterSettings';
   static const dogsitterAccount = 'dogsitterAccount';

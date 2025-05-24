@@ -1,6 +1,10 @@
+import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'core/theme/app_colors.dart';
+import 'core/theme/theme.dart';
 
 class NotificationBottomSheet extends StatefulWidget {
   const NotificationBottomSheet({
@@ -31,6 +35,9 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(
+              height: 15.0,
+            ),
             BlocBuilder<ImageCubit, ImageState>(
               builder: (context, state) {
                 return state.map(
@@ -41,27 +48,39 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
                       state.imageUrl,
                     ),
                   ),
-                  failure: (state) => Text(state.message),
+                  failure: (state) => Text(
+                    state.message,
+                    style: textTheme.bodyLarge,
+                  ),
                 );
               },
             ),
             const SizedBox(
               height: 10.0,
             ),
-            Text(widget.message['name']),
+            Text(widget.message['name'], style: textTheme.bodyLarge),
             const SizedBox(
               height: 10.0,
             ),
-            Text(widget.message['price'].toString()),
+            Text(widget.message['price'].toString(),
+                style: textTheme.bodyLarge),
             const SizedBox(
               height: 10.0,
             ),
-            Text(widget.message['serviceTitle']),
-            ElevatedButton(
+            Text(widget.message['serviceTitle'], style: textTheme.bodyLarge),
+            const SizedBox(
+              height: 10.0,
+            ),
+            RoundedElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Close"),
+              widget: Text(
+                "Close",
+                style: textTheme.bodyMedium!.copyWith(
+                  color: AppColors.whiteColor,
+                ),
+              ),
             )
           ],
         ),

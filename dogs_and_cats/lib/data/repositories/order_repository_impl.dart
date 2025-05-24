@@ -134,12 +134,17 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateScore(
-      {required double rating, required String orderId}) async {
+  Future<Either<Failure, Unit>> addScore({
+    required String dogsitterId,
+    required String orderId,
+    required double score,
+  }) async {
     try {
-      await supabaseClient
-          .from(TableNames.orders)
-          .update({'score': rating}).eq('id', orderId);
+      await supabaseClient.from(TableNames.scores).insert({
+        'dogsitter_id': dogsitterId,
+        'order_id': orderId,
+        'score': score,
+      });
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

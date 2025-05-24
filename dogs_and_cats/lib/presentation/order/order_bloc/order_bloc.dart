@@ -37,6 +37,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         loadAdoptedOrders: (_) => _loadAdoptedOrders(emit),
         loadCompletedOrders: (_) => _loadCompletedOrders(emit),
         cancelOrder: (event) => _cancelOrder(emit, event),
+        addScore: (event) => _addScore(emit, event),
       );
     });
   }
@@ -64,6 +65,18 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     result.fold((failure) => emit(OrderState.failure(message: failure.message)),
         (orders) => emit(OrderState.initial()));
+  }
+
+  Future<void> _addScore(Emitter<OrderState> emit, _AddScore event) async {
+    emit(OrderState.loading());
+
+    final result = await orderRepository.addScore(
+        score: event.score,
+        dogsitterId: event.dogsitterId,
+        orderId: event.orderId);
+
+    result.fold((failure) => emit(OrderState.failure(message: failure.message)),
+        (_) => emit(OrderState.successAddScore()));
   }
 
   Future<void> _loadAllOrders(Emitter<OrderState> emit) async {

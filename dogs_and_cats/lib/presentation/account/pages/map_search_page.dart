@@ -70,7 +70,7 @@ class _MapSearchPageState extends State<MapSearchPage> {
                     ),
                     success: (results) {
                       return SizedBox(
-                        height: 200,
+                        height: 290,
                         child: ListView.builder(
                           itemCount: results.results.length,
                           itemBuilder: (context, index) {

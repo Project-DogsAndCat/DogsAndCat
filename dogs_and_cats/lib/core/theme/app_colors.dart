@@ -14,7 +14,7 @@ class AppColors {
   static const Color buttonColor = Color(0xffeaefd2);
   static const Color bottomNavigationBarIconColor = Color(0xff939391);
   static const Color telegramColor = Color(0xff3399ff);
-  static const Color buttonColorDarkTheme = Color(0xff151515);
+  static const Color buttonColorDarkTheme = Color(0xFF37383D);
 // // snack bar color
   static const Color snackBarBlue = Color(0xff3282B8);
   static const Color snackBarRed = Color(0xffb13f4f);

@@ -1,5 +1,7 @@
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/presentation/account/widgets/custom_profile_button.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/account/widgets/rating_bar_indicator_widget.dart';
+import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/dog_sitter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +27,7 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
   @override
   void initState() {
     context.read<ProfileBloc>().add(ProfileEvent.load());
+    context.read<DogSitterBloc>().add(DogSitterEvent.load());
     super.initState();
   }
 
@@ -75,6 +78,37 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
                               person: state.person,
                             ),
                           ),
+                          const SizedBox(
+                            height: 25.0,
+                          ),
+                          Text(
+                            AppString.rating,
+                            style: textTheme.labelLarge,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BlocBuilder<DogSitterBloc, DogSitterState>(
+                              builder: (context, state) {
+                            return state.map(
+                              initial: (_) => Container(),
+                              loading: (_) => CircularProgressIndicator(),
+                              loaded: (state) => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    state.dogsitter.rating.toString(),
+                                    style: textTheme.titleLarge,
+                                  ),
+                                  RatingBarIndicatorWidget(
+                                    rating: state.dogsitter.rating,
+                                  ),
+                                ],
+                              ),
+                              failure: (_) => Container(),
+                            );
+                          }),
                           const SizedBox(
                             height: 25.0,
                           ),
