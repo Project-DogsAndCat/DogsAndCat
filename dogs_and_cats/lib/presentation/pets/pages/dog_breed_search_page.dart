@@ -7,13 +7,24 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../blocs/dog_breed_bloc/dog_breed_bloc.dart';
 
-class DogBreedSearchPage extends StatelessWidget {
+class DogBreedSearchPage extends StatefulWidget {
   const DogBreedSearchPage({
     super.key,
     required this.controller,
   });
 
   final TextEditingController controller;
+
+  @override
+  State<DogBreedSearchPage> createState() => _DogBreedSearchPageState();
+}
+
+class _DogBreedSearchPageState extends State<DogBreedSearchPage> {
+  @override
+  void initState() {
+    context.read<DogBreedBloc>().add(DogBreedEvent.load());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +42,7 @@ class DogBreedSearchPage extends StatelessWidget {
                 context.read<DogBreedBloc>().add(DogBreedEvent.load());
               }
             },
-            controller: controller,
+            controller: widget.controller,
             hintText: AppString.enterBreed,
             keyboardType: TextInputType.text,
             suffixIcon: Icon(Icons.search),
@@ -58,7 +69,7 @@ class DogBreedSearchPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      controller.text = state.dogBreeds[index].name;
+                      widget.controller.text = state.dogBreeds[index].name;
                       _onTapSearch(context);
                     },
                     child: Padding(
@@ -98,6 +109,6 @@ class DogBreedSearchPage extends StatelessWidget {
   }
 
   void _onTapSearch(BuildContext context) {
-    Navigator.of(context).pop(controller.text);
+    Navigator.of(context).pop(widget.controller.text);
   }
 }

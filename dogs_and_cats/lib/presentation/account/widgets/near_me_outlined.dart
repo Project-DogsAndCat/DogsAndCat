@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-class NearMeOutlined extends StatelessWidget {
-  const NearMeOutlined({super.key});
+class IconLocationMap extends StatelessWidget {
+  const IconLocationMap({
+    super.key,
+    required this.icon,
+  });
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +26,8 @@ class NearMeOutlined extends StatelessWidget {
           ]),
       child: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: const Icon(
-          Icons.near_me_outlined,
+        child: Icon(
+          icon,
           color: Colors.black,
           size: 35.0,
         ),

@@ -1,6 +1,7 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
+import 'package:dogs_and_cats/domain/models/location.dart';
 import 'package:dogs_and_cats/presentation/pets/blocs/pet_bloc/pet_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
@@ -11,35 +12,48 @@ import 'package:go_router/go_router.dart';
 
 import '../widgets/custom_service_button.dart';
 
-class ServicePage extends StatelessWidget {
+class ServicePage extends StatefulWidget {
   const ServicePage({
     super.key,
   });
 
   @override
+  State<ServicePage> createState() => _ServicePageState();
+}
+
+class _ServicePageState extends State<ServicePage> {
+  late AppLatLong appLatLong;
+
+  @override
+  void initState() {
+    context.read<ServicesBloc>().add(ServicesEvent.load());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Выберите\nжелаемую\nуслугу',
-                style: textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              Expanded(
-                child: BlocBuilder<ServicesBloc, ServicesState>(
-                    builder: (context, state) {
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Выберите\nжелаемую\nуслугу',
+              style: textTheme.titleLarge,
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            Expanded(
+              child: BlocBuilder<ServicesBloc, ServicesState>(
+                builder: (context, state) {
                   return state.map(
                       loadedService: (_) {
                         return Container();
                       },
-                      loading: (_) => Center(
+                      loading: (_) => const Center(
                             child: CircularProgressIndicator(
                               color: Colors.blueAccent,
                             ),
@@ -52,7 +66,8 @@ class ServicePage extends StatelessWidget {
                                   CustomServiceButton(
                                     onPressed: () {
                                       context.replaceNamed(
-                                          RoutesNames.orderingService);
+                                        RoutesNames.orderingService,
+                                      );
                                       context.read<OrderingServiceBloc>().add(
                                               OrderingServiceEvent
                                                   .loadTimeAndCostOfService(
@@ -123,10 +138,12 @@ class ServicePage extends StatelessWidget {
                             itemCount: state.service.length);
                       },
                       failure: (state) => Text(state.message));
-                }),
-              )
-            ],
-          ),
-        ));
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

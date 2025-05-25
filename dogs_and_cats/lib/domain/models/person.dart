@@ -20,17 +20,18 @@ class Person {
     this.token,
   });
 
-  Person copyWith(
-      {String? firstName,
-      String? lastName,
-      String? email,
-      String? phone,
-      String? role,
-      double? latitude,
-      double? longitude,
-      double? rating,
-      String? position,
-      String? token}) {
+  Person copyWith({
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phone,
+    String? role,
+    double? latitude,
+    double? longitude,
+    double? rating,
+    String? position,
+    String? token,
+  }) {
     return Person(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,

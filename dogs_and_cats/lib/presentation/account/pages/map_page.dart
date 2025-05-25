@@ -11,7 +11,11 @@ import '../widgets/near_me_outlined.dart';
 import '../widgets/show_result_search.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key, required this.person});
+  const MapPage({
+    super.key,
+    required this.person,
+  });
+
   final Person person;
 
   @override
@@ -35,13 +39,15 @@ class _MapPageState extends State<MapPage> {
       padding: const EdgeInsets.symmetric(vertical: 30.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 5,
-            width: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.grey[400],
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Text('Закрыть'),
             ),
           ),
           const SizedBox(
@@ -89,17 +95,22 @@ class _MapPageState extends State<MapPage> {
                   alignment: const Alignment(-0.95, 0.95),
                   child: BlocBuilder<MapLocationCubit, MapLocationState>(
                     builder: (context, state) {
-                      return state.map(loading: (_) {
-                        return Container();
-                      }, loaded: (state) {
-                        return GestureDetector(
-                          onTap: () {
-                            final currentLocation = state.location;
-                            _moveCameraPosition(currentLocation);
+                      return state.map(
+                          loading: (_) {
+                            return Container();
                           },
-                          child: NearMeOutlined(),
-                        );
-                      });
+                          loaded: (state) {
+                            return GestureDetector(
+                              onTap: () {
+                                final currentLocation = state.location;
+                                _moveCameraPosition(currentLocation);
+                              },
+                              child: IconLocationMap(
+                                icon: Icons.near_me_outlined,
+                              ),
+                            );
+                          },
+                          failure: (_) => Container());
                     },
                   ),
                 ),
@@ -123,16 +134,16 @@ class _MapPageState extends State<MapPage> {
       appLatLong = AppLatLong(lat: lat, long: long);
     }
     _location = CameraPosition(
-        target: Point(latitude: appLatLong.lat, longitude: appLatLong.long));
+        target: Point(latitude: appLatLong.lat!, longitude: appLatLong.long!));
   }
 
   Future<void> _moveCameraPosition(AppLatLong currentLocation) async {
     final position = CameraPosition(
       target: Point(
-        latitude: currentLocation.lat,
-        longitude: currentLocation.long,
+        latitude: currentLocation.lat!,
+        longitude: currentLocation.long!,
       ),
-      zoom: 18.0,
+      zoom: 15.0,
     );
     await _mapController!.moveCamera(CameraUpdate.newCameraPosition(position));
   }

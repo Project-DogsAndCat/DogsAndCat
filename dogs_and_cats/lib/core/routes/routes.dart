@@ -14,6 +14,7 @@ import 'package:dogs_and_cats/presentation/pets/pages/pets_page.dart';
 import 'package:dogs_and_cats/presentation/scaffold_with_navbar/pages/scaffold_with_navbar.dart';
 import 'package:dogs_and_cats/presentation/services/pages/ordering_services_page.dart';
 import 'package:dogs_and_cats/presentation/services/pages/service_page.dart';
+import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:dogs_and_cats/presentation/settings/page/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,10 @@ final GoRouter router = GoRouter(
       GoRoute(
           name: RoutesNames.addInformation,
           path: '/addInformation',
-          builder: (context, state) => const AddInformation()),
+          builder: (context, state) => BlocProvider(
+                create: (context) => getIt<ServicesBloc>(),
+                child: const AddInformation(),
+              )),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>
               ScaffoldWithNavbar(navigationShell: navigationShell),
@@ -101,7 +105,10 @@ final GoRouter router = GoRouter(
                 GoRoute(
                   name: RoutesNames.services,
                   path: '/services',
-                  builder: (context, state) => const ServicePage(),
+                  builder: (context, state) => BlocProvider(
+                    create: (context) => getIt<ServicesBloc>(),
+                    child: const ServicePage(),
+                  ),
                 ),
               ],
             ),
@@ -116,10 +123,7 @@ final GoRouter router = GoRouter(
               GoRoute(
                 name: RoutesNames.account,
                 path: '/profile',
-                builder: (context, state) => BlocProvider(
-                  create: (context) => getIt<ProfileBloc>(),
-                  child: const ProfilePage(),
-                ),
+                builder: (context, state) => const ProfilePage(),
               )
             ]),
             StatefulShellBranch(routes: [

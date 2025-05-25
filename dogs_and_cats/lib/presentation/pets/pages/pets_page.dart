@@ -9,8 +9,10 @@ import '../widgets/list_pets.dart';
 import 'add_pet_page.dart';
 
 class PetsPage extends StatefulWidget {
-  const PetsPage({super.key, required this.backPage});
-
+  const PetsPage({
+    super.key,
+    required this.backPage,
+  });
   final String backPage;
 
   @override
@@ -51,7 +53,7 @@ class _PetsPageState extends State<PetsPage> {
                   showModalBottomSheet<void>(
                     isScrollControlled: true,
                     context: context,
-                    builder: (context) => AddPetPage(),
+                    builder: (context) => const AddPetPage(),
                   );
                 },
                 child: Row(

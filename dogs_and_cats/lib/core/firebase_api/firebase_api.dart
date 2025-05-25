@@ -42,14 +42,14 @@ class FirebaseApi {
   }
 
   void handleNavigation(Map<String, dynamic> data) {
-    Future.delayed(Duration(milliseconds: 300), () {
+    if (navigatorKey.currentContext != null) {
       showDialog(
           context: navigatorKey.currentContext!,
           builder: (newContext) => BlocProvider(
                 create: (context) => getIt<ImageCubit>(),
                 child: NotificationBottomSheet(message: data),
               ));
-    });
+    }
   }
 
   Future<void> _upsertToken() async {

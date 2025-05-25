@@ -10,5 +10,7 @@ abstract interface class PersonRepository {
     required Person updatePerson,
   });
 
-  Future<Either<Failure, Unit>> updateEmail({required String email});
+  Future<Either<Failure, Unit>> updateEmail({
+    required String email,
+  });
 }

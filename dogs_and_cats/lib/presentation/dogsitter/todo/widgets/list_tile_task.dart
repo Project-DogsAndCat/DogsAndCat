@@ -67,7 +67,7 @@ class ListTileTask extends StatelessWidget {
                       AppString.serviceFor,
                       style: textTheme.bodyLarge,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(

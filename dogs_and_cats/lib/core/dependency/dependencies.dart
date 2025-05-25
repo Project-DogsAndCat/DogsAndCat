@@ -134,7 +134,7 @@ void _initServices() {
   getIt.registerLazySingleton<ServiceRepository>(
       () => ServiceRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<ServicesBloc>(
+  getIt.registerFactory<ServicesBloc>(
       () => ServicesBloc(repository: getIt<ServiceRepository>()));
 
   getIt.registerLazySingleton<OrderingServiceBloc>(
@@ -172,7 +172,7 @@ void _initDogSitter() {
   getIt.registerLazySingleton<DogSitterRepository>(
       () => DogSitterRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerFactory<DogSitterBloc>(() => DogSitterBloc(
+  getIt.registerLazySingleton<DogSitterBloc>(() => DogSitterBloc(
       dogSitterrepository: getIt<DogSitterRepository>(),
       becomeDogsitterRepository: getIt<BecomeDogsitterRepository>()));
 }
@@ -210,8 +210,8 @@ void _initMapLocation() {
   getIt.registerLazySingleton<MapService>(
       () => MapService(locationRepository: getIt<LocationRepository>()));
 
-  getIt.registerLazySingleton<MapLocationCubit>(
-      () => MapLocationCubit(service: getIt<MapService>()));
+  getIt.registerLazySingleton<MapLocationCubit>(() => MapLocationCubit(
+      service: getIt<MapService>(), repository: getIt<PersonRepository>()));
 }
 
 void _initTask() {

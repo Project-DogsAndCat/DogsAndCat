@@ -16,7 +16,9 @@ class UserFcmRepositoryImpl implements UserFcmRepository {
   final SupabaseClient supabaseClient;
 
   @override
-  Future<Either<Failure, Unit>> upsertFcmToken({required String token}) async {
+  Future<Either<Failure, Unit>> upsertFcmToken({
+    required String token,
+  }) async {
     try {
       final person = supabaseClient.auth.currentUser;
 

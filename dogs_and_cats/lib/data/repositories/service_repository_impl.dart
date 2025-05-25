@@ -15,15 +15,19 @@ import '../../core/utils/table_names.dart';
 class ServiceRepositoryImpl implements ServiceRepository {
   ServiceRepositoryImpl({required this.supabaseClient});
   final SupabaseClient supabaseClient;
-
   final Map<String, List<ServiceCharacteristic>> _cache = {};
+  final List<Service> _cacheServices = [];
 
   @override
   Future<List<Service>> getServices() async {
+    if (_cacheServices.isNotEmpty) return _cacheServices;
+
     final json = await supabaseClient.from(TableNames.services).select('');
     final services =
         json.map((element) => ServiceDto.fromJson(element).toDomain()).toList();
-    return services;
+
+    _cacheServices.addAll(services);
+    return _cacheServices;
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -27,17 +28,14 @@ class _AvatarDogSitterState extends State<AvatarDogSitter> {
           child: BlocBuilder<ImageCubit, ImageState>(
             builder: (context, state) {
               return state.map(
-                loading: (_) => Container(
-                  height: 150.0,
-                  width: 150.0,
-                  color: Colors.green,
+                loading: (_) => CircleAvatar(
+                  backgroundColor: AppColors.primaryColor,
+                  radius: 75,
                 ),
-                loaded: (state) => SizedBox(
-                  width: 150.0,
-                  height: 150.0,
-                  child: Image.network(
+                loaded: (state) => CircleAvatar(
+                  radius: 75,
+                  backgroundImage: NetworkImage(
                     state.imageUrl,
-                    fit: BoxFit.cover,
                   ),
                 ),
                 failure: (state) => Center(

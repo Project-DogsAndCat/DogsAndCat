@@ -20,7 +20,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   Status? _status = Status.complete;
   OrderBloc({
     required this.orderRepository,
-  }) : super(OrderState.loading()) {
+  }) : super(OrderState.initial()) {
+    emit(OrderState.loading());
     _subscription = orderRepository.watchOrders().listen((result) {
       result
           .fold((failure) => emit(OrderState.failure(message: failure.message)),

@@ -2,6 +2,9 @@ import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/theme/app_colors.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/custom_snackbar.dart';
+import 'package:dogs_and_cats/domain/models/person.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/pages/map_page.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
 import 'package:dogs_and_cats/presentation/services/widgets/custom_service_button.dart';
@@ -12,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/theme/theme.dart';
+import '../../../core/widgets/button_address.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../../domain/models/order.dart';
 import '../widgets/duration_and_price_selection_widget.dart';
@@ -38,6 +42,13 @@ class _OrderingServiceState extends State<OrderingServicePage> {
   TimeOfDay? time;
   List<String>? petIds;
   String? namePet;
+  Person? person;
+
+  @override
+  void initState() {
+    context.read<ProfileBloc>().add(ProfileEvent.load());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +149,22 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                         style: textTheme.bodyMedium),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              BlocBuilder<ProfileBloc, ProfileState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    loaded: (state) => ButtonAddress(
+                      person: state.person,
+                      widget: MapPage(person: state.person),
+                    ),
+                  );
+                },
               ),
               const SizedBox(
                 height: 30,

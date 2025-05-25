@@ -1,6 +1,7 @@
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/cubits/image_cubit.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/avatar.dart';
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/widgets/positions_list.dart';
+import 'package:dogs_and_cats/presentation/services/service_bloc/services_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +25,12 @@ class AddInformation extends StatefulWidget {
 class _AddInformationState extends State<AddInformation> {
   final Set<Service> _selectedServices = {};
   bool _existImage = false;
+
+  @override
+  void initState() {
+    context.read<ServicesBloc>().add(ServicesEvent.load());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:dogs_and_cats/core/routes/routes.dart';
 import 'package:dogs_and_cats/core/theme/theme.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/blocs/map_suggest_bloc/map_suggest_bloc.dart';
+import 'package:dogs_and_cats/presentation/account/blocs/profile_bloc/profile_bloc.dart';
 import 'package:dogs_and_cats/presentation/account/cubits/map_location_cubit.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/auth_bloc/auth_bloc.dart';
 import 'package:dogs_and_cats/presentation/auth/blocs/login_bloc/login_bloc.dart';
@@ -23,7 +24,6 @@ import 'core/firebase_api/firebase_api.dart';
 import 'core/theme/cubit/theme_cubit.dart';
 import 'firebase_options.dart';
 import 'presentation/services/ordering_service_bloc/ordering_service_bloc.dart';
-import 'presentation/services/service_bloc/services_bloc.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -56,30 +56,7 @@ void main() async {
     },
   );
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => getIt<LoginBloc>()),
-        BlocProvider(create: (_) => getIt<AuthBloc>()),
-        BlocProvider(create: (_) => getIt<ThemeCubit>()),
-        BlocProvider(
-            create: (_) => getIt<ServicesBloc>()..add(ServicesEvent.load())),
-        BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),
-        BlocProvider(create: (_) => getIt<OrderBloc>()),
-        BlocProvider(create: (_) => getIt<MapSuggestBloc>()),
-        BlocProvider(create: (_) => getIt<MapSearchBloc>()),
-        BlocProvider(create: (_) => getIt<PetBloc>()),
-        BlocProvider(
-            create: (_) => getIt<DogBreedBloc>()..add(DogBreedEvent.load())),
-        BlocProvider(create: (_) => getIt<MapLocationCubit>()),
-        BlocProvider(create: (_) => getIt<DogSitterBloc>()),
-        BlocProvider(create: (_) => getIt<ImageCubit>()),
-        BlocProvider(create: (_) => getIt<TaskBloc>()),
-        BlocProvider(create: (_) => getIt<DogSitterBloc>()),
-      ],
-      child: MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -92,15 +69,33 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, state) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Dogs & Cats',
-          theme: state.isDark ? darkTheme : lightTheme,
-          routerConfig: router,
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<LoginBloc>()),
+        BlocProvider(create: (_) => getIt<AuthBloc>()),
+        BlocProvider(create: (_) => getIt<ProfileBloc>()),
+        BlocProvider(create: (_) => getIt<ThemeCubit>()),
+        BlocProvider(create: (_) => getIt<OrderingServiceBloc>()),
+        BlocProvider(create: (_) => getIt<OrderBloc>()),
+        BlocProvider(create: (_) => getIt<MapSuggestBloc>()),
+        BlocProvider(create: (_) => getIt<MapSearchBloc>()),
+        BlocProvider(create: (_) => getIt<PetBloc>()),
+        BlocProvider(create: (_) => getIt<DogBreedBloc>()),
+        BlocProvider(create: (_) => getIt<MapLocationCubit>()),
+        BlocProvider(create: (_) => getIt<ImageCubit>()),
+        BlocProvider(create: (_) => getIt<TaskBloc>()),
+        BlocProvider(create: (_) => getIt<DogSitterBloc>()),
+      ],
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Dogs & Cats',
+            theme: state.isDark ? darkTheme : lightTheme,
+            routerConfig: router,
+          );
+        },
+      ),
     );
   }
 }
