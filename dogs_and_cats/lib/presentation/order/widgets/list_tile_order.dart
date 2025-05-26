@@ -1,6 +1,7 @@
 import 'package:dogs_and_cats/core/routes/route_names.dart';
 import 'package:dogs_and_cats/core/utils/app_strings.dart';
 import 'package:dogs_and_cats/core/widgets/rounded_elevated_button.dart';
+import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:dogs_and_cats/presentation/order/widgets/container_widget.dart';
 import 'package:flutter/material.dart';
@@ -53,28 +54,25 @@ class ListTileOrder extends StatelessWidget {
                 const SizedBox(
                   height: 15.0,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      AppString.serviceFor,
-                      style: textTheme.bodyLarge,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
+                Row(children: [
+                  Text(
+                    AppString.serviceFor,
+                    style: textTheme.bodyLarge,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Flexible(
                       child: Wrap(
                           direction: Axis.horizontal,
                           spacing: 5,
                           children: [
-                            for (var i = 0; i < task.pet.length; i++)
-                              Text(i != task.pet.length - 1
-                                  ? '${task.pet[i].name},'
-                                  : task.pet[i].name)
-                          ]),
-                    ),
-                  ],
-                ),
+                        for (var i = 0; i < task.pet.length; i++)
+                          Text(i != task.pet.length - 1
+                              ? '${task.pet[i].name},'
+                              : task.pet[i].name)
+                      ]))
+                ]),
                 const SizedBox(
                   height: 15.0,
                 ),
@@ -82,21 +80,18 @@ class ListTileOrder extends StatelessWidget {
                   '${task.order.price.toStringAsFixed(0)} руб',
                   style: textTheme.labelMedium,
                 ),
-                const SizedBox(
-                  height: 15.0,
-                ),
-                GestureDetector(
-                  child: Text(
-                    AppString.cancelOrder,
-                    style: textTheme.bodyLarge!
-                        .copyWith(color: AppColors.primaryColor),
-                  ),
-                  onTap: () {
-                    context
-                        .read<OrderBloc>()
-                        .add(OrderEvent.cancelOrder(orderId: task.order.id!));
-                  },
-                ),
+                if (task.order.status == Status.waiting)
+                  Column(children: [
+                    const SizedBox(height: 15.0),
+                    GestureDetector(
+                        child: Text(AppString.cancelOrder,
+                            style: textTheme.bodyLarge!
+                                .copyWith(color: AppColors.primaryColor)),
+                        onTap: () {
+                          context.read<OrderBloc>().add(
+                              OrderEvent.cancelOrder(orderId: task.order.id!));
+                        })
+                  ]),
                 const SizedBox(
                   height: 15.0,
                 ),
@@ -108,7 +103,7 @@ class ListTileOrder extends StatelessWidget {
                         .copyWith(color: AppColors.whiteColor),
                   ),
                   onPressed: () {
-                    context.replaceNamed(RoutesNames.orderDetails, extra: task);
+                    context.pushNamed(RoutesNames.orderDetails, extra: task);
                   },
                 ),
               ],

@@ -20,8 +20,6 @@ class OrderEvent with _$OrderEvent {
   }) = _CancelOrder;
 
   const factory OrderEvent.addScore({
-    required double score,
-    required String dogsitterId,
-    required String orderId,
+    required Score score,
   }) = _AddScore;
 }

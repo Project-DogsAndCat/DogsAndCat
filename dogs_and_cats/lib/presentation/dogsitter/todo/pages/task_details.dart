@@ -31,7 +31,7 @@ class TaskDetailsPage extends StatelessWidget {
         centerTitle: true,
         leading: BackButton(
           onPressed: () {
-            context.replaceNamed(RoutesNames.todo);
+            context.pop(RoutesNames.todo);
           },
         ),
       ),

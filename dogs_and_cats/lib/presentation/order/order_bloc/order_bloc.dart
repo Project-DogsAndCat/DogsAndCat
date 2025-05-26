@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dogs_and_cats/data/models/score/score_dto.dart';
 import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:dogs_and_cats/domain/repositories/order_repository.dart';
@@ -8,6 +9,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/error/failure.dart';
+import '../../../domain/models/score.dart';
 
 part 'order_bloc.freezed.dart';
 part 'order_event.dart';
@@ -72,9 +74,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     emit(OrderState.loading());
 
     final result = await orderRepository.addScore(
-        score: event.score,
-        dogsitterId: event.dogsitterId,
-        orderId: event.orderId);
+      score: ScoreDto.fromDomain(event.score),
+    );
+    // score: event.score,
+    // dogsitterId: event.dogsitterId,
+    // orderId: event.orderId);
 
     result.fold((failure) => emit(OrderState.failure(message: failure.message)),
         (_) => emit(OrderState.successAddScore()));

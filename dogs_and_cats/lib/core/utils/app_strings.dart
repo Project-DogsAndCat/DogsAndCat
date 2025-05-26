@@ -43,6 +43,7 @@ class AppString {
   static const costOfService = 'Стоимость услуги';
   static const forPayment = 'К оплате';
   static const cancelOrder = 'Отменить заказ';
+  static const assess = 'Коснитесь, чтобы оценить';
 
   static const serviceType = 'Тип услуги';
 

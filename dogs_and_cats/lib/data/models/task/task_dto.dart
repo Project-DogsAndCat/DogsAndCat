@@ -1,13 +1,12 @@
 import 'package:dogs_and_cats/data/models/order/order_dto.dart';
 import 'package:dogs_and_cats/data/models/person/person_dto.dart';
 import 'package:dogs_and_cats/data/models/pet/pet_dto.dart';
+import 'package:dogs_and_cats/data/models/score/score_dto.dart';
 import 'package:dogs_and_cats/data/models/service/service_dto.dart';
 import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../domain/models/order.dart';
 import '../dogsitter/dogsitter_dto.dart';
-
 part 'task_dto.g.dart';
 
 @JsonSerializable()
@@ -18,12 +17,14 @@ class TaskDto {
     required this.person,
     required this.dogsitter,
     required this.pets,
+    required this.score,
   });
   final ServiceDto service;
   final OrderDto order;
   final PersonDto person;
   final DogsitterDto? dogsitter;
   final List<PetDto> pets;
+  final ScoreDto? score;
 
   Status getStatusOrder({required String status}) {
     return Status.values.firstWhere((value) => value.value == status,
@@ -36,6 +37,7 @@ class TaskDto {
         person: person.toDomain(),
         dogsitter: dogsitter?.toDomain(),
         pet: pets.map((element) => element.toDomain()).toList(),
+        score: score?.toDomain(),
       );
 
   factory TaskDto.fromJson(Map<String, dynamic> json) =>

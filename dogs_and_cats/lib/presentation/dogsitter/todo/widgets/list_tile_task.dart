@@ -100,7 +100,7 @@ class ListTileTask extends StatelessWidget {
                         .copyWith(color: AppColors.primaryColor),
                   ),
                   onTap: () {
-                    context.replaceNamed(RoutesNames.taskDetails, extra: task);
+                    context.pushNamed(RoutesNames.taskDetails, extra: task);
                   },
                 ),
                 const SizedBox(

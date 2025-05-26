@@ -33,7 +33,7 @@ class _PetsPageState extends State<PetsPage> {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            context.replaceNamed(widget.backPage);
+            context.pop(widget.backPage);
           },
         ),
         title: Text(

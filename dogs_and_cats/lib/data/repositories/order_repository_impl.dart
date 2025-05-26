@@ -12,6 +12,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../core/error/failure.dart';
 import '../../core/utils/app_strings.dart';
 import '../../core/utils/table_names.dart';
+import '../models/score/score_dto.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   OrderRepositoryImpl({required this.supabaseClient});
@@ -134,18 +135,20 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> addScore({
-    required String dogsitterId,
-    required String orderId,
-    required double score,
-  }) async {
+  Future<Either<Failure, Unit>> addScore({required ScoreDto score}) async {
     try {
-      await supabaseClient.from(TableNames.scores).insert({
-        'dogsitter_id': dogsitterId,
-        'order_id': orderId,
-        'score': score,
-      });
-      return right(unit);
+      final json = score.toJson();
+      json.remove('id');
+      if (score.id != null) {
+        await supabaseClient
+            .from(TableNames.scores)
+            .update(json)
+            .eq('id', score.id!);
+        return right(unit);
+      } else {
+        await supabaseClient.from(TableNames.scores).insert(json);
+        return right(unit);
+      }
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

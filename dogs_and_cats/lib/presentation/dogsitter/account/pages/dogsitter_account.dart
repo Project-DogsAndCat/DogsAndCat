@@ -4,10 +4,7 @@ import 'package:dogs_and_cats/presentation/dogsitter/account/widgets/rating_bar_
 import 'package:dogs_and_cats/presentation/dogsitter/adding_information/blocs/dog_sitter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../../core/pages/failure_page.dart';
-import '../../../../core/routes/route_names.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
 import '../../../account/blocs/profile_bloc/profile_bloc.dart';
@@ -98,7 +95,7 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    state.dogsitter.rating.toString(),
+                                    state.dogsitter.rating.toStringAsFixed(1),
                                     style: textTheme.titleLarge,
                                   ),
                                   RatingBarIndicatorWidget(
@@ -169,15 +166,6 @@ class _DogsitterAccountState extends State<DogsitterAccount> {
                           const SizedBox(
                             height: 10.0,
                           ),
-                          CustomProfileButton(
-                              onPressed: () {
-                                context
-                                    .read<AuthBloc>()
-                                    .add(AuthEvent.userLogOut());
-                                context.goNamed(RoutesNames.choseRole);
-                              },
-                              mainInfoTitle: AppString.logout,
-                              icon: Icons.exit_to_app),
                         ],
                       );
                     },

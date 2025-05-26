@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/routes/route_names.dart';
 import '../../../core/theme/cubit/theme_cubit.dart';
+import '../../../core/utils/app_strings.dart';
+import '../../account/widgets/custom_profile_button.dart';
+import '../../auth/blocs/auth_bloc/auth_bloc.dart';
 import '../../settings/widgets/settings_list_card.dart';
 
 class DogsitterSettings extends StatefulWidget {
@@ -38,6 +43,15 @@ class _DogsitterSettingsState extends State<DogsitterSettings> {
                 height: 10.0,
               ),
             ),
+            SliverToBoxAdapter(
+              child: CustomProfileButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(AuthEvent.userLogOut());
+                    context.goNamed(RoutesNames.choseRole);
+                  },
+                  mainInfoTitle: AppString.logout,
+                  icon: Icons.exit_to_app),
+            )
           ],
         ),
       ),

@@ -33,6 +33,7 @@ import 'package:dogs_and_cats/domain/models/dogsitter.dart';
 import 'package:dogs_and_cats/domain/models/order.dart';
 import 'package:dogs_and_cats/domain/models/person.dart';
 import 'package:dogs_and_cats/domain/models/pet.dart';
+import 'package:dogs_and_cats/domain/models/score.dart';
 
 class TaskModel {
   TaskModel({
@@ -41,10 +42,12 @@ class TaskModel {
     required this.person,
     required this.dogsitter,
     required this.pet,
+    required this.score,
   });
   final String serviceTitle;
   final OrderModel order;
   final Person person;
   final Dogsitter? dogsitter;
   final List<Pet> pet;
+  final Score? score;
 }

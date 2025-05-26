@@ -24,8 +24,7 @@ mixin _$OrderEvent {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,8 +35,7 @@ mixin _$OrderEvent {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,8 +46,7 @@ mixin _$OrderEvent {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,8 +197,7 @@ class _$AddOrderImpl implements _AddOrder {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return addOrder(order, petIds);
   }
@@ -215,8 +211,7 @@ class _$AddOrderImpl implements _AddOrder {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return addOrder?.call(order, petIds);
   }
@@ -230,8 +225,7 @@ class _$AddOrderImpl implements _AddOrder {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (addOrder != null) {
@@ -349,8 +343,7 @@ class _$LoadAllOrdersImpl implements _LoadAllOrders {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return loadAllOrders();
   }
@@ -364,8 +357,7 @@ class _$LoadAllOrdersImpl implements _LoadAllOrders {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return loadAllOrders?.call();
   }
@@ -379,8 +371,7 @@ class _$LoadAllOrdersImpl implements _LoadAllOrders {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (loadAllOrders != null) {
@@ -487,8 +478,7 @@ class _$LoadRefusalOrdersImpl implements _LoadRefusalOrders {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return loadRefusalOrders();
   }
@@ -502,8 +492,7 @@ class _$LoadRefusalOrdersImpl implements _LoadRefusalOrders {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return loadRefusalOrders?.call();
   }
@@ -517,8 +506,7 @@ class _$LoadRefusalOrdersImpl implements _LoadRefusalOrders {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (loadRefusalOrders != null) {
@@ -625,8 +613,7 @@ class _$LoadAdoptedOrdersImpl implements _LoadAdoptedOrders {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return loadAdoptedOrders();
   }
@@ -640,8 +627,7 @@ class _$LoadAdoptedOrdersImpl implements _LoadAdoptedOrders {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return loadAdoptedOrders?.call();
   }
@@ -655,8 +641,7 @@ class _$LoadAdoptedOrdersImpl implements _LoadAdoptedOrders {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (loadAdoptedOrders != null) {
@@ -764,8 +749,7 @@ class _$LoadCompletedOrdersImpl implements _LoadCompletedOrders {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return loadCompletedOrders();
   }
@@ -779,8 +763,7 @@ class _$LoadCompletedOrdersImpl implements _LoadCompletedOrders {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return loadCompletedOrders?.call();
   }
@@ -794,8 +777,7 @@ class _$LoadCompletedOrdersImpl implements _LoadCompletedOrders {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (loadCompletedOrders != null) {
@@ -929,8 +911,7 @@ class _$CancelOrderImpl implements _CancelOrder {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
     return cancelOrder(orderId);
   }
@@ -944,8 +925,7 @@ class _$CancelOrderImpl implements _CancelOrder {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
     return cancelOrder?.call(orderId);
   }
@@ -959,8 +939,7 @@ class _$CancelOrderImpl implements _CancelOrder {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (cancelOrder != null) {
@@ -1035,7 +1014,7 @@ abstract class _$$AddScoreImplCopyWith<$Res> {
           _$AddScoreImpl value, $Res Function(_$AddScoreImpl) then) =
       __$$AddScoreImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({double score, String dogsitterId, String orderId});
+  $Res call({Score score});
 }
 
 /// @nodoc
@@ -1052,22 +1031,12 @@ class __$$AddScoreImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? score = null,
-    Object? dogsitterId = null,
-    Object? orderId = null,
   }) {
     return _then(_$AddScoreImpl(
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as double,
-      dogsitterId: null == dogsitterId
-          ? _value.dogsitterId
-          : dogsitterId // ignore: cast_nullable_to_non_nullable
-              as String,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Score,
     ));
   }
 }
@@ -1075,19 +1044,14 @@ class __$$AddScoreImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddScoreImpl implements _AddScore {
-  const _$AddScoreImpl(
-      {required this.score, required this.dogsitterId, required this.orderId});
+  const _$AddScoreImpl({required this.score});
 
   @override
-  final double score;
-  @override
-  final String dogsitterId;
-  @override
-  final String orderId;
+  final Score score;
 
   @override
   String toString() {
-    return 'OrderEvent.addScore(score: $score, dogsitterId: $dogsitterId, orderId: $orderId)';
+    return 'OrderEvent.addScore(score: $score)';
   }
 
   @override
@@ -1095,14 +1059,11 @@ class _$AddScoreImpl implements _AddScore {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddScoreImpl &&
-            (identical(other.score, score) || other.score == score) &&
-            (identical(other.dogsitterId, dogsitterId) ||
-                other.dogsitterId == dogsitterId) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.score, score) || other.score == score));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, score, dogsitterId, orderId);
+  int get hashCode => Object.hash(runtimeType, score);
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -1121,10 +1082,9 @@ class _$AddScoreImpl implements _AddScore {
     required TResult Function() loadAdoptedOrders,
     required TResult Function() loadCompletedOrders,
     required TResult Function(String orderId) cancelOrder,
-    required TResult Function(double score, String dogsitterId, String orderId)
-        addScore,
+    required TResult Function(Score score) addScore,
   }) {
-    return addScore(score, dogsitterId, orderId);
+    return addScore(score);
   }
 
   @override
@@ -1136,10 +1096,9 @@ class _$AddScoreImpl implements _AddScore {
     TResult? Function()? loadAdoptedOrders,
     TResult? Function()? loadCompletedOrders,
     TResult? Function(String orderId)? cancelOrder,
-    TResult? Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult? Function(Score score)? addScore,
   }) {
-    return addScore?.call(score, dogsitterId, orderId);
+    return addScore?.call(score);
   }
 
   @override
@@ -1151,12 +1110,11 @@ class _$AddScoreImpl implements _AddScore {
     TResult Function()? loadAdoptedOrders,
     TResult Function()? loadCompletedOrders,
     TResult Function(String orderId)? cancelOrder,
-    TResult Function(double score, String dogsitterId, String orderId)?
-        addScore,
+    TResult Function(Score score)? addScore,
     required TResult orElse(),
   }) {
     if (addScore != null) {
-      return addScore(score, dogsitterId, orderId);
+      return addScore(score);
     }
     return orElse();
   }
@@ -1209,14 +1167,9 @@ class _$AddScoreImpl implements _AddScore {
 }
 
 abstract class _AddScore implements OrderEvent {
-  const factory _AddScore(
-      {required final double score,
-      required final String dogsitterId,
-      required final String orderId}) = _$AddScoreImpl;
+  const factory _AddScore({required final Score score}) = _$AddScoreImpl;
 
-  double get score;
-  String get dogsitterId;
-  String get orderId;
+  Score get score;
 
   /// Create a copy of OrderEvent
   /// with the given fields replaced by the non-null parameter values.

@@ -16,6 +16,9 @@ TaskDto _$TaskDtoFromJson(Map<String, dynamic> json) => TaskDto(
       pets: (json['pets'] as List<dynamic>)
           .map((e) => PetDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      score: json['score'] == null
+          ? null
+          : ScoreDto.fromJson(json['score'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TaskDtoToJson(TaskDto instance) => <String, dynamic>{
@@ -24,4 +27,5 @@ Map<String, dynamic> _$TaskDtoToJson(TaskDto instance) => <String, dynamic>{
       'person': instance.person,
       'dogsitter': instance.dogsitter,
       'pets': instance.pets,
+      'score': instance.score,
     };

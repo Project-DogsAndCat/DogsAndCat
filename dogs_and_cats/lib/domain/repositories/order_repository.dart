@@ -3,6 +3,7 @@ import 'package:dogs_and_cats/domain/models/task.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../core/error/failure.dart';
+import '../../data/models/score/score_dto.dart';
 
 abstract interface class OrderRepository {
   Future<Either<Failure, Unit>> addOrder({
@@ -17,8 +18,6 @@ abstract interface class OrderRepository {
   });
 
   Future<Either<Failure, Unit>> addScore({
-    required String dogsitterId,
-    required String orderId,
-    required double score,
+    required ScoreDto score,
   });
 }

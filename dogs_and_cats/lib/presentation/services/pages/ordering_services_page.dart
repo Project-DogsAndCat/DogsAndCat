@@ -189,7 +189,7 @@ class _OrderingServiceState extends State<OrderingServicePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  context.goNamed(RoutesNames.pets, pathParameters: {
+                  context.pushNamed(RoutesNames.pets, pathParameters: {
                     'backPage': RoutesNames.orderingService
                   });
                 },

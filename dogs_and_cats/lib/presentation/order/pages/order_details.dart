@@ -1,4 +1,5 @@
 import 'package:dogs_and_cats/domain/models/order.dart';
+import 'package:dogs_and_cats/domain/models/score.dart';
 import 'package:dogs_and_cats/presentation/order/order_bloc/order_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,10 +10,13 @@ import '../../../core/routes/route_names.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_snackbar.dart';
-import '../widgets/rating_bar_widget.dart';
+import '../widgets/cost_details_widget.dart';
+import '../widgets/pet_name_list_view_widget.dart';
+import '../../../core/widgets/rating_bar_widget.dart';
 import '../../../domain/models/task.dart';
 import '../widgets/container_widget.dart';
 import '../widgets/order_status_widget.dart';
+import '../widgets/score_of_order_widget.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({
@@ -32,7 +36,7 @@ class OrderDetails extends StatelessWidget {
         centerTitle: true,
         leading: BackButton(
           onPressed: () {
-            context.replaceNamed(RoutesNames.order);
+            context.pop(RoutesNames.order);
           },
         ),
       ),
@@ -78,32 +82,7 @@ class OrderDetails extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: task.pet.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 5),
-                itemBuilder: (_, index) => ContainerWidget(
-                  widget: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        task.pet[index].name,
-                        style: textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        height: 3.0,
-                      ),
-                      Text(
-                        task.pet[index].selectedCategory.isEmpty
-                            ? 'Без особенностей'
-                            : task.pet[index].selectedCategory,
-                        style: textTheme.labelSmall,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              PetNameListViewWidget(task: task),
               const SizedBox(
                 height: 20.0,
               ),
@@ -114,81 +93,13 @@ class OrderDetails extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              ContainerWidget(
-                widget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildServiceInfo(),
-                        Text(
-                          '${task.order.price.toStringAsFixed(0)} руб',
-                          style: textTheme.labelMedium,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    const Divider(),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    _buildPriceRow(),
-                  ],
-                ),
-              ),
+              CostDetailsWidget(task: task),
               if (task.order.status.value == Status.complete.value)
-                RatingBarWidget(
-                  initialRating: task.order.score,
-                  onRatingUpdate: (score) {
-                    context.read<OrderBloc>().add(OrderEvent.addScore(
-                        score: score,
-                        dogsitterId: task.dogsitter!.id,
-                        orderId: task.order.id!));
-                  },
-                ),
+                ScoreOfOrderWidget(task: task),
             ]),
           ),
         ),
       ),
-    );
-  }
-
-  _buildServiceInfo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppString.costOfService,
-          style: textTheme.labelMedium,
-        ),
-        const SizedBox(
-          height: 3.0,
-        ),
-        Text(
-          '${task.serviceTitle} ${task.order.duration}',
-          style: textTheme.labelSmall,
-        ),
-      ],
-    );
-  }
-
-  _buildPriceRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          AppString.forPayment,
-          style: textTheme.labelMedium,
-        ),
-        Text(
-          '${task.order.price.toStringAsFixed(0)} руб',
-          style: textTheme.labelMedium,
-        ),
-      ],
     );
   }
 }
