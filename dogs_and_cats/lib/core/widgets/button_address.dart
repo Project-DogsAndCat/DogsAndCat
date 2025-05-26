@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../presentation/account/blocs/map_search_bloc/map_search_bloc.dart';
+import '../../presentation/services/widgets/custom_service_button.dart';
 import '../theme/theme.dart';
 
 class ButtonAddress extends StatefulWidget {
@@ -42,7 +43,7 @@ class _ButtonAddressState extends State<ButtonAddress> {
 
   @override
   Widget build(BuildContext context) {
-    return RoundedElevatedButton(
+    return CustomServiceButton(
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,
@@ -56,10 +57,15 @@ class _ButtonAddressState extends State<ButtonAddress> {
       widget: BlocBuilder<MapSearchBloc, MapSearchState>(
         builder: (context, state) {
           return state.map(
-            loading: (_) => const Text('Адрес не задан'),
-            success: (state) => Text(
-              state.results.first.title,
-              style: textTheme.bodyMedium,
+            loading: (_) => Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Адрес не задан', style: textTheme.bodyMedium)),
+            success: (state) => Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                state.results.first.title,
+                style: textTheme.bodyMedium,
+              ),
             ),
             selectedObjectBySearching: (_) => Container(),
             failure: (failure) => Text(

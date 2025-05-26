@@ -27,7 +27,7 @@ class ScoreOfOrderWidget extends StatelessWidget {
           height: 15.0,
         ),
         RatingBarWidget(
-          initialRating: task.score!.score,
+          initialRating: task.score == null ? 0 : task.score!.score,
           onRatingUpdate: (score) {
             context.read<OrderBloc>().add(OrderEvent.addScore(
                 score: Score(

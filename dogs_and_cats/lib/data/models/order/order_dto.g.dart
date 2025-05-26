@@ -14,7 +14,6 @@ OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => OrderDto(
       price: (json['price'] as num).toDouble(),
       date: DateTime.parse(json['date'] as String),
       status: json['status'] as String,
-      score: (json['score'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
@@ -25,5 +24,4 @@ Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
       'price': instance.price,
       'date': instance.date.toIso8601String(),
       'status': instance.status,
-      'score': instance.score,
     };

@@ -6,7 +6,6 @@ class OrderModel {
     required this.price,
     required this.date,
     this.status = Status.waiting,
-    this.score,
   });
   final String? id;
   final String serviceId;
@@ -14,7 +13,6 @@ class OrderModel {
   final double price;
   final DateTime date;
   final Status status;
-  final double? score;
 
   OrderModel copyWith({
     String? serviceId,

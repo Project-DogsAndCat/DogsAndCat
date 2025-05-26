@@ -153,6 +153,13 @@ class _OrderingServiceState extends State<OrderingServicePage> {
               const SizedBox(
                 height: 30,
               ),
+              Text(
+                AppString.address,
+                style: textTheme.labelLarge,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, state) {
                   return state.maybeMap(
