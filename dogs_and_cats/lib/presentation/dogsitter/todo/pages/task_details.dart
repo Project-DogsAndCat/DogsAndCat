@@ -82,6 +82,13 @@ class TaskDetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
+              Text(
+                AppString.address,
+                style: textTheme.labelLarge,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
               ButtonAddress(
                 person: task.person,
                 widget: AddressOfTask(

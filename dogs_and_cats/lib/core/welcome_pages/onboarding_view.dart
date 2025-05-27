@@ -60,80 +60,80 @@ class _OnboardingViewState extends State<OnboardingView> {
           index: 2,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Сделайте свой первый заказ',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Оставьте заявку, чтобы с вашим питомцам погуляли',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.car_detailed, 0),
+            icon: _coloredIcon(CupertinoIcons.capslock, 0),
           ),
         ),
         AnimatedWrapper(
           index: 3,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Выберите услугу',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Можем погулять или временно приютить Вашего питомца',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.calendar, 1),
+            icon: _coloredIcon(CupertinoIcons.arrow_branch, 1),
           ),
         ),
         AnimatedWrapper(
           index: 4,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'За Вашими питомцами позаботятся',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Найдем индивидуальный подход с Вашими питомцами',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.phone_fill, 2),
+            icon: _coloredIcon(CupertinoIcons.shield_fill, 2),
           ),
         ),
         AnimatedWrapper(
           index: 5,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Ваш заказ примут очень быстро',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Наша компания имеет огромный штаб догситтеров, поэтому Ваш питомец не останется без внимания',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.shield_fill, 3),
+            icon: _coloredIcon(CupertinoIcons.group, 3),
           ),
         ),
       ],
@@ -147,7 +147,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       title: AnimatedWrapper(
         index: 1,
         child: Text(
-          'Добро пожаловать в Петсерство',
+          'Добро пожаловать в Dogs&Cats',
           style: textTheme.titleLarge!
               .copyWith(color: AppColors.whiteColor, fontSize: 40),
         ),
@@ -157,34 +157,34 @@ class _OnboardingViewState extends State<OnboardingView> {
           index: 2,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Указывайте всех Ваших питомцев',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Добавляйте своих питомцев в Вашем профиле',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.car_detailed, 0),
+            icon: _coloredIcon(CupertinoIcons.add, 0),
           ),
         ),
         AnimatedWrapper(
           index: 3,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Отслеживайте Ваши заказы',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Удобно можно остлеживать все Ваши, вновь добавленные, заказы',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
@@ -197,40 +197,40 @@ class _OnboardingViewState extends State<OnboardingView> {
           index: 4,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Быстрый ответ от нас',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'При принятии Вашего заказа догситтером приложение оповестит Вам об этом',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.phone_fill, 2),
+            icon: _coloredIcon(CupertinoIcons.bell_fill, 2),
           ),
         ),
         AnimatedWrapper(
           index: 5,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Выберите удобное для Вас место встречи',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Указывайте адрес используя Ваше местоположение или просто найдите свой адрес',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.shield_fill, 3),
+            icon: _coloredIcon(CupertinoIcons.map, 3),
           ),
         ),
       ],
@@ -244,7 +244,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       title: AnimatedWrapper(
         index: 1,
         child: Text(
-          'Добро пожаловать в Петсерство',
+          'Добро пожаловать в Dogs&Cats',
           style: textTheme.titleLarge!
               .copyWith(color: AppColors.whiteColor, fontSize: 40),
         ),
@@ -254,80 +254,80 @@ class _OnboardingViewState extends State<OnboardingView> {
           index: 2,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Вступайте в наши ряды',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Оставьте заявку адмистратору, что Вы желаете стать догситтером',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.car_detailed, 0),
+            icon: _coloredIcon(CupertinoIcons.briefcase_fill, 0),
           ),
         ),
         AnimatedWrapper(
           index: 3,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Наши сотрудники проходят проверку',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'С Вашими питомцами будут находиться проверенные люди',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.calendar, 1),
+            icon: _coloredIcon(CupertinoIcons.person_badge_plus, 1),
           ),
         ),
         AnimatedWrapper(
           index: 4,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Оценивайте заказ',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'После выполнения заказа Вы можете поставить оценку за качество работы догситтера',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.phone_fill, 2),
+            icon: _coloredIcon(CupertinoIcons.star_lefthalf_fill, 2),
           ),
         ),
         AnimatedWrapper(
           index: 5,
           child: WhatsNewFeature(
             title: Text(
-              'Wide Range of Cars',
+              'Связь с догситтером',
               style:
                   textTheme.labelMedium!.copyWith(color: AppColors.whiteColor),
             ),
             description: Column(
               children: [
                 Text(
-                  'Оставьте услугу, чтобы с вашим петсером погуляли',
+                  'Можете связаться с догситтером по телефону или электронному адресу почты',
                   style: textTheme.bodyMedium!
                       .copyWith(color: AppColors.whiteColor),
                 )
               ],
             ),
-            icon: _coloredIcon(CupertinoIcons.shield_fill, 3),
+            icon: _coloredIcon(CupertinoIcons.phone_fill, 3),
           ),
         ),
       ],

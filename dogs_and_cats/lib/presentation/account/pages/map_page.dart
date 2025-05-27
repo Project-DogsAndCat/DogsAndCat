@@ -143,7 +143,7 @@ class _MapPageState extends State<MapPage> {
         latitude: currentLocation.lat!,
         longitude: currentLocation.long!,
       ),
-      zoom: 15.0,
+      zoom: 17.0,
     );
     await _mapController!.moveCamera(CameraUpdate.newCameraPosition(position));
   }

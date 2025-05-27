@@ -40,8 +40,9 @@ class SendMessageHttpRepositoryImpl implements SendMessageHttpRepository {
               },
               "data": {
                 "id": dogsitter.person.id,
-                "name": "Name",
-                "price": "${order.price}",
+                "name":
+                    "${dogsitter.person.firstName} ${dogsitter.person.lastName}",
+                "price": order.price.toStringAsFixed(0),
                 "serviceTitle": "Заказ $serviceTitle"
               }
             }

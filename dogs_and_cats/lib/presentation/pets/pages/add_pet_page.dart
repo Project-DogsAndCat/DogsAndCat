@@ -216,6 +216,7 @@ class _AddPetPageState extends State<AddPetPage> {
                             Pet pet = createPet(state.selectedCategoryString,
                                 state.otherFeatures);
                             context.read<PetBloc>().add(PetEvent.add(pet: pet));
+                            Navigator.pop(context);
                           }
                         },
                       );

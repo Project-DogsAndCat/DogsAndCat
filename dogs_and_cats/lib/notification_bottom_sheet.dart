@@ -71,14 +71,17 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
             const SizedBox(
               height: 10.0,
             ),
-            RoundedElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              widget: Text(
-                "Close",
-                style: textTheme.bodyMedium!.copyWith(
-                  color: AppColors.whiteColor,
+            SizedBox(
+              width: 100,
+              child: RoundedElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                widget: Text(
+                  "Понятно",
+                  style: textTheme.bodyMedium!.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
                 ),
               ),
             )

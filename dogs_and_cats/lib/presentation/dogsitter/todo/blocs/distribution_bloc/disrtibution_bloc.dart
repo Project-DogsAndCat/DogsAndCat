@@ -49,21 +49,19 @@ class DistributionBloc extends Bloc<DistributionEvent, DistributionState> {
     final result = await distributionRepository.acceptTask(
         orderId: event.orderId, dogsitterId: event.dogsitter.id);
     await result.fold((failure) async {
-      if (!isClosed) emit(DistributionState.failure(message: failure.message));
+      emit(DistributionState.failure(message: failure.message));
     }, (_) async {
-      if (!isClosed) {
-        final result = await sendMessageRepository.sendMessage(
-          userFcmToken: event.person.token!,
-          dogsitter: event.dogsitter,
-          serviceTitle: event.serviceTitle,
-          order: event.order,
-        );
-        result.fold((failure) {
-          emit(DistributionState.failure(message: failure.message));
-        }, (_) {
-          add(_Load(status: Status.adopted, dogsitter: event.dogsitter));
-        });
-      }
+      final result = await sendMessageRepository.sendMessage(
+        userFcmToken: event.person.token!,
+        dogsitter: event.dogsitter,
+        serviceTitle: event.serviceTitle,
+        order: event.order,
+      );
+      result.fold((failure) {
+        emit(DistributionState.failure(message: failure.message));
+      }, (_) {
+        add(_Load(status: Status.adopted, dogsitter: event.dogsitter));
+      });
     });
   }
 

@@ -225,7 +225,9 @@ class _OrderingServiceState extends State<OrderingServicePage> {
                               duration: duration!,
                               price: price!,
                               date: date.copyWith(
-                                  hour: time!.hour, minute: time!.minute),
+                                hour: time!.hour,
+                                minute: time!.minute,
+                              ),
                             ),
                             petIds: petIds!,
                           ),

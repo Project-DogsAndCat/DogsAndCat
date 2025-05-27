@@ -29,9 +29,7 @@ class SearchButton extends StatelessWidget {
               animation: controller,
               builder: (context, _) {
                 return Text(
-                  controller.text.isEmpty
-                      ? 'Поиск пород собак'
-                      : controller.text,
+                  controller.text.isEmpty ? 'Поиск породы' : controller.text,
                 );
               },
             ),
